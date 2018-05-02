@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		036AE4982A91DF83BBB65766 /* Pods_HuntedRadar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 512348C5603785C2ABF26B3E /* Pods_HuntedRadar.framework */; };
 		B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4020995B030054FD6B /* AppDelegate.swift */; };
-		B7C5AD4320995B030054FD6B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4220995B030054FD6B /* ViewController.swift */; };
+		B7C5AD4320995B030054FD6B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4220995B030054FD6B /* MapViewController.swift */; };
 		B7C5AD4620995B030054FD6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C5AD4420995B030054FD6B /* Main.storyboard */; };
 		B7C5AD4820995B040054FD6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7C5AD4720995B040054FD6B /* Assets.xcassets */; };
 		B7C5AD4B20995B040054FD6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C5AD4920995B040054FD6B /* LaunchScreen.storyboard */; };
+		B7C5AD53209962640054FD6B /* unluckyhouse.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = B7C5AD52209962640054FD6B /* unluckyhouse.sqlite */; };
+		B7C5AD562099629E0054FD6B /* Dao.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD552099629E0054FD6B /* Dao.swift */; };
+		B7C5AD58209962DE0054FD6B /* UnLuckyHouse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD57209962DE0054FD6B /* UnLuckyHouse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,11 +23,14 @@
 		9ADEF73EEB0D209624612685 /* Pods-HuntedRadar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuntedRadar.release.xcconfig"; path = "Pods/Target Support Files/Pods-HuntedRadar/Pods-HuntedRadar.release.xcconfig"; sourceTree = "<group>"; };
 		B7C5AD3D20995B030054FD6B /* HuntedRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HuntedRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C5AD4020995B030054FD6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B7C5AD4220995B030054FD6B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B7C5AD4220995B030054FD6B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B7C5AD4520995B030054FD6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B7C5AD4720995B040054FD6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7C5AD4A20995B040054FD6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B7C5AD4C20995B040054FD6B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B7C5AD52209962640054FD6B /* unluckyhouse.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = unluckyhouse.sqlite; sourceTree = "<group>"; };
+		B7C5AD552099629E0054FD6B /* Dao.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dao.swift; sourceTree = "<group>"; };
+		B7C5AD57209962DE0054FD6B /* UnLuckyHouse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnLuckyHouse.swift; sourceTree = "<group>"; };
 		D09A49790DB186CF5543EBF1 /* Pods-HuntedRadar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuntedRadar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HuntedRadar/Pods-HuntedRadar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -52,6 +58,8 @@
 		B7C5AD3420995B030054FD6B = {
 			isa = PBXGroup;
 			children = (
+				B7C5AD542099628E0054FD6B /* Model */,
+				B7C5AD52209962640054FD6B /* unluckyhouse.sqlite */,
 				B7C5AD3F20995B030054FD6B /* HuntedRadar */,
 				B7C5AD3E20995B030054FD6B /* Products */,
 				3E8DBDEA20B6C72371770F57 /* Pods */,
@@ -71,13 +79,22 @@
 			isa = PBXGroup;
 			children = (
 				B7C5AD4020995B030054FD6B /* AppDelegate.swift */,
-				B7C5AD4220995B030054FD6B /* ViewController.swift */,
+				B7C5AD4220995B030054FD6B /* MapViewController.swift */,
 				B7C5AD4420995B030054FD6B /* Main.storyboard */,
 				B7C5AD4720995B040054FD6B /* Assets.xcassets */,
 				B7C5AD4920995B040054FD6B /* LaunchScreen.storyboard */,
 				B7C5AD4C20995B040054FD6B /* Info.plist */,
 			);
 			path = HuntedRadar;
+			sourceTree = "<group>";
+		};
+		B7C5AD542099628E0054FD6B /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B7C5AD552099629E0054FD6B /* Dao.swift */,
+				B7C5AD57209962DE0054FD6B /* UnLuckyHouse.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		F57B06C7654F8759E1F85A9F /* Frameworks */ = {
@@ -150,6 +167,7 @@
 			files = (
 				B7C5AD4B20995B040054FD6B /* LaunchScreen.storyboard in Resources */,
 				B7C5AD4820995B040054FD6B /* Assets.xcassets in Resources */,
+				B7C5AD53209962640054FD6B /* unluckyhouse.sqlite in Resources */,
 				B7C5AD4620995B030054FD6B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,8 +218,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7C5AD4320995B030054FD6B /* ViewController.swift in Sources */,
+				B7C5AD58209962DE0054FD6B /* UnLuckyHouse.swift in Sources */,
+				B7C5AD4320995B030054FD6B /* MapViewController.swift in Sources */,
 				B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */,
+				B7C5AD562099629E0054FD6B /* Dao.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -349,7 +369,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6HH362Z9DX;
 				INFOPLIST_FILE = HuntedRadar/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.btding.HuntedRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -365,7 +388,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6HH362Z9DX;
 				INFOPLIST_FILE = HuntedRadar/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.btding.HuntedRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

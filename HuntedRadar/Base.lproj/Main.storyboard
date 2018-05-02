@@ -1,24 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" systemVersion="17A277" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Map View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PfH-me-K1H">
+                                <rect key="frame" x="0.0" y="433" width="414" height="254"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="254" id="HKJ-VR-REz"/>
+                                </constraints>
+                            </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbV-Bt-bp7">
+                                <rect key="frame" x="0.0" y="144" width="414" height="226"/>
+                                <subviews>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3Ih-lN-SrD">
+                                        <rect key="frame" x="183" y="98" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="changeAnnotationsVisibility:" destination="BYZ-38-t0r" eventType="valueChanged" id="T3x-qZ-XnK"/>
+                                        </connections>
+                                    </switch>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="3Ih-lN-SrD" firstAttribute="top" secondItem="sbV-Bt-bp7" secondAttribute="top" constant="98" id="mGc-xa-YxW"/>
+                                    <constraint firstItem="3Ih-lN-SrD" firstAttribute="centerX" secondItem="sbV-Bt-bp7" secondAttribute="centerX" id="tWY-1p-UTf"/>
+                                    <constraint firstItem="3Ih-lN-SrD" firstAttribute="centerY" secondItem="sbV-Bt-bp7" secondAttribute="centerY" id="tWb-pK-P78"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4D-PT-4Yr">
+                                <rect key="frame" x="353" y="637" width="30" height="30"/>
+                                <state key="normal" title="test"/>
+                                <connections>
+                                    <action selector="testAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nHc-fA-3V4"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="sbV-Bt-bp7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4t2-av-aMX"/>
+                            <constraint firstItem="n4D-PT-4Yr" firstAttribute="leading" secondItem="PfH-me-K1H" secondAttribute="trailing" constant="-61" id="PZ1-xn-3ab"/>
+                            <constraint firstItem="PfH-me-K1H" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QIW-Cx-Muu"/>
+                            <constraint firstItem="PfH-me-K1H" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Y5a-Ur-Ebd"/>
+                            <constraint firstItem="sbV-Bt-bp7" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="ZcL-zF-eml"/>
+                            <constraint firstItem="sbV-Bt-bp7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="124" id="dka-Ik-8Fp"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="49" id="dqy-xw-vnJ"/>
+                            <constraint firstItem="n4D-PT-4Yr" firstAttribute="top" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="-50" id="eOG-NE-BWu"/>
+                            <constraint firstItem="PfH-me-K1H" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="jJ6-K7-lJh"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Y5a-Ur-Ebd"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="controlPanelView" destination="sbV-Bt-bp7" id="3Im-RG-wZU"/>
+                        <outlet property="mapView" destination="PfH-me-K1H" id="eZ2-Tp-bhJ"/>
+                        <outlet property="mapViewEqualHeightConstraint" destination="Y5a-Ur-Ebd" id="2xg-4B-YrS"/>
+                        <outlet property="mapViewHeightConstraint" destination="HKJ-VR-REz" id="1uF-jz-Aza"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="136.23188405797103" y="95.380434782608702"/>
         </scene>
     </scenes>
 </document>
