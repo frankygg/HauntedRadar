@@ -1,0 +1,22 @@
+PODS:
+  - FMDB (2.7.2):
+    - FMDB/standard (= 2.7.2)
+  - FMDB/standard (2.7.2)
+  - SwiftLint (0.25.1)
+
+DEPENDENCIES:
+  - FMDB
+  - SwiftLint
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - FMDB
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  FMDB: 6198a90e7b6900cfc046e6bc0ef6ebb7be9236aa
+  SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
+
+PODFILE CHECKSUM: 3ef220a1b9de1cd87b0ab51bf96f4338c172bd6e
+
+COCOAPODS: 1.5.0
