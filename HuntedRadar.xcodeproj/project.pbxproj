@@ -58,8 +58,6 @@
 		B7C5AD3420995B030054FD6B = {
 			isa = PBXGroup;
 			children = (
-				B7C5AD542099628E0054FD6B /* Model */,
-				B7C5AD52209962640054FD6B /* unluckyhouse.sqlite */,
 				B7C5AD3F20995B030054FD6B /* HuntedRadar */,
 				B7C5AD3E20995B030054FD6B /* Products */,
 				3E8DBDEA20B6C72371770F57 /* Pods */,
@@ -78,12 +76,14 @@
 		B7C5AD3F20995B030054FD6B /* HuntedRadar */ = {
 			isa = PBXGroup;
 			children = (
+				B7C5AD5B20996ABF0054FD6B /* Storyboard */,
+				B7C5AD5A20996A960054FD6B /* Controller */,
+				B7C5AD542099628E0054FD6B /* Model */,
 				B7C5AD4020995B030054FD6B /* AppDelegate.swift */,
-				B7C5AD4220995B030054FD6B /* MapViewController.swift */,
-				B7C5AD4420995B030054FD6B /* Main.storyboard */,
 				B7C5AD4720995B040054FD6B /* Assets.xcassets */,
 				B7C5AD4920995B040054FD6B /* LaunchScreen.storyboard */,
 				B7C5AD4C20995B040054FD6B /* Info.plist */,
+				B7C5AD52209962640054FD6B /* unluckyhouse.sqlite */,
 			);
 			path = HuntedRadar;
 			sourceTree = "<group>";
@@ -95,6 +95,22 @@
 				B7C5AD57209962DE0054FD6B /* UnLuckyHouse.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		B7C5AD5A20996A960054FD6B /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B7C5AD4220995B030054FD6B /* MapViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		B7C5AD5B20996ABF0054FD6B /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				B7C5AD4420995B030054FD6B /* Main.storyboard */,
+			);
+			path = Storyboard;
 			sourceTree = "<group>";
 		};
 		F57B06C7654F8759E1F85A9F /* Frameworks */ = {
@@ -117,6 +133,7 @@
 				B7C5AD3A20995B030054FD6B /* Frameworks */,
 				B7C5AD3B20995B030054FD6B /* Resources */,
 				8A3CF92E6A86B79D22A77752 /* [CP] Embed Pods Frameworks */,
+				B7C5AD59209966550054FD6B /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -210,6 +227,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HuntedRadar/Pods-HuntedRadar-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		B7C5AD59209966550054FD6B /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 

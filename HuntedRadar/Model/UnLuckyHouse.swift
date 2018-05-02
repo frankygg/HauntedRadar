@@ -10,17 +10,17 @@ import Foundation
 import MapKit
 import Contacts
 
-class UnLuckyHouse: NSObject , MKAnnotation{
-    
+class UnLuckyHouse: NSObject, MKAnnotation {
+
     var coordinate: CLLocationCoordinate2D
-    var id: Int
+    var houseId: Int
     var lat: Double
     var lng: Double
     var title: String?
     var subtitle: String?
-    
-    init(title: String,subtitle: String,  id: Int, lat: Double, lng: Double, coordinate: CLLocationCoordinate2D) {
-        self.id = id
+
+    init(title: String, subtitle: String, houseId: Int, lat: Double, lng: Double, coordinate: CLLocationCoordinate2D) {
+        self.houseId = houseId
         self.lat = lat
         self.lng = lng
         self.coordinate = coordinate
@@ -28,14 +28,13 @@ class UnLuckyHouse: NSObject , MKAnnotation{
         self.subtitle = subtitle
         super.init()
     }
-    
+
     func mapItem() -> MKMapItem {
         let addressDict = [CNPostalAddressStreetKey: title!]
         let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDict)
         let mapItem = MKMapItem(placemark: placemark)
         //        mapItem.name = title
-        
-        
+
         return mapItem
     }
 }
