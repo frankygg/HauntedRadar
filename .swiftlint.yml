@@ -1,1 +1,4 @@
 line_length: 160
+excluded: # 执行 linting 时忽略的路径。 优先级比 `included` 更高。
+  - Carthage
+  - Pods

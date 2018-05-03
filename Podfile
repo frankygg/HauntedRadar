@@ -8,4 +8,5 @@ target 'HuntedRadar' do
   # Pods for HuntedRadar
 pod 'FMDB'
 pod 'SwiftLint'
+pod 'Alamofire'
 end

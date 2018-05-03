@@ -33,17 +33,29 @@
                                             <action selector="changeAnnotationsVisibility:" destination="BYZ-38-t0r" eventType="valueChanged" id="T3x-qZ-XnK"/>
                                         </connections>
                                     </switch>
+                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ybV-GV-MBx">
+                                        <rect key="frame" x="183" y="160" width="51" height="31"/>
+                                        <connections>
+                                            <action selector="changeDangerousLocationVisibility:" destination="BYZ-38-t0r" eventType="valueChanged" id="NIZ-cE-6aM"/>
+                                        </connections>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="ybV-GV-MBx" firstAttribute="centerX" secondItem="sbV-Bt-bp7" secondAttribute="centerX" id="fsF-VS-ZPS"/>
                                     <constraint firstItem="3Ih-lN-SrD" firstAttribute="top" secondItem="sbV-Bt-bp7" secondAttribute="top" constant="98" id="mGc-xa-YxW"/>
                                     <constraint firstItem="3Ih-lN-SrD" firstAttribute="centerX" secondItem="sbV-Bt-bp7" secondAttribute="centerX" id="tWY-1p-UTf"/>
                                     <constraint firstItem="3Ih-lN-SrD" firstAttribute="centerY" secondItem="sbV-Bt-bp7" secondAttribute="centerY" id="tWb-pK-P78"/>
+                                    <constraint firstItem="ybV-GV-MBx" firstAttribute="top" secondItem="3Ih-lN-SrD" secondAttribute="bottom" constant="31" id="zzi-NA-LNP"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4D-PT-4Yr">
-                                <rect key="frame" x="353" y="637" width="30" height="30"/>
-                                <state key="normal" title="test"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4D-PT-4Yr">
+                                <rect key="frame" x="369" y="639" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="QPa-fL-jDT"/>
+                                    <constraint firstAttribute="height" constant="25" id="Yfx-2d-7Bt"/>
+                                </constraints>
+                                <state key="normal" image="full_screen_exit"/>
                                 <connections>
                                     <action selector="testAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nHc-fA-3V4"/>
                                 </connections>
@@ -52,14 +64,14 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="sbV-Bt-bp7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4t2-av-aMX"/>
-                            <constraint firstItem="n4D-PT-4Yr" firstAttribute="leading" secondItem="PfH-me-K1H" secondAttribute="trailing" constant="-61" id="PZ1-xn-3ab"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QIW-Cx-Muu"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Y5a-Ur-Ebd"/>
                             <constraint firstItem="sbV-Bt-bp7" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="ZcL-zF-eml"/>
                             <constraint firstItem="sbV-Bt-bp7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="124" id="dka-Ik-8Fp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="49" id="dqy-xw-vnJ"/>
-                            <constraint firstItem="n4D-PT-4Yr" firstAttribute="top" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="-50" id="eOG-NE-BWu"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="jJ6-K7-lJh"/>
+                            <constraint firstItem="n4D-PT-4Yr" firstAttribute="top" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="-48" id="nKM-K0-unJ"/>
+                            <constraint firstItem="n4D-PT-4Yr" firstAttribute="leading" secondItem="PfH-me-K1H" secondAttribute="trailing" constant="-45" id="xuT-04-UfA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <variation key="default">
@@ -70,9 +82,10 @@
                     </view>
                     <connections>
                         <outlet property="controlPanelView" destination="sbV-Bt-bp7" id="3Im-RG-wZU"/>
+                        <outlet property="fullscreenExitButton" destination="n4D-PT-4Yr" id="1Hf-nz-6ks"/>
                         <outlet property="mapView" destination="PfH-me-K1H" id="eZ2-Tp-bhJ"/>
-                        <outlet property="mapViewEqualHeightConstraint" destination="Y5a-Ur-Ebd" id="2xg-4B-YrS"/>
-                        <outlet property="mapViewHeightConstraint" destination="HKJ-VR-REz" id="1uF-jz-Aza"/>
+                        <outlet property="mapViewEqualHeightConstraint" destination="Y5a-Ur-Ebd" id="z8q-sh-O2M"/>
+                        <outlet property="mapViewHeightConstraint" destination="HKJ-VR-REz" id="LDx-yn-Bdk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -80,4 +93,7 @@
             <point key="canvasLocation" x="136.23188405797103" y="95.380434782608702"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="full_screen_exit" width="21" height="21"/>
+    </resources>
 </document>

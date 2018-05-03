@@ -10,45 +10,91 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
-    var deq = 0
-    var ghost = 0
-    @IBOutlet weak var mapViewEqualHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var mapViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var fullscreenExitButton: UIButton!
+    var dangerousLocation = [DangerousLocation]()
+    var addressWithMultiAnnotation = [String: [DangerousLocation]]()
+
+    var dangerousAddress = [DangerousAddress]()
+
+    @IBOutlet var mapViewEqualHeightConstraint: NSLayoutConstraint!
+
+    @IBOutlet var mapViewHeightConstraint: NSLayoutConstraint!
     var isFullScreen = false
-    var originalMapFrame: [NSLayoutConstraint]!
     @IBOutlet weak var controlPanelView: UIView!
-    var userLocation: CLLocation!
+    var userLocation: CLLocation?
+    @IBAction func changeDangerousLocationVisibility(_ sender: UISwitch) {
+        let annotationVisible = sender.isOn
+        print("================dangerousAddress============== \(dangerousAddress.count)")
+        if annotationVisible, let userLocation = userLocation, dangerousAddress.count > 0 {
+        getAddressFromLatLon(pdblLatitude: userLocation.coordinate.latitude, withLongitude: userLocation.coordinate.longitude) { useraddress in
+
+            DispatchQueue.main.async {
+
+                self.dlManager.requestArticles(completion: { [weak self] _ in
+
+                    for item in (self?.dangerousAddress)! where item.address.range(of: useraddress) != nil {
+                                            self?.convertAddressToLocationAtCotro(item.address, callback: { [weak self] coordinate in
+                                                var crimes = ""
+                                                for value in item.title {
+                                                    crimes += " " + value
+                                                }
+                                                let location = DangerousLocation(coordinate: coordinate, title: crimes, subtitle: item.address)
+                                                self?.mapView.addAnnotation(location)
+                                                self?.inmap += 1
+                                                print("inmap is \(self?.inmap)")
+
+                                            })
+                        }
+                })
+
+            }
+
+        }
+        } else {
+            for annotation in self.mapView.annotations {
+                if let dangerousLocation = annotation as? DangerousLocation {
+                    mapView.view(for: dangerousLocation)?.isHidden = true
+                }
+            }
+        }
+
+    }
     @IBAction func changeAnnotationsVisibility(_ sender: UISwitch) {
 
         let annotationVisible = sender.isOn
-
         for annotation in mapView.annotations {
-            let latitude = annotation.coordinate.latitude
-            let longitude = annotation.coordinate.longitude
+            if let unluckyAnnotation = annotation as? UnLuckyHouse, let userLocation = userLocation {
+            let latitude = unluckyAnnotation.coordinate.latitude
+            let longitude = unluckyAnnotation.coordinate.longitude
             let annotationLocation = CLLocation(latitude: latitude, longitude: longitude)
             if annotationVisible {
-                mapView.view(for: annotation)?.isHidden = (userLocation.distance(from: annotationLocation) > 1604)
+                mapView.view(for: unluckyAnnotation)?.isHidden = (userLocation.distance(from: annotationLocation) > 1604)
             } else {
 
-                mapView.view(for: annotation)?.isHidden = annotation.isKind(of: UnLuckyHouse.self)
+                mapView.view(for: unluckyAnnotation)?.isHidden = annotation.isKind(of: UnLuckyHouse.self)
+            }
             }
         }
     }
     var tapGesture = UITapGestureRecognizer()
-
+var banana = 0
+    var inmap = 0
     @IBOutlet weak var mapView: MKMapView!
     let regionRadius: CLLocationDistance = 1000
-    let identifier = "unluckyhouse"
+    let unLuckyHouseIdentifier = "unluckyhouse"
+    let dangerouseLocationIdentifier = "dangerouse"
 
     var unluckyhouseList = [UnLuckyHouse]()
 
     let locationManager = CLLocationManager()
 
+    var dlManager = DLManager()
+
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        originalMapFrame = mapView.constraints
         locationManager.delegate = self
+        fullscreenExitButton.isHidden = true
         //kCLLocationAccuracyHundredMeters
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -63,6 +109,7 @@ class MapViewController: UIViewController {
         //            print("\(house.id) = lng: \(house.lng), lat: \(house.lat)")
         //        }
         mapView.addAnnotations(unluckyhouseList)
+//        mapView.addAnnotations(dangerousLocation)
         //        let overlays = unluckyhouseList.map { MKCircle(center: $0.coordinate, radius: 100) }
         //        mapView.addOverlays(overlays)
         //
@@ -71,8 +118,73 @@ class MapViewController: UIViewController {
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(mapviewTapped))
         mapView.addGestureRecognizer(tapGesture)
         mapView.isUserInteractionEnabled = true
-        //
+
+        //json api dangerous location
+        let backgroundQ = DispatchQueue.global(qos: .background)
+        let group = DispatchGroup()
+        DispatchQueue.main.async {
+
+        self.dlManager.requestArticles(completion: { [weak self] locations in
+
+            for (key, values) in locations {
+                let addressObj = DangerousAddress(address: key, title: values)
+                self?.dangerousAddress.append(addressObj)
+            }
+//
+//                for item in 0...1 {
+//                    if let key = self?.dangerousAddress[item].address, let values = self?.dangerousAddress[item].title {
+//                        group.enter()
+//                        backgroundQ.async(group: group) {
+//                            self?.convertAddressToLocationAtCotro(key, callback: { [weak self] coordinate in
+//                                var crimes = ""
+//                                for value in values {
+//                                    crimes += " " + value
+//                                }
+//                                let location = DangerousLocation(coordinate: coordinate, title: crimes, subtitle: key)
+//                                self?.mapView.addAnnotation(location)
+//                                self?.inmap += 1
+//                                print("inmap is \(self?.inmap)")
+//                                group.leave()
+//                            })
+//                        }
+//
+//                    }
+//                }
+//            for (key, values) in locations {
+////                if key == "台北市信義區" {
+//                self?.banana += 1
+//                print("banana is \(self?.banana)")
+//
+//
+//                    self?.convertAddressToLocationAtCotro(key, callback: { [weak self] coordinate in
+//                        var crimes = ""
+//                        for value in values {
+//                            crimes += " " + value
+//                        }
+//                        let location = DangerousLocation(coordinate: coordinate, title: crimes, subtitle: key)
+//                        self?.mapView.addAnnotation(location)
+//                        self?.inmap += 1
+//                        print("inmap is \(self?.inmap)")
+//                        //                    print(key, coordinate)
+//
+//                    })
+//
+//
+//
+////                }
+//            }
+        })
+              }
+
     }
+
+//    func run(after seconds: Int, completion: @escaping () -> Void) {
+//        let deadline = DispatchTime.now() + .seconds(seconds)
+//        DispatchQueue.main.asyncAfter(deadline: deadline) {
+//            completion()
+//        }
+//    }
+//
 
     @objc func mapviewTapped(_ sender: UITapGestureRecognizer) {
 
@@ -81,8 +193,9 @@ class MapViewController: UIViewController {
         let hitAnnotationView: UIView? = mapView.hitTest(tapPoint, with: nil)
         if let annotationView = hitAnnotationView {
             if !annotationView.isKind(of: MKAnnotationView.self) && !isFullScreen {
+                fullscreenExitButton.isHidden = false
                 UIView.animate(withDuration: 0.7, animations: {
-                    //                    self.mapView.translatesAutoresizingMaskIntoConstraints = false
+
                     self.mapViewHeightConstraint.isActive = false
                     self.mapViewEqualHeightConstraint.isActive = true
 
@@ -90,8 +203,6 @@ class MapViewController: UIViewController {
                 isFullScreen = !isFullScreen
                 controlPanelView.isHidden = isFullScreen            }
         }
-        //
-
     }
 
     override func didReceiveMemoryWarning() {
@@ -105,11 +216,10 @@ class MapViewController: UIViewController {
         mapView.setRegion(coordinateRegion, animated: true)
     }
 
-    @IBAction func testAction(_ sender: Any) {
+    @IBAction func testAction(_ sender: UIButton) {
         if isFullScreen {
-
-            UIView.animate(withDuration: 2.0, animations: {
-                //                self.mapView.translatesAutoresizingMaskIntoConstraints = false
+            sender.isHidden = true
+            UIView.animate(withDuration: 0.7, animations: {
                 self.mapViewEqualHeightConstraint.isActive = false
                 self.mapViewHeightConstraint.isActive = true
 
@@ -127,6 +237,82 @@ class MapViewController: UIViewController {
 
     }
 
+    func convertAddressToLocationAtCotro(_ address: String, callback: @escaping (CLLocationCoordinate2D) -> Void) {
+        //        let address = "1 Infinite Loop, Cupertino, CA 95014"
+        //        let address2 = "台北市萬華區"
+        var coordinate: CLLocationCoordinate2D? = nil
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+            if let placemarks = placemarks {
+                let location = placemarks.first?.location
+                coordinate = location?.coordinate
+                callback(coordinate!)
+            } else {
+                print(error?.localizedDescription)
+//
+//                //            // handle no location found
+//                callback(CLLocationCoordinate2D(latitude: 25.0, longitude: 119.5))
+            }
+            // Use your location
+        }
+    }
+
+    func getAddressFromLatLon(pdblLatitude: Double, withLongitude pdblLongitude: Double, callback: @escaping (String) -> Void) {
+        var center: CLLocationCoordinate2D = CLLocationCoordinate2D()
+        let lat: Double = pdblLatitude
+        //21.228124
+        let lon: Double = pdblLongitude
+        //72.833770
+        let ceo: CLGeocoder = CLGeocoder()
+        center.latitude = lat
+        center.longitude = lon
+
+        let loc: CLLocation = CLLocation(latitude: center.latitude, longitude: center.longitude)
+
+        ceo.reverseGeocodeLocation(loc, completionHandler: {(placemarks, error) in
+                if (error != nil) {
+                    print("reverse geodcode fail: \(error!.localizedDescription)")
+                }
+                let pm = placemarks! as [CLPlacemark]
+
+                if pm.count > 0 {
+                    let pm = placemarks![0]
+                    print(pm.country)
+                    print(pm.locality)
+                    print(pm.subLocality)
+                    print(pm.thoroughfare)
+                    print(pm.postalCode)
+                    print(pm.subThoroughfare)
+
+                    var addressString: String = ""
+                    if let locality = pm.locality {
+                    addressString += locality
+                    }
+                        if let sublocality = pm.subLocality {
+        addressString += sublocality
+    }
+                    callback(addressString)
+//                    if pm.subLocality != nil {
+//                        addressString += pm.subLocality! + ", "
+//                    }
+//                    if pm.thoroughfare != nil {
+//                        addressString += pm.thoroughfare! + ", "
+//                    }
+//                    if pm.locality != nil {
+//                        addressString += pm.locality! + ", "
+//                    }
+//                    if pm.country != nil {
+//                        addressString += pm.country! + ", "
+//                    }
+//                    if pm.postalCode != nil {
+//                        addressString += pm.postalCode! + " "
+//                    }
+//
+//                    print(addressString)
+                }
+        })
+
+    }
 }
 
 extension MapViewController: CLLocationManagerDelegate {
@@ -178,19 +364,18 @@ extension MapViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         mapView.frame = self.mapView.frame
 
-        // 2
-        guard let annotation = annotation as? UnLuckyHouse else { return nil }
-        // 3
         var view: MKAnnotationView
+        // 2
+        if let annotation = annotation as? UnLuckyHouse {
+        // 3
         // 4
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: identifier) {
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: unLuckyHouseIdentifier) {
             dequeuedView.annotation = annotation
             view = dequeuedView
             view.isHidden = true
-            deq += 1
         } else {
             // 5
-            view = MKAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+            view = MKAnnotationView(annotation: annotation, reuseIdentifier: unLuckyHouseIdentifier)
             view.canShowCallout = true
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.image = UIImage(named: "ghost")
@@ -199,7 +384,26 @@ extension MapViewController: MKMapViewDelegate {
             //            view.transform = transform
 
         }
-        return view
+            return view } else if let annotation = annotation as? DangerousLocation {
+
+                if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: dangerouseLocationIdentifier) {
+                    dequeuedView.annotation = annotation
+                    view = dequeuedView
+//                    view.isHidden = true
+                } else {
+                    // 5
+                    view = MKAnnotationView(annotation: annotation, reuseIdentifier: dangerouseLocationIdentifier)
+                    view.canShowCallout = true
+                    view.calloutOffset = CGPoint(x: -5, y: 5)
+                    view.image = UIImage(named: "banana")
+//                    view.isHidden = true
+//                    banana += 1
+//                    print("banana is \(banana), \(annotation.title), \(annotation.subtitle), \(annotation.coordinate)")
+                }
+            return view
+        } else {
+            return nil
+        }
     }
 
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
@@ -207,6 +411,10 @@ extension MapViewController: MKMapViewDelegate {
         if let location = view.annotation as? UnLuckyHouse {
         //        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
         location.mapItem().openInMaps()
+        }
+        if let location = view.annotation as? DangerousLocation {
+            //        let launchOptions = [MKLaunchOptionsDirectionsModeKey: MKLaunchOptionsDirectionsModeDriving]
+            location.mapItem().openInMaps()
         }
     }
 
