@@ -15,11 +15,13 @@ class DangerousLocation: NSObject, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var title: String?
     var subtitle: String?
+    var crimes: [String]
 
-    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String) {
+    init(coordinate: CLLocationCoordinate2D, title: String, subtitle: String, crimes: [String]) {
         self.coordinate = coordinate
         self.title = title
         self.subtitle = subtitle
+        self.crimes = crimes
     }
 
     func mapItem() -> MKMapItem {
@@ -57,11 +59,7 @@ struct DLManager {
                                 var dangerousAddressWithTitles = [String: [String]]()
                         for obj in records {
                             if let address = obj.object(forKey: "oc_p1") as? String, let title = obj.object(forKey: "type") as? String {
-//
-//                                _ = self.convertAddressToLocation(address.trimmingCharacters(in: .whitespaces), callback: {coordinate in
-//                                    let location = DangerousLocation(coordinate: coordinate, title: title.trimmingCharacters(in: .whitespaces), subtitle: address.trimmingCharacters(in: .whitespaces))
-//                                    completion(location)
-//                                })
+
                                 let oneaddress = title.trimmingCharacters(in: .whitespaces)
                                 let annotationAtAddress = dangerousAddressWithTitles[address] ?? [String]()
                                 dangerousAddressWithTitles[address] = annotationAtAddress + [oneaddress]

@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		036AE4982A91DF83BBB65766 /* Pods_HuntedRadar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 512348C5603785C2ABF26B3E /* Pods_HuntedRadar.framework */; };
+		B70E98D5209C43B500112661 /* DangerousLocationDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E98D4209C43B500112661 /* DangerousLocationDetailMapView.swift */; };
+		B70E98D7209C43F100112661 /* DangerousLocationDetailMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70E98D6209C43F100112661 /* DangerousLocationDetailMapView.xib */; };
+		B70E98DA209C491F00112661 /* DangerousLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E98D8209C491F00112661 /* DangerousLocationTableViewCell.swift */; };
+		B70E98DB209C491F00112661 /* DangerousLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70E98D9209C491F00112661 /* DangerousLocationTableViewCell.xib */; };
+		B70E98DD209C522900112661 /* DangerousLocationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E98DC209C522900112661 /* DangerousLocationAnnotationView.swift */; };
 		B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4020995B030054FD6B /* AppDelegate.swift */; };
 		B7C5AD4320995B030054FD6B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4220995B030054FD6B /* MapViewController.swift */; };
 		B7C5AD4620995B030054FD6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C5AD4420995B030054FD6B /* Main.storyboard */; };
@@ -22,6 +27,11 @@
 /* Begin PBXFileReference section */
 		512348C5603785C2ABF26B3E /* Pods_HuntedRadar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HuntedRadar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADEF73EEB0D209624612685 /* Pods-HuntedRadar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuntedRadar.release.xcconfig"; path = "Pods/Target Support Files/Pods-HuntedRadar/Pods-HuntedRadar.release.xcconfig"; sourceTree = "<group>"; };
+		B70E98D4209C43B500112661 /* DangerousLocationDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerousLocationDetailMapView.swift; sourceTree = "<group>"; };
+		B70E98D6209C43F100112661 /* DangerousLocationDetailMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DangerousLocationDetailMapView.xib; sourceTree = "<group>"; };
+		B70E98D8209C491F00112661 /* DangerousLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerousLocationTableViewCell.swift; sourceTree = "<group>"; };
+		B70E98D9209C491F00112661 /* DangerousLocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DangerousLocationTableViewCell.xib; sourceTree = "<group>"; };
+		B70E98DC209C522900112661 /* DangerousLocationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerousLocationAnnotationView.swift; sourceTree = "<group>"; };
 		B7C5AD3D20995B030054FD6B /* HuntedRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HuntedRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C5AD4020995B030054FD6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7C5AD4220995B030054FD6B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -57,6 +67,18 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B70E98D3209C429400112661 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B70E98D4209C43B500112661 /* DangerousLocationDetailMapView.swift */,
+				B70E98D6209C43F100112661 /* DangerousLocationDetailMapView.xib */,
+				B70E98D8209C491F00112661 /* DangerousLocationTableViewCell.swift */,
+				B70E98D9209C491F00112661 /* DangerousLocationTableViewCell.xib */,
+				B70E98DC209C522900112661 /* DangerousLocationAnnotationView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		B7C5AD3420995B030054FD6B = {
 			isa = PBXGroup;
 			children = (
@@ -78,6 +100,7 @@
 		B7C5AD3F20995B030054FD6B /* HuntedRadar */ = {
 			isa = PBXGroup;
 			children = (
+				B70E98D3209C429400112661 /* View */,
 				B7C5AD5B20996ABF0054FD6B /* Storyboard */,
 				B7C5AD5A20996A960054FD6B /* Controller */,
 				B7C5AD542099628E0054FD6B /* Model */,
@@ -186,7 +209,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7C5AD4B20995B040054FD6B /* LaunchScreen.storyboard in Resources */,
+				B70E98D7209C43F100112661 /* DangerousLocationDetailMapView.xib in Resources */,
 				B7C5AD4820995B040054FD6B /* Assets.xcassets in Resources */,
+				B70E98DB209C491F00112661 /* DangerousLocationTableViewCell.xib in Resources */,
 				B7C5AD53209962640054FD6B /* unluckyhouse.sqlite in Resources */,
 				B7C5AD4620995B030054FD6B /* Main.storyboard in Resources */,
 			);
@@ -257,7 +282,10 @@
 				B7C5AD5D209990860054FD6B /* DangerousLocation.swift in Sources */,
 				B7C5AD4320995B030054FD6B /* MapViewController.swift in Sources */,
 				B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */,
+				B70E98D5209C43B500112661 /* DangerousLocationDetailMapView.swift in Sources */,
 				B7C5AD562099629E0054FD6B /* Dao.swift in Sources */,
+				B70E98DA209C491F00112661 /* DangerousLocationTableViewCell.swift in Sources */,
+				B70E98DD209C522900112661 /* DangerousLocationAnnotationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
