@@ -78,12 +78,12 @@ class DangerousLocationAnnotationView: MKAnnotationView {
                 let locations = dangerousAnnotation.crimes
                 detailMapView.configureWithLocation(location: locations)
             }
-            detailMapView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
+//            detailMapView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
 
             return detailMapView
         }
         return nil
-        
+
     }
 
     override func prepareForReuse() { // 5
@@ -92,8 +92,7 @@ class DangerousLocationAnnotationView: MKAnnotationView {
     }
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         // if super passed hit test, return the result
-        if let parentHitView = super.hitTest(point, with: event) { return parentHitView }
-        else { // test in our custom callout.
+        if let parentHitView = super.hitTest(point, with: event) { return parentHitView } else { // test in our custom callout.
             if customCalloutView != nil {
                 return customCalloutView!.hitTest(convert(point, to: customCalloutView!), with: event)
             } else { return nil }

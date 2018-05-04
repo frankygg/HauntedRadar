@@ -16,6 +16,8 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
     var locations: [String]!
     weak var delegate: DangerousLocationDetailMapViewDelegate?
 
+    @IBOutlet weak var backGroundButten: UIButton!
+    
     @IBOutlet weak var detailTableView: UITableView!
 
     override func awakeFromNib() {
@@ -25,6 +27,9 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
         detailTableView.register(UINib(nibName: "DangerousLocationTableViewCell", bundle: nil), forCellReuseIdentifier: "DangerousLocationTableViewCell")
         detailTableView.delegate = self
         detailTableView.dataSource = self
+        
+        // appearance
+        backGroundButten.applyArrowDialogAppearanceWithOrientation(arrowOrientation: .down)
 
     }
 
@@ -48,17 +53,17 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
             return UITableViewCell()
         }
     }
-    
+
     // MARK: - Hit test. We need to override this to detect hits in our custom callout.
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         // Check if it hit our annotation detail view components.
-        
-        
+
         // list
         if let result = detailTableView.hitTest(convert(point, to: detailTableView), with: event) {
             return result
         }
-        return nil
+        // fallback to our background content view
+        return backGroundButten.hitTest(convert(point, to: backGroundButten), with: event)
     }
 
 }
