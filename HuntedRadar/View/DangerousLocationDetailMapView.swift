@@ -17,7 +17,7 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
     weak var delegate: DangerousLocationDetailMapViewDelegate?
 
     @IBOutlet weak var backGroundButten: UIButton!
-    
+
     @IBOutlet weak var detailTableView: UITableView!
 
     override func awakeFromNib() {
@@ -27,7 +27,7 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
         detailTableView.register(UINib(nibName: "DangerousLocationTableViewCell", bundle: nil), forCellReuseIdentifier: "DangerousLocationTableViewCell")
         detailTableView.delegate = self
         detailTableView.dataSource = self
-        
+
         // appearance
         backGroundButten.applyArrowDialogAppearanceWithOrientation(arrowOrientation: .down)
 

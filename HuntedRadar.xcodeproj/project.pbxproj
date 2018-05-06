@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		036AE4982A91DF83BBB65766 /* Pods_HuntedRadar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 512348C5603785C2ABF26B3E /* Pods_HuntedRadar.framework */; };
+		B70C18D4209DAA4600133859 /* crimes10701_10703.json in Resources */ = {isa = PBXBuildFile; fileRef = B70C18D3209DAA4600133859 /* crimes10701_10703.json */; };
 		B70C6D36209CA76500E5ACD9 /* BezierPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70C6D35209CA76500E5ACD9 /* BezierPathExtension.swift */; };
 		B70E98D5209C43B500112661 /* DangerousLocationDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E98D4209C43B500112661 /* DangerousLocationDetailMapView.swift */; };
 		B70E98D7209C43F100112661 /* DangerousLocationDetailMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70E98D6209C43F100112661 /* DangerousLocationDetailMapView.xib */; };
@@ -28,6 +29,7 @@
 /* Begin PBXFileReference section */
 		512348C5603785C2ABF26B3E /* Pods_HuntedRadar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HuntedRadar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADEF73EEB0D209624612685 /* Pods-HuntedRadar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuntedRadar.release.xcconfig"; path = "Pods/Target Support Files/Pods-HuntedRadar/Pods-HuntedRadar.release.xcconfig"; sourceTree = "<group>"; };
+		B70C18D3209DAA4600133859 /* crimes10701_10703.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = crimes10701_10703.json; sourceTree = "<group>"; };
 		B70C6D35209CA76500E5ACD9 /* BezierPathExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierPathExtension.swift; sourceTree = "<group>"; };
 		B70E98D4209C43B500112661 /* DangerousLocationDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerousLocationDetailMapView.swift; sourceTree = "<group>"; };
 		B70E98D6209C43F100112661 /* DangerousLocationDetailMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DangerousLocationDetailMapView.xib; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				B7C5AD4920995B040054FD6B /* LaunchScreen.storyboard */,
 				B7C5AD4C20995B040054FD6B /* Info.plist */,
 				B7C5AD52209962640054FD6B /* unluckyhouse.sqlite */,
+				B70C18D3209DAA4600133859 /* crimes10701_10703.json */,
 			);
 			path = HuntedRadar;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 			files = (
 				B7C5AD4B20995B040054FD6B /* LaunchScreen.storyboard in Resources */,
 				B70E98D7209C43F100112661 /* DangerousLocationDetailMapView.xib in Resources */,
+				B70C18D4209DAA4600133859 /* crimes10701_10703.json in Resources */,
 				B7C5AD4820995B040054FD6B /* Assets.xcassets in Resources */,
 				B70E98DB209C491F00112661 /* DangerousLocationTableViewCell.xib in Resources */,
 				B7C5AD53209962640054FD6B /* unluckyhouse.sqlite in Resources */,

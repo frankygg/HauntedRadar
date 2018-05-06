@@ -30,10 +30,9 @@ class MapViewController: UIViewController {
 
             DispatchQueue.main.async {
 
-                self.dlManager.requestArticles(completion: { [weak self] _ in
 
-                    for item in (self?.dangerousAddress)! where item.address.range(of: useraddress) != nil {
-                                            self?.convertAddressToLocationAtCotro(item.address, callback: { [weak self] coordinate in
+                    for item in self.dangerousAddress where item.address.range(of: useraddress) != nil {
+                                            self.convertAddressToLocationAtCotro(item.address, callback: { [weak self] coordinate in
                                                 var crimes = ""
                                                 for value in item.title {
                                                     crimes += " " + value
@@ -42,7 +41,6 @@ class MapViewController: UIViewController {
                                                 self?.mapView.addAnnotation(location)
 })
                         }
-                })
 
             }
 
@@ -119,9 +117,10 @@ var banana = 0
         //json api dangerous location
         DispatchQueue.main.async {
 
-        self.dlManager.requestArticles(completion: { [weak self] locations in
+        self.dlManager.requestDLinJson(completion: { [weak self] locations in
 
             for (key, values) in locations {
+                print("\(key ) ===== \(values)")
                 let addressObj = DangerousAddress(address: key, title: values)
                 self?.dangerousAddress.append(addressObj)
             }

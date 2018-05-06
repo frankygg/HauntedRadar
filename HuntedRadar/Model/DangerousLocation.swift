@@ -49,7 +49,6 @@ struct DLManager {
 
             //alamofire
             Alamofire.request("https://od.moi.gov.tw/api/v1/rest/datastore/A01010000C-000499-073").responseJSON { response in
-
                 do {
                     guard let data = response.data else {return}
                     if let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as? [String: Any] {
@@ -63,39 +62,53 @@ struct DLManager {
                                 let oneaddress = title.trimmingCharacters(in: .whitespaces)
                                 let annotationAtAddress = dangerousAddressWithTitles[address] ?? [String]()
                                 dangerousAddressWithTitles[address] = annotationAtAddress + [oneaddress]
-
                             }
-
                         }
                                 completion(dangerousAddressWithTitles)
                             }
-
                     }
                         if (json["error"] as? String) != nil {
                     }
                 }
-                } catch {
-                    fatalError()
+                } catch let error {
+                    print(error.localizedDescription )
+
                 }
             }
         }
-
-    func convertAddressToLocation(_ address: String, callback: @escaping (CLLocationCoordinate2D) -> Void) {
-        //        let address = "1 Infinite Loop, Cupertino, CA 95014"
-        //        let address2 = "台北市萬華區"
-        var coordinate: CLLocationCoordinate2D? = nil
-        let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(address) { (placemarks, _) in
-                if let placemarks = placemarks, let location = placemarks.first?.location {
-                        coordinate = location.coordinate
-                        callback(coordinate!)
-                } else {
-
-//            // handle no location found
-            callback(CLLocationCoordinate2D(latitude: 25.0, longitude: 119.5))
+    
+    func requestDLinJson(completion: @escaping ([String: [String]]) -> Void) {
+        let url = Bundle.main.url(forResource: "crimes10701_10703", withExtension:"json")
+        let data = try? Data(contentsOf: url!)
+        do {
+        guard let jsonData = data else {return}
+            let responseStrInmacOSRoman = String(data: jsonData, encoding: String.Encoding.macOSRoman)
+            
+            guard let modifiedDataInUTF8Format = responseStrInmacOSRoman?.data(using: String.Encoding.utf16) else {
+                print("could not convert data to UTF-8 format")
+                return
             }
-                // Use your location
+        if let records = try JSONSerialization.jsonObject(with: modifiedDataInUTF8Format, options: JSONSerialization.ReadingOptions()) as? [NSDictionary] {
+            DispatchQueue.global().async {
+                var dangerousAddressWithTitles = [String: [String]]()
+                for obj in records {
+                    if let address = obj.object(forKey: "oc_p1") as? String, let title = obj.object(forKey: "type") as? String {
+                        
+                        let oneaddress = title.trimmingCharacters(in: .whitespaces)
+                        let annotationAtAddress = dangerousAddressWithTitles[address] ?? [String]()
+                        dangerousAddressWithTitles[address] = annotationAtAddress + [oneaddress]
+                    }
+                }
+                completion(dangerousAddressWithTitles)
+            }
+            
+
         }
+        }
+            catch let error {
+                print(error.localizedDescription)
+            }
+        
     }
 
 }

@@ -45,8 +45,7 @@ class DangerousLocationAnnotationView: MKAnnotationView {
 
                 // set custom callout view
                 self.addSubview(newCustomCalloutView)
-                self.customCalloutView = newCustomCalloutView as? DangerousLocationDetailMapView
-
+                self.customCalloutView = newCustomCalloutView
                 // animate presentation
                 if animated {
                     self.customCalloutView!.alpha = 0.0
