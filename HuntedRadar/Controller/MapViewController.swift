@@ -10,6 +10,9 @@ import UIKit
 import MapKit
 
 class MapViewController: UIViewController {
+
+    var resultSearchController: UISearchController?
+
     @IBOutlet weak var fullscreenExitButton: UIButton!
     var dangerousLocation = [DangerousLocation]()
     var addressWithMultiAnnotation = [String: [DangerousLocation]]()
@@ -29,7 +32,6 @@ class MapViewController: UIViewController {
         getAddressFromLatLon(pdblLatitude: userLocation.coordinate.latitude, withLongitude: userLocation.coordinate.longitude) { useraddress in
 
             DispatchQueue.main.async {
-
 
                     for item in self.dangerousAddress where item.address.range(of: useraddress) != nil {
                                             self.convertAddressToLocationAtCotro(item.address, callback: { [weak self] coordinate in
@@ -63,6 +65,7 @@ class MapViewController: UIViewController {
             let longitude = unluckyAnnotation.coordinate.longitude
             let annotationLocation = CLLocation(latitude: latitude, longitude: longitude)
             if annotationVisible {
+//                mapView.view(for: unluckyAnnotation)?.isHidden = false
                 mapView.view(for: unluckyAnnotation)?.isHidden = (userLocation.distance(from: annotationLocation) > 1604)
             } else {
 
@@ -72,8 +75,6 @@ class MapViewController: UIViewController {
         }
     }
     var tapGesture = UITapGestureRecognizer()
-var banana = 0
-    var inmap = 0
     @IBOutlet weak var mapView: MKMapView!
     let regionRadius: CLLocationDistance = 1000
     let unLuckyHouseIdentifier = "unluckyhouse"
@@ -88,6 +89,20 @@ var banana = 0
     override func viewDidLoad() {
 
         super.viewDidLoad()
+        //set search bar
+        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as? LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.placeholder = "Search for places"
+        navigationItem.titleView = resultSearchController?.searchBar
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+        locationSearchTable?.mapView = mapView
+        locationSearchTable?.delegate = self
+
         locationManager.delegate = self
         fullscreenExitButton.isHidden = true
         //kCLLocationAccuracyHundredMeters
@@ -99,7 +114,7 @@ var banana = 0
 
         unluckyhouseList = Dao.shared.queryData()
 
-        print("number house = \(unluckyhouseList.count)")
+//        print("number house = \(unluckyhouseList.count)")
         //        for house in unluckyhouseList {
         //            print("\(house.id) = lng: \(house.lng), lat: \(house.lat)")
         //        }
@@ -120,7 +135,6 @@ var banana = 0
         self.dlManager.requestDLinJson(completion: { [weak self] locations in
 
             for (key, values) in locations {
-                print("\(key ) ===== \(values)")
                 let addressObj = DangerousAddress(address: key, title: values)
                 self?.dangerousAddress.append(addressObj)
             }
@@ -259,27 +273,6 @@ extension MapViewController: CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //        let address = "台北市萬華區"
-        //        var coordinate: CLLocationCoordinate2D?
-        //        let geoCoder = CLGeocoder()
-        //        DispatchQueue.main.async {
-        //
-        //            geoCoder.geocodeAddressString(address) { (placemarks, error) in
-        //                guard
-        //                    let placemarks = placemarks,
-        //                    let location = placemarks.first?.location
-        //                    else {
-        //                        // handle no location found
-        //                        return
-        //                }
-        //                coordinate = location.coordinate
-        //                self.userLocation = location
-        //
-        //                let span = MKCoordinateSpanMake(0.05, 0.05)
-        //                let region = MKCoordinateRegion(center: self.userLocation.coordinate, span: span)
-        //                self.mapView.setRegion(region, animated: true)
-        //            }
-        //        }
         //simulator模擬目前位置
         if let location = locations.first {
             userLocation = location
@@ -293,8 +286,12 @@ extension MapViewController: CLLocationManagerDelegate {
 extension MapViewController: MKMapViewDelegate {
     // 1
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        mapView.frame = self.mapView.frame
+//        mapView.frame = self.mapView.frame
 
+        if annotation is MKUserLocation {
+            //return nil so map view draws "blue dot" for standard user location
+            return nil
+        }
         var view: MKAnnotationView
         // 2
         if let annotation = annotation as? UnLuckyHouse {
@@ -311,9 +308,6 @@ extension MapViewController: MKMapViewDelegate {
             view.calloutOffset = CGPoint(x: -5, y: 5)
             view.image = UIImage(named: "ghost")
             view.isHidden = true
-            //            let transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-            //            view.transform = transform
-
         }
             return view } else if let annotation = annotation as? DangerousLocation {
 
@@ -331,7 +325,14 @@ extension MapViewController: MKMapViewDelegate {
                 }
             return view
         } else {
-            return nil
+            let reuseId = "pin"
+            var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
+            pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
+            pinView?.canShowCallout = true
+            pinView?.image = UIImage(named: "scanner")
+            let transform = CGAffineTransform(scaleX: 2, y: 2)
+                        pinView?.transform = transform
+            return pinView
         }
     }
 
@@ -346,13 +347,29 @@ extension MapViewController: MKMapViewDelegate {
             location.mapItem().openInMaps()
         }
     }
+}
 
-    //    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
-    //        let renderer = MKCircleRenderer(overlay: overlay)
-    //        renderer.fillColor = UIColor.black.withAlphaComponent(0.5)
-    //        renderer.strokeColor = UIColor.blue
-    //        renderer.lineWidth = 2
-    //        return renderer
-    //    }
-
+extension MapViewController: HandleMapSearch {
+    func dropPinZoomIn(placemark: MKPlacemark) {
+        // cache the pin
+//        selectedPin = placemark
+        // clear existing pins
+        for annotation in mapView.annotations {
+            if !annotation.isKind(of: UnLuckyHouse.self ) {
+            mapView.removeAnnotation(annotation)
+            }
+        }
+        let annotation = MKPointAnnotation()
+        annotation.coordinate = placemark.coordinate
+        userLocation = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
+        annotation.title = placemark.name
+        if let city = placemark.locality,
+            let state = placemark.administrativeArea {
+            annotation.subtitle = "\(city) \(state)"
+        }
+        mapView.addAnnotation(annotation)
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let region = MKCoordinateRegionMake(placemark.coordinate, span)
+        mapView.setRegion(region, animated: true)
+    }
 }
