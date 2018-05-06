@@ -25,6 +25,14 @@ class MapViewController: UIViewController {
     var isFullScreen = false
     @IBOutlet weak var controlPanelView: UIView!
     var userLocation: CLLocation?
+    var originalLocation: CLLocationCoordinate2D?
+    @objc func centerBackOnLocation(_ sender: UIBarButtonItem) {
+        if let originalLocation = originalLocation {
+            let span = MKCoordinateSpanMake(0.05, 0.05)
+            let region = MKCoordinateRegion(center: originalLocation, span: span)
+            mapView.setRegion(region, animated: true)
+        }
+    }
     @IBAction func changeDangerousLocationVisibility(_ sender: UISwitch) {
         let annotationVisible = sender.isOn
         print("================dangerousAddress============== \(dangerousAddress.count)")
@@ -76,7 +84,6 @@ class MapViewController: UIViewController {
     }
     var tapGesture = UITapGestureRecognizer()
     @IBOutlet weak var mapView: MKMapView!
-    let regionRadius: CLLocationDistance = 1000
     let unLuckyHouseIdentifier = "unluckyhouse"
     let dangerouseLocationIdentifier = "dangerouse"
 
@@ -97,6 +104,8 @@ class MapViewController: UIViewController {
         searchBar.sizeToFit()
         searchBar.placeholder = "Search for places"
         navigationItem.titleView = resultSearchController?.searchBar
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "center_back"), style: .done, target: self, action: #selector(centerBackOnLocation))
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
@@ -165,12 +174,6 @@ class MapViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-    }
-
-    func centerMapOnLocation(location: CLLocation) {
-        let coordinateRegion = MKCoordinateRegionMakeWithDistance(location.coordinate,
-                                                                  regionRadius, regionRadius)
-        mapView.setRegion(coordinateRegion, animated: true)
     }
 
     @IBAction func testAction(_ sender: UIButton) {
@@ -276,6 +279,7 @@ extension MapViewController: CLLocationManagerDelegate {
         //simulator模擬目前位置
         if let location = locations.first {
             userLocation = location
+            originalLocation = location.coordinate
             let span = MKCoordinateSpanMake(0.05, 0.05)
             let region = MKCoordinateRegion(center: location.coordinate, span: span)
             mapView.setRegion(region, animated: true)        }
