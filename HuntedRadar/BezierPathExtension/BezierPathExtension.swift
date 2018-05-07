@@ -29,9 +29,9 @@ func dialogBezierPathWithFrame(_ frame: CGRect, arrowOrientation orientation: UI
     // We need 7 points for our Bezier path
     let midX = transposedFrame.midX
     let point1 = CGPoint(x: transposedFrame.minX, y: transposedFrame.minY + arrowLength)
-    let point2 = CGPoint(x: midX - (arrowLength / 2) - 10, y: transposedFrame.minY + arrowLength)
-    let point3 = CGPoint(x: midX, y: transposedFrame.minY + 10)
-    let point4 = CGPoint(x: midX + (arrowLength / 2) + 10, y: transposedFrame.minY + arrowLength)
+    let point2 = CGPoint(x: midX - (arrowLength / 2), y: transposedFrame.minY + arrowLength)
+    let point3 = CGPoint(x: midX, y: transposedFrame.minY)
+    let point4 = CGPoint(x: midX + (arrowLength / 2), y: transposedFrame.minY + arrowLength)
     let point5 = CGPoint(x: transposedFrame.maxX, y: transposedFrame.minY + arrowLength)
     let point6 = CGPoint(x: transposedFrame.maxX, y: transposedFrame.maxY)
     let point7 = CGPoint(x: transposedFrame.minX, y: transposedFrame.maxY)

@@ -74,7 +74,7 @@ class DangerousLocationAnnotationView: MKAnnotationView {
             let detailMapView = views.first!
             detailMapView.delegate = self as? DangerousLocationDetailMapViewDelegate
             if let dangerousAnnotation = annotation as? DangerousLocation {
-                let locations = dangerousAnnotation.crimes
+                let locations = dangerousAnnotation
                 detailMapView.configureWithLocation(location: locations)
             }
 //            detailMapView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)

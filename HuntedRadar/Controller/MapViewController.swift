@@ -28,6 +28,7 @@ class MapViewController: UIViewController {
     var originalLocation: CLLocationCoordinate2D?
     @objc func centerBackOnLocation(_ sender: UIBarButtonItem) {
         if let originalLocation = originalLocation {
+            userLocation = CLLocation(latitude: originalLocation.latitude, longitude: originalLocation.longitude)
             let span = MKCoordinateSpanMake(0.05, 0.05)
             let region = MKCoordinateRegion(center: originalLocation, span: span)
             mapView.setRegion(region, animated: true)
