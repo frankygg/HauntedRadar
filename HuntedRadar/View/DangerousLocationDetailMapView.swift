@@ -97,10 +97,14 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
         }
         
         button.setTitleColor(.black, for: .normal)
-        button.backgroundColor = .lightGray
+        button.backgroundColor = .white
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.addTarget(self, action: #selector(handleExpandClose), for: .touchUpInside)
         button.tag = section
+        button.layer.borderColor = UIColor.black.cgColor
+        button.layer.borderWidth = 2
+        button.layer.cornerRadius = 2
+        button.layer.masksToBounds = true
         return button
     }
 
