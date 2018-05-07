@@ -84,9 +84,8 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
         let button = UIButton(type: .system)
         let numberOfDangerous = twoDimensionArray[section].locations.count
         button.setTitle("\(twoDimensionArray[section].locations[0]) X\(numberOfDangerous)", for: .normal)
-//        button.setImage(UIImage(named: "needle"), for: .normal)
         if let imageName = dangerousimage[twoDimensionArray[section].locations[0]] {
-        var image = UIImageView(image: UIImage(named: imageName))
+        let image = UIImageView(image: UIImage(named: imageName))
             button.addSubview(image)
             image.translatesAutoresizingMaskIntoConstraints = false
             let horizontalConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: button, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 10)
@@ -95,16 +94,18 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
             let heightConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20)
             button.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
         }
-        
+
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .white
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         button.addTarget(self, action: #selector(handleExpandClose), for: .touchUpInside)
         button.tag = section
         button.layer.borderColor = UIColor.black.cgColor
-        button.layer.borderWidth = 2
+
+        button.clipsToBounds = true
+        button.layer.borderWidth = 4
         button.layer.cornerRadius = 2
-        button.layer.masksToBounds = true
+        button.layer.borderColor = UIColor.white.cgColor
         return button
     }
 
