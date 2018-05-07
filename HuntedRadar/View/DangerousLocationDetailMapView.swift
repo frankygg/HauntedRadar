@@ -15,7 +15,8 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
     //data
     var locations: [String]!
     var twoDimensionArray = [ExpandableLocations]()
-    let dangerous = ["毒品", "強制性交", "強盜", "搶奪", "住宅盜竊", "汽車竊盜", "機車竊"]
+    let dangerous = ["毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
+    let dangerousimage: [String: String] = ["毒品": "needle", "強制性交": "sexual_abuse", "強盜": "rob", "搶奪": "steal", "住宅竊盜": "homesteal", "汽車竊盜": "carsteal", "機車竊盜": "motorcycle_steal"]
     weak var delegate: DangerousLocationDetailMapViewDelegate?
 
     @IBOutlet weak var titleLabel: UILabel!
@@ -41,7 +42,7 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
 
         for item in dangerous {
             var group = [String]()
-            for location in locations where item == location {
+            for location in locations where item == location.trimmingCharacters(in: .whitespaces) {
                 group.append(location)
             }
             if group.count > 0 {
@@ -83,6 +84,18 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
         let button = UIButton(type: .system)
         let numberOfDangerous = twoDimensionArray[section].locations.count
         button.setTitle("\(twoDimensionArray[section].locations[0]) X\(numberOfDangerous)", for: .normal)
+//        button.setImage(UIImage(named: "needle"), for: .normal)
+        if let imageName = dangerousimage[twoDimensionArray[section].locations[0]] {
+        var image = UIImageView(image: UIImage(named: imageName))
+            button.addSubview(image)
+            image.translatesAutoresizingMaskIntoConstraints = false
+            let horizontalConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: button, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 10)
+            let verticalConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: button, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 25)
+            let widthConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20)
+            let heightConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20)
+            button.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+        }
+        
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .lightGray
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)

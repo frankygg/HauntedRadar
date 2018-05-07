@@ -22,13 +22,13 @@ class DangerousLocationAnnotationView: MKAnnotationView {
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         self.canShowCallout = false // 1
-        self.image = UIImage(named: "banana")
+        self.image = UIImage(named: "evileye")
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         self.canShowCallout = false // 1
-        self.image = UIImage(named: "banana")
+        self.image = UIImage(named: "evileye")
     }
 
     // MARK: - callout showing and hiding
@@ -60,7 +60,7 @@ class DangerousLocationAnnotationView: MKAnnotationView {
                     UIView.animate(withDuration: 0.7, animations: {
                         self.customCalloutView!.alpha = 0.0
                     }, completion: { (_) in
-                        self.customCalloutView!.removeFromSuperview()
+//                        self.customCalloutView!.removeFromSuperview()
                     })
                 } else { self.customCalloutView!.removeFromSuperview() } // just remove it.
             }

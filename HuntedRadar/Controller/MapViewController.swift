@@ -98,7 +98,8 @@ class MapViewController: UIViewController {
 
         super.viewDidLoad()
         //set search bar
-        let locationSearchTable = storyboard!.instantiateViewController(withIdentifier: "LocationSearchTable") as? LocationSearchTable
+        let storyBoard = UIStoryboard(name: "LocationSearchTable", bundle: nil)
+        let locationSearchTable = storyBoard.instantiateViewController(withIdentifier: "LocationSearchTable") as? LocationSearchTable
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController?.searchResultsUpdater = locationSearchTable
         let searchBar = resultSearchController!.searchBar
