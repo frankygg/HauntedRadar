@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		036AE4982A91DF83BBB65766 /* Pods_HuntedRadar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 512348C5603785C2ABF26B3E /* Pods_HuntedRadar.framework */; };
+		B70452C820A1480700090318 /* SwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70452C720A1480700090318 /* SwitchViewController.swift */; };
+		B70452CC20A14B2500090318 /* SwitchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70452CA20A14B2500090318 /* SwitchCollectionViewCell.swift */; };
+		B70452CD20A14B2500090318 /* SwitchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70452CB20A14B2500090318 /* SwitchCollectionViewCell.xib */; };
 		B70C18D4209DAA4600133859 /* crimes10701_10703.json in Resources */ = {isa = PBXBuildFile; fileRef = B70C18D3209DAA4600133859 /* crimes10701_10703.json */; };
 		B70C18DC209EE87600133859 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70C18DB209EE87600133859 /* LocationSearchTable.swift */; };
 		B70C6D36209CA76500E5ACD9 /* BezierPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70C6D35209CA76500E5ACD9 /* BezierPathExtension.swift */; };
@@ -32,6 +35,9 @@
 /* Begin PBXFileReference section */
 		512348C5603785C2ABF26B3E /* Pods_HuntedRadar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HuntedRadar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADEF73EEB0D209624612685 /* Pods-HuntedRadar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuntedRadar.release.xcconfig"; path = "Pods/Target Support Files/Pods-HuntedRadar/Pods-HuntedRadar.release.xcconfig"; sourceTree = "<group>"; };
+		B70452C720A1480700090318 /* SwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewController.swift; sourceTree = "<group>"; };
+		B70452CA20A14B2500090318 /* SwitchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCollectionViewCell.swift; sourceTree = "<group>"; };
+		B70452CB20A14B2500090318 /* SwitchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCollectionViewCell.xib; sourceTree = "<group>"; };
 		B70C18D3209DAA4600133859 /* crimes10701_10703.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = crimes10701_10703.json; sourceTree = "<group>"; };
 		B70C18DB209EE87600133859 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		B70C6D35209CA76500E5ACD9 /* BezierPathExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierPathExtension.swift; sourceTree = "<group>"; };
@@ -77,6 +83,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		B70452C920A14AFD00090318 /* SwitchCollectionView */ = {
+			isa = PBXGroup;
+			children = (
+				B70452CA20A14B2500090318 /* SwitchCollectionViewCell.swift */,
+				B70452CB20A14B2500090318 /* SwitchCollectionViewCell.xib */,
+			);
+			path = SwitchCollectionView;
+			sourceTree = "<group>";
+		};
 		B70C6D34209CA72700E5ACD9 /* BezierPathExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -88,6 +103,7 @@
 		B70E98D3209C429400112661 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B70452C920A14AFD00090318 /* SwitchCollectionView */,
 				B70E98D4209C43B500112661 /* DangerousLocationDetailMapView.swift */,
 				B70E98D6209C43F100112661 /* DangerousLocationDetailMapView.xib */,
 				B70E98D8209C491F00112661 /* DangerousLocationTableViewCell.swift */,
@@ -149,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				B7C5AD4220995B030054FD6B /* MapViewController.swift */,
+				B70452C720A1480700090318 /* SwitchViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -237,6 +254,7 @@
 				B7C5AD4820995B040054FD6B /* Assets.xcassets in Resources */,
 				B79E4DB920A06E2900FE9911 /* LocationSearchTable.storyboard in Resources */,
 				B70E98DB209C491F00112661 /* DangerousLocationTableViewCell.xib in Resources */,
+				B70452CD20A14B2500090318 /* SwitchCollectionViewCell.xib in Resources */,
 				B7C5AD53209962640054FD6B /* unluckyhouse.sqlite in Resources */,
 				B7C5AD4620995B030054FD6B /* Main.storyboard in Resources */,
 			);
@@ -305,10 +323,12 @@
 			files = (
 				B7C5AD58209962DE0054FD6B /* UnLuckyHouse.swift in Sources */,
 				B70C18DC209EE87600133859 /* LocationSearchTable.swift in Sources */,
+				B70452CC20A14B2500090318 /* SwitchCollectionViewCell.swift in Sources */,
 				B7C5AD5D209990860054FD6B /* DangerousLocation.swift in Sources */,
 				B7C5AD4320995B030054FD6B /* MapViewController.swift in Sources */,
 				B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */,
 				B70E98D5209C43B500112661 /* DangerousLocationDetailMapView.swift in Sources */,
+				B70452C820A1480700090318 /* SwitchViewController.swift in Sources */,
 				B7C5AD562099629E0054FD6B /* Dao.swift in Sources */,
 				B725FFB620A0377400BA6553 /* ExpandableLocations.swift in Sources */,
 				B70E98DA209C491F00112661 /* DangerousLocationTableViewCell.swift in Sources */,

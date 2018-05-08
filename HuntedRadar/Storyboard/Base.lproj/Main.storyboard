@@ -19,38 +19,40 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PfH-me-K1H">
-                                <rect key="frame" x="0.0" y="328" width="414" height="359"/>
+                                <rect key="frame" x="0.0" y="439" width="414" height="297"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="359" id="HKJ-VR-REz"/>
+                                    <constraint firstAttribute="height" constant="349" id="HKJ-VR-REz">
+                                        <variation key="heightClass=regular-widthClass=compact" constant="297"/>
+                                    </constraint>
                                 </constraints>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbV-Bt-bp7">
-                                <rect key="frame" x="0.0" y="64" width="414" height="246"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="373"/>
                                 <subviews>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3Ih-lN-SrD">
-                                        <rect key="frame" x="183" y="98" width="51" height="31"/>
+                                    <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2v4-JK-ZKM">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="373"/>
                                         <connections>
-                                            <action selector="changeAnnotationsVisibility:" destination="BYZ-38-t0r" eventType="valueChanged" id="T3x-qZ-XnK"/>
+                                            <segue destination="hKZ-2G-HbW" kind="embed" identifier="qq" id="YUq-I9-Zk7"/>
                                         </connections>
-                                    </switch>
-                                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="ybV-GV-MBx">
-                                        <rect key="frame" x="183" y="160" width="51" height="31"/>
-                                        <connections>
-                                            <action selector="changeDangerousLocationVisibility:" destination="BYZ-38-t0r" eventType="valueChanged" id="NIZ-cE-6aM"/>
-                                        </connections>
-                                    </switch>
+                                    </containerView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="ybV-GV-MBx" firstAttribute="centerX" secondItem="sbV-Bt-bp7" secondAttribute="centerX" id="fsF-VS-ZPS"/>
-                                    <constraint firstItem="3Ih-lN-SrD" firstAttribute="top" secondItem="sbV-Bt-bp7" secondAttribute="top" constant="98" id="mGc-xa-YxW"/>
-                                    <constraint firstItem="3Ih-lN-SrD" firstAttribute="centerX" secondItem="sbV-Bt-bp7" secondAttribute="centerX" id="tWY-1p-UTf"/>
-                                    <constraint firstItem="3Ih-lN-SrD" firstAttribute="centerY" secondItem="sbV-Bt-bp7" secondAttribute="centerY" constant="-9.5" id="tWb-pK-P78"/>
-                                    <constraint firstItem="ybV-GV-MBx" firstAttribute="top" secondItem="3Ih-lN-SrD" secondAttribute="bottom" constant="31" id="zzi-NA-LNP"/>
+                                    <constraint firstItem="2v4-JK-ZKM" firstAttribute="leading" secondItem="sbV-Bt-bp7" secondAttribute="leading" id="4yz-9A-t5e"/>
+                                    <constraint firstAttribute="bottom" secondItem="2v4-JK-ZKM" secondAttribute="bottom" id="Azg-dz-Fip"/>
+                                    <constraint firstAttribute="trailing" secondItem="2v4-JK-ZKM" secondAttribute="trailing" id="P3Y-v8-9if"/>
+                                    <constraint firstItem="2v4-JK-ZKM" firstAttribute="top" secondItem="sbV-Bt-bp7" secondAttribute="top" id="lRc-FT-K5e"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVC-t3-0LI">
+                                <rect key="frame" x="20" y="667" width="21" height="22"/>
+                                <state key="normal" image="search"/>
+                                <connections>
+                                    <action selector="changeDangerousLocationVisibility:" destination="BYZ-38-t0r" eventType="touchUpInside" id="exZ-FN-PPk"/>
+                                </connections>
+                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4D-PT-4Yr">
-                                <rect key="frame" x="369" y="639" width="25" height="25"/>
+                                <rect key="frame" x="369" y="664" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="QPa-fL-jDT"/>
                                     <constraint firstAttribute="height" constant="25" id="Yfx-2d-7Bt"/>
@@ -63,14 +65,19 @@
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="PfH-me-K1H" firstAttribute="leading" secondItem="HVC-t3-0LI" secondAttribute="trailing" constant="-41" id="4LS-XP-PQb"/>
                             <constraint firstItem="sbV-Bt-bp7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4t2-av-aMX"/>
+                            <constraint firstItem="HVC-t3-0LI" firstAttribute="top" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="-69" id="DJH-BU-Nuz"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QIW-Cx-Muu"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Y5a-Ur-Ebd"/>
                             <constraint firstItem="sbV-Bt-bp7" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="ZcL-zF-eml"/>
                             <constraint firstItem="sbV-Bt-bp7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dka-Ik-8Fp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="49" id="dqy-xw-vnJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PfH-me-K1H" secondAttribute="bottom" id="dqy-xw-vnJ"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="jJ6-K7-lJh"/>
-                            <constraint firstItem="n4D-PT-4Yr" firstAttribute="top" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="-48" id="nKM-K0-unJ"/>
+                            <constraint firstItem="n4D-PT-4Yr" firstAttribute="top" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="-72" id="nKM-K0-unJ"/>
+                            <constraint firstItem="PfH-me-K1H" firstAttribute="top" secondItem="sbV-Bt-bp7" secondAttribute="bottom" id="xkn-vV-kYd">
+                                <variation key="heightClass=regular-widthClass=compact" constant="2"/>
+                            </constraint>
                             <constraint firstItem="n4D-PT-4Yr" firstAttribute="leading" secondItem="PfH-me-K1H" secondAttribute="trailing" constant="-45" id="xuT-04-UfA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -87,11 +94,12 @@
                         <outlet property="mapView" destination="PfH-me-K1H" id="eZ2-Tp-bhJ"/>
                         <outlet property="mapViewEqualHeightConstraint" destination="Y5a-Ur-Ebd" id="z8q-sh-O2M"/>
                         <outlet property="mapViewHeightConstraint" destination="HKJ-VR-REz" id="LDx-yn-Bdk"/>
+                        <outlet property="searchButton" destination="HVC-t3-0LI" id="sBa-dZ-liS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1043.4782608695652" y="95.380434782608702"/>
+            <point key="canvasLocation" x="1042.5" y="95.070422535211264"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="IbD-wN-eA0">
@@ -111,8 +119,55 @@
             </objects>
             <point key="canvasLocation" x="136.23188405797103" y="95.380434782608702"/>
         </scene>
+        <!--Switch View Controller-->
+        <scene sceneID="f7z-T5-fJO">
+            <objects>
+                <viewController storyboardIdentifier="SwitchViewController" id="hKZ-2G-HbW" customClass="SwitchViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uGt-7j-x78">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="373"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jmv-v8-X3S">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="373"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6xX-Tr-z4N">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="lmK-DI-wkq">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="jmv-v8-X3S" secondAttribute="trailing" id="aX1-eA-0W5"/>
+                            <constraint firstItem="jmv-v8-X3S" firstAttribute="top" secondItem="uGt-7j-x78" secondAttribute="top" id="fLb-JA-2iz"/>
+                            <constraint firstAttribute="bottom" secondItem="jmv-v8-X3S" secondAttribute="bottom" id="loE-8B-HlT"/>
+                            <constraint firstItem="jmv-v8-X3S" firstAttribute="leading" secondItem="uGt-7j-x78" secondAttribute="leading" id="zY9-KI-PdO"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="h8Q-ep-au8"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionview" destination="jmv-v8-X3S" id="tSc-um-Nb0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qF8-Ur-gU5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2057.971014492754" y="-224.59239130434784"/>
+        </scene>
     </scenes>
     <resources>
         <image name="full_screen_exit" width="21" height="21"/>
+        <image name="search" width="21" height="21"/>
     </resources>
 </document>

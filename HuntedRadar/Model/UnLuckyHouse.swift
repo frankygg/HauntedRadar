@@ -29,12 +29,12 @@ class UnLuckyHouse: NSObject, MKAnnotation {
         super.init()
     }
 
-    func mapItem() -> MKMapItem {
-        let addressDict = [CNPostalAddressStreetKey: title!]
-        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDict)
-        let mapItem = MKMapItem(placemark: placemark)
-        //        mapItem.name = title
-
-        return mapItem
-    }
+//    func mapItem() -> MKMapItem {
+//        let addressDict = [CNPostalAddressStreetKey: title!]
+//        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDict)
+//        let mapItem = MKMapItem(placemark: placemark)
+//        //        mapItem.name = title
+//
+//        return mapItem
+//    }
 }
