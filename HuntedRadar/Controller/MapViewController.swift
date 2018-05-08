@@ -69,8 +69,14 @@ class MapViewController: UIViewController, SwitchViewDelegate {
                                                 for value in item.title where self?.boolArray[value] == true {
                                                     crimes.append(value)
                                                 }
+                                                if crimes.count > 0 {
                                                 let location = DangerousLocation(coordinate: coordinate, title: "", subtitle: item.address, crimes: crimes)
                                                 self?.mapView.addAnnotation(location)
+                                                } else {
+                                                    let location = SafeLocation(title: "沒有犯罪危險呢！", subtitle: item.address, coordinate: coordinate)
+                                                    self?.mapView.addAnnotation(location)
+
+                                                }
 })
                         }
             }
@@ -81,6 +87,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
     @IBOutlet weak var mapView: MKMapView!
     let unLuckyHouseIdentifier = "unluckyhouse"
     let dangerouseLocationIdentifier = "dangerouse"
+    let safeLocationIdentifier = "safe"
 
     var unluckyhouseList = [UnLuckyHouse]()
 
@@ -289,7 +296,19 @@ extension MapViewController: MKMapViewDelegate {
 //                    view.isHidden = true
                 }
             return view
-        } else {
+        } else if let annotation = annotation as? SafeLocation {
+            
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: safeLocationIdentifier) {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+            } else {
+                view = MKAnnotationView(annotation: annotation, reuseIdentifier: safeLocationIdentifier)
+                                    view.canShowCallout = true
+                                    view.calloutOffset = CGPoint(x: -5, y: 5)
+                                    view.image = UIImage(named: "safe")
+            }
+            return view
+        }else {
             let reuseId = "pin"
             var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
             pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
