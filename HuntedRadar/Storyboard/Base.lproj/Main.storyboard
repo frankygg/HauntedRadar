@@ -74,6 +74,7 @@
                             <constraint firstItem="sbV-Bt-bp7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dka-Ik-8Fp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PfH-me-K1H" secondAttribute="bottom" id="dqy-xw-vnJ"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="jJ6-K7-lJh"/>
+                            <constraint firstAttribute="bottom" secondItem="sbV-Bt-bp7" secondAttribute="bottom" constant="299" id="je5-p5-ixD"/>
                             <constraint firstItem="n4D-PT-4Yr" firstAttribute="top" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="-72" id="nKM-K0-unJ"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="top" secondItem="sbV-Bt-bp7" secondAttribute="bottom" id="xkn-vV-kYd">
                                 <variation key="heightClass=regular-widthClass=compact" constant="2"/>
@@ -84,6 +85,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="Y5a-Ur-Ebd"/>
+                                <exclude reference="xkn-vV-kYd"/>
                             </mask>
                         </variation>
                     </view>

@@ -170,7 +170,8 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         if let annotationView = hitAnnotationView {
             if !annotationView.isKind(of: MKAnnotationView.self) && !isFullScreen {
                 fullscreenExitButton.isHidden = false
-                UIView.animate(withDuration: 0.7, animations: {
+
+                UIView.animate(withDuration: 1.0, animations: {
                     self.mapViewHeightConstraint.isActive = false
                     self.mapViewEqualHeightConstraint.isActive = true
                     self.view.layoutIfNeeded()
@@ -195,7 +196,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
     @IBAction func testAction(_ sender: UIButton) {
         if isFullScreen {
             sender.isHidden = true
-            UIView.animate(withDuration: 0.7, animations: {
+            UIView.animate(withDuration: 1.0, animations: {
                 self.mapViewEqualHeightConstraint.isActive = false
                 self.mapViewHeightConstraint.isActive = true
                 self.view.layoutIfNeeded()
