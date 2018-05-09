@@ -13,7 +13,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
     let dangerous = ["凶宅", "毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
 
     var boolArray = ["凶宅": false, "毒品": false, "強制性交": false, "強盜": false, "搶奪": false, "住宅竊盜": false, "汽車竊盜": false, "機車竊盜": false]
-    func deliverSwitchState(_ rowAt: Int) {
+    func deliverSwitchState(_ sender: SwitchCollectionViewCell, _ rowAt: Int) {
         if let state = boolArray[dangerous[rowAt]] {
         boolArray[dangerous[rowAt]] = !state
         }
@@ -35,6 +35,8 @@ class MapViewController: UIViewController, SwitchViewDelegate {
     var userLocation: CLLocation?
     var originalLocation: CLLocationCoordinate2D?
     @objc func centerBackOnLocation(_ sender: UIBarButtonItem) {
+        mapView.removeAnnotations(mapView.annotations)
+
         if let originalLocation = originalLocation {
             userLocation = CLLocation(latitude: originalLocation.latitude, longitude: originalLocation.longitude)
             let span = MKCoordinateSpanMake(0.05, 0.05)
@@ -44,8 +46,12 @@ class MapViewController: UIViewController, SwitchViewDelegate {
     }
     @IBOutlet weak var searchButton: UIButton!
     @IBAction func changeDangerousLocationVisibility(_ sender: UIButton) {
-        mapView.removeAnnotations(mapView.annotations)
-       
+        var hasUnluckyhouse = false
+        for annotation in mapView.annotations {
+            if annotation.isKind(of: DangerousLocation.self) || annotation.isKind(of: UnLuckyHouse.self) || annotation.isKind(of: SafeLocation.self) {
+                mapView.removeAnnotation(annotation)
+            }
+        }
         if boolArray["凶宅"] == true {
         for unluckyhouse in unluckyhouseList {
 
@@ -54,6 +60,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
                 let annotationLocation = CLLocation(latitude: latitude, longitude: longitude)
             if let userLocation = userLocation {
             if userLocation.distance(from: annotationLocation) < 1604 {
+                hasUnluckyhouse = true
                     mapView.addAnnotation(unluckyhouse)
                 }
             }
@@ -72,10 +79,16 @@ class MapViewController: UIViewController, SwitchViewDelegate {
                                                 if crimes.count > 0 {
                                                 let location = DangerousLocation(coordinate: coordinate, title: "", subtitle: item.address, crimes: crimes)
                                                 self?.mapView.addAnnotation(location)
-                                                } else {
+                                                    self?.mapView.selectAnnotation(location, animated: true)
+                                                } else if hasUnluckyhouse == false {
                                                     let location = SafeLocation(title: "沒有犯罪危險呢！", subtitle: item.address, coordinate: coordinate)
                                                     self?.mapView.addAnnotation(location)
+                                                    self?.mapView.selectAnnotation(location, animated: true)
 
+                                                } else {
+                                                    let location = SafeLocation(title: "有凶宅！", subtitle: item.address, coordinate: coordinate)
+                                                    self?.mapView.addAnnotation(location)
+                                                    self?.mapView.selectAnnotation(location, animated: true)
                                                 }
 })
                         }
@@ -230,12 +243,16 @@ class MapViewController: UIViewController, SwitchViewDelegate {
 //                    print(pm.country) print(pm.locality)print(pm.subLocality)print(pm.thoroughfare)print(pm.postalCode)
 //                    print(pm.subThoroughfare)
                     var addressString: String = ""
-                    if let locality = placemark.locality {
-                    addressString += locality
+                    if let subAdministrativeArea = placemark.subAdministrativeArea {
+                    addressString += subAdministrativeArea
+                    }
+                    if let locality = placemark.locality, addressString != locality {
+                        addressString += locality
                     }
                         if let sublocality = placemark.subLocality {
         addressString += sublocality
     }
+                    print(addressString)
                     callback(addressString)
                 }
         })
@@ -301,11 +318,20 @@ extension MapViewController: MKMapViewDelegate {
             if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: safeLocationIdentifier) {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
+                if annotation.title == "有凶宅！" {
+                    view.image = UIImage(named: "exclamation")
+                } else {
+                    view.image = UIImage(named: "safe")
+                }
             } else {
                 view = MKAnnotationView(annotation: annotation, reuseIdentifier: safeLocationIdentifier)
                                     view.canShowCallout = true
                                     view.calloutOffset = CGPoint(x: -5, y: 5)
-                                    view.image = UIImage(named: "safe")
+                if annotation.title == "有凶宅！" {
+                    view.image = UIImage(named: "exclamation")
+                } else {
+                    view.image = UIImage(named: "safe")
+                }
             }
             return view
         }else {
@@ -314,8 +340,8 @@ extension MapViewController: MKMapViewDelegate {
             pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView?.canShowCallout = true
             pinView?.image = UIImage(named: "scanner")
-            let transform = CGAffineTransform(scaleX: 2, y: 2)
-                        pinView?.transform = transform
+//            let transform = CGAffineTransform(scaleX: 2, y: 2)
+//                        pinView?.transform = transform
             return pinView
         }
     }

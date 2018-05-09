@@ -67,13 +67,13 @@ extension SwitchViewController: UICollectionViewDelegateFlowLayout, UICollection
         cell.delegate = self
             cell.dangerousImage.image = UIImage(named: dangerousimage[dangerous[indexPath.row]]!)
             cell.dangerousLabel.text = dangerous[indexPath.row]
-
+        
         return cell
     }
 
     func tapSwitchCell(_ sender: SwitchCollectionViewCell) {
         guard let tappedIndexPath = self.collectionview.indexPath(for: sender) else { return }
-        delegate?.deliverSwitchState(tappedIndexPath.row)
+        delegate?.deliverSwitchState(sender, tappedIndexPath.row)
 
         print(tappedIndexPath.section, tappedIndexPath.row)
 
@@ -81,5 +81,5 @@ extension SwitchViewController: UICollectionViewDelegateFlowLayout, UICollection
 }
 
 protocol SwitchViewDelegate: class {
-    func deliverSwitchState(_ rowAt: Int)
+    func deliverSwitchState(_ sender: SwitchCollectionViewCell, _ rowAt: Int)
 }
