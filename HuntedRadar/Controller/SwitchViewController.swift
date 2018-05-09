@@ -46,7 +46,7 @@ extension SwitchViewController: UICollectionViewDelegateFlowLayout, UICollection
         } else {
             return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
         }
-        
+
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         print("frame width \(self.view.frame.size)")
@@ -67,7 +67,7 @@ extension SwitchViewController: UICollectionViewDelegateFlowLayout, UICollection
         cell.delegate = self
             cell.dangerousImage.image = UIImage(named: dangerousimage[dangerous[indexPath.row]]!)
             cell.dangerousLabel.text = dangerous[indexPath.row]
-        
+
         return cell
     }
 

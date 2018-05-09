@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YDz-DT-3gU">
-    <device id="retina5_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -15,11 +11,11 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PfH-me-K1H">
-                                <rect key="frame" x="0.0" y="439" width="414" height="297"/>
+                                <rect key="frame" x="0.0" y="251" width="600" height="349"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="349" id="HKJ-VR-REz">
                                         <variation key="heightClass=regular-widthClass=compact" constant="297"/>
@@ -27,10 +23,10 @@
                                 </constraints>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbV-Bt-bp7">
-                                <rect key="frame" x="0.0" y="64" width="414" height="373"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="237"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2v4-JK-ZKM">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="373"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="237"/>
                                         <connections>
                                             <segue destination="hKZ-2G-HbW" kind="embed" identifier="qq" id="YUq-I9-Zk7"/>
                                         </connections>
@@ -45,21 +41,21 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVC-t3-0LI">
-                                <rect key="frame" x="20" y="667" width="21" height="22"/>
+                                <rect key="frame" x="20" y="531" width="21" height="22"/>
                                 <state key="normal" image="search"/>
                                 <connections>
-                                    <action selector="changeDangerousLocationVisibility:" destination="BYZ-38-t0r" eventType="touchUpInside" id="exZ-FN-PPk"/>
+                                    <action selector="visible:" destination="BYZ-38-t0r" eventType="touchUpInside" id="exZ-FN-PPk"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4D-PT-4Yr">
-                                <rect key="frame" x="369" y="664" width="25" height="25"/>
+                                <rect key="frame" x="555" y="528" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="QPa-fL-jDT"/>
                                     <constraint firstAttribute="height" constant="25" id="Yfx-2d-7Bt"/>
                                 </constraints>
                                 <state key="normal" image="full_screen_exit"/>
                                 <connections>
-                                    <action selector="testAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nHc-fA-3V4"/>
+                                    <action selector="exitFullscreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nHc-fA-3V4"/>
                                 </connections>
                             </button>
                         </subviews>

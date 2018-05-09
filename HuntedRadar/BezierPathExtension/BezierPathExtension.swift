@@ -28,23 +28,32 @@ func dialogBezierPathWithFrame(_ frame: CGRect, arrowOrientation orientation: UI
 
     // We need 7 points for our Bezier path
     let midX = transposedFrame.midX
-    let point1 = CGPoint(x: transposedFrame.minX, y: transposedFrame.minY + arrowLength)
+//    let point1 = CGPoint(x: transposedFrame.minX, y: transposedFrame.minY + arrowLength)
     let point2 = CGPoint(x: midX - (arrowLength / 2), y: transposedFrame.minY + arrowLength)
     let point3 = CGPoint(x: midX, y: transposedFrame.minY)
     let point4 = CGPoint(x: midX + (arrowLength / 2), y: transposedFrame.minY + arrowLength)
-    let point5 = CGPoint(x: transposedFrame.maxX, y: transposedFrame.minY + arrowLength)
-    let point6 = CGPoint(x: transposedFrame.maxX, y: transposedFrame.maxY)
-    let point7 = CGPoint(x: transposedFrame.minX, y: transposedFrame.maxY)
+//    let point5 = CGPoint(x: transposedFrame.maxX, y: transposedFrame.minY + arrowLength)
+//    let point6 = CGPoint(x: transposedFrame.maxX, y: transposedFrame.maxY)
+//    let point7 = CGPoint(x: transposedFrame.minX, y: transposedFrame.maxY)
 
     // Build our Bezier path
     let path = UIBezierPath()
-    path.move(to: point1)
+//    path.move(to: point1)
+//    path.addLine(to: point2)
+//    path.addLine(to: point3)
+//    path.addLine(to: point4)
+//    path.addLine(to: point5)
+//    path.addLine(to: point6)
+//    path.addLine(to: point7)
+    let radius: CGFloat = 15.0
+    path.addArc(withCenter: CGPoint(x: transposedFrame.minX + radius, y: transposedFrame.minY + arrowLength + radius), radius: radius, startAngle: CGFloat(Double.pi), endAngle: CGFloat(3 * Double.pi / 2), clockwise: true) //1st rounded corner
     path.addLine(to: point2)
-    path.addLine(to: point3)
-    path.addLine(to: point4)
-    path.addLine(to: point5)
-    path.addLine(to: point6)
-    path.addLine(to: point7)
+        path.addLine(to: point3)
+        path.addLine(to: point4)
+     path.addArc(withCenter: CGPoint(x: transposedFrame.maxX - radius, y: transposedFrame.minY + arrowLength + radius), radius: radius, startAngle: CGFloat(3 * Double.pi / 2), endAngle: 0, clockwise: true) //1st rounded corner
+    path.addArc(withCenter: CGPoint(x: transposedFrame.maxX - radius, y: transposedFrame.maxY - radius), radius: radius, startAngle: 0, endAngle: CGFloat(Double.pi / 2), clockwise: true)
+    path.addArc(withCenter: CGPoint(x: transposedFrame.minX + radius, y: transposedFrame.maxY - radius ), radius: radius, startAngle: CGFloat(Double.pi / 2), endAngle: CGFloat(Double.pi), clockwise: true)
+
     path.close()
 
     // Rotate our path to fit orientation

@@ -20,7 +20,7 @@
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="hdE-Fv-eMN">
-                    <rect key="frame" x="0.0" y="49" width="200" height="131"/>
+                    <rect key="frame" x="0.0" y="49" width="200" height="106"/>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1232423424" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4K4-MN-5Cw">
@@ -37,12 +37,12 @@
                 <constraint firstItem="hdE-Fv-eMN" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="5Ay-qt-iiC"/>
                 <constraint firstItem="hdE-Fv-eMN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="49" id="7YA-vM-ady"/>
                 <constraint firstItem="hdE-Fv-eMN" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8XL-kX-xot"/>
-                <constraint firstAttribute="bottom" secondItem="hdE-Fv-eMN" secondAttribute="bottom" constant="20" id="B4e-Yz-NJ5"/>
+                <constraint firstAttribute="bottom" secondItem="hdE-Fv-eMN" secondAttribute="bottom" constant="45" id="B4e-Yz-NJ5"/>
                 <constraint firstAttribute="bottom" secondItem="YVA-XU-q4m" secondAttribute="bottom" id="Bfh-aQ-SD2"/>
                 <constraint firstItem="4K4-MN-5Cw" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DYE-p3-EYT"/>
                 <constraint firstItem="hdE-Fv-eMN" firstAttribute="top" secondItem="4K4-MN-5Cw" secondAttribute="bottom" constant="8" id="VLa-3b-9IL"/>
                 <constraint firstItem="YVA-XU-q4m" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="WcZ-ab-lXJ"/>
-                <constraint firstItem="hdE-Fv-eMN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="14.5" id="ex4-1G-lYt"/>
+                <constraint firstItem="hdE-Fv-eMN" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="2" id="ex4-1G-lYt"/>
                 <constraint firstItem="hdE-Fv-eMN" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="imq-zf-tPD"/>
                 <constraint firstAttribute="trailing" secondItem="YVA-XU-q4m" secondAttribute="trailing" id="kH6-19-tl7"/>
                 <constraint firstItem="YVA-XU-q4m" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="tOE-BA-mUY"/>

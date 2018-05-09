@@ -39,13 +39,11 @@ class MapViewController: UIViewController, SwitchViewDelegate {
 
         if let originalLocation = originalLocation {
             userLocation = CLLocation(latitude: originalLocation.latitude, longitude: originalLocation.longitude)
-            let span = MKCoordinateSpanMake(0.05, 0.05)
-            let region = MKCoordinateRegion(center: originalLocation, span: span)
-            mapView.setRegion(region, animated: true)
+            centerLocation(originalLocation, with: 0)
         }
     }
     @IBOutlet weak var searchButton: UIButton!
-    @IBAction func changeDangerousLocationVisibility(_ sender: UIButton) {
+    @IBAction func visible(_ sender: UIButton) {
         var hasUnluckyhouse = false
         for annotation in mapView.annotations {
             if annotation.isKind(of: DangerousLocation.self) || annotation.isKind(of: UnLuckyHouse.self) || annotation.isKind(of: SafeLocation.self) {
@@ -80,6 +78,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
                                                 let location = DangerousLocation(coordinate: coordinate, title: "", subtitle: item.address, crimes: crimes)
                                                 self?.mapView.addAnnotation(location)
                                                     self?.mapView.selectAnnotation(location, animated: true)
+                                                    self?.centerLocation(location.coordinate, with: 0.014)
                                                 } else if hasUnluckyhouse == false {
                                                     let location = SafeLocation(title: "沒有犯罪危險呢！", subtitle: item.address, coordinate: coordinate)
                                                     self?.mapView.addAnnotation(location)
@@ -193,7 +192,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction func testAction(_ sender: UIButton) {
+    @IBAction func exitFullscreen(_ sender: UIButton) {
         if isFullScreen {
             sender.isHidden = true
             UIView.animate(withDuration: 1.0, animations: {
@@ -257,6 +256,13 @@ class MapViewController: UIViewController, SwitchViewDelegate {
                 }
         })
     }
+
+    func centerLocation(_ coordinate: CLLocationCoordinate2D, with offset: CLLocationDegrees) {
+        let span = MKCoordinateSpanMake(0.05, 0.05)
+        let xylocation = CLLocationCoordinate2D(latitude: coordinate.latitude + offset, longitude: coordinate.longitude)
+        let region = MKCoordinateRegionMake(xylocation, span)
+        mapView.setRegion(region, animated: true)
+    }
 }
 
 extension MapViewController: CLLocationManagerDelegate {
@@ -276,10 +282,8 @@ extension MapViewController: CLLocationManagerDelegate {
         if let location = locations.first {
             userLocation = location
             originalLocation = location.coordinate
-            let span = MKCoordinateSpanMake(0.05, 0.05)
-            let region = MKCoordinateRegion(center: location.coordinate, span: span)
-            mapView.setRegion(region, animated: true)        }
-        //
+            centerLocation(location.coordinate, with: 0)
+        }
     }
 }
 
@@ -307,14 +311,10 @@ extension MapViewController: MKMapViewDelegate {
                     view = dequeuedView
                 } else {
                     view = DangerousLocationAnnotationView(annotation: annotation, reuseIdentifier: dangerouseLocationIdentifier)
-//                    view.canShowCallout = true
-//                    view.calloutOffset = CGPoint(x: -5, y: 5)
-//                    view.image = UIImage(named: "banana")
-//                    view.isHidden = true
                 }
             return view
         } else if let annotation = annotation as? SafeLocation {
-            
+
             if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: safeLocationIdentifier) {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
@@ -334,14 +334,12 @@ extension MapViewController: MKMapViewDelegate {
                 }
             }
             return view
-        }else {
+        } else {
             let reuseId = "pin"
             var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
             pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
             pinView?.canShowCallout = true
             pinView?.image = UIImage(named: "scanner")
-//            let transform = CGAffineTransform(scaleX: 2, y: 2)
-//                        pinView?.transform = transform
             return pinView
         }
     }
@@ -371,8 +369,6 @@ extension MapViewController: HandleMapSearch {
             annotation.subtitle = "\(city) \(state)"
         }
         mapView.addAnnotation(annotation)
-        let span = MKCoordinateSpanMake(0.05, 0.05)
-        let region = MKCoordinateRegionMake(placemark.coordinate, span)
-        mapView.setRegion(region, animated: true)
+        centerLocation(placemark.coordinate, with: 0)
     }
 }
