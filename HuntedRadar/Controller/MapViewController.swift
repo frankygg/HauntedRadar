@@ -17,9 +17,12 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         if let state = boolArray[dangerous[rowAt]] {
         boolArray[dangerous[rowAt]] = !state
         }
+        handleUnluckyHouse()
+        handleDangerousLocation()
     }
 
     var resultSearchController: UISearchController?
+    var hasUnluckyhouse = false
 
     @IBOutlet weak var fullscreenExitButton: UIButton!
     var dangerousLocation = [DangerousLocation]()
@@ -41,58 +44,68 @@ class MapViewController: UIViewController, SwitchViewDelegate {
             userLocation = CLLocation(latitude: originalLocation.latitude, longitude: originalLocation.longitude)
             centerLocation(originalLocation, with: 0)
         }
+        handleUnluckyHouse()
+        handleDangerousLocation()
     }
     @IBOutlet weak var searchButton: UIButton!
     @IBAction func visible(_ sender: UIButton) {
-        var hasUnluckyhouse = false
+        handleUnluckyHouse()
+        print("================dangerousAddress============== \(dangerousAddress.count)")
+        handleDangerousLocation()
+    }
+
+    func handleUnluckyHouse() {
+        hasUnluckyhouse = false
         for annotation in mapView.annotations {
             if annotation.isKind(of: DangerousLocation.self) || annotation.isKind(of: UnLuckyHouse.self) || annotation.isKind(of: SafeLocation.self) {
                 mapView.removeAnnotation(annotation)
             }
         }
         if boolArray["凶宅"] == true {
-        for unluckyhouse in unluckyhouseList {
+            for unluckyhouse in unluckyhouseList {
 
                 let latitude = unluckyhouse.coordinate.latitude
                 let longitude = unluckyhouse.coordinate.longitude
                 let annotationLocation = CLLocation(latitude: latitude, longitude: longitude)
-            if let userLocation = userLocation {
-            if userLocation.distance(from: annotationLocation) < 1604 {
-                hasUnluckyhouse = true
-                    mapView.addAnnotation(unluckyhouse)
+                if let userLocation = userLocation {
+                    if userLocation.distance(from: annotationLocation) < 1604 {
+                        hasUnluckyhouse = true
+                        mapView.addAnnotation(unluckyhouse)
+                    }
                 }
             }
-        }
-        }
-        print("================dangerousAddress============== \(dangerousAddress.count)")
-        if let userLocation = userLocation, dangerousAddress.count > 0 {
-        getAddressFromLatLon(pdblLatitude: userLocation.coordinate.latitude, withLongitude: userLocation.coordinate.longitude) { useraddress in
-            DispatchQueue.main.async {
-                    for item in self.dangerousAddress where item.address == useraddress {
-                                            self.convertAddressToLocationAtCotro(item.address, callback: { [weak self] coordinate in
-                                                var crimes = [String]()
-                                                for value in item.title where self?.boolArray[value] == true {
-                                                    crimes.append(value)
-                                                }
-                                                if crimes.count > 0 {
-                                                let location = DangerousLocation(coordinate: coordinate, title: "", subtitle: item.address, crimes: crimes)
-                                                self?.mapView.addAnnotation(location)
-                                                    self?.mapView.selectAnnotation(location, animated: true)
-                                                    self?.centerLocation(location.coordinate, with: 0.014)
-                                                } else if hasUnluckyhouse == false {
-                                                    let location = SafeLocation(title: "沒有犯罪危險呢！", subtitle: item.address, coordinate: coordinate)
-                                                    self?.mapView.addAnnotation(location)
-                                                    self?.mapView.selectAnnotation(location, animated: true)
+    }
+    }
 
-                                                } else {
-                                                    let location = SafeLocation(title: "有凶宅！", subtitle: item.address, coordinate: coordinate)
-                                                    self?.mapView.addAnnotation(location)
-                                                    self?.mapView.selectAnnotation(location, animated: true)
-                                                }
-})
-                        }
+    func handleDangerousLocation() {
+        if let userLocation = userLocation, dangerousAddress.count > 0 {
+            getAddressFromLatLon(pdblLatitude: userLocation.coordinate.latitude, withLongitude: userLocation.coordinate.longitude) { useraddress in
+                DispatchQueue.main.async {
+                    for item in self.dangerousAddress where item.address == useraddress {
+                        self.convertAddressToLocationAtCotro(item.address, callback: { [weak self] coordinate in
+                            var crimes = [String]()
+                            for value in item.title where self?.boolArray[value] == true {
+                                crimes.append(value)
+                            }
+                            if crimes.count > 0 {
+                                let location = DangerousLocation(coordinate: coordinate, title: "", subtitle: item.address, crimes: crimes)
+                                self?.mapView.addAnnotation(location)
+                                self?.mapView.selectAnnotation(location, animated: true)
+                                self?.centerLocation(location.coordinate, with: 0.014)
+                            } else if self?.hasUnluckyhouse == false {
+                                let location = SafeLocation(title: "沒有犯罪危險呢！", subtitle: item.address, coordinate: coordinate)
+                                self?.mapView.addAnnotation(location)
+                                self?.mapView.selectAnnotation(location, animated: true)
+
+                            } else {
+                                let location = SafeLocation(title: "有凶宅！", subtitle: item.address, coordinate: coordinate)
+                                self?.mapView.addAnnotation(location)
+                                self?.mapView.selectAnnotation(location, animated: true)
+                            }
+                        })
+                    }
+                }
             }
-        }
         }
     }
     var tapGesture = UITapGestureRecognizer()
@@ -243,7 +256,10 @@ class MapViewController: UIViewController, SwitchViewDelegate {
 //                    print(pm.subThoroughfare)
                     var addressString: String = ""
                     if let subAdministrativeArea = placemark.subAdministrativeArea {
+                        if subAdministrativeArea == "桃園縣" {
+                            addressString += "桃園市"                        } else {
                     addressString += subAdministrativeArea
+                        }
                     }
                     if let locality = placemark.locality, addressString != locality {
                         addressString += locality
@@ -370,5 +386,7 @@ extension MapViewController: HandleMapSearch {
         }
         mapView.addAnnotation(annotation)
         centerLocation(placemark.coordinate, with: 0)
+        handleUnluckyHouse()
+        handleDangerousLocation()
     }
 }

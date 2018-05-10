@@ -58,11 +58,12 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if twoDimensionArray[section].isExpandable {
-        return twoDimensionArray[section].locations.count
-        } else {
-            return 0
-        }
+//        if twoDimensionArray[section].isExpandable {
+//        return twoDimensionArray[section].locations.count
+//        } else {
+//            return 0
+//        }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -98,7 +99,7 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .white
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        button.addTarget(self, action: #selector(handleExpandClose), for: .touchUpInside)
+//        button.addTarget(self, action: #selector(handleExpandClose), for: .touchUpInside)
         button.tag = section
         button.layer.borderColor = UIColor.black.cgColor
 
