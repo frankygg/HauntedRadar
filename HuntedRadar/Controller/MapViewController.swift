@@ -261,7 +261,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
                     addressString += subAdministrativeArea
                         }
                     }
-                    if let locality = placemark.locality, addressString != locality {
+                    if let locality = placemark.locality, addressString.range(of: locality[..<locality.index(locality.startIndex, offsetBy: 2)]) == nil {
                         addressString += locality
                     }
                         if let sublocality = placemark.subLocality, addressString != sublocality {
