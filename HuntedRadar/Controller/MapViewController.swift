@@ -166,7 +166,11 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         self.dlManager.requestDLinJson(completion: { [weak self] locations in
 
             for (key, values) in locations {
-                let addressObj = DangerousAddress(address: key, title: values)
+                var title = [String]()
+                for crime in values {
+                    title.append(String(crime[crime.index(crime.startIndex, offsetBy: 5)...]))
+                }
+                let addressObj = DangerousAddress(address: key, title: title, crimeWithDate: values)
                 self?.dangerousAddress.append(addressObj)
             }
         })
