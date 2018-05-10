@@ -19,6 +19,7 @@
 		B70E98DA209C491F00112661 /* DangerousLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E98D8209C491F00112661 /* DangerousLocationTableViewCell.swift */; };
 		B70E98DB209C491F00112661 /* DangerousLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70E98D9209C491F00112661 /* DangerousLocationTableViewCell.xib */; };
 		B70E98DD209C522900112661 /* DangerousLocationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E98DC209C522900112661 /* DangerousLocationAnnotationView.swift */; };
+		B71060FA20A49C1500C4A93F /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71060F920A49C1500C4A93F /* BarChartViewController.swift */; };
 		B725FFB620A0377400BA6553 /* ExpandableLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725FFB520A0377400BA6553 /* ExpandableLocations.swift */; };
 		B72A46D420A1EEBD00E810E0 /* SafeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */; };
 		B79E4DB920A06E2900FE9911 /* LocationSearchTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */; };
@@ -47,6 +48,7 @@
 		B70E98D8209C491F00112661 /* DangerousLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerousLocationTableViewCell.swift; sourceTree = "<group>"; };
 		B70E98D9209C491F00112661 /* DangerousLocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DangerousLocationTableViewCell.xib; sourceTree = "<group>"; };
 		B70E98DC209C522900112661 /* DangerousLocationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerousLocationAnnotationView.swift; sourceTree = "<group>"; };
+		B71060F920A49C1500C4A93F /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
 		B725FFB520A0377400BA6553 /* ExpandableLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLocations.swift; sourceTree = "<group>"; };
 		B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeLocation.swift; sourceTree = "<group>"; };
 		B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationSearchTable.storyboard; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 			children = (
 				B7C5AD4220995B030054FD6B /* MapViewController.swift */,
 				B70452C720A1480700090318 /* SwitchViewController.swift */,
+				B71060F920A49C1500C4A93F /* BarChartViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -292,11 +295,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-HuntedRadar/Pods-HuntedRadar-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +343,7 @@
 				B70E98DD209C522900112661 /* DangerousLocationAnnotationView.swift in Sources */,
 				B70C6D36209CA76500E5ACD9 /* BezierPathExtension.swift in Sources */,
 				B72A46D420A1EEBD00E810E0 /* SafeLocation.swift in Sources */,
+				B71060FA20A49C1500C4A93F /* BarChartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

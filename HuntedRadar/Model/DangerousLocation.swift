@@ -94,7 +94,7 @@ struct DLManager {
             DispatchQueue.global().async {
                 var dangerousAddressWithTitles = [String: [String]]()
                 for obj in records {
-                    if let address = obj.object(forKey: "oc_p1") as? String, let title = obj.object(forKey: "type") as? String, var crimeDate =  obj.object(forKey: "oc_dt") as? String, crimeDate.count > 4{
+                    if let address = obj.object(forKey: "oc_p1") as? String, let title = obj.object(forKey: "type") as? String, var crimeDate =  obj.object(forKey: "oc_dt") as? String, crimeDate.count > 4 {
 //addressString.range(of: locality[..<locality.index(locality.startIndex, offsetBy: 2)])
                         crimeDate = String(crimeDate[..<crimeDate.index(crimeDate.startIndex, offsetBy: 5)])
                         let oneaddress = crimeDate + title.trimmingCharacters(in: .whitespaces)
@@ -102,7 +102,6 @@ struct DLManager {
                         dangerousAddressWithTitles[address] = annotationAtAddress + [oneaddress]
                     }
                 }
-                print(dangerousAddressWithTitles)
                 completion(dangerousAddressWithTitles)
             }
 

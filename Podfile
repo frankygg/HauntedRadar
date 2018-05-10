@@ -9,4 +9,5 @@ target 'HuntedRadar' do
 pod 'FMDB'
 pod 'SwiftLint'
 pod 'Alamofire'
+pod 'Charts'
 end

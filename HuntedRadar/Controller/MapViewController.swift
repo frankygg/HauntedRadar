@@ -9,10 +9,13 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, SwitchViewDelegate {
+class MapViewController: UIViewController, SwitchViewDelegate{
+    
+    
     let dangerous = ["凶宅", "毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
 
     var boolArray = ["凶宅": false, "毒品": false, "強制性交": false, "強盜": false, "搶奪": false, "住宅竊盜": false, "汽車竊盜": false, "機車竊盜": false]
+    
     func deliverSwitchState(_ sender: SwitchCollectionViewCell, _ rowAt: Int) {
         if let state = boolArray[dangerous[rowAt]] {
         boolArray[dangerous[rowAt]] = !state
@@ -29,6 +32,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
     var addressWithMultiAnnotation = [String: [DangerousLocation]]()
 
     var dangerousAddress = [DangerousAddress]()
+    var dangerousCrimeDate: [String]?
 
     @IBOutlet var mapViewEqualHeightConstraint: NSLayoutConstraint!
 
@@ -78,17 +82,24 @@ class MapViewController: UIViewController, SwitchViewDelegate {
     }
 
     func handleDangerousLocation() {
+        dangerousCrimeDate = [String]()
         if let userLocation = userLocation, dangerousAddress.count > 0 {
             getAddressFromLatLon(pdblLatitude: userLocation.coordinate.latitude, withLongitude: userLocation.coordinate.longitude) { useraddress in
                 DispatchQueue.main.async {
                     for item in self.dangerousAddress where item.address == useraddress {
                         self.convertAddressToLocationAtCotro(item.address, callback: { [weak self] coordinate in
                             var crimes = [String]()
+                            var crimeDates = [String]()
                             for value in item.title where self?.boolArray[value] == true {
                                 crimes.append(value)
                             }
+                            for value in item.crimeWithDate where self?.boolArray[String(value[value.index(value.startIndex, offsetBy: 5)...])] == true {
+                                crimeDates.append(value)
+                            }
+                            
                             if crimes.count > 0 {
                                 let location = DangerousLocation(coordinate: coordinate, title: "", subtitle: item.address, crimes: crimes)
+                                self?.dangerousCrimeDate = crimeDates
                                 self?.mapView.addAnnotation(location)
                                 self?.mapView.selectAnnotation(location, animated: true)
                                 self?.centerLocation(location.coordinate, with: 0.014)
@@ -202,6 +213,14 @@ class MapViewController: UIViewController, SwitchViewDelegate {
             if let nextVC = segue.destination as? SwitchViewController {
                 nextVC.delegate = self
             }
+        } else if segue.identifier == "deliverCrime" {
+            
+                
+                // initialize new view controller and cast it as your view controller
+                let viewController = segue.destination as? BarChartViewController
+                // your new view controller should have property that will store passed value
+            viewController?.passedValue = dangerousCrimeDate
+            
         }
     }
 
