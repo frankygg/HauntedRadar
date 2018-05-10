@@ -68,7 +68,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         if let userLocation = userLocation, dangerousAddress.count > 0 {
         getAddressFromLatLon(pdblLatitude: userLocation.coordinate.latitude, withLongitude: userLocation.coordinate.longitude) { useraddress in
             DispatchQueue.main.async {
-                    for item in self.dangerousAddress where item.address.range(of: useraddress) != nil {
+                    for item in self.dangerousAddress where item.address == useraddress {
                                             self.convertAddressToLocationAtCotro(item.address, callback: { [weak self] coordinate in
                                                 var crimes = [String]()
                                                 for value in item.title where self?.boolArray[value] == true {
@@ -248,7 +248,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
                     if let locality = placemark.locality, addressString != locality {
                         addressString += locality
                     }
-                        if let sublocality = placemark.subLocality {
+                        if let sublocality = placemark.subLocality, addressString != sublocality {
         addressString += sublocality
     }
                     print(addressString)
