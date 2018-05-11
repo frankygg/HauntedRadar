@@ -11,6 +11,8 @@ import MapKit
 
 class MapViewController: UIViewController, SwitchViewDelegate {
 
+    private var mapChangedFromUserInteraction = false
+
     let dangerous = ["凶宅", "毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
 
     var boolArray = ["凶宅": false, "毒品": false, "強制性交": false, "強盜": false, "搶奪": false, "住宅竊盜": false, "汽車竊盜": false, "機車竊盜": false]
@@ -41,6 +43,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
     var userLocation: CLLocation?
     var originalLocation: CLLocationCoordinate2D?
     @objc func centerBackOnLocation(_ sender: UIBarButtonItem) {
+        sender.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
         mapView.removeAnnotations(mapView.annotations)
 
         if let originalLocation = originalLocation {
@@ -134,9 +137,22 @@ class MapViewController: UIViewController, SwitchViewDelegate {
 
         super.viewDidLoad()
 
+        //shadow
+        //阴影颜色
+        self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.24).cgColor
+        //阴影偏移,x向右偏移4，y向下偏移4
+        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width:0.0, height:4.0)
+        //阴影半径，默认3
+        //        navigationController?.navigationBar.layer.shadowRadius = 4
+        //阴影透明度，默认0
+        self.navigationController?.navigationBar.layer.shadowOpacity = 4.0
         //set searchbutton
         let transform = CGAffineTransform(scaleX: 2, y: 2)
         searchButton.transform = transform
+        searchButton.setImage(searchButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
+        searchButton.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
+        fullscreenExitButton.setImage(fullscreenExitButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
+        fullscreenExitButton.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
         //set search bar
         let storyBoard = UIStoryboard(name: "LocationSearchTable", bundle: nil)
         let locationSearchTable = storyBoard.instantiateViewController(withIdentifier: "LocationSearchTable") as? LocationSearchTable
@@ -144,10 +160,11 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         resultSearchController?.searchResultsUpdater = locationSearchTable
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
-        searchBar.placeholder = "Search for places"
+        searchBar.placeholder = "找尋你要的位置"
         navigationItem.titleView = resultSearchController?.searchBar
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "center_back"), style: .done, target: self, action: #selector(centerBackOnLocation))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
         definesPresentationContext = true
@@ -382,7 +399,35 @@ extension MapViewController: MKMapViewDelegate {
             return pinView
         }
     }
+    
+    private func mapViewRegionDidChangeFromUserInteraction() -> Bool {
+        let view = self.mapView.subviews[0]
+        //  Look through gesture recognizers to determine whether this region change is from user interaction
+        if let gestureRecognizers = view.gestureRecognizers {
+            for recognizer in gestureRecognizers {
+                if( recognizer.state == UIGestureRecognizerState.began || recognizer.state == UIGestureRecognizerState.ended ) {
+                    return true
+                }
+            }
+        }
+        return false
+    }
+    
+    func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+        mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
+        if (mapChangedFromUserInteraction) {
+            // user changed map region
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        }
+    }
+    
+    func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
+        if (mapChangedFromUserInteraction) {
+            // user changed map region
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.white
 
+        }
+    }
 //    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
 //                 calloutAccessoryControlTapped control: UIControl) {
 //        if let location = view.annotation as? UnLuckyHouse {
@@ -411,5 +456,7 @@ extension MapViewController: HandleMapSearch {
         centerLocation(placemark.coordinate, with: 0)
         handleUnluckyHouse()
         handleDangerousLocation()
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+
     }
 }

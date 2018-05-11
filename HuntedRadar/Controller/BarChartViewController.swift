@@ -27,6 +27,8 @@ class BarChartViewController: UIViewController {
 //        print(passedValue!)
         setupView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "full_screen_exit"), style: .done, target: self, action: #selector(zoomback))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+        navigationController?.navigationBar.tintColor = UIColor.white
     }
 
     override func didReceiveMemoryWarning() {
@@ -77,7 +79,8 @@ class BarChartViewController: UIViewController {
         xaxis.enabled = true
 
         barChartView.noDataText = "沒有犯罪危險呢！"
-        barChartView.noDataTextColor = UIColor.black
+        barChartView.noDataFont = UIFont(name: "PingFangTC-Regular", size: 20.0)!
+        barChartView.noDataTextColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
         barChartView.chartDescription?.textColor = UIColor.clear
 
     }
