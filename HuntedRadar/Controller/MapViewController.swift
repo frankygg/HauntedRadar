@@ -9,13 +9,12 @@
 import UIKit
 import MapKit
 
-class MapViewController: UIViewController, SwitchViewDelegate{
-    
-    
+class MapViewController: UIViewController, SwitchViewDelegate {
+
     let dangerous = ["凶宅", "毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
 
     var boolArray = ["凶宅": false, "毒品": false, "強制性交": false, "強盜": false, "搶奪": false, "住宅竊盜": false, "汽車竊盜": false, "機車竊盜": false]
-    
+
     func deliverSwitchState(_ sender: SwitchCollectionViewCell, _ rowAt: Int) {
         if let state = boolArray[dangerous[rowAt]] {
         boolArray[dangerous[rowAt]] = !state
@@ -96,7 +95,7 @@ class MapViewController: UIViewController, SwitchViewDelegate{
                             for value in item.crimeWithDate where self?.boolArray[String(value[value.index(value.startIndex, offsetBy: 5)...])] == true {
                                 crimeDates.append(value)
                             }
-                            
+
                             if crimes.count > 0 {
                                 let location = DangerousLocation(coordinate: coordinate, title: "", subtitle: item.address, crimes: crimes)
                                 self?.dangerousCrimeDate = crimeDates
@@ -198,7 +197,7 @@ class MapViewController: UIViewController, SwitchViewDelegate{
             if !annotationView.isKind(of: MKAnnotationView.self) && !isFullScreen {
                 fullscreenExitButton.isHidden = false
 
-                UIView.animate(withDuration: 1.0, animations: {
+                UIView.animate(withDuration: 0.5, animations: {
                     self.mapViewHeightConstraint.isActive = false
                     self.mapViewEqualHeightConstraint.isActive = true
                     self.view.layoutIfNeeded()
@@ -214,13 +213,12 @@ class MapViewController: UIViewController, SwitchViewDelegate{
                 nextVC.delegate = self
             }
         } else if segue.identifier == "deliverCrime" {
-            
-                
+
                 // initialize new view controller and cast it as your view controller
                 let viewController = segue.destination as? BarChartViewController
                 // your new view controller should have property that will store passed value
             viewController?.passedValue = dangerousCrimeDate
-            
+
         }
     }
 
@@ -231,7 +229,7 @@ class MapViewController: UIViewController, SwitchViewDelegate{
     @IBAction func exitFullscreen(_ sender: UIButton) {
         if isFullScreen {
             sender.isHidden = true
-            UIView.animate(withDuration: 1.0, animations: {
+            UIView.animate(withDuration: 0.5, animations: {
                 self.mapViewEqualHeightConstraint.isActive = false
                 self.mapViewHeightConstraint.isActive = true
                 self.view.layoutIfNeeded()
@@ -271,7 +269,9 @@ class MapViewController: UIViewController, SwitchViewDelegate{
                 if error != nil {
                     print("reverse geodcode fail: \(error!.localizedDescription)")
                 }
-                let placeMark = placemarks! as [CLPlacemark]
+            guard let placeMark = placemarks else {
+                return
+            }
 
                 if placeMark.count > 0 {
                     let placemark = placeMark[0]

@@ -8,49 +8,41 @@
 
 import Foundation
 import Charts
-class BarChartViewController: UIViewController, ChartViewDelegate {
-    @IBAction func zoomback(_ sender: Any) {
+class BarChartViewController: UIViewController{
+    @objc func zoomback(_ sender: Any) {
         self.barChartView.zoomToCenter(scaleX: 0, scaleY: 0)
     }
-    
+
     var passedValue: [String]?
  let dangerous = ["毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
     let countM = ["10701", "10702", "10703"]
-    var months = ["毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
     var colors = [UIColor.yellow, UIColor.red, UIColor.orange]
-//    var numbers = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-    let unitsSold1 = [15.0, 15.0, 15.0, 15.0, 12.0, 16.0, 4.0, 18.0, 2.0, 4.0, 5.0, 4.0]
     @IBOutlet var barChartView: BarChartView!
+//    var xaxisValue: [String] = ["毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
+    var xaxisValue: [String] = [String]()
 
-    let unitsSold = [20.0, 4.0, 6.0, 3.0, 12.0, 50.0, 25.0, 57.0, 60.0, 28.0, 17.0, 47.0]
-    let unitsBought = [10.0, 14.0, 60.0, 13.0, 2.0, 10.0, 15.0, 18.0, 25.0, 05.0, 10.0, 19.0]
-    let xaxisValue: [String] = ["毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
-    
     // MARK: - View Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
 //        print(passedValue!)
         setupView()
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "full_screen_exit"), style: .done, target: self, action: #selector(zoomback))
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
 
-    // MARK: - ChartView Delegate -
-    func chartValueSelected(chartView: ChartViewBase, entry: ChartDataEntry, dataSetIndex: Int, highlight: Highlight) {
-        //        print("\(entry.value) in \(xaxisValue[entry.x])")
-    }
-
     // MARK: - General Methods -
     func setupView() {
+        setChart()
 
         //legend
         let legend = barChartView.legend
         legend.enabled = true
         legend.horizontalAlignment = .right
         legend.verticalAlignment = .top
-        legend.orientation = .vertical
+        legend.orientation = .horizontal
         legend.drawInside = true
         legend.yOffset = 10.0
         legend.xOffset = 10.0
@@ -62,8 +54,9 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
         yaxis.spaceTop = 0.35
         yaxis.axisMinimum = 0
         yaxis.drawGridLinesEnabled = false
-        yaxis.labelTextColor = UIColor.black
+        yaxis.labelTextColor = UIColor.blue
         yaxis.axisLineColor = UIColor.black
+        yaxis.axisLineWidth = 1.5
 
         barChartView.rightAxis.enabled = false
 
@@ -75,33 +68,43 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
 
         xaxis.drawGridLinesEnabled = false
         xaxis.labelPosition = .bottom
-        xaxis.labelTextColor = UIColor.black
+        xaxis.labelTextColor = UIColor.blue
         xaxis.centerAxisLabelsEnabled = true
         xaxis.axisLineColor = UIColor.black
+        xaxis.axisLineWidth = 1.5
         xaxis.granularityEnabled = true
+        xaxis.labelFont = UIFont(name: "PingFangTC-Regular", size: 10.0)!
         xaxis.enabled = true
 
-        barChartView.delegate = self
-        barChartView.noDataText = "沒有危險呢！"
+        barChartView.noDataText = "沒有犯罪危險呢！"
         barChartView.noDataTextColor = UIColor.black
         barChartView.chartDescription?.textColor = UIColor.clear
 
-        setChart()
     }
 
     func setChart() {
         guard let passedValue = passedValue, passedValue.count > 0 else {
             return
         }
+        var numberOfCrimeArray = [Double]()
+        for item in dangerous {
+        for value in passedValue {
+            if value.range(of: item) != nil {
+                xaxisValue.append(item)
+                numberOfCrimeArray.append(0.0)
+                break
+            }
+        }
+        }
         var data = [BarChartDataSet]()
         for jtem in 0..<countM.count {
-            var numbers = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+            var numbers = numberOfCrimeArray
 
             var dataEntries: [BarChartDataEntry] = []
-            for crime in 0..<dangerous.count{
-                
+            for crime in 0..<xaxisValue.count {
+
                 for value in passedValue {
-                    if (value.range(of: dangerous[crime])) != nil && (value.range(of: countM[jtem]) != nil) {
+                    if (value.range(of: xaxisValue[crime])) != nil && (value.range(of: countM[jtem]) != nil) {
                         numbers[crime] += 1
                     }
                 }
@@ -114,6 +117,7 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
             }
             let chartDataSet = BarChartDataSet(values: dataEntries, label: countM[jtem])
             chartDataSet.colors = [colors[jtem]]
+            
 //            chartDataSet.drawValuesEnabled = false
             data.append(chartDataSet)
 
@@ -170,5 +174,3 @@ class CustomLabelsXAxisValueFormatter: NSObject, IAxisValueFormatter {
         return ""
     }
 }
-
-

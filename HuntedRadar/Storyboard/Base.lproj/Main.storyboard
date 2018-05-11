@@ -116,22 +116,12 @@
                                 <rect key="frame" x="0.0" y="64" width="375" height="290"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aU2-f9-UPm">
-                                <rect key="frame" x="177" y="433" width="21" height="30"/>
-                                <state key="normal" image="full_screen_exit"/>
-                                <connections>
-                                    <action selector="zoomback:" destination="Pea-l5-jpJ" eventType="touchUpInside" id="vOn-Kk-zAK"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="aUW-sP-n3X" firstAttribute="bottom" secondItem="FIu-xK-y7u" secondAttribute="bottom" constant="313" id="5QU-Jh-EUH"/>
                             <constraint firstItem="aUW-sP-n3X" firstAttribute="trailing" secondItem="FIu-xK-y7u" secondAttribute="trailing" id="GR6-8X-4px"/>
-                            <constraint firstItem="aU2-f9-UPm" firstAttribute="centerX" secondItem="enw-jq-bdp" secondAttribute="centerX" id="MQL-ZD-MQH"/>
                             <constraint firstItem="FIu-xK-y7u" firstAttribute="top" secondItem="aUW-sP-n3X" secondAttribute="top" id="dOt-r0-pFo"/>
-                            <constraint firstItem="aUW-sP-n3X" firstAttribute="bottom" secondItem="aU2-f9-UPm" secondAttribute="bottom" constant="204" id="dlN-mz-XAj"/>
-                            <constraint firstItem="aU2-f9-UPm" firstAttribute="top" secondItem="FIu-xK-y7u" secondAttribute="bottom" constant="79" id="fWw-jC-PCL"/>
                             <constraint firstItem="FIu-xK-y7u" firstAttribute="leading" secondItem="aUW-sP-n3X" secondAttribute="leading" id="una-wK-hpa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aUW-sP-n3X"/>
