@@ -8,7 +8,7 @@
 
 import Foundation
 import Charts
-class BarChartViewController: UIViewController{
+class BarChartViewController: UIViewController {
     @objc func zoomback(_ sender: Any) {
         self.barChartView.zoomToCenter(scaleX: 0, scaleY: 0)
     }
@@ -117,7 +117,7 @@ class BarChartViewController: UIViewController{
             }
             let chartDataSet = BarChartDataSet(values: dataEntries, label: countM[jtem])
             chartDataSet.colors = [colors[jtem]]
-            
+
 //            chartDataSet.drawValuesEnabled = false
             data.append(chartDataSet)
 
