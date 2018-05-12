@@ -11,6 +11,11 @@
 		B70452C820A1480700090318 /* SwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70452C720A1480700090318 /* SwitchViewController.swift */; };
 		B70452CC20A14B2500090318 /* SwitchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70452CA20A14B2500090318 /* SwitchCollectionViewCell.swift */; };
 		B70452CD20A14B2500090318 /* SwitchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70452CB20A14B2500090318 /* SwitchCollectionViewCell.xib */; };
+		B708B3DA20A73EBB00687113 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B708B3D920A73EBB00687113 /* TabBarViewController.swift */; };
+		B708B3DE20A740C000687113 /* UIStoryBoardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B708B3DD20A740C000687113 /* UIStoryBoardExtension.swift */; };
+		B708B3E020A747CB00687113 /* Article.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B708B3DF20A747CB00687113 /* Article.storyboard */; };
+		B708B3E220A747DA00687113 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B708B3E120A747DA00687113 /* Profile.storyboard */; };
+		B708B3E420A74AC100687113 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B708B3E320A74AC100687113 /* TabBar.storyboard */; };
 		B70C18D4209DAA4600133859 /* crimes10701_10703.json in Resources */ = {isa = PBXBuildFile; fileRef = B70C18D3209DAA4600133859 /* crimes10701_10703.json */; };
 		B70C18DC209EE87600133859 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70C18DB209EE87600133859 /* LocationSearchTable.swift */; };
 		B70C6D36209CA76500E5ACD9 /* BezierPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70C6D35209CA76500E5ACD9 /* BezierPathExtension.swift */; };
@@ -40,6 +45,11 @@
 		B70452C720A1480700090318 /* SwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewController.swift; sourceTree = "<group>"; };
 		B70452CA20A14B2500090318 /* SwitchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCollectionViewCell.swift; sourceTree = "<group>"; };
 		B70452CB20A14B2500090318 /* SwitchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCollectionViewCell.xib; sourceTree = "<group>"; };
+		B708B3D920A73EBB00687113 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		B708B3DD20A740C000687113 /* UIStoryBoardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryBoardExtension.swift; sourceTree = "<group>"; };
+		B708B3DF20A747CB00687113 /* Article.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Article.storyboard; sourceTree = "<group>"; };
+		B708B3E120A747DA00687113 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		B708B3E320A74AC100687113 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
 		B70C18D3209DAA4600133859 /* crimes10701_10703.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = crimes10701_10703.json; sourceTree = "<group>"; };
 		B70C18DB209EE87600133859 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		B70C6D35209CA76500E5ACD9 /* BezierPathExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierPathExtension.swift; sourceTree = "<group>"; };
@@ -96,6 +106,14 @@
 			path = SwitchCollectionView;
 			sourceTree = "<group>";
 		};
+		B708B3DC20A7404900687113 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B708B3DD20A740C000687113 /* UIStoryBoardExtension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
 		B70C6D34209CA72700E5ACD9 /* BezierPathExtension */ = {
 			isa = PBXGroup;
 			children = (
@@ -139,6 +157,7 @@
 		B7C5AD3F20995B030054FD6B /* HuntedRadar */ = {
 			isa = PBXGroup;
 			children = (
+				B708B3DC20A7404900687113 /* Extension */,
 				B70C6D34209CA72700E5ACD9 /* BezierPathExtension */,
 				B70E98D3209C429400112661 /* View */,
 				B7C5AD5B20996ABF0054FD6B /* Storyboard */,
@@ -172,6 +191,7 @@
 				B7C5AD4220995B030054FD6B /* MapViewController.swift */,
 				B70452C720A1480700090318 /* SwitchViewController.swift */,
 				B71060F920A49C1500C4A93F /* BarChartViewController.swift */,
+				B708B3D920A73EBB00687113 /* TabBarViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -181,6 +201,9 @@
 			children = (
 				B7C5AD4420995B030054FD6B /* Main.storyboard */,
 				B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */,
+				B708B3DF20A747CB00687113 /* Article.storyboard */,
+				B708B3E120A747DA00687113 /* Profile.storyboard */,
+				B708B3E320A74AC100687113 /* TabBar.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -255,8 +278,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7C5AD4B20995B040054FD6B /* LaunchScreen.storyboard in Resources */,
+				B708B3E220A747DA00687113 /* Profile.storyboard in Resources */,
 				B70E98D7209C43F100112661 /* DangerousLocationDetailMapView.xib in Resources */,
 				B70C18D4209DAA4600133859 /* crimes10701_10703.json in Resources */,
+				B708B3E420A74AC100687113 /* TabBar.storyboard in Resources */,
+				B708B3E020A747CB00687113 /* Article.storyboard in Resources */,
 				B7C5AD4820995B040054FD6B /* Assets.xcassets in Resources */,
 				B79E4DB920A06E2900FE9911 /* LocationSearchTable.storyboard in Resources */,
 				B70E98DB209C491F00112661 /* DangerousLocationTableViewCell.xib in Resources */,
@@ -329,7 +355,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B708B3DA20A73EBB00687113 /* TabBarViewController.swift in Sources */,
 				B7C5AD58209962DE0054FD6B /* UnLuckyHouse.swift in Sources */,
+				B708B3DE20A740C000687113 /* UIStoryBoardExtension.swift in Sources */,
 				B70C18DC209EE87600133859 /* LocationSearchTable.swift in Sources */,
 				B70452CC20A14B2500090318 /* SwitchCollectionViewCell.swift in Sources */,
 				B7C5AD5D209990860054FD6B /* DangerousLocation.swift in Sources */,

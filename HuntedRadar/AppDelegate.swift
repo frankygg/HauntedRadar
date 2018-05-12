@@ -23,9 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
         
         // rootViewController from StoryBoard
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-        guard var  navigationController = mainStoryboard.instantiateViewController(withIdentifier: "navigationController") as? UIViewController else {
-            return true
-        }
+//        guard var  navigationController = mainStoryboard.instantiateViewController(withIdentifier: "navigationController") as? UIViewController else {
+//            return true
+//        }
+        var navigationController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
         self.window!.rootViewController = navigationController
 
         // logo mask
