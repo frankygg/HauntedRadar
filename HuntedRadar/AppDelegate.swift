@@ -48,7 +48,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
         transformAnimation.beginTime = CACurrentMediaTime() + 1 //add delay of 1 second
         let initalBounds = NSValue(cgRect: (navigationController.view.layer.mask?.bounds)!)
         let secondBounds = NSValue(cgRect: CGRect(x: 0, y: 0, width: 50, height: 50))
-        let finalBounds = NSValue(cgRect: CGRect(x: 0, y: 0, width: 2000, height: 2000))
+        let finalBounds = NSValue(cgRect: CGRect(x: 0, y: 0, width: 5000, height: 5000))
         transformAnimation.values = [initalBounds, secondBounds, finalBounds]
         transformAnimation.keyTimes = [0, 0.5, 1]
         transformAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut), CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)]
