@@ -134,15 +134,14 @@
             </objects>
             <point key="canvasLocation" x="2000.8" y="440.32983508245883"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Hunted Navigation Controller-->
         <scene sceneID="IbD-wN-eA0">
             <objects>
-                <navigationController storyboardIdentifier="navigationController" automaticallyAdjustsScrollViewInsets="NO" id="YDz-DT-3gU" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="navigationController" automaticallyAdjustsScrollViewInsets="NO" id="YDz-DT-3gU" customClass="HuntedNavigationController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AYK-6k-ENk">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="1" green="0.2399941092" blue="0.23198957570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

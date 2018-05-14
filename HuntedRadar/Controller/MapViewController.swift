@@ -137,15 +137,6 @@ class MapViewController: UIViewController, SwitchViewDelegate {
 
         super.viewDidLoad()
 
-        //shadow
-        //阴影颜色
-        self.navigationController?.navigationBar.layer.shadowColor = UIColor(red: 0/255, green: 0/255, blue: 0/255, alpha: 0.24).cgColor
-        //阴影偏移,x向右偏移4，y向下偏移4
-        self.navigationController?.navigationBar.layer.shadowOffset = CGSize(width:0.0, height:4.0)
-        //阴影半径，默认3
-        //        navigationController?.navigationBar.layer.shadowRadius = 4
-        //阴影透明度，默认0
-        self.navigationController?.navigationBar.layer.shadowOpacity = 4.0
         //set searchbutton
         let transform = CGAffineTransform(scaleX: 2, y: 2)
         searchButton.transform = transform

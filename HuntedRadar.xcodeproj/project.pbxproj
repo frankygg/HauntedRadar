@@ -27,6 +27,7 @@
 		B71060FA20A49C1500C4A93F /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71060F920A49C1500C4A93F /* BarChartViewController.swift */; };
 		B725FFB620A0377400BA6553 /* ExpandableLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725FFB520A0377400BA6553 /* ExpandableLocations.swift */; };
 		B72A46D420A1EEBD00E810E0 /* SafeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */; };
+		B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */; };
 		B79E4DB920A06E2900FE9911 /* LocationSearchTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */; };
 		B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4020995B030054FD6B /* AppDelegate.swift */; };
 		B7C5AD4320995B030054FD6B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4220995B030054FD6B /* MapViewController.swift */; };
@@ -61,6 +62,7 @@
 		B71060F920A49C1500C4A93F /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
 		B725FFB520A0377400BA6553 /* ExpandableLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLocations.swift; sourceTree = "<group>"; };
 		B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeLocation.swift; sourceTree = "<group>"; };
+		B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuntedNavigationController.swift; sourceTree = "<group>"; };
 		B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationSearchTable.storyboard; sourceTree = "<group>"; };
 		B7C5AD3D20995B030054FD6B /* HuntedRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HuntedRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C5AD4020995B030054FD6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +138,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		B7479F8B20A9300900415978 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */,
+			);
+			path = Navigation;
+			sourceTree = "<group>";
+		};
 		B7C5AD3420995B030054FD6B = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +198,7 @@
 		B7C5AD5A20996A960054FD6B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B7479F8B20A9300900415978 /* Navigation */,
 				B7C5AD4220995B030054FD6B /* MapViewController.swift */,
 				B70452C720A1480700090318 /* SwitchViewController.swift */,
 				B71060F920A49C1500C4A93F /* BarChartViewController.swift */,
@@ -361,6 +372,7 @@
 				B70C18DC209EE87600133859 /* LocationSearchTable.swift in Sources */,
 				B70452CC20A14B2500090318 /* SwitchCollectionViewCell.swift in Sources */,
 				B7C5AD5D209990860054FD6B /* DangerousLocation.swift in Sources */,
+				B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */,
 				B7C5AD4320995B030054FD6B /* MapViewController.swift in Sources */,
 				B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */,
 				B70E98D5209C43B500112661 /* DangerousLocationDetailMapView.swift in Sources */,
