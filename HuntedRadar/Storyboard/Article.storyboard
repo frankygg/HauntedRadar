@@ -10,21 +10,54 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Article View Controller-->
         <scene sceneID="AXG-C2-dMm">
             <objects>
-                <viewController id="IIH-x3-WKu" sceneMemberID="viewController">
+                <viewController id="IIH-x3-WKu" customClass="ArticleViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6AK-63-sej">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Dr2-SE-pNU">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="rSq-dz-kqf" firstAttribute="trailing" secondItem="Dr2-SE-pNU" secondAttribute="trailing" id="Ahn-dN-iBo"/>
+                            <constraint firstItem="Dr2-SE-pNU" firstAttribute="top" secondItem="rSq-dz-kqf" secondAttribute="top" id="JJE-W2-MBc"/>
+                            <constraint firstItem="Dr2-SE-pNU" firstAttribute="leading" secondItem="rSq-dz-kqf" secondAttribute="leading" id="MVX-DE-Eev"/>
+                            <constraint firstItem="rSq-dz-kqf" firstAttribute="bottom" secondItem="Dr2-SE-pNU" secondAttribute="bottom" id="q6k-Pr-We4"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="rSq-dz-kqf"/>
                     </view>
                     <navigationItem key="navigationItem" id="xgl-Hv-ZJg"/>
+                    <connections>
+                        <outlet property="myTableView" destination="Dr2-SE-pNU" id="wI1-0p-6gX"/>
+                        <segue destination="5wr-jc-UiR" kind="presentation" identifier="login" id="dgg-ff-aoY"/>
+                        <segue destination="IcZ-Rq-uTa" kind="show" identifier="addQuestion" id="Kb5-TF-MeO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubj-m4-QZ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="880.79999999999995" y="104.7976011994003"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="VVQ-hW-gNr">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="5wr-jc-UiR" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ywE-nX-t36" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2513" y="64"/>
+        </scene>
+        <!--AddQuestion-->
+        <scene sceneID="5d8-R5-V6l">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddQuestion" id="IcZ-Rq-uTa" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="25b-EY-lK1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2138" y="496"/>
         </scene>
         <!--Hunted Navigation Controller-->
         <scene sceneID="p8h-mq-jjh">

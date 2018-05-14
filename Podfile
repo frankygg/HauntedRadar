@@ -10,4 +10,9 @@ pod 'FMDB'
 pod 'SwiftLint'
 pod 'Alamofire'
 pod 'Charts'
+pod 'Firebase/Core'
+pod 'Firebase/Database'
+pod 'FirebaseUI/Auth'
+
+
 end

@@ -7,20 +7,21 @@
 //
 
 import UIKit
-
+import Firebase
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
 
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent // 設定statusbar為白色
 
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.backgroundColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
         self.window!.makeKeyAndVisible()
-        
+
         // rootViewController from StoryBoard
         let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 //        guard var  navigationController = mainStoryboard.instantiateViewController(withIdentifier: "navigationController") as? UIViewController else {

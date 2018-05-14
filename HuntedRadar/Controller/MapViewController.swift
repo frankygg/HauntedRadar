@@ -154,7 +154,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         searchBar.placeholder = "找尋你要的位置"
         navigationItem.titleView = resultSearchController?.searchBar
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "center_back"), style: .done, target: self, action: #selector(centerBackOnLocation))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "center_back"), style: .done, target: self, action: #selector(centerBackOnLocation(_:)))
         navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
         resultSearchController?.hidesNavigationBarDuringPresentation = false
         resultSearchController?.dimsBackgroundDuringPresentation = true
@@ -390,7 +390,7 @@ extension MapViewController: MKMapViewDelegate {
             return pinView
         }
     }
-    
+
     private func mapViewRegionDidChangeFromUserInteraction() -> Bool {
         let view = self.mapView.subviews[0]
         //  Look through gesture recognizers to determine whether this region change is from user interaction
@@ -403,7 +403,7 @@ extension MapViewController: MKMapViewDelegate {
         }
         return false
     }
-    
+
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
         if (mapChangedFromUserInteraction) {
@@ -411,7 +411,7 @@ extension MapViewController: MKMapViewDelegate {
             navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         }
     }
-    
+
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         if (mapChangedFromUserInteraction) {
             // user changed map region

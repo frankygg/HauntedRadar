@@ -11,7 +11,7 @@ enum TabBar {
     case map
     case article
     case profile
-    
+
     func controller() -> UIViewController {
         switch self {
         case .map: return UIStoryboard.mapStoryboard().instantiateInitialViewController()!
@@ -19,7 +19,7 @@ enum TabBar {
         case .profile: return UIStoryboard.profileStoryboard().instantiateInitialViewController()!
         }
     }
-    
+
     func image() -> UIImage {
         switch self {
         case .map: return #imageLiteral(resourceName: "define_location")
@@ -27,7 +27,7 @@ enum TabBar {
         case .profile: return #imageLiteral(resourceName: "user_male")
         }
     }
-    
+
     func selectedImage() -> UIImage {
         switch self {
             case .map: return #imageLiteral(resourceName: "define_location").withRenderingMode(.alwaysTemplate)
@@ -47,25 +47,25 @@ class TabBarViewController: UITabBarController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     private func setupTab() {
         tabBar.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
-        
+
         var controllers = [UIViewController]()
-        
+
         for tab in tabs {
             let controller = tab.controller()
-            
+
             let item = UITabBarItem(
                 title: nil,
                 image: tab.image(),
                 selectedImage: tab.selectedImage()
             )
-            
+
             item.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
-            
+
             controller.tabBarItem = item
-            
+
             controllers.append(controller)
         }
         setViewControllers(controllers, animated: false)
