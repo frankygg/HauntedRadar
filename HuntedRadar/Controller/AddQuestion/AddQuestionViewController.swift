@@ -18,13 +18,12 @@ class AddQuestionViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
 
     func setNavigation() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "exit"), style: .done, target: self, action: #selector(logout))
         navigationItem.rightBarButtonItem?.tintColor = .white
     }
-    
+
     @objc func logout() {
         do {
             try Auth.auth().signOut()

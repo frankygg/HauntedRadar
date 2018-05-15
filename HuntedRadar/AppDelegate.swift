@@ -23,11 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
         self.window!.makeKeyAndVisible()
 
         // rootViewController from StoryBoard
-        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
 //        guard var  navigationController = mainStoryboard.instantiateViewController(withIdentifier: "navigationController") as? UIViewController else {
 //            return true
 //        }
-        var navigationController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
+        let navigationController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
         self.window!.rootViewController = navigationController
 
         // logo mask
@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
         navigationController.view.layer.mask?.position = CGPoint(x: navigationController.view.frame.width / 2, y: navigationController.view.frame.height / 2)
 
         // logo mask background view
-        var maskBgView = UIView(frame: navigationController.view.frame)
+        let maskBgView = UIView(frame: navigationController.view.frame)
         maskBgView.backgroundColor = UIColor.white
         navigationController.view.addSubview(maskBgView)
         navigationController.view.bringSubview(toFront: maskBgView)

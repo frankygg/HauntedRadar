@@ -396,7 +396,7 @@ extension MapViewController: MKMapViewDelegate {
         //  Look through gesture recognizers to determine whether this region change is from user interaction
         if let gestureRecognizers = view.gestureRecognizers {
             for recognizer in gestureRecognizers {
-                if( recognizer.state == UIGestureRecognizerState.began || recognizer.state == UIGestureRecognizerState.ended ) {
+                if recognizer.state == UIGestureRecognizerState.began || recognizer.state == UIGestureRecognizerState.ended {
                     return true
                 }
             }
@@ -406,14 +406,14 @@ extension MapViewController: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
         mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
-        if (mapChangedFromUserInteraction) {
+        if mapChangedFromUserInteraction {
             // user changed map region
             navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         }
     }
 
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-        if (mapChangedFromUserInteraction) {
+        if mapChangedFromUserInteraction {
             // user changed map region
             navigationItem.rightBarButtonItem?.tintColor = UIColor.white
 

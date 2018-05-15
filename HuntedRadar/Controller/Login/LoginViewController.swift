@@ -35,13 +35,12 @@ class LoginViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
 
     @IBAction func signInButtonTapped(_ sender: UIButton) {
-        
+
         // TODO: some validation on email and password
         if let email = emailTextField.text, let password = passwordTextField.text {
-            
+
             //check if it's sign in or register
             if isSignIn {
                 //Sign in the userwith Firebase
@@ -49,8 +48,8 @@ class LoginViewController: UIViewController {
                     // ...
                     if error == nil && user != nil {
                         self.performSegue(withIdentifier: "addQuestion", sender: self)
-                    }else {
-                        
+                    } else {
+
                     }
                 }
             } else {
@@ -59,8 +58,8 @@ class LoginViewController: UIViewController {
                     // ...
                     if error == nil && user != nil {
                         self.performSegue(withIdentifier: "addQuestion", sender: self)
-                    }else {
-                        
+                    } else {
+
                     }
                 }
             }

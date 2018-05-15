@@ -23,7 +23,7 @@ extension UIStoryboard {
     static func customTabBarStoryboard() -> UIStoryboard {
         return UIStoryboard(name: "TabBar", bundle: nil)
     }
-    
+
     static func loginStoryboard() -> UIStoryboard {
         return UIStoryboard(name: "Login", bundle: nil)
     }

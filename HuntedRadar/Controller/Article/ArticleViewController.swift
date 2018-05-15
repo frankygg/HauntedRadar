@@ -25,7 +25,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         myTableView.delegate = self
         ref = Database.database().reference()
 //        ref?.child("Articles").childByAutoId().setValue("test")
-        
+
         setNavigationItem()
 
     }
@@ -45,21 +45,21 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         return cell
     }
-    
+
     func setNavigationItem() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .done, target: self, action: #selector(addQuestion))
         navigationItem.rightBarButtonItem?.tintColor = .white
     }
-    
+
     @objc func addQuestion(_ sender: UIButton) {
-        
+
         let showLoginScreen = Auth.auth().currentUser == nil
         if showLoginScreen {
             performSegue(withIdentifier: "login", sender: self)
         } else {
             performSegue(withIdentifier: "addQuestion", sender: self)
         }
-    
+
     }
-   
+
 }

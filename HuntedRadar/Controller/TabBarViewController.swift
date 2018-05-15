@@ -30,9 +30,9 @@ enum TabBar {
 
     func selectedImage() -> UIImage {
         switch self {
-            case .map: return #imageLiteral(resourceName: "define_location").withRenderingMode(.alwaysTemplate)
-            case .article: return #imageLiteral(resourceName: "user_group_man_man").withRenderingMode(.alwaysTemplate)
-            case .profile: return #imageLiteral(resourceName: "user_male").withRenderingMode(.alwaysTemplate)
+        case .map: return #imageLiteral(resourceName: "define_location").withRenderingMode(.alwaysTemplate)
+        case .article: return #imageLiteral(resourceName: "user_group_man_man").withRenderingMode(.alwaysTemplate)
+        case .profile: return #imageLiteral(resourceName: "user_male").withRenderingMode(.alwaysTemplate)
         }
     }
 }
