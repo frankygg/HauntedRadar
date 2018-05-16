@@ -11,7 +11,9 @@ import FirebaseCore
 import Firebase
 import FirebaseAuth
 
-class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DismissView {
+    
+    
 
     var ref: DatabaseReference?
     @IBOutlet weak var myTableView: UITableView!
@@ -56,10 +58,24 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         let showLoginScreen = Auth.auth().currentUser == nil
         if showLoginScreen {
             performSegue(withIdentifier: "login", sender: self)
+//            let controller =
         } else {
             performSegue(withIdentifier: "addQuestion", sender: self)
         }
 
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? LoginViewController {
+            controller.delegate = self
+        }
+    }
+    
+    func dismissView(_ bool: Bool) {
+        if bool {
+            performSegue(withIdentifier: "addQuestion", sender: self)
+
+        }
     }
 
 }

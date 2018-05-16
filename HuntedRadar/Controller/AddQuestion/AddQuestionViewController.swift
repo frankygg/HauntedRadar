@@ -27,6 +27,7 @@ class AddQuestionViewController: UIViewController {
     @objc func logout() {
         do {
             try Auth.auth().signOut()
+            navigationController?.popViewController(animated: true)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
