@@ -12,6 +12,11 @@ class HuntedNavigationController: UINavigationController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         arrangeShadowLayer()
         arrangeGradientLayer()
     }
@@ -33,11 +38,11 @@ class HuntedNavigationController: UINavigationController {
 
         layer.endPoint = CGPoint(x: 1.0, y: 0.5)
 
-        layer.bounds = CGRect(
+        layer.frame = CGRect(
             x: 0,
             y: 0,
             width: self.navigationBar.bounds.width,
-            height: self.navigationBar.bounds.height
+            height: self.navigationBar.bounds.height + navigationBar.frame.origin.y
         )
 
         let image = UIImage.imageFromLayer(layer: layer)

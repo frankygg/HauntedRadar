@@ -152,6 +152,9 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
         searchBar.placeholder = "找尋你要的位置"
+        if #available(iOS 11.0, *) {
+            searchBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+        }
         navigationItem.titleView = resultSearchController?.searchBar
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "center_back"), style: .done, target: self, action: #selector(centerBackOnLocation(_:)))

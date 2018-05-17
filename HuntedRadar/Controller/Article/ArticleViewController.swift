@@ -25,6 +25,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         myTableView.register(nib, forCellReuseIdentifier: "ArticleTableViewCell")
         myTableView.dataSource = self
         myTableView.delegate = self
+        self.automaticallyAdjustsScrollViewInsets = false
         ref = Database.database().reference()
 //        ref?.child("Articles").childByAutoId().setValue("test")
 
