@@ -19,6 +19,8 @@
 		B70C18D4209DAA4600133859 /* crimes10701_10703.json in Resources */ = {isa = PBXBuildFile; fileRef = B70C18D3209DAA4600133859 /* crimes10701_10703.json */; };
 		B70C18DC209EE87600133859 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70C18DB209EE87600133859 /* LocationSearchTable.swift */; };
 		B70C6D36209CA76500E5ACD9 /* BezierPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70C6D35209CA76500E5ACD9 /* BezierPathExtension.swift */; };
+		B70CDB2620AD601700935AFD /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70CDB2520AD601700935AFD /* FirebaseManager.swift */; };
+		B70CDB2920AD7DBD00935AFD /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70CDB2820AD7DBD00935AFD /* Article.swift */; };
 		B70E98D5209C43B500112661 /* DangerousLocationDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E98D4209C43B500112661 /* DangerousLocationDetailMapView.swift */; };
 		B70E98D7209C43F100112661 /* DangerousLocationDetailMapView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70E98D6209C43F100112661 /* DangerousLocationDetailMapView.xib */; };
 		B70E98DA209C491F00112661 /* DangerousLocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E98D8209C491F00112661 /* DangerousLocationTableViewCell.swift */; };
@@ -62,6 +64,8 @@
 		B70C18D3209DAA4600133859 /* crimes10701_10703.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = crimes10701_10703.json; sourceTree = "<group>"; };
 		B70C18DB209EE87600133859 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		B70C6D35209CA76500E5ACD9 /* BezierPathExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierPathExtension.swift; sourceTree = "<group>"; };
+		B70CDB2520AD601700935AFD /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		B70CDB2820AD7DBD00935AFD /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
 		B70E98D4209C43B500112661 /* DangerousLocationDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerousLocationDetailMapView.swift; sourceTree = "<group>"; };
 		B70E98D6209C43F100112661 /* DangerousLocationDetailMapView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DangerousLocationDetailMapView.xib; sourceTree = "<group>"; };
 		B70E98D8209C491F00112661 /* DangerousLocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerousLocationTableViewCell.swift; sourceTree = "<group>"; };
@@ -140,6 +144,22 @@
 			path = BezierPathExtension;
 			sourceTree = "<group>";
 		};
+		B70CDB2420AD5FE700935AFD /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				B70CDB2520AD601700935AFD /* FirebaseManager.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
+		B70CDB2720AD7DAD00935AFD /* Article */ = {
+			isa = PBXGroup;
+			children = (
+				B70CDB2820AD7DBD00935AFD /* Article.swift */,
+			);
+			path = Article;
+			sourceTree = "<group>";
+		};
 		B70E98D3209C429400112661 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,6 +224,8 @@
 		B7C5AD542099628E0054FD6B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B70CDB2720AD7DAD00935AFD /* Article */,
+				B70CDB2420AD5FE700935AFD /* Firebase */,
 				B7C5AD552099629E0054FD6B /* Dao.swift */,
 				B7C5AD57209962DE0054FD6B /* UnLuckyHouse.swift */,
 				B7C5AD5C209990860054FD6B /* DangerousLocation.swift */,
@@ -397,6 +419,7 @@
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -407,6 +430,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -473,6 +497,8 @@
 				B7CB48E220A94AA60042194C /* ArticleViewController.swift in Sources */,
 				B70E98DD209C522900112661 /* DangerousLocationAnnotationView.swift in Sources */,
 				B70C6D36209CA76500E5ACD9 /* BezierPathExtension.swift in Sources */,
+				B70CDB2920AD7DBD00935AFD /* Article.swift in Sources */,
+				B70CDB2620AD601700935AFD /* FirebaseManager.swift in Sources */,
 				B72A46D420A1EEBD00E810E0 /* SafeLocation.swift in Sources */,
 				B71060FA20A49C1500C4A93F /* BarChartViewController.swift in Sources */,
 			);
@@ -623,10 +649,7 @@
 				DEVELOPMENT_TEAM = 6HH362Z9DX;
 				INFOPLIST_FILE = HuntedRadar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.btding.HuntedRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -643,10 +666,7 @@
 				DEVELOPMENT_TEAM = 6HH362Z9DX;
 				INFOPLIST_FILE = HuntedRadar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.btding.HuntedRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

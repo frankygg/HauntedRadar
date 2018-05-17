@@ -10,11 +10,12 @@ import UIKit
 import FirebaseCore
 import Firebase
 import FirebaseAuth
+import SDWebImage
 
 class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DismissView {
     
     
-
+    var articles = [Article]()
     var ref: DatabaseReference?
     @IBOutlet weak var myTableView: UITableView!
     override func viewDidLoad() {
@@ -30,6 +31,10 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        ref?.child("Articles").childByAutoId().setValue("test")
 
         setNavigationItem()
+        
+            loadArticleFromeFirebase()
+        
+      
 
     }
 
@@ -37,15 +42,20 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.didReceiveMemoryWarning()
 
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return articles.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard  let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell") as? ArticleTableViewCell else {
             return UITableViewCell()
         }
+        cell.userNameLabel.text = articles[indexPath.row].userName
+        cell.imageUrlView.sd_setImage(with: URL(string: articles[indexPath.row].imageUrl), placeholderImage: nil)
         return cell
     }
 
@@ -78,5 +88,15 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         }
     }
+    
+    func loadArticleFromeFirebase() {
+        FirebaseManager.shared.loadArticle(completion: {articles in
+            self.articles = articles
+            self.myTableView.reloadData()
+
+            
+        })
+    }
+    
 
 }

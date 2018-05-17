@@ -8,11 +8,16 @@
 
 import UIKit
 import FirebaseAuth
-class AddQuestionViewController: UIViewController {
+class AddQuestionViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
+        
+        imageView.isUserInteractionEnabled = true
+        let touch = UITapGestureRecognizer(target: self, action: #selector(bottomAlert))
+        imageView.addGestureRecognizer(touch)
     }
 
     override func didReceiveMemoryWarning() {
@@ -32,5 +37,49 @@ class AddQuestionViewController: UIViewController {
             print ("Error signing out: %@", signOutError)
         }
     }
+    
+    @objc func bottomAlert() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let photoAction = UIAlertAction(title: "Photo", style: .default) { _ in
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = .photoLibrary
+            self.present(picker, animated: true, completion: nil)
+        }
+        let cameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = .camera
+            self.present(picker, animated: true, completion: nil)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(photoAction)
+        alertController.addAction(cameraAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
+        let image = info[UIImagePickerControllerOriginalImage] as? UIImage
+        if picker.sourceType == .camera {
+            UIImageWriteToSavedPhotosAlbum(image!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
+        }
+        imageView.image = image
+        FirebaseManager.shared.updateProfilePhoto(uploadimage: image)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        } else {
+            let ac = UIAlertController(title: "存擋", message: "資料已成功上傳", preferredStyle: .alert)
+            ac.addAction(UIAlertAction(title: "OK", style: .default))
+            present(ac, animated: true)
+        }
+    }
+
 
 }
