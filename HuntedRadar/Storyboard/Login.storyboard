@@ -165,20 +165,11 @@
                         <outlet property="signinSelector" destination="r8E-PB-DiS" id="Ag9-gZ-7xV"/>
                         <outlet property="userNameStackView" destination="Osu-wd-J9T" id="aJl-Ww-AhT"/>
                         <outlet property="userNameTextField" destination="r0t-8W-YVU" id="Z0m-t2-lV4"/>
-                        <segue destination="ziA-90-6oU" kind="presentation" identifier="loginToAddQuestion" id="ljQ-MS-dym"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sub-D0-iE1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="172" y="115.59220389805098"/>
-        </scene>
-        <!--TabBar-->
-        <scene sceneID="z6a-5f-aVs">
-            <objects>
-                <viewControllerPlaceholder storyboardName="TabBar" id="ziA-90-6oU" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Kxw-CX-twg" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1076" y="156"/>
         </scene>
     </scenes>
     <resources>

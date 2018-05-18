@@ -37,20 +37,11 @@
                     <navigationItem key="navigationItem" id="6YX-JV-hC7"/>
                     <connections>
                         <outlet property="imageView" destination="7cT-LF-XbJ" id="1Yo-Nk-mcw"/>
-                        <segue destination="1Vw-D2-bNq" kind="show" identifier="back" id="JMr-nj-k4y"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ri-91-aVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2962.4000000000001" y="53.523238380809602"/>
-        </scene>
-        <!--TabBar-->
-        <scene sceneID="mw4-pT-YUd">
-            <objects>
-                <viewControllerPlaceholder storyboardName="TabBar" id="1Vw-D2-bNq" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qsy-Iy-Z3A" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3900" y="102"/>
         </scene>
     </scenes>
 </document>
