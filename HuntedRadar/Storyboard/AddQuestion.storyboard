@@ -54,6 +54,9 @@
                                         <rect key="frame" x="172" y="511" width="31" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.89762972610000002" blue="0.23198957570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="發問"/>
+                                        <connections>
+                                            <action selector="addQuestionAction:" destination="OB6-IV-am9" eventType="touchUpInside" id="PpB-8u-i2I"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -93,7 +96,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="6YX-JV-hC7"/>
                     <connections>
+                        <outlet property="addressTextField" destination="6We-8J-obL" id="VES-LV-nrs"/>
                         <outlet property="imageView" destination="7cT-LF-XbJ" id="1Yo-Nk-mcw"/>
+                        <outlet property="memoTextField" destination="AsP-Bn-0lW" id="f3v-JG-78A"/>
+                        <outlet property="reasonTextView" destination="And-kV-whR" id="Z2M-5x-YP6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ri-91-aVf" userLabel="First Responder" sceneMemberID="firstResponder"/>

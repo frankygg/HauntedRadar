@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import IQKeyboardManagerSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
 
@@ -17,6 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
         FirebaseApp.configure()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent // 設定statusbar為白色
 
+        IQKeyboardManager.shared.enable = true
+        
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.backgroundColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)

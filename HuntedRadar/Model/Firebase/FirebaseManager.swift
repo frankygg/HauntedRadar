@@ -20,7 +20,7 @@ class FirebaseManager {
         return storageRef.child("image")
     }
     
-    func updateProfilePhoto(uploadimage: UIImage?, handler: @escaping (Double)->Void = {_ in return}) {
+    func addArticleQuestion(uploadimage: UIImage?, uploadArticle article: Article, handler: @escaping (Double)->Void = {_ in return}) {
         let filename = "\(NSUUID().uuidString)"
         if let image = uploadimage, let imageData = UIImageJPEGRepresentation(image, 0.1), let uid = Auth.auth().currentUser?.uid {
             let uploadImageRef = imageReference.child(filename)
@@ -37,7 +37,7 @@ class FirebaseManager {
                     uploadImageRef.downloadURL(completion: { (url, error) in
                         if error == nil, let url = url {
                             let text = url.absoluteString
-                            self.ref.child("article").childByAutoId().setValue(["imageUrl": text, "userName": userName, "uid": uid])
+                            self.ref.child("article").childByAutoId().setValue(["imageUrl": text, "userName": userName, "uid": uid, "reason": article.reason, "address": article.address, "memo": article.memo])
                             //更新
 //                            self.ref.child("article/\(uid)").updateChildValues(["image": text])
                         }
@@ -56,11 +56,11 @@ class FirebaseManager {
                     guard let obj = obj as? NSDictionary else {
                         return
                     }
-                    var article = Article(uid: (obj.object(forKey: "uid") as? String)!, userName:(obj.object(forKey: "userName") as? String)!, imageUrl: (obj.object(forKey: "imageUrl") as? String)!)
+                    var article = Article(uid: (obj.object(forKey: "uid") as? String)!, userName:(obj.object(forKey: "userName") as? String)!, imageUrl: (obj.object(forKey: "imageUrl") as? String)!, address: (obj.object(forKey: "address") as? String)!, reason: (obj.object(forKey: "reason") as? String)!, memo: (obj.object(forKey: "memo") as? String)!)
                     
                     articles.append(article)
-//                    print("================")
-//                    print(obj)
+                    print("================")
+                    print(obj)
                 }
                 
                 completion(articles)

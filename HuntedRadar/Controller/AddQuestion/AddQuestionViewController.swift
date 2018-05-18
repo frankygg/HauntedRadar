@@ -10,18 +10,30 @@ import UIKit
 import FirebaseAuth
 class AddQuestionViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
+    var artileObject: Article?
+    @IBOutlet weak var memoTextField: UITextField!
+    @IBOutlet weak var reasonTextView: UITextView!
+    @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
-        
+        setArticleObject()
         imageView.isUserInteractionEnabled = true
         let touch = UITapGestureRecognizer(target: self, action: #selector(bottomAlert))
         imageView.addGestureRecognizer(touch)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setArticleObject() {
+        guard let address = addressTextField.text, let reason = reasonTextView.text, let memo = memoTextField.text else {
+            return
+        }
+        artileObject = Article(uid: "", userName: "", imageUrl: "", address: address, reason: reason, memo: memo)
     }
 
     func setNavigation() {
@@ -65,7 +77,6 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
             UIImageWriteToSavedPhotosAlbum(image!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         }
         imageView.image = image
-        FirebaseManager.shared.updateProfilePhoto(uploadimage: image)
         dismiss(animated: true, completion: nil)
     }
     
@@ -81,5 +92,17 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
 
+    @IBAction func addQuestionAction(_ sender: UIButton) {
+        guard let articleObject = artileObject else {
+            return
+        }
+        FirebaseManager.shared.addArticleQuestion(uploadimage: imageView.image, uploadArticle: articleObject)
 
+    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        reasonTextView.resignFirstResponder()
+//        addressTextField.resignFirstResponder()
+//        memoTextField.resignFirstResponder()
+//    }
+//    
 }
