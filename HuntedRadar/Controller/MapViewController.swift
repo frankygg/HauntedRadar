@@ -153,10 +153,13 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         searchBar.sizeToFit()
         searchBar.placeholder = "找尋你要的位置"
         if #available(iOS 11.0, *) {
-            searchBar.heightAnchor.constraint(equalToConstant: 44).isActive = true
+            let searchBarContainer = SearchBarContainerView(customSearchBar: searchBar)
+            searchBarContainer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
+            navigationItem.titleView = searchBarContainer
+        } else {
+            
+            navigationItem.titleView = searchBar
         }
-        navigationItem.titleView = resultSearchController?.searchBar
-
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "center_back"), style: .done, target: self, action: #selector(centerBackOnLocation(_:)))
         navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
         resultSearchController?.hidesNavigationBarDuringPresentation = false

@@ -14,6 +14,8 @@ class FirebaseManager {
     lazy var ref = Database.database().reference()
     lazy var storageRef = Storage.storage().reference()
     
+    private init() {}
+    
     var imageReference: StorageReference {
         return storageRef.child("image")
     }

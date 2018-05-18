@@ -27,6 +27,7 @@
 		B70E98DB209C491F00112661 /* DangerousLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70E98D9209C491F00112661 /* DangerousLocationTableViewCell.xib */; };
 		B70E98DD209C522900112661 /* DangerousLocationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E98DC209C522900112661 /* DangerousLocationAnnotationView.swift */; };
 		B71060FA20A49C1500C4A93F /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71060F920A49C1500C4A93F /* BarChartViewController.swift */; };
+		B712E03920AE7BF300FFBD87 /* SearchBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B712E03820AE7BF300FFBD87 /* SearchBarContainerView.swift */; };
 		B725FFB620A0377400BA6553 /* ExpandableLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725FFB520A0377400BA6553 /* ExpandableLocations.swift */; };
 		B72A46D420A1EEBD00E810E0 /* SafeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */; };
 		B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */; };
@@ -72,6 +73,7 @@
 		B70E98D9209C491F00112661 /* DangerousLocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DangerousLocationTableViewCell.xib; sourceTree = "<group>"; };
 		B70E98DC209C522900112661 /* DangerousLocationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerousLocationAnnotationView.swift; sourceTree = "<group>"; };
 		B71060F920A49C1500C4A93F /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
+		B712E03820AE7BF300FFBD87 /* SearchBarContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarContainerView.swift; sourceTree = "<group>"; };
 		B725FFB520A0377400BA6553 /* ExpandableLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLocations.swift; sourceTree = "<group>"; };
 		B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeLocation.swift; sourceTree = "<group>"; };
 		B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuntedNavigationController.swift; sourceTree = "<group>"; };
@@ -163,6 +165,7 @@
 		B70E98D3209C429400112661 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B712E03720AE7BCD00FFBD87 /* SearchBarContainer */,
 				B7CB48E420A94C0B0042194C /* ArticleCell */,
 				B70452C920A14AFD00090318 /* SwitchCollectionView */,
 				B70E98D4209C43B500112661 /* DangerousLocationDetailMapView.swift */,
@@ -173,6 +176,14 @@
 				B70C18DB209EE87600133859 /* LocationSearchTable.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		B712E03720AE7BCD00FFBD87 /* SearchBarContainer */ = {
+			isa = PBXGroup;
+			children = (
+				B712E03820AE7BF300FFBD87 /* SearchBarContainerView.swift */,
+			);
+			path = SearchBarContainer;
 			sourceTree = "<group>";
 		};
 		B7479F8B20A9300900415978 /* Navigation */ = {
@@ -486,6 +497,7 @@
 				B70452CC20A14B2500090318 /* SwitchCollectionViewCell.swift in Sources */,
 				B7C5AD5D209990860054FD6B /* DangerousLocation.swift in Sources */,
 				B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */,
+				B712E03920AE7BF300FFBD87 /* SearchBarContainerView.swift in Sources */,
 				B7C5AD4320995B030054FD6B /* MapViewController.swift in Sources */,
 				B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */,
 				B70E98D5209C43B500112661 /* DangerousLocationDetailMapView.swift in Sources */,
@@ -649,7 +661,10 @@
 				DEVELOPMENT_TEAM = 6HH362Z9DX;
 				INFOPLIST_FILE = HuntedRadar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.btding.HuntedRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -666,7 +681,10 @@
 				DEVELOPMENT_TEAM = 6HH362Z9DX;
 				INFOPLIST_FILE = HuntedRadar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.btding.HuntedRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
