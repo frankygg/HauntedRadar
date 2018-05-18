@@ -59,8 +59,8 @@ class FirebaseManager {
                     var article = Article(uid: (obj.object(forKey: "uid") as? String)!, userName:(obj.object(forKey: "userName") as? String)!, imageUrl: (obj.object(forKey: "imageUrl") as? String)!)
                     
                     articles.append(article)
-                    print("================")
-                    print(obj)
+//                    print("================")
+//                    print(obj)
                 }
                 
                 completion(articles)

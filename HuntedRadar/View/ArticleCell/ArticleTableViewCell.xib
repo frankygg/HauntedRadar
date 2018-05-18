@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,28 +20,26 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="幹大事" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfH-bO-iOg">
-                        <rect key="frame" x="20" y="11" width="127" height="84"/>
+                        <rect key="frame" x="20" y="11" width="176" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CYJ-IM-foE">
-                        <rect key="frame" x="200" y="11" width="176" height="86"/>
+                        <rect key="frame" x="220" y="11" width="176" height="86"/>
                         <color key="backgroundColor" red="1" green="1" blue="0.66333912037037035" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="86" id="WU0-Mo-SN2"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="176" id="gIJ-Bu-fXj"/>
                             <constraint firstAttribute="width" constant="176" id="sN3-Pi-clV"/>
                         </constraints>
                     </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="CYJ-IM-foE" firstAttribute="top" secondItem="pfH-bO-iOg" secondAttribute="top" id="0Ge-hI-P0R"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="pfH-bO-iOg" secondAttribute="bottom" id="6g3-xx-7jK"/>
+                    <constraint firstItem="CYJ-IM-foE" firstAttribute="leading" secondItem="pfH-bO-iOg" secondAttribute="trailing" constant="24" id="86a-mw-61M"/>
                     <constraint firstItem="CYJ-IM-foE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="C83-Bf-S1J"/>
-                    <constraint firstItem="pfH-bO-iOg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="LVz-Bm-Wus"/>
-                    <constraint firstItem="CYJ-IM-foE" firstAttribute="leading" secondItem="pfH-bO-iOg" secondAttribute="trailing" constant="53" id="MOf-ZZ-eVn"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="pfH-bO-iOg" secondAttribute="trailing" constant="263" id="mLt-wQ-Fhj"/>
-                    <constraint firstItem="pfH-bO-iOg" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="oIS-Az-qch"/>
+                    <constraint firstItem="pfH-bO-iOg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="L74-c8-VLW"/>
+                    <constraint firstItem="pfH-bO-iOg" firstAttribute="width" secondItem="CYJ-IM-foE" secondAttribute="width" id="cdT-D6-hEn"/>
+                    <constraint firstItem="CYJ-IM-foE" firstAttribute="top" secondItem="pfH-bO-iOg" secondAttribute="top" id="tov-jC-HnM"/>
                     <constraint firstAttribute="bottom" secondItem="CYJ-IM-foE" secondAttribute="bottom" constant="8.5" id="uf0-4f-H26"/>
                 </constraints>
             </tableViewCellContentView>
