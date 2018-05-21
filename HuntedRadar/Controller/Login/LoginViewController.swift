@@ -29,7 +29,6 @@ class LoginViewController: UIViewController {
         confirmPasswordStackView.isHidden = true
         dismissButton.setImage(dismissButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
         dismissButton.tintColor = UIColor.white
-        
 
     }
 
@@ -73,13 +72,13 @@ class LoginViewController: UIViewController {
                                 print("not found)")
                                 //Register the user with Firebase
                                 Auth.auth().createUser(withEmail: email, password: password, completion: self?.registerCompletionCallback)
-                                
+
                             } else {
                                     self?.alertAction(title: "Regiter failed", message: "The UserName has been used")
                             }
                         })
                     }} else {
-                    
+
                 }
             }
         }
@@ -88,7 +87,7 @@ class LoginViewController: UIViewController {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
     }
-    
+
     func loginCompletionCallback(user: User?, error: Error?) {
         if error == nil {
 //            self.performSegue(withIdentifier: "loginToAddQuestion", sender: self)
@@ -101,7 +100,7 @@ class LoginViewController: UIViewController {
             alertAction(title: "Login failed", message: error.localizedDescription)
         }
     }
-    
+
     func registerCompletionCallback(user: User?, error: Error?) {
         if error == nil {
             let ref = Database.database().reference()
@@ -120,7 +119,7 @@ class LoginViewController: UIViewController {
     @IBAction func dismissAction(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
-    
+
     func alertAction(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -132,5 +131,3 @@ class LoginViewController: UIViewController {
 protocol DismissView: class {
     func dismissView(_ bool: Bool)
 }
-
-

@@ -46,6 +46,17 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         sender.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
         mapView.removeAnnotations(mapView.annotations)
 
+        if CLLocationManager.locationServicesEnabled() {
+            switch CLLocationManager.authorizationStatus() {
+            case .notDetermined, .restricted, .denied:
+                print("No access")
+                alertAction(title: "未開啟定位權限", message: "請在手機設定中開啟定位權限以取得您的位置")
+            case .authorizedAlways, .authorizedWhenInUse:
+                print("Access")
+            }
+        } else {
+            print("Location services are not enabled")
+        }
         if let originalLocation = originalLocation {
             userLocation = CLLocation(latitude: originalLocation.latitude, longitude: originalLocation.longitude)
             centerLocation(originalLocation, with: 0)
@@ -157,7 +168,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
             searchBarContainer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
             navigationItem.titleView = searchBarContainer
         } else {
-            
+
             navigationItem.titleView = searchBar
         }
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "center_back"), style: .done, target: self, action: #selector(centerBackOnLocation(_:)))
@@ -315,6 +326,13 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         let xylocation = CLLocationCoordinate2D(latitude: coordinate.latitude + offset, longitude: coordinate.longitude)
         let region = MKCoordinateRegionMake(xylocation, span)
         mapView.setRegion(region, animated: true)
+    }
+    
+    func alertAction(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 }
 

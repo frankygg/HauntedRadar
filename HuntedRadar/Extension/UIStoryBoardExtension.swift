@@ -27,7 +27,7 @@ extension UIStoryboard {
     static func loginStoryboard() -> UIStoryboard {
         return UIStoryboard(name: "Login", bundle: nil)
     }
-    
+
     static func addQuestionStoryboar() -> UIStoryboard {
         return UIStoryboard(name: "AddQuestion", bundle: nil)
     }

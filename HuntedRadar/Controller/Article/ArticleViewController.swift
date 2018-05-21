@@ -13,8 +13,7 @@ import FirebaseAuth
 import SDWebImage
 
 class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DismissView {
-    
-    
+
     var articles = [Article]()
     var ref: DatabaseReference?
     @IBOutlet weak var myTableView: UITableView!
@@ -31,10 +30,8 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
 //        ref?.child("Articles").childByAutoId().setValue("test")
 
         setNavigationItem()
-        
+
             loadArticleFromeFirebase()
-        
-      
 
     }
 
@@ -75,28 +72,26 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
 
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? LoginViewController {
             controller.delegate = self
         }
     }
-    
+
     func dismissView(_ bool: Bool) {
         if bool {
             performSegue(withIdentifier: "addQuestion", sender: self)
 
         }
     }
-    
+
     func loadArticleFromeFirebase() {
         FirebaseManager.shared.loadArticle(completion: {articles in
             self.articles = articles
             self.myTableView.reloadData()
 
-            
         })
     }
-    
 
 }

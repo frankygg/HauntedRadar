@@ -9,7 +9,7 @@
 import UIKit
 
 class ArticleTableViewCell: UITableViewCell {
-    
+
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var imageUrlView: UIImageView!
     override func awakeFromNib() {

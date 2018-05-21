@@ -19,9 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent // 設定statusbar為白色
 
         IQKeyboardManager.shared.enable = true
-        
+
         IQKeyboardManager.shared.enableAutoToolbar = false
-        
+
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         // Override point for customization after application launch.
         self.window = UIWindow(frame: UIScreen.main.bounds)

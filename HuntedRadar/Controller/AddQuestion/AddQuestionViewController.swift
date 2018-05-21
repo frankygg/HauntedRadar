@@ -22,13 +22,13 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         imageView.isUserInteractionEnabled = true
         let touch = UITapGestureRecognizer(target: self, action: #selector(bottomAlert))
         imageView.addGestureRecognizer(touch)
-        
+
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     func setArticleObject() {
         guard let address = addressTextField.text, let reason = reasonTextView.text, let memo = memoTextField.text else {
             return
@@ -49,7 +49,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
             print ("Error signing out: %@", signOutError)
         }
     }
-    
+
     @objc func bottomAlert() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -70,7 +70,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         alertController.addAction(cameraAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         if picker.sourceType == .camera {
@@ -79,7 +79,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         imageView.image = image
         dismiss(animated: true, completion: nil)
     }
-    
+
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             let ac = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
@@ -96,7 +96,9 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         guard let articleObject = artileObject else {
             return
         }
-        FirebaseManager.shared.addArticleQuestion(uploadimage: imageView.image, uploadArticle: articleObject)
+        FirebaseManager.shared.addArticleQuestion(uploadimage: imageView.image, uploadArticle: articleObject, handler: {
+            self.navigationController?.popViewController(animated: true)
+        })
 
     }
 //    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
