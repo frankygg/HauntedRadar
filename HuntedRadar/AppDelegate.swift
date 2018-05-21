@@ -9,6 +9,8 @@
 import UIKit
 import Firebase
 import IQKeyboardManagerSwift
+import FirebaseAuth
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
 
@@ -16,6 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        setInitialFirebaseLogInStatus()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent // 設定statusbar為白色
 
         IQKeyboardManager.shared.enable = true
@@ -120,6 +123,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
         self.window!.rootViewController!.view.layer.mask = nil
 
+    }
+    
+    func setInitialFirebaseLogInStatus() {
+        let userDefaults = UserDefaults.standard
+        
+        if userDefaults.bool(forKey: "hasRunBefore") == false {
+            print("The app is launching for the first time. Setting UserDefaults...")
+            
+            do {
+                try Auth.auth().signOut()
+            } catch {
+                
+            }
+            
+            // Update the flag indicator
+            userDefaults.set(true, forKey: "hasRunBefore")
+            userDefaults.synchronize() // This forces the app to update userDefaults
+            
+            // Run code here for the first launch
+            
+        } else {
+            print("The app has been launched before. Loading UserDefaults...")
+            // Run code here for every other launch but the first
+        }
     }
 
 }

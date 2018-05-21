@@ -18,7 +18,6 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
-        setArticleObject()
         imageView.isUserInteractionEnabled = true
         let touch = UITapGestureRecognizer(target: self, action: #selector(bottomAlert))
         imageView.addGestureRecognizer(touch)
@@ -93,9 +92,11 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
     }
 
     @IBAction func addQuestionAction(_ sender: UIButton) {
+        setArticleObject()
         guard let articleObject = artileObject else {
             return
         }
+
         FirebaseManager.shared.addArticleQuestion(uploadimage: imageView.image, uploadArticle: articleObject, handler: {
             self.navigationController?.popViewController(animated: true)
         })
