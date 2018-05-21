@@ -14,9 +14,17 @@ import SDWebImage
 
 class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DismissView {
 
+    //local variables
     var articles = [Article]()
+    var articleKeys = [String]()
+    var passArticle: Article!
+    var passKey: String!
     var ref: DatabaseReference?
+    
+    
+    //IBOutlet variables
     @IBOutlet weak var myTableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //xib的名稱
@@ -55,6 +63,13 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.imageUrlView.sd_setImage(with: URL(string: articles[indexPath.row].imageUrl), placeholderImage: nil)
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        passArticle = articles[indexPath.row]
+        passKey = articleKeys[indexPath.row]
+        performSegue(withIdentifier: "articleDetail", sender: self)
+        
+    }
 
     func setNavigationItem() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .done, target: self, action: #selector(addQuestion))
@@ -76,6 +91,9 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? LoginViewController {
             controller.delegate = self
+        } else if let controller = segue.destination as? DetailViewController {
+            controller.passedValue = passArticle
+            controller.passedKey = passKey
         }
     }
 
@@ -89,8 +107,12 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     func loadArticleFromeFirebase() {
         FirebaseManager.shared.loadArticle(completion: {articles in
             self.articles = articles
+            self.articles.sort(by: {$0.createdTime > $1.createdTime})
             self.myTableView.reloadData()
 
+        })
+        FirebaseManager.shared.loadArticleKeys(completion: { keys in
+                self.articleKeys = keys
         })
     }
 

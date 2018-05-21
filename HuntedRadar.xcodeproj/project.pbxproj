@@ -27,11 +27,18 @@
 		B70E98DB209C491F00112661 /* DangerousLocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70E98D9209C491F00112661 /* DangerousLocationTableViewCell.xib */; };
 		B70E98DD209C522900112661 /* DangerousLocationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E98DC209C522900112661 /* DangerousLocationAnnotationView.swift */; };
 		B71060FA20A49C1500C4A93F /* BarChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B71060F920A49C1500C4A93F /* BarChartViewController.swift */; };
+		B711612620B2956000C554CA /* Detail.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B711612520B2956000C554CA /* Detail.storyboard */; };
 		B712E03920AE7BF300FFBD87 /* SearchBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B712E03820AE7BF300FFBD87 /* SearchBarContainerView.swift */; };
 		B725FFB620A0377400BA6553 /* ExpandableLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725FFB520A0377400BA6553 /* ExpandableLocations.swift */; };
 		B72A46D420A1EEBD00E810E0 /* SafeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */; };
 		B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */; };
 		B79E4DB920A06E2900FE9911 /* LocationSearchTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */; };
+		B7BB5E3820B2967300F16CCD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB5E3720B2967300F16CCD /* DetailViewController.swift */; };
+		B7BB5E3C20B2A3FA00F16CCD /* CommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB5E3A20B2A3FA00F16CCD /* CommentTableViewCell.swift */; };
+		B7BB5E3D20B2A3FA00F16CCD /* CommentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BB5E3B20B2A3FA00F16CCD /* CommentTableViewCell.xib */; };
+		B7BB5E4120B2A66200F16CCD /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB5E3F20B2A66200F16CCD /* ImageTableViewCell.swift */; };
+		B7BB5E4220B2A66200F16CCD /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BB5E4020B2A66200F16CCD /* ImageTableViewCell.xib */; };
+		B7BB5E4520B2C8BB00F16CCD /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB5E4420B2C8BB00F16CCD /* Comment.swift */; };
 		B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4020995B030054FD6B /* AppDelegate.swift */; };
 		B7C5AD4320995B030054FD6B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4220995B030054FD6B /* MapViewController.swift */; };
 		B7C5AD4620995B030054FD6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C5AD4420995B030054FD6B /* Main.storyboard */; };
@@ -73,11 +80,18 @@
 		B70E98D9209C491F00112661 /* DangerousLocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DangerousLocationTableViewCell.xib; sourceTree = "<group>"; };
 		B70E98DC209C522900112661 /* DangerousLocationAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerousLocationAnnotationView.swift; sourceTree = "<group>"; };
 		B71060F920A49C1500C4A93F /* BarChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartViewController.swift; sourceTree = "<group>"; };
+		B711612520B2956000C554CA /* Detail.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Detail.storyboard; sourceTree = "<group>"; };
 		B712E03820AE7BF300FFBD87 /* SearchBarContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarContainerView.swift; sourceTree = "<group>"; };
 		B725FFB520A0377400BA6553 /* ExpandableLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLocations.swift; sourceTree = "<group>"; };
 		B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeLocation.swift; sourceTree = "<group>"; };
 		B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuntedNavigationController.swift; sourceTree = "<group>"; };
 		B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationSearchTable.storyboard; sourceTree = "<group>"; };
+		B7BB5E3720B2967300F16CCD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		B7BB5E3A20B2A3FA00F16CCD /* CommentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCell.swift; sourceTree = "<group>"; };
+		B7BB5E3B20B2A3FA00F16CCD /* CommentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentTableViewCell.xib; sourceTree = "<group>"; };
+		B7BB5E3F20B2A66200F16CCD /* ImageTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
+		B7BB5E4020B2A66200F16CCD /* ImageTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageTableViewCell.xib; sourceTree = "<group>"; };
+		B7BB5E4420B2C8BB00F16CCD /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B7C5AD3D20995B030054FD6B /* HuntedRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HuntedRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C5AD4020995B030054FD6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B7C5AD4220995B030054FD6B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +179,8 @@
 		B70E98D3209C429400112661 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B7BB5E3E20B2A64C00F16CCD /* ImageCell */,
+				B7BB5E3920B2A3CE00F16CCD /* CommentCell */,
 				B712E03720AE7BCD00FFBD87 /* SearchBarContainer */,
 				B7CB48E420A94C0B0042194C /* ArticleCell */,
 				B70452C920A14AFD00090318 /* SwitchCollectionView */,
@@ -192,6 +208,40 @@
 				B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */,
 			);
 			path = Navigation;
+			sourceTree = "<group>";
+		};
+		B7BB5E3620B2965600F16CCD /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				B7BB5E3720B2967300F16CCD /* DetailViewController.swift */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		B7BB5E3920B2A3CE00F16CCD /* CommentCell */ = {
+			isa = PBXGroup;
+			children = (
+				B7BB5E3A20B2A3FA00F16CCD /* CommentTableViewCell.swift */,
+				B7BB5E3B20B2A3FA00F16CCD /* CommentTableViewCell.xib */,
+			);
+			path = CommentCell;
+			sourceTree = "<group>";
+		};
+		B7BB5E3E20B2A64C00F16CCD /* ImageCell */ = {
+			isa = PBXGroup;
+			children = (
+				B7BB5E3F20B2A66200F16CCD /* ImageTableViewCell.swift */,
+				B7BB5E4020B2A66200F16CCD /* ImageTableViewCell.xib */,
+			);
+			path = ImageCell;
+			sourceTree = "<group>";
+		};
+		B7BB5E4320B2C8A800F16CCD /* Comment */ = {
+			isa = PBXGroup;
+			children = (
+				B7BB5E4420B2C8BB00F16CCD /* Comment.swift */,
+			);
+			path = Comment;
 			sourceTree = "<group>";
 		};
 		B7C5AD3420995B030054FD6B = {
@@ -235,6 +285,7 @@
 		B7C5AD542099628E0054FD6B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B7BB5E4320B2C8A800F16CCD /* Comment */,
 				B70CDB2720AD7DAD00935AFD /* Article */,
 				B70CDB2420AD5FE700935AFD /* Firebase */,
 				B7C5AD552099629E0054FD6B /* Dao.swift */,
@@ -249,6 +300,7 @@
 		B7C5AD5A20996A960054FD6B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B7BB5E3620B2965600F16CCD /* Detail */,
 				B7CCD75020A9970300CE722E /* AddQuestion */,
 				B7CCD74B20A9845000CE722E /* Login */,
 				B7CB48E020A94A8B0042194C /* Article */,
@@ -271,6 +323,7 @@
 				B708B3E320A74AC100687113 /* TabBar.storyboard */,
 				B7CCD74920A97AC700CE722E /* Login.storyboard */,
 				B7CCD74E20A996EA00CE722E /* AddQuestion.storyboard */,
+				B711612520B2956000C554CA /* Detail.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -381,9 +434,12 @@
 				B7C5AD4B20995B040054FD6B /* LaunchScreen.storyboard in Resources */,
 				B708B3E220A747DA00687113 /* Profile.storyboard in Resources */,
 				B70E98D7209C43F100112661 /* DangerousLocationDetailMapView.xib in Resources */,
+				B711612620B2956000C554CA /* Detail.storyboard in Resources */,
+				B7BB5E4220B2A66200F16CCD /* ImageTableViewCell.xib in Resources */,
 				B70C18D4209DAA4600133859 /* crimes10701_10703.json in Resources */,
 				B708B3E420A74AC100687113 /* TabBar.storyboard in Resources */,
 				B708B3E020A747CB00687113 /* Article.storyboard in Resources */,
+				B7BB5E3D20B2A3FA00F16CCD /* CommentTableViewCell.xib in Resources */,
 				B7C5AD4820995B040054FD6B /* Assets.xcassets in Resources */,
 				B79E4DB920A06E2900FE9911 /* LocationSearchTable.storyboard in Resources */,
 				B7CCD74A20A97AC700CE722E /* Login.storyboard in Resources */,
@@ -501,8 +557,10 @@
 				B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */,
 				B712E03920AE7BF300FFBD87 /* SearchBarContainerView.swift in Sources */,
 				B7C5AD4320995B030054FD6B /* MapViewController.swift in Sources */,
+				B7BB5E4520B2C8BB00F16CCD /* Comment.swift in Sources */,
 				B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */,
 				B70E98D5209C43B500112661 /* DangerousLocationDetailMapView.swift in Sources */,
+				B7BB5E3820B2967300F16CCD /* DetailViewController.swift in Sources */,
 				B70452C820A1480700090318 /* SwitchViewController.swift in Sources */,
 				B7C5AD562099629E0054FD6B /* Dao.swift in Sources */,
 				B725FFB620A0377400BA6553 /* ExpandableLocations.swift in Sources */,
@@ -510,7 +568,9 @@
 				B7CCD75220A9971800CE722E /* AddQuestionViewController.swift in Sources */,
 				B7CB48E220A94AA60042194C /* ArticleViewController.swift in Sources */,
 				B70E98DD209C522900112661 /* DangerousLocationAnnotationView.swift in Sources */,
+				B7BB5E4120B2A66200F16CCD /* ImageTableViewCell.swift in Sources */,
 				B70C6D36209CA76500E5ACD9 /* BezierPathExtension.swift in Sources */,
+				B7BB5E3C20B2A3FA00F16CCD /* CommentTableViewCell.swift in Sources */,
 				B70CDB2920AD7DBD00935AFD /* Article.swift in Sources */,
 				B70CDB2620AD601700935AFD /* FirebaseManager.swift in Sources */,
 				B72A46D420A1EEBD00E810E0 /* SafeLocation.swift in Sources */,
@@ -663,7 +723,10 @@
 				DEVELOPMENT_TEAM = 6HH362Z9DX;
 				INFOPLIST_FILE = HuntedRadar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.btding.HuntedRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -680,7 +743,10 @@
 				DEVELOPMENT_TEAM = 6HH362Z9DX;
 				INFOPLIST_FILE = HuntedRadar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.btding.HuntedRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
