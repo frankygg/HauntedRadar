@@ -11,12 +11,13 @@ import FirebaseAuth
 class AddQuestionViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var artileObject: Article?
-    @IBOutlet weak var memoTextField: UITextField!
-    @IBOutlet weak var reasonTextView: UITextView!
+    @IBOutlet weak var reasonTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
+    @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTextFieldPlaceholder()
         setNavigation()
         imageView.isUserInteractionEnabled = true
         let touch = UITapGestureRecognizer(target: self, action: #selector(bottomAlert))
@@ -28,11 +29,17 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         super.didReceiveMemoryWarning()
     }
 
+    func setTextFieldPlaceholder() {
+        titleTextField.placeholder = "標題"
+        reasonTextField.placeholder = "內容"
+        addressTextField.placeholder = "地址"
+
+    }
     func setArticleObject() {
-        guard let address = addressTextField.text, let reason = reasonTextView.text, let memo = memoTextField.text else {
+        guard let memo = titleTextField.text, let reason = reasonTextField.text, let address = addressTextField.text else {
             return
         }
-        artileObject = Article(uid: "", userName: "", imageUrl: "", address: address, reason: reason, memo: memo, createdTime: Int(NSDate().timeIntervalSince1970))
+        artileObject = Article(uid: "", userName: "", imageUrl: "", address: address, reason: reason, memo: memo, createdTime: Int(NSDate().timeIntervalSince1970), articleKey: "")
     }
 
     func setNavigation() {
@@ -43,6 +50,9 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
     @objc func logout() {
         do {
             try Auth.auth().signOut()
+            let userdefault = UserDefaults.standard
+            userdefault.set(nil, forKey: "userName")
+            userdefault.set(nil, forKey: "Forbidden")
             navigationController?.popViewController(animated: true)
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
@@ -102,10 +112,4 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         })
 
     }
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        reasonTextView.resignFirstResponder()
-//        addressTextField.resignFirstResponder()
-//        memoTextField.resignFirstResponder()
-//    }
-//    
 }

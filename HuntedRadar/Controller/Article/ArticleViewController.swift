@@ -16,15 +16,12 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     //local variables
     var articles = [Article]()
-    var articleKeys = [String]()
     var passArticle: Article!
-    var passKey: String!
     var ref: DatabaseReference?
-    
-    
+
     //IBOutlet variables
     @IBOutlet weak var myTableView: UITableView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         //xib的名稱
@@ -41,6 +38,11 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
 
             loadArticleFromeFirebase()
 
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadArticleFromeFirebase()
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,12 +65,11 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.imageUrlView.sd_setImage(with: URL(string: articles[indexPath.row].imageUrl), placeholderImage: nil)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         passArticle = articles[indexPath.row]
-        passKey = articleKeys[indexPath.row]
         performSegue(withIdentifier: "articleDetail", sender: self)
-        
+
     }
 
     func setNavigationItem() {
@@ -93,7 +94,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             controller.delegate = self
         } else if let controller = segue.destination as? DetailViewController {
             controller.passedValue = passArticle
-            controller.passedKey = passKey
+            controller.passedKey = passArticle.articleKey
         }
     }
 
@@ -111,9 +112,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.myTableView.reloadData()
 
         })
-        FirebaseManager.shared.loadArticleKeys(completion: { keys in
-                self.articleKeys = keys
-        })
+
     }
 
 }

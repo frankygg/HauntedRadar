@@ -19,6 +19,7 @@ class HuntedNavigationController: UINavigationController {
         super.viewDidLayoutSubviews()
         arrangeShadowLayer()
         arrangeGradientLayer()
+        arrangeNavigationItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -62,6 +63,10 @@ class HuntedNavigationController: UINavigationController {
         self.navigationBar.layer.shadowOpacity = 4.0
 
         self.navigationBar.barTintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
+    }
+
+    private func arrangeNavigationItem() {
+        self.navigationBar.tintColor = UIColor.white
     }
 
 }

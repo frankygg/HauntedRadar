@@ -21,10 +21,10 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ViS-6y-jXv">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture" translatesAutoresizingMaskIntoConstraints="NO" id="7cT-LF-XbJ">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="219"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_3" translatesAutoresizingMaskIntoConstraints="NO" id="7cT-LF-XbJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="276"/>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="地址" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6We-8J-obL">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6We-8J-obL">
                                         <rect key="frame" x="67" y="286" width="241" height="30"/>
                                         <color key="backgroundColor" red="1" green="1" blue="0.66333912039999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
@@ -34,42 +34,39 @@
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="事由" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="And-kV-whR">
-                                        <rect key="frame" x="67" y="324" width="241" height="128"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="0.66333912039999998" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="128" id="4pp-ke-YMc"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                    </textView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="備註" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AsP-Bn-0lW">
-                                        <rect key="frame" x="67" y="473" width="241" height="30"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AsP-Bn-0lW">
+                                        <rect key="frame" x="67" y="376" width="241" height="30"/>
                                         <color key="backgroundColor" red="1" green="1" blue="0.66333912039999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aU-uI-jnq">
-                                        <rect key="frame" x="172" y="511" width="31" height="30"/>
+                                        <rect key="frame" x="172" y="414" width="31" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.89762972610000002" blue="0.23198957570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="發問"/>
                                         <connections>
                                             <action selector="addQuestionAction:" destination="OB6-IV-am9" eventType="touchUpInside" id="PpB-8u-i2I"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yP8-Iy-GqV">
+                                        <rect key="frame" x="67" y="331" width="241" height="30"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.66333912039999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="And-kV-whR" secondAttribute="trailing" constant="67" id="44u-VK-OIf"/>
                                     <constraint firstAttribute="bottom" secondItem="4aU-uI-jnq" secondAttribute="bottom" constant="62" id="4XO-Qt-8d4"/>
                                     <constraint firstItem="4aU-uI-jnq" firstAttribute="centerX" secondItem="ViS-6y-jXv" secondAttribute="centerX" id="4qG-Wn-igg"/>
-                                    <constraint firstItem="AsP-Bn-0lW" firstAttribute="top" secondItem="And-kV-whR" secondAttribute="bottom" constant="21" id="Ffg-rr-NgQ"/>
+                                    <constraint firstItem="AsP-Bn-0lW" firstAttribute="top" secondItem="yP8-Iy-GqV" secondAttribute="bottom" constant="15" id="8WU-J1-pGW"/>
                                     <constraint firstAttribute="trailing" secondItem="6We-8J-obL" secondAttribute="trailing" constant="67" id="FuS-fX-LAg"/>
-                                    <constraint firstItem="And-kV-whR" firstAttribute="trailing" secondItem="6We-8J-obL" secondAttribute="trailing" id="Pnd-4X-LjN"/>
+                                    <constraint firstItem="AsP-Bn-0lW" firstAttribute="leading" secondItem="yP8-Iy-GqV" secondAttribute="leading" id="NPE-6c-2K7"/>
                                     <constraint firstItem="7cT-LF-XbJ" firstAttribute="top" secondItem="ViS-6y-jXv" secondAttribute="top" id="RHc-C8-SRr"/>
-                                    <constraint firstItem="6We-8J-obL" firstAttribute="top" secondItem="7cT-LF-XbJ" secondAttribute="bottom" constant="67" id="UjX-wN-9YJ"/>
-                                    <constraint firstItem="And-kV-whR" firstAttribute="top" secondItem="6We-8J-obL" secondAttribute="bottom" constant="8" id="dHI-Fb-trH"/>
-                                    <constraint firstItem="And-kV-whR" firstAttribute="leading" secondItem="ViS-6y-jXv" secondAttribute="leading" constant="67" id="f6S-J5-JwJ"/>
+                                    <constraint firstItem="yP8-Iy-GqV" firstAttribute="top" secondItem="6We-8J-obL" secondAttribute="bottom" constant="15" id="SOe-Eo-DzW"/>
+                                    <constraint firstItem="6We-8J-obL" firstAttribute="top" secondItem="7cT-LF-XbJ" secondAttribute="bottom" constant="10" id="UjX-wN-9YJ"/>
+                                    <constraint firstItem="AsP-Bn-0lW" firstAttribute="trailing" secondItem="yP8-Iy-GqV" secondAttribute="trailing" id="Yfp-X7-KdS"/>
                                     <constraint firstAttribute="trailing" secondItem="AsP-Bn-0lW" secondAttribute="trailing" constant="67" id="fFv-Fg-FJf"/>
                                     <constraint firstItem="AsP-Bn-0lW" firstAttribute="leading" secondItem="6We-8J-obL" secondAttribute="leading" id="jmi-WS-JrB"/>
                                     <constraint firstItem="6We-8J-obL" firstAttribute="leading" secondItem="ViS-6y-jXv" secondAttribute="leading" constant="67" id="lqF-M8-d8h"/>
@@ -79,9 +76,7 @@
                                     <constraint firstItem="6We-8J-obL" firstAttribute="centerX" secondItem="ViS-6y-jXv" secondAttribute="centerX" id="opk-le-Dsk"/>
                                     <constraint firstItem="4aU-uI-jnq" firstAttribute="top" secondItem="AsP-Bn-0lW" secondAttribute="bottom" constant="8" id="oxV-MM-2gR"/>
                                     <constraint firstItem="AsP-Bn-0lW" firstAttribute="trailing" secondItem="6We-8J-obL" secondAttribute="trailing" id="w13-vS-69Y"/>
-                                    <constraint firstItem="And-kV-whR" firstAttribute="leading" secondItem="6We-8J-obL" secondAttribute="leading" id="z2w-Oy-p7F"/>
                                     <constraint firstItem="7cT-LF-XbJ" firstAttribute="leading" secondItem="ViS-6y-jXv" secondAttribute="leading" id="zAN-dB-dPH"/>
-                                    <constraint firstItem="And-kV-whR" firstAttribute="top" secondItem="6We-8J-obL" secondAttribute="bottom" constant="8" id="zUo-eB-mq0"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -96,10 +91,10 @@
                     </view>
                     <navigationItem key="navigationItem" id="6YX-JV-hC7"/>
                     <connections>
-                        <outlet property="addressTextField" destination="6We-8J-obL" id="VES-LV-nrs"/>
+                        <outlet property="addressTextField" destination="AsP-Bn-0lW" id="f3v-JG-78A"/>
                         <outlet property="imageView" destination="7cT-LF-XbJ" id="1Yo-Nk-mcw"/>
-                        <outlet property="memoTextField" destination="AsP-Bn-0lW" id="f3v-JG-78A"/>
-                        <outlet property="reasonTextView" destination="And-kV-whR" id="Z2M-5x-YP6"/>
+                        <outlet property="reasonTextField" destination="yP8-Iy-GqV" id="XWF-rL-d3G"/>
+                        <outlet property="titleTextField" destination="6We-8J-obL" id="VES-LV-nrs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6ri-91-aVf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -108,6 +103,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="picture" width="64" height="64"/>
+        <image name="picture_3" width="170" height="170"/>
     </resources>
 </document>

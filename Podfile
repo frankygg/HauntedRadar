@@ -16,6 +16,7 @@ pod 'FirebaseUI/Auth'
 pod 'Firebase/Storage'
 pod 'SDWebImage'
 pod 'IQKeyboardManagerSwift'
+pod 'SwipeCellKit'
 
 
 end

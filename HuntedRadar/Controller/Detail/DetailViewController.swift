@@ -8,16 +8,17 @@
 
 import UIKit
 import FirebaseAuth
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-   
-    
+import SDWebImage
+import SwipeCellKit
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
+
     //local variable
     var passedValue: Any?
     var passedKey: String!
     var fullSize: CGSize!
     var comment = [Comment]()
-    
-    
+    var article: Article!
+
     //IBOutlet variable
     @IBOutlet weak var commetTextField: UITextField!
     @IBOutlet weak var detailTableView: UITableView!
@@ -28,22 +29,25 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         setDetailData()
         setTextFieldButton()
         loadCommentFromFirebase()
-        
+
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        loadCommentFromFirebase()
 
     }
     func loadCommentFromFirebase() {
         FirebaseManager.shared.loadComment(articleId: passedKey, completion: {comments in
             self.comment = comments
-            self.comment.sort(by:  { $0.createdTime < $1.createdTime})
-            self.detailTableView.reloadData()
-            
+                self.detailTableView.reloadData()
         })
     }
-    
+
     func setTextFieldButton() {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "plus"), for: .normal)
-        button.imageEdgeInsets = UIEdgeInsetsMake(0, -16, 0, 0)
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
         button.frame = CGRect(x: CGFloat(fullSize.width - 16 - 30), y: CGFloat(10), width: CGFloat(30), height: CGFloat(30))
         button.addTarget(self, action: #selector(self.sendComment), for: .touchUpInside)
         commetTextField.rightView = button
@@ -51,9 +55,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //        textField.rightView = btnColor
 //        textField.rightViewMode = .unlessEditing
     }
-    
+
     @objc func sendComment() {
-//        let showLoginScreen = Auth.auth().currentUser == nil
         guard  Auth.auth().currentUser != nil else {
             alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
             return
@@ -71,47 +74,132 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let nib = UINib(nibName: String(describing: ImageTableViewCell.self), bundle: nil)
         //註冊
         detailTableView.register(nib, forCellReuseIdentifier: String(describing: ImageTableViewCell.self))
-        
+
         let nib2 = UINib(nibName: String(describing: CommentTableViewCell.self), bundle: nil)
         detailTableView.register(nib2, forCellReuseIdentifier: String(describing: CommentTableViewCell.self))
-        
+
         detailTableView.dataSource = self
         detailTableView.delegate = self
     }
 
     func setDetailData() {
-        if let article = passedValue as? Article {
-//            contentLabel.text = article.address + "/r/n" + article.reason + "/r/n" + article.memo + "key  = \(passedKey)"
+        guard let article = passedValue as? Article else {
+            return
         }
+        self.article = article
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+                return UITableViewAutomaticDimension
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1 + comment.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 && indexPath.section == 0{
-            return UITableViewCell()
-        
+        if indexPath.row == 0 && indexPath.section == 0 {
+            guard let cell = self.detailTableView.dequeueReusableCell(withIdentifier: String(describing: ImageTableViewCell.self), for: indexPath) as? ImageTableViewCell else {
+                return UITableViewCell()
+            }
+
+            cell.imageUrlView.sd_setImage(with: URL(string: article.imageUrl), placeholderImage: nil)
+
+            return cell
+
     } else {
             guard let cell = self.detailTableView.dequeueReusableCell(withIdentifier: String(describing: CommentTableViewCell.self), for: indexPath) as? CommentTableViewCell else {
                  return UITableViewCell()
             }
-            
+
             let cellIndex = indexPath.row - 1
-            
+
+            cell.delegate = self
             cell.commentLabel.text = comment[cellIndex].comment
-            
+
             cell.userNameLabel.text = comment[cellIndex].userName
-            
+
+            //處理時間
+            let date = Date(timeIntervalSince1970: TimeInterval(comment[cellIndex].createdTime))
+
+            let now = Date()
+
+            let timeOffset = now.offset(from: date)
+
+            cell.createdTimeLabel.text = timeOffset
+
             return cell
     }
 }
-    
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        if indexPath.row != 0 && indexPath.section != 0 {
+//            return true
+//        } else {
+//            return false
+//        }
+        return true
+    }
+
+    func deleteAction(at indexPath: IndexPath) -> SwipeAction {
+
+        let userdefault = UserDefaults.standard
+        let userName = userdefault.string(forKey: "userName")
+        if comment[indexPath.row - 1].userName == userName {
+            //users can delete their message
+            let action = SwipeAction(style: .default, title: "delete", handler: { (_, indexpath) in
+                guard  Auth.auth().currentUser != nil else {
+                    self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
+                    return
+                }
+                let commentKey = self.comment[indexpath.row - 1].commentKey
+                FirebaseManager.shared.deleteComment(articleKey: self.passedKey, commentKey: commentKey)
+//                let customIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
+                self.comment.remove(at: indexPath.row - 1)
+                self.detailTableView.deleteRows(at: [indexPath], with: .fade)
+            })
+
+            action.backgroundColor = UIColor.red
+
+            action.image = UIImage(named: "delete-button")
+
+            return action
+
+        } else {
+            //users can forbid other accounts' activities
+            let action = SwipeAction(style: .default, title: "forbid user", handler: { (_, indexpath) in
+                guard  Auth.auth().currentUser != nil else {
+                    self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
+                    return
+                }
+                let commentUser = self.comment[indexpath.row - 1].userName
+                FirebaseManager.shared.forbid(userName: commentUser)
+                FirebaseManager.shared.loadForbidUsers { _ in
+                    FirebaseManager.shared.loadComment(articleId: self.passedKey, completion: { comments in
+                        self.comment = comments
+                        self.detailTableView.reloadData()
+                    })
+                }
+
+            })
+
+            action.backgroundColor = UIColor.orange
+
+            action.image = UIImage(named: "forbid")
+
+            return action
+        }
+    }
+
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+
+        guard orientation == .right else { return nil }
+
+        let delete = deleteAction(at: indexPath)
+
+        return [delete]
+    }
+
     func alertAction(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: { _ in

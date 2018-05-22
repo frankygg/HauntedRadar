@@ -327,7 +327,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         let region = MKCoordinateRegionMake(xylocation, span)
         mapView.setRegion(region, animated: true)
     }
-    
+
     func alertAction(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)

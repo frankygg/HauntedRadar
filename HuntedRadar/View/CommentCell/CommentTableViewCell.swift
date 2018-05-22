@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import SwipeCellKit
+class CommentTableViewCell: SwipeTableViewCell {
 
-class CommentTableViewCell: UITableViewCell {
+    //delegate variable
+//    weak var delegate: SwipeTableViewCellDelegate?
 
+    //IBOutlet var
+    @IBOutlet weak var createdTimeLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
-    
     @IBOutlet weak var commentLabel: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,5 +27,5 @@ class CommentTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
 }

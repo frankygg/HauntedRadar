@@ -92,6 +92,7 @@ class LoginViewController: UIViewController {
         if error == nil {
 //            self.performSegue(withIdentifier: "loginToAddQuestion", sender: self)
             self.delegate?.dismissView(true)
+            setUserDefaultUserName()
             dismiss(animated: true, completion: nil)
         } else {
             guard let error = error else {
@@ -107,6 +108,7 @@ class LoginViewController: UIViewController {
             ref.child("users").child(user!.uid).child("email").setValue(user!.email)
             ref.child("users").child(user!.uid).child("username").setValue(userNameTextField.text!)
             self.delegate?.dismissView(true)
+            setUserDefaultUserName()
             dismiss(animated: true, completion: nil)
         } else {
             guard let error = error else {
@@ -125,6 +127,14 @@ class LoginViewController: UIViewController {
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+
+    func setUserDefaultUserName() {
+        FirebaseManager.shared.getUserName(completion: {name in
+            let userdefault = UserDefaults.standard
+            userdefault.set(name, forKey: "userName")
+        })
+        FirebaseManager.shared.loadForbidUsers(completion: {_ in })
     }
 }
 

@@ -11,4 +11,5 @@ struct Comment {
     var userName: String
     var comment: String
     var createdTime: Int
+    var commentKey: String
 }

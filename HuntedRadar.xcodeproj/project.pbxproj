@@ -11,11 +11,13 @@
 		B70452C820A1480700090318 /* SwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70452C720A1480700090318 /* SwitchViewController.swift */; };
 		B70452CC20A14B2500090318 /* SwitchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70452CA20A14B2500090318 /* SwitchCollectionViewCell.swift */; };
 		B70452CD20A14B2500090318 /* SwitchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70452CB20A14B2500090318 /* SwitchCollectionViewCell.xib */; };
+		B708702E20B32032008E0D57 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B708702D20B32032008E0D57 /* DateExtension.swift */; };
 		B708B3DA20A73EBB00687113 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B708B3D920A73EBB00687113 /* TabBarViewController.swift */; };
 		B708B3DE20A740C000687113 /* UIStoryBoardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B708B3DD20A740C000687113 /* UIStoryBoardExtension.swift */; };
 		B708B3E020A747CB00687113 /* Article.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B708B3DF20A747CB00687113 /* Article.storyboard */; };
 		B708B3E220A747DA00687113 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B708B3E120A747DA00687113 /* Profile.storyboard */; };
 		B708B3E420A74AC100687113 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B708B3E320A74AC100687113 /* TabBar.storyboard */; };
+		B70BB4ED20B4664500612736 /* Forbid.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BB4EC20B4664500612736 /* Forbid.swift */; };
 		B70C18D4209DAA4600133859 /* crimes10701_10703.json in Resources */ = {isa = PBXBuildFile; fileRef = B70C18D3209DAA4600133859 /* crimes10701_10703.json */; };
 		B70C18DC209EE87600133859 /* LocationSearchTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70C18DB209EE87600133859 /* LocationSearchTable.swift */; };
 		B70C6D36209CA76500E5ACD9 /* BezierPathExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70C6D35209CA76500E5ACD9 /* BezierPathExtension.swift */; };
@@ -64,11 +66,13 @@
 		B70452C720A1480700090318 /* SwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewController.swift; sourceTree = "<group>"; };
 		B70452CA20A14B2500090318 /* SwitchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCollectionViewCell.swift; sourceTree = "<group>"; };
 		B70452CB20A14B2500090318 /* SwitchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCollectionViewCell.xib; sourceTree = "<group>"; };
+		B708702D20B32032008E0D57 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		B708B3D920A73EBB00687113 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B708B3DD20A740C000687113 /* UIStoryBoardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryBoardExtension.swift; sourceTree = "<group>"; };
 		B708B3DF20A747CB00687113 /* Article.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Article.storyboard; sourceTree = "<group>"; };
 		B708B3E120A747DA00687113 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		B708B3E320A74AC100687113 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		B70BB4EC20B4664500612736 /* Forbid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forbid.swift; sourceTree = "<group>"; };
 		B70C18D3209DAA4600133859 /* crimes10701_10703.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = crimes10701_10703.json; sourceTree = "<group>"; };
 		B70C18DB209EE87600133859 /* LocationSearchTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationSearchTable.swift; sourceTree = "<group>"; };
 		B70C6D35209CA76500E5ACD9 /* BezierPathExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BezierPathExtension.swift; sourceTree = "<group>"; };
@@ -148,8 +152,17 @@
 			isa = PBXGroup;
 			children = (
 				B708B3DD20A740C000687113 /* UIStoryBoardExtension.swift */,
+				B708702D20B32032008E0D57 /* DateExtension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B70BB4EB20B4663400612736 /* Forbid */ = {
+			isa = PBXGroup;
+			children = (
+				B70BB4EC20B4664500612736 /* Forbid.swift */,
+			);
+			path = Forbid;
 			sourceTree = "<group>";
 		};
 		B70C6D34209CA72700E5ACD9 /* BezierPathExtension */ = {
@@ -285,6 +298,7 @@
 		B7C5AD542099628E0054FD6B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B70BB4EB20B4663400612736 /* Forbid */,
 				B7BB5E4320B2C8A800F16CCD /* Comment */,
 				B70CDB2720AD7DAD00935AFD /* Article */,
 				B70CDB2420AD5FE700935AFD /* Firebase */,
@@ -488,6 +502,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -500,6 +515,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwipeCellKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -547,12 +563,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7CCD74D20A9847100CE722E /* LoginViewController.swift in Sources */,
+				B708702E20B32032008E0D57 /* DateExtension.swift in Sources */,
 				B7CB48E720A94C430042194C /* ArticleTableViewCell.swift in Sources */,
 				B708B3DA20A73EBB00687113 /* TabBarViewController.swift in Sources */,
 				B7C5AD58209962DE0054FD6B /* UnLuckyHouse.swift in Sources */,
 				B708B3DE20A740C000687113 /* UIStoryBoardExtension.swift in Sources */,
 				B70C18DC209EE87600133859 /* LocationSearchTable.swift in Sources */,
 				B70452CC20A14B2500090318 /* SwitchCollectionViewCell.swift in Sources */,
+				B70BB4ED20B4664500612736 /* Forbid.swift in Sources */,
 				B7C5AD5D209990860054FD6B /* DangerousLocation.swift in Sources */,
 				B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */,
 				B712E03920AE7BF300FFBD87 /* SearchBarContainerView.swift in Sources */,
