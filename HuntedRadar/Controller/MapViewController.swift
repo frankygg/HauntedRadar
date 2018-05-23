@@ -99,7 +99,9 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         if let userLocation = userLocation, dangerousAddress.count > 0 {
             getAddressFromLatLon(pdblLatitude: userLocation.coordinate.latitude, withLongitude: userLocation.coordinate.longitude) { useraddress in
                 DispatchQueue.main.async {
+                    var hasAnnotation = false
                     for item in self.dangerousAddress where item.address == useraddress {
+                        hasAnnotation = true
                         self.convertAddressToLocationAtCotro(item.address, callback: { [weak self] coordinate in
                             var crimes = [String]()
                             var crimeDates = [String]()
@@ -127,6 +129,11 @@ class MapViewController: UIViewController, SwitchViewDelegate {
                                 self?.mapView.selectAnnotation(location, animated: true)
                             }
                         })
+                    }
+                    if !hasAnnotation {
+                        let location = SafeLocation(title: "請切換至繁體中文語系並搜尋台灣地區", subtitle: useraddress, coordinate: userLocation.coordinate)
+                        self.mapView.addAnnotation(location)
+                        self.mapView.selectAnnotation(location, animated: true)
                     }
                 }
             }
