@@ -11,12 +11,14 @@ import FirebaseAuth
 class AddQuestionViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     var artileObject: Article?
+    @IBOutlet weak var addQuestionButton: UIButton!
     @IBOutlet weak var reasonTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setButtonUI()
         setTextFieldPlaceholder()
         setNavigation()
         imageView.isUserInteractionEnabled = true
@@ -29,6 +31,10 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         super.didReceiveMemoryWarning()
     }
 
+    func setButtonUI() {
+        addQuestionButton.layer.cornerRadius = addQuestionButton.frame.height / 2
+        addQuestionButton.clipsToBounds = true
+    }
     func setTextFieldPlaceholder() {
         titleTextField.placeholder = "標題"
         reasonTextField.placeholder = "內容"
