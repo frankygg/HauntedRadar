@@ -38,6 +38,7 @@
                         <segue destination="YVV-Or-TYo" kind="presentation" identifier="login" id="xlt-FI-sEi"/>
                         <segue destination="GwY-pd-5Bd" kind="show" identifier="addQuestion" id="faB-Jj-KLN"/>
                         <segue destination="KSe-V6-bav" kind="show" identifier="articleDetail" id="yC5-yk-oOa"/>
+                        <segue destination="gyB-2E-obG" kind="presentation" identifier="loginWithOutAddQuestion" id="2VA-wp-0qP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubj-m4-QZ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -59,6 +60,14 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="q0D-Gv-ZUe" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2810" y="42"/>
+        </scene>
+        <!--Login-->
+        <scene sceneID="1GX-Ya-Tfe">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Login" id="gyB-2E-obG" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mkk-ba-ssF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2738" y="373"/>
         </scene>
         <!--AddQuestion-->
         <scene sceneID="ijz-oR-t8S">

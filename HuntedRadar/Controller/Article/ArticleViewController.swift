@@ -90,7 +90,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         
         let action = multiAction(at: indexPath)
         
-        return [action]
+        return action
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
@@ -103,7 +103,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         navigationItem.rightBarButtonItem?.tintColor = .white
     }
 
-    func multiAction(at indexPath: IndexPath) -> SwipeAction {
+    func multiAction(at indexPath: IndexPath) -> [SwipeAction] {
         
         let userdefault = UserDefaults.standard
         let userName = userdefault.string(forKey: "userName")
@@ -125,7 +125,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             
             action.image = UIImage(named: "delete-button")
             
-            return action
+            return [action]
             
         }
         else {
@@ -138,26 +138,22 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let articleUser = self.articles[indexpath.row].userName
                 FirebaseManager.shared.forbid(userName: articleUser)
                 FirebaseManager.shared.loadForbidUsers { _ in
-                    FirebaseManager.shared.loadArticle(completion:{ articles in
-                        self.articles = articles
-                        self.myTableView.reloadData()
-                    })
+                    self.loadArticleFromeFirebase()
                 }
-                
             })
             
             action.backgroundColor = UIColor.orange
             
             action.image = UIImage(named: "forbid")
             
-            return action
+            return [action]
         }
     }
     
     func alertAction(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-            self.performSegue(withIdentifier: "login", sender: self)
+            self.performSegue(withIdentifier: "loginWithOutAddQuestion", sender: self)
             
         })
         alertController.addAction(okAction)
@@ -178,7 +174,9 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? LoginViewController {
+            if segue.identifier == "login" {
             controller.delegate = self
+            }
         } else if let controller = segue.destination as? DetailViewController {
             controller.passedValue = passArticle
             controller.passedKey = passArticle.articleKey
