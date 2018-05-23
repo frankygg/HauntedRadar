@@ -13,15 +13,15 @@ class Article {
     var imageUrl: String
     var address: String
     var reason: String
-    var memo: String
+    var title: String
     var createdTime: Int
     var articleKey: String
-    init(uid: String, userName: String, imageUrl: String, address: String, reason: String, memo: String, createdTime: Int, articleKey: String) {
+    init(uid: String, userName: String, imageUrl: String, address: String, reason: String, title: String, createdTime: Int, articleKey: String) {
         self.imageUrl = imageUrl
         self.uid = uid
         self.userName = userName
         self.address = address
-        self.memo = memo
+        self.title = title
         self.reason = reason
         self.createdTime = createdTime
         self.articleKey = articleKey

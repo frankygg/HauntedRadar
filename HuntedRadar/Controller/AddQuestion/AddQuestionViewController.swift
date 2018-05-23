@@ -49,10 +49,10 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
 
     }
     func setArticleObject() {
-        guard let memo = titleTextField.text, let reason = reasonTextField.text, let address = addressTextField.text else {
+        guard let title = titleTextField.text, let reason = reasonTextField.text, let address = addressTextField.text else {
             return
         }
-        artileObject = Article(uid: "", userName: "", imageUrl: "", address: address, reason: reason, memo: memo, createdTime: Int(NSDate().timeIntervalSince1970), articleKey: "")
+        artileObject = Article(uid: "", userName: "", imageUrl: "", address: address, reason: reason, title: title, createdTime: Int(NSDate().timeIntervalSince1970), articleKey: "")
     }
 
     func setNavigation() {

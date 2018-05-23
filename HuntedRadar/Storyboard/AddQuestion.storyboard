@@ -26,7 +26,7 @@
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6We-8J-obL">
                                         <rect key="frame" x="67" y="308" width="241" height="30"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="0.66333912039999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="kKe-2K-Wow"/>
                                         </constraints>
@@ -43,7 +43,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aU-uI-jnq">
                                         <rect key="frame" x="167.5" y="436" width="40" height="20"/>
-                                        <color key="backgroundColor" red="1" green="0.89762972610000002" blue="0.23198957570000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="1" green="1" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="20" id="KZk-g0-Jsl"/>
                                             <constraint firstAttribute="width" constant="40" id="WsF-xd-Xmu"/>

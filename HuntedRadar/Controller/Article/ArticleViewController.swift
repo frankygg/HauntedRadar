@@ -50,7 +50,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 90
+        return UITableViewAutomaticDimension
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -63,6 +63,16 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         cell.userNameLabel.text = articles[indexPath.row].userName
         cell.imageUrlView.sd_setImage(with: URL(string: articles[indexPath.row].imageUrl), placeholderImage: nil)
+        cell.titleLabel.text = articles[indexPath.row].title
+        //處理時間
+        let date = Date(timeIntervalSince1970: TimeInterval(articles[indexPath.row].createdTime))
+        
+        let now = Date()
+        
+        let timeOffset = now.offset(from: date)
+        
+        cell.createdTimeLabel.text = timeOffset
+        
         return cell
     }
 
