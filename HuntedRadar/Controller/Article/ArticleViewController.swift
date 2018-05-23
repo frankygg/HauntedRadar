@@ -11,8 +11,10 @@ import FirebaseCore
 import Firebase
 import FirebaseAuth
 import SDWebImage
-
-class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DismissView {
+import SwipeCellKit
+class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DismissView, SwipeTableViewCellDelegate {
+    
+    
 
     //local variables
     var articles = [Article]()
@@ -61,6 +63,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         guard  let cell = tableView.dequeueReusableCell(withIdentifier: "ArticleTableViewCell") as? ArticleTableViewCell else {
             return UITableViewCell()
         }
+        cell.delegate = self
         cell.userNameLabel.text = articles[indexPath.row].userName
         cell.imageUrlView.sd_setImage(with: URL(string: articles[indexPath.row].imageUrl), placeholderImage: nil)
         cell.titleLabel.text = articles[indexPath.row].title
@@ -81,10 +84,85 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         performSegue(withIdentifier: "articleDetail", sender: self)
 
     }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
+        guard orientation == .right else { return nil }
+        
+        let action = multiAction(at: indexPath)
+        
+        return [action]
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+       
+        return true
+    }
 
     func setNavigationItem() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .done, target: self, action: #selector(addQuestion))
         navigationItem.rightBarButtonItem?.tintColor = .white
+    }
+
+    func multiAction(at indexPath: IndexPath) -> SwipeAction {
+        
+        let userdefault = UserDefaults.standard
+        let userName = userdefault.string(forKey: "userName")
+        if articles[indexPath.row].userName == userName {
+            //users can delete their message
+            let action = SwipeAction(style: .default, title: "刪除", handler: { (_, indexpath) in
+                guard  Auth.auth().currentUser != nil else {
+                    self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
+                    return
+                }
+                let articleKey = self.articles[indexpath.row].articleKey
+                // ToDo
+//                FirebaseManager.shared.deleteComment(articleKey: self.passedKey, commentKey: commentKey)
+                
+                self.articles.remove(at: indexPath.row)
+                self.myTableView.deleteRows(at: [indexPath], with: .fade)
+            })
+            
+            action.backgroundColor = UIColor.red
+            
+            action.image = UIImage(named: "delete-button")
+            
+            return action
+            
+        }
+        else {
+            //users can forbid other accounts' activities
+            let action = SwipeAction(style: .default, title: "封鎖", handler: { (_, indexpath) in
+                guard  Auth.auth().currentUser != nil else {
+                    self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
+                    return
+                }
+                let articleUser = self.articles[indexpath.row].userName
+                FirebaseManager.shared.forbid(userName: articleUser)
+                FirebaseManager.shared.loadForbidUsers { _ in
+                    FirebaseManager.shared.loadArticle(completion:{ articles in
+                        self.articles = articles
+                        self.myTableView.reloadData()
+                    })
+                }
+                
+            })
+            
+            action.backgroundColor = UIColor.orange
+            
+            action.image = UIImage(named: "forbid")
+            
+            return action
+        }
+    }
+    
+    func alertAction(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            self.performSegue(withIdentifier: "login", sender: self)
+            
+        })
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
     }
 
     @objc func addQuestion(_ sender: UIButton) {
@@ -124,5 +202,8 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
 
     }
+    
+    
+    
 
 }

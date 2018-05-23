@@ -165,7 +165,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return true
     }
 
-    func deleteAction(at indexPath: IndexPath) -> SwipeAction {
+    func multiAction(at indexPath: IndexPath) -> SwipeAction {
 
         let userdefault = UserDefaults.standard
         let userName = userdefault.string(forKey: "userName")
@@ -219,9 +219,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         guard orientation == .right else { return nil }
 
-        let delete = deleteAction(at: indexPath)
+        let action = multiAction(at: indexPath)
 
-        return [delete]
+        return [action]
     }
 
     func alertAction(title: String, message: String) {

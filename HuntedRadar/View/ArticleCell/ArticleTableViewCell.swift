@@ -7,8 +7,8 @@
 //
 
 import UIKit
-
-class ArticleTableViewCell: UITableViewCell {
+import SwipeCellKit
+class ArticleTableViewCell: SwipeTableViewCell {
 
     @IBOutlet weak var createdTimeLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
