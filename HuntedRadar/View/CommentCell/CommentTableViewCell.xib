@@ -26,7 +26,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iw1-SA-MVP">
-                        <rect key="frame" x="15" y="5" width="75" height="18"/>
+                        <rect key="frame" x="16" y="29" width="75" height="18"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="75" id="9AW-nI-LMH"/>
                         </constraints>
@@ -40,18 +40,27 @@
                         <color key="textColor" red="0.44705882352941173" green="0.44705882352941173" blue="0.44705882352941173" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="WBG-OA-FBs">
+                        <rect key="frame" x="15" y="5" width="18" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="18" id="MWs-T7-hZc"/>
+                            <constraint firstAttribute="height" constant="18" id="tdO-XH-7wi"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="8cj-fg-Ia2" firstAttribute="top" secondItem="Iw1-SA-MVP" secondAttribute="bottom" constant="27" id="1ob-nL-hzF"/>
-                    <constraint firstItem="KeP-4K-aXu" firstAttribute="leading" secondItem="Iw1-SA-MVP" secondAttribute="trailing" constant="15" id="84l-Kh-ePW"/>
+                    <constraint firstItem="8cj-fg-Ia2" firstAttribute="top" secondItem="Iw1-SA-MVP" secondAttribute="bottom" constant="3" id="1ob-nL-hzF"/>
+                    <constraint firstItem="KeP-4K-aXu" firstAttribute="leading" secondItem="Iw1-SA-MVP" secondAttribute="trailing" constant="14" id="84l-Kh-ePW"/>
                     <constraint firstAttribute="bottom" secondItem="8cj-fg-Ia2" secondAttribute="bottom" constant="10.5" id="Dx8-I9-prD"/>
-                    <constraint firstItem="Iw1-SA-MVP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="OyL-cX-8l4"/>
-                    <constraint firstItem="8cj-fg-Ia2" firstAttribute="trailing" secondItem="Iw1-SA-MVP" secondAttribute="trailing" id="SK3-g3-k4j"/>
+                    <constraint firstItem="WBG-OA-FBs" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="E6Y-o7-jtt"/>
+                    <constraint firstItem="Iw1-SA-MVP" firstAttribute="top" secondItem="WBG-OA-FBs" secondAttribute="bottom" constant="6" id="Ous-xj-dWC"/>
+                    <constraint firstItem="Iw1-SA-MVP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="OyL-cX-8l4"/>
+                    <constraint firstItem="KeP-4K-aXu" firstAttribute="top" secondItem="WBG-OA-FBs" secondAttribute="top" id="Rrz-UU-HDX"/>
+                    <constraint firstItem="8cj-fg-Ia2" firstAttribute="trailing" secondItem="Iw1-SA-MVP" secondAttribute="trailing" constant="-1" id="SK3-g3-k4j"/>
                     <constraint firstAttribute="bottom" secondItem="KeP-4K-aXu" secondAttribute="bottom" constant="5" id="Txg-Os-LmI"/>
                     <constraint firstItem="KeP-4K-aXu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="a4b-4V-BjJ"/>
                     <constraint firstAttribute="trailing" secondItem="KeP-4K-aXu" secondAttribute="trailing" constant="15" id="eCn-3m-1zJ"/>
-                    <constraint firstItem="KeP-4K-aXu" firstAttribute="top" secondItem="Iw1-SA-MVP" secondAttribute="top" id="hNR-7L-JEr"/>
-                    <constraint firstItem="8cj-fg-Ia2" firstAttribute="leading" secondItem="Iw1-SA-MVP" secondAttribute="leading" id="wer-pG-vzO"/>
+                    <constraint firstItem="8cj-fg-Ia2" firstAttribute="leading" secondItem="Iw1-SA-MVP" secondAttribute="leading" constant="-1" id="wer-pG-vzO"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -63,4 +72,7 @@
             <point key="canvasLocation" x="138" y="83.5"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="user" width="64" height="64"/>
+    </resources>
 </document>

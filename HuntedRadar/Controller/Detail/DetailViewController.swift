@@ -49,12 +49,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     func setTextFieldButton() {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "plus"), for: .normal)
+        button.setImage(UIImage(named: "send-button"), for: .normal)
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
         button.frame = CGRect(x: CGFloat(fullSize.width - 16 - 30), y: CGFloat(10), width: CGFloat(30), height: CGFloat(30))
         button.addTarget(self, action: #selector(self.sendComment), for: .touchUpInside)
         commetTextField.rightView = button
         commetTextField.rightViewMode = .always
+        commetTextField.placeholder = "留言"
 //        textField.rightView = btnColor
 //        textField.rightViewMode = .unlessEditing
     }
@@ -170,7 +171,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let userName = userdefault.string(forKey: "userName")
         if comment[indexPath.row - 1].userName == userName {
             //users can delete their message
-            let action = SwipeAction(style: .default, title: "delete", handler: { (_, indexpath) in
+            let action = SwipeAction(style: .default, title: "刪除", handler: { (_, indexpath) in
                 guard  Auth.auth().currentUser != nil else {
                     self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
                     return
@@ -190,7 +191,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         } else {
             //users can forbid other accounts' activities
-            let action = SwipeAction(style: .default, title: "forbid user", handler: { (_, indexpath) in
+            let action = SwipeAction(style: .default, title: "封鎖", handler: { (_, indexpath) in
                 guard  Auth.auth().currentUser != nil else {
                     self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
                     return
