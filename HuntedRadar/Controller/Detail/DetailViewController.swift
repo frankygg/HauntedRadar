@@ -20,11 +20,14 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var article: Article!
 
     //IBOutlet variable
+    @IBOutlet weak var foriPhoneXConstraint: NSLayoutConstraint!
+    @IBOutlet weak var normalConstaint: NSLayoutConstraint!
     @IBOutlet weak var commetTextField: UITextField!
     @IBOutlet weak var detailTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         fullSize = UIScreen.main.bounds.size
+        setTableViewTopConstraint()
         setNib()
         setDetailData()
         setTextFieldButton()
@@ -68,6 +71,26 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.view.endEditing(true)
         commetTextField.text = ""
 
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setTableViewTopConstraint() 
+    }
+    func setTableViewTopConstraint() {
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 2436:
+                normalConstaint.isActive = false
+                foriPhoneXConstraint.isActive = true
+                self.view.layoutIfNeeded()
+                print("iPhone X")
+            default:
+                normalConstaint.isActive = true
+                foriPhoneXConstraint.isActive = false
+                self.view.layoutIfNeeded()
+                print("unknown")
+            }
+        }
     }
     func setNib() {
         //xib的名稱

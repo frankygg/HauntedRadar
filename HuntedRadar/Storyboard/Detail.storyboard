@@ -32,6 +32,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="2rh-Mx-Jcd" firstAttribute="top" secondItem="tpY-wO-kVl" secondAttribute="top" constant="64" id="8Ur-xb-IEO"/>
+                            <constraint firstItem="2rh-Mx-Jcd" firstAttribute="top" secondItem="tpY-wO-kVl" secondAttribute="top" constant="88" id="GUP-Wx-o6W"/>
                             <constraint firstItem="Ng4-Ec-nqA" firstAttribute="trailing" secondItem="TQj-ez-B39" secondAttribute="trailing" id="JuR-sX-X1c"/>
                             <constraint firstItem="2rh-Mx-Jcd" firstAttribute="trailing" secondItem="TQj-ez-B39" secondAttribute="trailing" id="L9O-Tv-j0q"/>
                             <constraint firstItem="Ng4-Ec-nqA" firstAttribute="bottom" secondItem="TQj-ez-B39" secondAttribute="bottom" id="NYW-xi-kTf"/>
@@ -40,10 +41,17 @@
                             <constraint firstItem="2rh-Mx-Jcd" firstAttribute="leading" secondItem="TQj-ez-B39" secondAttribute="leading" id="yaB-56-tAH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TQj-ez-B39"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="GUP-Wx-o6W"/>
+                            </mask>
+                        </variation>
                     </view>
                     <connections>
                         <outlet property="commetTextField" destination="Ng4-Ec-nqA" id="eRW-jX-7P0"/>
                         <outlet property="detailTableView" destination="2rh-Mx-Jcd" id="Psg-v7-s7n"/>
+                        <outlet property="foriPhoneXConstraint" destination="GUP-Wx-o6W" id="eQz-HX-Noh"/>
+                        <outlet property="normalConstaint" destination="8Ur-xb-IEO" id="oRb-jd-Aw0"/>
                         <segue destination="b2c-TY-bPx" kind="presentation" identifier="login" id="LHr-Dq-rx2"/>
                     </connections>
                 </viewController>
