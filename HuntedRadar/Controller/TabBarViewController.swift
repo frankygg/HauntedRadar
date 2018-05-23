@@ -35,6 +35,14 @@ enum TabBar {
         case .profile: return #imageLiteral(resourceName: "user_male").withRenderingMode(.alwaysTemplate)
         }
     }
+    
+    func titles() -> String {
+        switch self {
+        case .map: return "雷達"
+        case .article: return "論壇"
+        case .profile: return "設定"
+        }
+    }
 }
 class TabBarViewController: UITabBarController {
 
@@ -57,7 +65,7 @@ class TabBarViewController: UITabBarController {
             let controller = tab.controller()
 
             let item = UITabBarItem(
-                title: nil,
+                title: tab.titles(),
                 image: tab.image(),
                 selectedImage: tab.selectedImage()
             )

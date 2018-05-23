@@ -11,11 +11,14 @@ import FirebaseAuth
 import Firebase
 
 class LoginViewController: UIViewController {
+    //local var
     weak var delegate: DismissView?
+    var isSignIn: Bool = true
+    
+    //IBOutlet var
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var confirmPasswordStackView: UIStackView!
     @IBOutlet weak var userNameStackView: UIStackView!
-    var isSignIn: Bool = true
     @IBOutlet weak var signInButton: UIButton!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
@@ -29,19 +32,20 @@ class LoginViewController: UIViewController {
         confirmPasswordStackView.isHidden = true
         dismissButton.setImage(dismissButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
         dismissButton.tintColor = UIColor.white
+        setSignInButton()
 
     }
 
     @IBAction func signInSelectorChanged(_ sender: UISegmentedControl) {
         isSignIn = !isSignIn
         if isSignIn {
-            signinLabel.text = "Sign In"
-            signInButton.setTitle("Sign In", for: .normal)
+            signinLabel.text = "登入"
+            signInButton.setTitle("登入", for: .normal)
             userNameStackView.isHidden = true
             confirmPasswordStackView.isHidden = true
         } else {
-            signinLabel.text = "Register"
-            signInButton.setTitle("Register", for: .normal)
+            signinLabel.text = "註冊"
+            signInButton.setTitle("註冊", for: .normal)
             userNameStackView.isHidden = false
             confirmPasswordStackView.isHidden = false
         }
@@ -63,7 +67,7 @@ class LoginViewController: UIViewController {
             } else {
                 if let confirm = confirmTextField.text, let username = userNameTextField.text {
                     if confirm != password {
-                        alertAction(title: "Regiter failed", message: "Confirm Password Not Match")
+                        alertAction(title: "註冊失敗", message: "確認密碼不一致")
                     } else {
                    let ref = Database.database().reference()
                     ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: "\(username)")
@@ -74,7 +78,7 @@ class LoginViewController: UIViewController {
                                 Auth.auth().createUser(withEmail: email, password: password, completion: self?.registerCompletionCallback)
 
                             } else {
-                                    self?.alertAction(title: "Regiter failed", message: "The UserName has been used")
+                                    self?.alertAction(title: "註冊失敗", message: "暱稱已被使用！")
                             }
                         })
                     }} else {
@@ -98,7 +102,7 @@ class LoginViewController: UIViewController {
             guard let error = error else {
                 return
             }
-            alertAction(title: "Login failed", message: error.localizedDescription)
+            alertAction(title: "登入失敗", message: error.localizedDescription)
         }
     }
 
@@ -114,7 +118,7 @@ class LoginViewController: UIViewController {
             guard let error = error else {
                 return
             }
-            alertAction(title: "Register failed", message: error.localizedDescription)
+            alertAction(title: "註冊失敗", message: error.localizedDescription)
         }
     }
 
@@ -135,6 +139,13 @@ class LoginViewController: UIViewController {
             userdefault.set(name, forKey: "userName")
         })
         FirebaseManager.shared.loadForbidUsers(completion: {_ in })
+    }
+    
+    func setSignInButton() {
+        signInButton.layer.cornerRadius = signInButton.layer.frame.height / 2
+        signInButton.layer.backgroundColor = UIColor.white.cgColor
+        signInButton.clipsToBounds = true
+        signInButton.setTitleColor(UIColor.black, for: .normal)
     }
 }
 

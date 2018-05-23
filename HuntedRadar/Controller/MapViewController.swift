@@ -131,9 +131,10 @@ class MapViewController: UIViewController, SwitchViewDelegate {
                         })
                     }
                     if !hasAnnotation {
-                        let location = SafeLocation(title: "請切換至繁體中文語系並搜尋台灣地區", subtitle: useraddress, coordinate: userLocation.coordinate)
+                        let location = SafeLocation(title: "無資料", subtitle: useraddress, coordinate: userLocation.coordinate)
                         self.mapView.addAnnotation(location)
                         self.mapView.selectAnnotation(location, animated: true)
+                        self.alertAction(title: "找無資料", message: "請切換至繁體中文語系並僅限搜尋台灣地區！")
                     }
                 }
             }
@@ -169,6 +170,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         resultSearchController?.searchResultsUpdater = locationSearchTable
         let searchBar = resultSearchController!.searchBar
         searchBar.sizeToFit()
+        searchBar.setValue("取消", forKey: "_cancelButtonText")
         searchBar.placeholder = "找尋你要的位置"
         if #available(iOS 11.0, *) {
             let searchBarContainer = SearchBarContainerView(customSearchBar: searchBar)

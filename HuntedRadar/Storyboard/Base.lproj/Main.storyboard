@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YDz-DT-3gU">
-    <device id="retina4_7" orientation="portrait">
+    <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,22 +16,17 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PfH-me-K1H">
-                                <rect key="frame" x="0.0" y="370" width="375" height="297"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="349" id="HKJ-VR-REz">
-                                        <variation key="heightClass=regular-widthClass=compact" constant="297"/>
-                                    </constraint>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="288" width="414" height="448"/>
                             </mapView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sbV-Bt-bp7">
-                                <rect key="frame" x="0.0" y="64" width="375" height="304"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="224"/>
                                 <subviews>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2v4-JK-ZKM">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="304"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
                                         <connections>
                                             <segue destination="hKZ-2G-HbW" kind="embed" identifier="qq" id="YUq-I9-Zk7"/>
                                         </connections>
@@ -45,7 +41,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HVC-t3-0LI">
-                                <rect key="frame" x="20" y="598" width="21" height="22"/>
+                                <rect key="frame" x="20" y="667" width="21" height="22"/>
                                 <state key="normal" image="search"/>
                                 <connections>
                                     <action selector="visible:" destination="BYZ-38-t0r" eventType="touchUpInside" id="exZ-FN-PPk"/>
@@ -53,7 +49,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n4D-PT-4Yr">
-                                <rect key="frame" x="330" y="595" width="25" height="25"/>
+                                <rect key="frame" x="369" y="664" width="25" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="QPa-fL-jDT"/>
                                     <constraint firstAttribute="height" constant="25" id="Yfx-2d-7Bt"/>
@@ -70,12 +66,13 @@
                             <constraint firstItem="sbV-Bt-bp7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4t2-av-aMX"/>
                             <constraint firstItem="HVC-t3-0LI" firstAttribute="top" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="-69" id="DJH-BU-Nuz"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QIW-Cx-Muu"/>
-                            <constraint firstItem="PfH-me-K1H" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Y5a-Ur-Ebd"/>
+                            <constraint firstItem="PfH-me-K1H" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" id="Y5a-Ur-Ebd"/>
                             <constraint firstItem="sbV-Bt-bp7" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="ZcL-zF-eml"/>
+                            <constraint firstItem="2v4-JK-ZKM" firstAttribute="height" secondItem="PfH-me-K1H" secondAttribute="height" multiplier="0.5" id="akv-U2-1zz"/>
                             <constraint firstItem="sbV-Bt-bp7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dka-Ik-8Fp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PfH-me-K1H" secondAttribute="bottom" id="dqy-xw-vnJ"/>
+                            <constraint firstItem="PfH-me-K1H" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="2/3" id="fCd-di-JYa"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="jJ6-K7-lJh"/>
-                            <constraint firstAttribute="bottom" secondItem="sbV-Bt-bp7" secondAttribute="bottom" constant="299" id="je5-p5-ixD"/>
                             <constraint firstItem="n4D-PT-4Yr" firstAttribute="top" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="-72" id="nKM-K0-unJ"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="top" secondItem="sbV-Bt-bp7" secondAttribute="bottom" id="xkn-vV-kYd">
                                 <variation key="heightClass=regular-widthClass=compact" constant="2"/>
@@ -96,7 +93,7 @@
                         <outlet property="fullscreenExitButton" destination="n4D-PT-4Yr" id="1Hf-nz-6ks"/>
                         <outlet property="mapView" destination="PfH-me-K1H" id="eZ2-Tp-bhJ"/>
                         <outlet property="mapViewEqualHeightConstraint" destination="Y5a-Ur-Ebd" id="z8q-sh-O2M"/>
-                        <outlet property="mapViewHeightConstraint" destination="HKJ-VR-REz" id="LDx-yn-Bdk"/>
+                        <outlet property="mapViewHeightConstraint" destination="fCd-di-JYa" id="o51-RR-fjg"/>
                         <outlet property="searchButton" destination="HVC-t3-0LI" id="sBa-dZ-liS"/>
                     </connections>
                 </viewController>
@@ -109,11 +106,11 @@
             <objects>
                 <viewController id="Pea-l5-jpJ" customClass="BarChartViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="enw-jq-bdp">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FIu-xK-y7u" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="64" width="375" height="290"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="359"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -140,7 +137,7 @@
                 <navigationController storyboardIdentifier="navigationController" automaticallyAdjustsScrollViewInsets="NO" id="YDz-DT-3gU" customClass="HuntedNavigationController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="AYK-6k-ENk">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -157,11 +154,11 @@
             <objects>
                 <viewController storyboardIdentifier="SwitchViewController" id="hKZ-2G-HbW" customClass="SwitchViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uGt-7j-x78">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="304"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jmv-v8-X3S">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="304"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="224"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6xX-Tr-z4N">
                                     <size key="itemSize" width="50" height="50"/>

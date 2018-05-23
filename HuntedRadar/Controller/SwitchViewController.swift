@@ -44,7 +44,7 @@ extension SwitchViewController: UICollectionViewDelegateFlowLayout, UICollection
         if self.view.frame.size.width > 320 {
             return UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
         } else {
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            return UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
         }
 
     }

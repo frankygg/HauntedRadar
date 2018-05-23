@@ -61,14 +61,14 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
 
     @objc func bottomAlert() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let photoAction = UIAlertAction(title: "Photo", style: .default) { _ in
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let photoAction = UIAlertAction(title: "相片", style: .default) { _ in
             let picker = UIImagePickerController()
             picker.delegate = self
             picker.sourceType = .photoLibrary
             self.present(picker, animated: true, completion: nil)
         }
-        let cameraAction = UIAlertAction(title: "Camera", style: .default) { _ in
+        let cameraAction = UIAlertAction(title: "相機", style: .default) { _ in
             let picker = UIImagePickerController()
             picker.delegate = self
             picker.sourceType = .camera
