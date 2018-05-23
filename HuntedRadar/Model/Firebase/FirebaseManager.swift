@@ -52,6 +52,8 @@ class FirebaseManager {
 
     func loadArticle(completion: @escaping([Article]) -> Void) {
         ref.child("article").observe(.value, with: {snapshot in
+            DispatchQueue.main.async {
+
             var articles = [Article]()
             guard let values = snapshot.value as? NSDictionary else {
                 completion(articles)
@@ -72,11 +74,14 @@ class FirebaseManager {
                 for arr in myarray {
                     articles = articles.filter({$0.userName != arr})
                 }
+                articles.sort(by: {$0.createdTime > $1.createdTime})
+
                 completion(articles)
+            }
 
         })
     }
-    
+
     func deleteArticle(article: Article) {
         ref.child("article").child(article.articleKey).setValue(nil)
         imageReference.child(article.imageName).delete(completion: { error in
@@ -88,11 +93,35 @@ class FirebaseManager {
         })
     }
     
+    func editArticle(uploadimage: UIImage?, article: Article, handler: @escaping () -> Void ) {
+        let filename = article.imageName
+        if let image = uploadimage, let imageData = UIImageJPEGRepresentation(image, 0.1) {
+            let uploadImageRef = imageReference.child(filename)
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/png"
+            _ = uploadImageRef.putData(imageData, metadata: metadata, completion: {(_, error) in
+                if error == nil {
+                    uploadImageRef.downloadURL(completion: { (url, error) in
+                        if error == nil, let url = url {
+                            let text = url.absoluteString
+                            self.ref.child("article").child(article.articleKey).updateChildValues(["imageUrl": text, "reason": article.reason, "address": article.address, "title": article.title, "createdTime": article.createdTime])
+                            handler()
+                        }
+                    })
+                }
+            })
+        }
+        
+    }
+
     func getUserName(completion: @escaping(String) -> Void) {
         if let uid = Auth.auth().currentUser?.uid {
         ref.child("users/\(uid)/username").observe(.value) { (snapshot) in
+            DispatchQueue.main.async {
+
             if let value = snapshot.value as? String {
                 completion(value)
+            }
             }
         }
     }
@@ -175,6 +204,8 @@ class FirebaseManager {
             return
         }
          ref.child("users/\(uid)/forbid/").observe(.value, with: {snapshot in
+            DispatchQueue.main.async {
+
             var forbids = [Forbid]()
             var forbidUserArray = [String]()
             guard let values = snapshot.value as? NSDictionary else {
@@ -192,6 +223,7 @@ class FirebaseManager {
 
             userdefault.set(forbidUserArray, forKey: "Forbidden")
             completion(forbids)
+            }
         })
     }
 }

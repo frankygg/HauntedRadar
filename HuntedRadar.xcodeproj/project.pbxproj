@@ -11,6 +11,7 @@
 		B70452C820A1480700090318 /* SwitchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70452C720A1480700090318 /* SwitchViewController.swift */; };
 		B70452CC20A14B2500090318 /* SwitchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70452CA20A14B2500090318 /* SwitchCollectionViewCell.swift */; };
 		B70452CD20A14B2500090318 /* SwitchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70452CB20A14B2500090318 /* SwitchCollectionViewCell.xib */; };
+		B705B9E420B5CCEA0068823D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B705B9E320B5CCEA0068823D /* ProfileViewController.swift */; };
 		B708702E20B32032008E0D57 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B708702D20B32032008E0D57 /* DateExtension.swift */; };
 		B708B3DA20A73EBB00687113 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B708B3D920A73EBB00687113 /* TabBarViewController.swift */; };
 		B708B3DE20A740C000687113 /* UIStoryBoardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B708B3DD20A740C000687113 /* UIStoryBoardExtension.swift */; };
@@ -66,6 +67,7 @@
 		B70452C720A1480700090318 /* SwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewController.swift; sourceTree = "<group>"; };
 		B70452CA20A14B2500090318 /* SwitchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCollectionViewCell.swift; sourceTree = "<group>"; };
 		B70452CB20A14B2500090318 /* SwitchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCollectionViewCell.xib; sourceTree = "<group>"; };
+		B705B9E320B5CCEA0068823D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		B708702D20B32032008E0D57 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		B708B3D920A73EBB00687113 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B708B3DD20A740C000687113 /* UIStoryBoardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStoryBoardExtension.swift; sourceTree = "<group>"; };
@@ -146,6 +148,14 @@
 				B70452CB20A14B2500090318 /* SwitchCollectionViewCell.xib */,
 			);
 			path = SwitchCollectionView;
+			sourceTree = "<group>";
+		};
+		B705B9E220B5CC6F0068823D /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				B705B9E320B5CCEA0068823D /* ProfileViewController.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		B708B3DC20A7404900687113 /* Extension */ = {
@@ -314,6 +324,7 @@
 		B7C5AD5A20996A960054FD6B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				B705B9E220B5CC6F0068823D /* Profile */,
 				B7BB5E3620B2965600F16CCD /* Detail */,
 				B7CCD75020A9970300CE722E /* AddQuestion */,
 				B7CCD74B20A9845000CE722E /* Login */,
@@ -568,6 +579,7 @@
 				B708B3DA20A73EBB00687113 /* TabBarViewController.swift in Sources */,
 				B7C5AD58209962DE0054FD6B /* UnLuckyHouse.swift in Sources */,
 				B708B3DE20A740C000687113 /* UIStoryBoardExtension.swift in Sources */,
+				B705B9E420B5CCEA0068823D /* ProfileViewController.swift in Sources */,
 				B70C18DC209EE87600133859 /* LocationSearchTable.swift in Sources */,
 				B70452CC20A14B2500090318 /* SwitchCollectionViewCell.swift in Sources */,
 				B70BB4ED20B4664500612736 /* Forbid.swift in Sources */,

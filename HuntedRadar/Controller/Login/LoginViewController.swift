@@ -14,7 +14,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     //local var
     weak var delegate: DismissView?
     var isSignIn: Bool = true
-    
+
     //IBOutlet var
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var confirmPasswordStackView: UIStackView!
@@ -91,7 +91,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
     }
-    
+
     func setTextFieldDelegate() {
         passwordTextField.delegate = self
      emailTextField.delegate = self
@@ -104,7 +104,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //            self.performSegue(withIdentifier: "loginToAddQuestion", sender: self)
             self.delegate?.dismissView(true)
             setUserDefaultUserName()
-            dismiss(animated: true, completion: nil)
+//            dismiss(animated: true, completion: nil)
         } else {
             guard let error = error else {
                 return
@@ -120,7 +120,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             ref.child("users").child(user!.uid).child("username").setValue(userNameTextField.text!)
             self.delegate?.dismissView(true)
             setUserDefaultUserName()
-            dismiss(animated: true, completion: nil)
+//            dismiss(animated: true, completion: nil)
         } else {
             guard let error = error else {
                 return
@@ -145,16 +145,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             let userdefault = UserDefaults.standard
             userdefault.set(name, forKey: "userName")
         })
-        FirebaseManager.shared.loadForbidUsers(completion: {_ in })
+        FirebaseManager.shared.loadForbidUsers(completion: {_ in
+            self.dismiss(animated: true, completion: nil)
+        })
     }
-    
+
     func setSignInButton() {
         signInButton.layer.cornerRadius = signInButton.layer.frame.height / 2
         signInButton.layer.backgroundColor = UIColor.white.cgColor
         signInButton.clipsToBounds = true
         signInButton.setTitleColor(UIColor.black, for: .normal)
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false

@@ -191,7 +191,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         } else {
             //users can forbid other accounts' activities
-            let action = SwipeAction(style: .default, title: "封鎖", handler: { (_, indexpath) in
+            let action = SwipeAction(style: .default, title: "封鎖用戶", handler: { (_, indexpath) in
                 guard  Auth.auth().currentUser != nil else {
                     self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
                     return
@@ -233,7 +233,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false

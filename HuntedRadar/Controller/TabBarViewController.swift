@@ -35,7 +35,7 @@ enum TabBar {
         case .profile: return #imageLiteral(resourceName: "user_male").withRenderingMode(.alwaysTemplate)
         }
     }
-    
+
     func titles() -> String {
         switch self {
         case .map: return "雷達"

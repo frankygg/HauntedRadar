@@ -8,9 +8,10 @@
 
 import UIKit
 import FirebaseAuth
+import SDWebImage
 class AddQuestionViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
-
-    var artileObject: Article?
+    var passedValue: Any?
+    var articleObject: Article?
     @IBOutlet weak var addQuestionButton: UIButton!
     @IBOutlet weak var reasonTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
@@ -27,11 +28,11 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         imageView.addGestureRecognizer(touch)
 
     }
-
+   
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
+
     func setTextFieldDelegate() {
         reasonTextField.delegate = self
         addressTextField.delegate = self
@@ -46,31 +47,37 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         titleTextField.placeholder = "標題"
         reasonTextField.placeholder = "內容"
         addressTextField.placeholder = "地址"
+        guard let passedValue = passedValue as? Article else {
+        return
+        }
+        titleTextField.text = passedValue.title
+        reasonTextField.text = passedValue.reason
+        addressTextField.text = passedValue.address
+        imageView.sd_setImage(with: URL(string: passedValue.imageUrl), placeholderImage: nil)
+        addQuestionButton.setTitle("編輯", for: .normal)
 
     }
     func setArticleObject() {
         guard let title = titleTextField.text, let reason = reasonTextField.text, let address = addressTextField.text else {
             return
         }
-        artileObject = Article(uid: "", userName: "", imageUrl: "", address: address, reason: reason, title: title, createdTime: Int(NSDate().timeIntervalSince1970), articleKey: "", imageName: "")
+        if let passedValue = passedValue as? Article {
+            articleObject = passedValue
+            articleObject?.address = address
+            articleObject?.title = title
+            articleObject?.reason = reason
+            articleObject?.createdTime = Int(NSDate().timeIntervalSince1970)
+        } else {
+        articleObject = Article(uid: "", userName: "", imageUrl: "", address: address, reason: reason, title: title, createdTime: Int(NSDate().timeIntervalSince1970), articleKey: "", imageName: "")
+        }
     }
 
     func setNavigation() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "exit"), style: .done, target: self, action: #selector(logout))
+//        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "exit"), style: .done, target: self, action: #selector(logout))
         navigationItem.rightBarButtonItem?.tintColor = .white
     }
 
-    @objc func logout() {
-        do {
-            try Auth.auth().signOut()
-            let userdefault = UserDefaults.standard
-            userdefault.set(nil, forKey: "userName")
-            userdefault.set(nil, forKey: "Forbidden")
-            navigationController?.popViewController(animated: true)
-        } catch let signOutError as NSError {
-            print ("Error signing out: %@", signOutError)
-        }
-    }
+   
 
     @objc func bottomAlert() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -116,16 +123,20 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
 
     @IBAction func addQuestionAction(_ sender: UIButton) {
         setArticleObject()
-        guard let articleObject = artileObject else {
+        guard let articleObject = articleObject else {
             return
         }
-
+        if articleObject.articleKey != "" {
+            FirebaseManager.shared.editArticle(uploadimage: imageView.image, article: articleObject, handler: {
+                self.navigationController?.popViewController(animated: true)
+            })
+        } else {
         FirebaseManager.shared.addArticleQuestion(uploadimage: imageView.image, uploadArticle: articleObject, handler: {
             self.navigationController?.popViewController(animated: true)
         })
-
+        }
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false

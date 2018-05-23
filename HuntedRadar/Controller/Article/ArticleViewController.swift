@@ -13,12 +13,11 @@ import FirebaseAuth
 import SDWebImage
 import SwipeCellKit
 class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DismissView, SwipeTableViewCellDelegate {
-    
-    
 
     //local variables
     var articles = [Article]()
     var passArticle: Article!
+    var editArticle: Article!
     var ref: DatabaseReference?
 
     //IBOutlet variables
@@ -69,13 +68,13 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.titleLabel.text = articles[indexPath.row].title
         //處理時間
         let date = Date(timeIntervalSince1970: TimeInterval(articles[indexPath.row].createdTime))
-        
+
         let now = Date()
-        
+
         let timeOffset = now.offset(from: date)
-        
+
         cell.createdTimeLabel.text = timeOffset
-        
+
         return cell
     }
 
@@ -84,17 +83,17 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         performSegue(withIdentifier: "articleDetail", sender: self)
 
     }
-    
+
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
-        
+
         let action = multiAction(at: indexPath)
-        
+
         return action
     }
-    
+
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-       
+
         return true
     }
 
@@ -104,7 +103,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func multiAction(at indexPath: IndexPath) -> [SwipeAction] {
-        
+
         let userdefault = UserDefaults.standard
         let userName = userdefault.string(forKey: "userName")
         if articles[indexPath.row].userName == userName {
@@ -116,21 +115,22 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
                 }
                 //delete realtime database & storage image file
                 FirebaseManager.shared.deleteArticle(article: self.articles[indexpath.row])
-                
+
                 self.articles.remove(at: indexPath.row)
                 self.myTableView.deleteRows(at: [indexPath], with: .fade)
             })
-            
+
             action.backgroundColor = UIColor.red
-            
+
             action.image = UIImage(named: "delete-button")
             
-            return [action]
-            
-        }
-        else {
+            let edit = editAction(at: indexPath)
+
+            return [edit, action]
+
+        } else {
             //users can forbid other accounts' activities
-            let action = SwipeAction(style: .default, title: "封鎖", handler: { (_, indexpath) in
+            let action = SwipeAction(style: .default, title: "封鎖用戶", handler: { (_, indexpath) in
                 guard  Auth.auth().currentUser != nil else {
                     self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
                     return
@@ -138,23 +138,47 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let articleUser = self.articles[indexpath.row].userName
                 FirebaseManager.shared.forbid(userName: articleUser)
                 FirebaseManager.shared.loadForbidUsers { _ in
-                    self.loadArticleFromeFirebase()
-                }
+                    FirebaseManager.shared.loadArticle(completion: { article in
+                        self.articles = article
+                        self.myTableView.reloadData()
+                    })             }
             })
-            
+
             action.backgroundColor = UIColor.orange
-            
+
             action.image = UIImage(named: "forbid")
-            
+
             return [action]
         }
     }
     
+    func editAction(at indexPath: IndexPath) -> SwipeAction {
+        let action = SwipeAction(style: .default, title: "編輯", handler: { (_, indexpath) in
+            guard  Auth.auth().currentUser != nil else {
+                self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
+                return
+            }
+            self.editArticle = self.articles[indexpath.row]
+            self.performSegue(withIdentifier: "editQuestion", sender: self)
+//            //delete realtime database & storage image file
+//            FirebaseManager.shared.deleteArticle(article: self.articles[indexpath.row])
+//
+//            self.articles.remove(at: indexPath.row)
+//            self.myTableView.deleteRows(at: [indexPath], with: .fade)
+        })
+        
+        action.backgroundColor = UIColor.blue
+        
+        action.image = UIImage(named: "edit")
+        
+        return action
+    }
+
     func alertAction(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: { _ in
             self.performSegue(withIdentifier: "loginWithOutAddQuestion", sender: self)
-            
+
         })
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
@@ -180,6 +204,10 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else if let controller = segue.destination as? DetailViewController {
             controller.passedValue = passArticle
             controller.passedKey = passArticle.articleKey
+        } else if let controller = segue.destination as? AddQuestionViewController {
+            if segue.identifier == "editQuestion" {
+                controller.passedValue = editArticle
+            }
         }
     }
 
@@ -193,14 +221,8 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     func loadArticleFromeFirebase() {
         FirebaseManager.shared.loadArticle(completion: {articles in
             self.articles = articles
-            self.articles.sort(by: {$0.createdTime > $1.createdTime})
             self.myTableView.reloadData()
-
         })
-
     }
-    
-    
-    
 
 }

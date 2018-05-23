@@ -39,6 +39,7 @@
                         <segue destination="GwY-pd-5Bd" kind="show" identifier="addQuestion" id="faB-Jj-KLN"/>
                         <segue destination="KSe-V6-bav" kind="show" identifier="articleDetail" id="yC5-yk-oOa"/>
                         <segue destination="gyB-2E-obG" kind="presentation" identifier="loginWithOutAddQuestion" id="2VA-wp-0qP"/>
+                        <segue destination="QpZ-Ka-1lS" kind="show" identifier="editQuestion" id="Dpe-Dq-tKK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ubj-m4-QZ7" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -70,12 +71,20 @@
             <point key="canvasLocation" x="2738" y="373"/>
         </scene>
         <!--AddQuestion-->
+        <scene sceneID="jgF-IM-Thb">
+            <objects>
+                <viewControllerPlaceholder storyboardName="AddQuestion" id="QpZ-Ka-1lS" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cqO-Vt-qgn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1502" y="687"/>
+        </scene>
+        <!--AddQuestion-->
         <scene sceneID="ijz-oR-t8S">
             <objects>
                 <viewControllerPlaceholder storyboardName="AddQuestion" id="GwY-pd-5Bd" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V67-VS-zMB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2758" y="732"/>
+            <point key="canvasLocation" x="1828" y="521"/>
         </scene>
         <!--Hunted Navigation Controller-->
         <scene sceneID="p8h-mq-jjh">
