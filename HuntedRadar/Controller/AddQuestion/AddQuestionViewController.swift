@@ -8,7 +8,7 @@
 
 import UIKit
 import FirebaseAuth
-class AddQuestionViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class AddQuestionViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     var artileObject: Article?
     @IBOutlet weak var addQuestionButton: UIButton!
@@ -18,6 +18,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var imageView: UIImageView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setTextFieldDelegate()
         setButtonUI()
         setTextFieldPlaceholder()
         setNavigation()
@@ -29,6 +30,12 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
+    }
+    
+    func setTextFieldDelegate() {
+        reasonTextField.delegate = self
+        addressTextField.delegate = self
+        titleTextField.delegate = self
     }
 
     func setButtonUI() {
@@ -117,5 +124,10 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
             self.navigationController?.popViewController(animated: true)
         })
 
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import SDWebImage
 import SwipeCellKit
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate, UITextFieldDelegate {
 
     //local variable
     var passedValue: Any?
@@ -20,14 +20,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var article: Article!
 
     //IBOutlet variable
-    @IBOutlet weak var foriPhoneXConstraint: NSLayoutConstraint!
-    @IBOutlet weak var normalConstaint: NSLayoutConstraint!
+//    @IBOutlet weak var foriPhoneXConstraint: NSLayoutConstraint!
+//    @IBOutlet weak var normalConstaint: NSLayoutConstraint!
     @IBOutlet weak var commetTextField: UITextField!
     @IBOutlet weak var detailTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         fullSize = UIScreen.main.bounds.size
-        setTableViewTopConstraint()
         setNib()
         setDetailData()
         setTextFieldButton()
@@ -56,6 +55,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         commetTextField.rightView = button
         commetTextField.rightViewMode = .always
         commetTextField.placeholder = "留言"
+        commetTextField.delegate = self
 //        textField.rightView = btnColor
 //        textField.rightViewMode = .unlessEditing
     }
@@ -75,24 +75,24 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setTableViewTopConstraint() 
+//        setTableViewTopConstraint()
     }
-    func setTableViewTopConstraint() {
-        if UIDevice().userInterfaceIdiom == .phone {
-            switch UIScreen.main.nativeBounds.height {
-            case 2436:
-                normalConstaint.isActive = false
-                foriPhoneXConstraint.isActive = true
-                self.view.layoutIfNeeded()
-                print("iPhone X")
-            default:
-                normalConstaint.isActive = true
-                foriPhoneXConstraint.isActive = false
-                self.view.layoutIfNeeded()
-                print("unknown")
-            }
-        }
-    }
+//    func setTableViewTopConstraint() {
+//        if UIDevice().userInterfaceIdiom == .phone {
+//            switch UIScreen.main.nativeBounds.height {
+//            case 2436:
+//                normalConstaint.isActive = false
+//                foriPhoneXConstraint.isActive = true
+//                self.view.layoutIfNeeded()
+//                print("iPhone X")
+//            default:
+//                normalConstaint.isActive = true
+//                foriPhoneXConstraint.isActive = false
+//                self.view.layoutIfNeeded()
+//                print("unknown")
+//            }
+//        }
+//    }
     func setNib() {
         //xib的名稱
         let nib = UINib(nibName: String(describing: ImageTableViewCell.self), bundle: nil)
@@ -232,5 +232,10 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         })
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 }

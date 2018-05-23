@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import Firebase
 
-class LoginViewController: UIViewController {
+class LoginViewController: UIViewController, UITextFieldDelegate {
     //local var
     weak var delegate: DismissView?
     var isSignIn: Bool = true
@@ -33,7 +33,7 @@ class LoginViewController: UIViewController {
         dismissButton.setImage(dismissButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
         dismissButton.tintColor = UIColor.white
         setSignInButton()
-
+        setTextFieldDelegate()
     }
 
     @IBAction func signInSelectorChanged(_ sender: UISegmentedControl) {
@@ -91,6 +91,13 @@ class LoginViewController: UIViewController {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
     }
+    
+    func setTextFieldDelegate() {
+        passwordTextField.delegate = self
+     emailTextField.delegate = self
+        userNameTextField.delegate = self
+        confirmTextField.delegate = self
+    }
 
     func loginCompletionCallback(user: User?, error: Error?) {
         if error == nil {
@@ -146,6 +153,11 @@ class LoginViewController: UIViewController {
         signInButton.layer.backgroundColor = UIColor.white.cgColor
         signInButton.clipsToBounds = true
         signInButton.setTitleColor(UIColor.black, for: .normal)
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return false
     }
 }
 
