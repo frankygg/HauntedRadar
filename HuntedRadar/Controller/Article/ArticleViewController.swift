@@ -114,9 +114,8 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
                     self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
                     return
                 }
-                let articleKey = self.articles[indexpath.row].articleKey
-                // ToDo
-//                FirebaseManager.shared.deleteComment(articleKey: self.passedKey, commentKey: commentKey)
+                //delete realtime database & storage image file
+                FirebaseManager.shared.deleteArticle(article: self.articles[indexpath.row])
                 
                 self.articles.remove(at: indexPath.row)
                 self.myTableView.deleteRows(at: [indexPath], with: .fade)

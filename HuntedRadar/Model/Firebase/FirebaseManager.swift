@@ -39,7 +39,7 @@ class FirebaseManager {
                             let text = url.absoluteString
                             let reference = self.ref.child("article").childByAutoId()
                                 let articleKey = reference.key
-                            reference.setValue(["imageUrl": text, "userName": userName, "uid": uid, "reason": article.reason, "address": article.address, "title": article.title, "createdTime": article.createdTime, "articleKey": articleKey])
+                            reference.setValue(["imageUrl": text, "userName": userName, "uid": uid, "reason": article.reason, "address": article.address, "title": article.title, "createdTime": article.createdTime, "articleKey": articleKey, "imageName": filename])
                             handler()
                             //更新
 //                            self.ref.child("article/\(uid)").updateChildValues(["image": text])
@@ -61,7 +61,7 @@ class FirebaseManager {
                     guard let obj = obj as? NSDictionary, let objkey = objkey as? String else {
                         return
                     }
-                    let article = Article(uid: (obj.object(forKey: "uid") as? String)!, userName: (obj.object(forKey: "userName") as? String)!, imageUrl: (obj.object(forKey: "imageUrl") as? String)!, address: (obj.object(forKey: "address") as? String)!, reason: (obj.object(forKey: "reason") as? String)!, title: (obj.object(forKey: "title") as? String)!, createdTime: (obj.object(forKey: "createdTime") as? Int)!, articleKey: (obj.object(forKey: "articleKey") as? String)!)
+                    let article = Article(uid: (obj.object(forKey: "uid") as? String)!, userName: (obj.object(forKey: "userName") as? String)!, imageUrl: (obj.object(forKey: "imageUrl") as? String)!, address: (obj.object(forKey: "address") as? String)!, reason: (obj.object(forKey: "reason") as? String)!, title: (obj.object(forKey: "title") as? String)!, createdTime: (obj.object(forKey: "createdTime") as? Int)!, articleKey: (obj.object(forKey: "articleKey") as? String)!, imageName: (obj.object(forKey: "imageName") as? String)!)
                     articles.append(article)
 //                    print("================")
 //                    print(obj)
@@ -76,6 +76,18 @@ class FirebaseManager {
 
         })
     }
+    
+    func deleteArticle(article: Article) {
+        ref.child("article").child(article.articleKey).setValue(nil)
+        imageReference.child(article.imageName).delete(completion: { error in
+            if let error = error {
+                print(error)
+            } else {
+                // File deleted successfully
+            }
+        })
+    }
+    
     func getUserName(completion: @escaping(String) -> Void) {
         if let uid = Auth.auth().currentUser?.uid {
         ref.child("users/\(uid)/username").observe(.value) { (snapshot) in
