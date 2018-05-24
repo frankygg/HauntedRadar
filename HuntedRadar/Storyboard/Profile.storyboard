@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="G3M-qG-iRN">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="biguser" translatesAutoresizingMaskIntoConstraints="NO" id="G3M-qG-iRN">
                                 <rect key="frame" x="123" y="128" width="128" height="128"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="128" id="7bK-S2-OY4"/>
@@ -80,6 +80,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="user" width="64" height="64"/>
+        <image name="biguser" width="256" height="256"/>
     </resources>
 </document>
