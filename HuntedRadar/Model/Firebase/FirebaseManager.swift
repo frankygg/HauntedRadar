@@ -209,6 +209,7 @@ class FirebaseManager {
             var forbids = [Forbid]()
             var forbidUserArray = [String]()
             guard let values = snapshot.value as? NSDictionary else {
+                completion(forbids)
                 return
             }
             for obj in values.allValues {
@@ -225,5 +226,20 @@ class FirebaseManager {
             completion(forbids)
             }
         })
+    }
+
+    func deleteForbidUser(forbidUser: Forbid) {
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        ref.child("users/\(uid)/forbid/").child(forbidUser.forbidKey).setValue(nil)
+        // 處理userdefault
+        let userDefault = UserDefaults.standard
+        guard var forbidArray = userDefault.stringArray(forKey: "Forbidden") else {
+            return
+        }
+        forbidArray = forbidArray.filter({$0 != forbidUser.userName})
+        userDefault.set(forbidArray, forKey: "Forbidden")
+
     }
 }
