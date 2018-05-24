@@ -92,7 +92,7 @@ class FirebaseManager {
             }
         })
     }
-    
+
     func editArticle(uploadimage: UIImage?, article: Article, handler: @escaping () -> Void ) {
         let filename = article.imageName
         if let image = uploadimage, let imageData = UIImageJPEGRepresentation(image, 0.1) {
@@ -111,7 +111,7 @@ class FirebaseManager {
                 }
             })
         }
-        
+
     }
 
     func getUserName(completion: @escaping(String) -> Void) {

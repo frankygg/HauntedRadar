@@ -129,6 +129,23 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
             cell.imageUrlView.sd_setImage(with: URL(string: article.imageUrl), placeholderImage: nil)
 
+            cell.addressLabel.text = "地址： \(article.address)"
+
+            cell.titleLabel.text = article.title
+
+            cell.reasonLabel.text = "內容： \(article.reason)"
+
+            //處理時間
+            let date = Date(timeIntervalSince1970: TimeInterval(article.createdTime))
+
+            let now = Date()
+
+            let timeOffset = now.offset(from: date)
+
+            cell.createdTimeLabel.text = timeOffset
+
+            cell.userNameLabel.text = article.userName
+
             return cell
 
     } else {

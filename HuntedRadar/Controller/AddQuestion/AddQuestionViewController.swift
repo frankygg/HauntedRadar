@@ -28,7 +28,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         imageView.addGestureRecognizer(touch)
 
     }
-   
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -76,8 +76,6 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
 //        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "exit"), style: .done, target: self, action: #selector(logout))
         navigationItem.rightBarButtonItem?.tintColor = .white
     }
-
-   
 
     @objc func bottomAlert() {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)

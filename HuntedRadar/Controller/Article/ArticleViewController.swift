@@ -123,7 +123,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             action.backgroundColor = UIColor.red
 
             action.image = UIImage(named: "delete-button")
-            
+
             let edit = editAction(at: indexPath)
 
             return [edit, action]
@@ -151,7 +151,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             return [action]
         }
     }
-    
+
     func editAction(at indexPath: IndexPath) -> SwipeAction {
         let action = SwipeAction(style: .default, title: "編輯", handler: { (_, indexpath) in
             guard  Auth.auth().currentUser != nil else {
@@ -166,11 +166,11 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
 //            self.articles.remove(at: indexPath.row)
 //            self.myTableView.deleteRows(at: [indexPath], with: .fade)
         })
-        
+
         action.backgroundColor = UIColor.blue
-        
+
         action.image = UIImage(named: "edit")
-        
+
         return action
     }
 
