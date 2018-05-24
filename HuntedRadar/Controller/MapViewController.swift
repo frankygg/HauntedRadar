@@ -157,39 +157,15 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         super.viewDidLoad()
 
         //set searchbutton
-        let transform = CGAffineTransform(scaleX: 2, y: 2)
-        searchButton.transform = transform
-        searchButton.setImage(searchButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
-        searchButton.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
-        fullscreenExitButton.setImage(fullscreenExitButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
-        fullscreenExitButton.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
-        //set search bar
-        let storyBoard = UIStoryboard(name: "LocationSearchTable", bundle: nil)
-        let locationSearchTable = storyBoard.instantiateViewController(withIdentifier: "LocationSearchTable") as? LocationSearchTable
-        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
-        resultSearchController?.searchResultsUpdater = locationSearchTable
-        let searchBar = resultSearchController!.searchBar
-        searchBar.sizeToFit()
-        searchBar.setValue("取消", forKey: "_cancelButtonText")
-        searchBar.placeholder = "找尋你要的位置"
-        if #available(iOS 11.0, *) {
-            let searchBarContainer = SearchBarContainerView(customSearchBar: searchBar)
-            searchBarContainer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
-            navigationItem.titleView = searchBarContainer
-        } else {
+        setSearchButton()
+        setFullScfeenExitButton()
 
-            navigationItem.titleView = searchBar
-        }
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "center_back"), style: .done, target: self, action: #selector(centerBackOnLocation(_:)))
-        navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
-        resultSearchController?.hidesNavigationBarDuringPresentation = false
-        resultSearchController?.dimsBackgroundDuringPresentation = true
-        definesPresentationContext = true
-        locationSearchTable?.mapView = mapView
-        locationSearchTable?.delegate = self
+        //set search bar
+        setSearchBar()
+
+        setNavigationItem()
 
         locationManager.delegate = self
-        fullscreenExitButton.isHidden = true
         //kCLLocationAccuracyHundredMeters
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
@@ -219,6 +195,51 @@ class MapViewController: UIViewController, SwitchViewDelegate {
             }
         })
               }
+
+    }
+
+    func setSearchButton() {
+        let transform = CGAffineTransform(scaleX: 2, y: 2)
+        searchButton.transform = transform
+        searchButton.setImage(searchButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
+        searchButton.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
+
+    }
+
+    func setFullScfeenExitButton() {
+        fullscreenExitButton.setImage(fullscreenExitButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
+        fullscreenExitButton.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
+        fullscreenExitButton.isHidden = true
+
+    }
+
+    func setSearchBar() {
+        let storyBoard = UIStoryboard(name: "LocationSearchTable", bundle: nil)
+        let locationSearchTable = storyBoard.instantiateViewController(withIdentifier: "LocationSearchTable") as? LocationSearchTable
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        let searchBar = resultSearchController!.searchBar
+        searchBar.sizeToFit()
+        searchBar.setValue("取消", forKey: "_cancelButtonText")
+        searchBar.placeholder = "找尋你要的位置"
+        if #available(iOS 11.0, *) {
+            let searchBarContainer = SearchBarContainerView(customSearchBar: searchBar)
+            searchBarContainer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
+            navigationItem.titleView = searchBarContainer
+        } else {
+
+            navigationItem.titleView = searchBar
+        }
+        locationSearchTable?.mapView = mapView
+        locationSearchTable?.delegate = self
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+    }
+
+    func setNavigationItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "center_back"), style: .done, target: self, action: #selector(centerBackOnLocation(_:)))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
 
     }
 
@@ -452,15 +473,7 @@ extension MapViewController: MKMapViewDelegate {
 
         }
     }
-//    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView,
-//                 calloutAccessoryControlTapped control: UIControl) {
-//        if let location = view.annotation as? UnLuckyHouse {
-//        location.mapItem().openInMaps()
-//        }
-//        if let location = view.annotation as? DangerousLocation {
-//            location.mapItem().openInMaps()
-//        }
-//    }
+
 }
 
 extension MapViewController: HandleMapSearch {

@@ -59,8 +59,8 @@ class FirebaseManager {
                 completion(articles)
                 return
             }
-                for (objkey, obj) in values {
-                    guard let obj = obj as? NSDictionary, let objkey = objkey as? String else {
+                for (_, obj) in values {
+                    guard let obj = obj as? NSDictionary else {
                         return
                     }
                     let article = Article(uid: (obj.object(forKey: "uid") as? String)!, userName: (obj.object(forKey: "userName") as? String)!, imageUrl: (obj.object(forKey: "imageUrl") as? String)!, address: (obj.object(forKey: "address") as? String)!, reason: (obj.object(forKey: "reason") as? String)!, title: (obj.object(forKey: "title") as? String)!, createdTime: (obj.object(forKey: "createdTime") as? Int)!, articleKey: (obj.object(forKey: "articleKey") as? String)!, imageName: (obj.object(forKey: "imageName") as? String)!)
