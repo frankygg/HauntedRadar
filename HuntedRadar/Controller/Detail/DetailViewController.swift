@@ -48,7 +48,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     func setTextFieldButton() {
         let button = UIButton(type: .custom)
-        button.setImage(UIImage(named: "send-button"), for: .normal)
+        button.setImage(UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate), for: .normal)
+        button.tintColor = UIColor.blue
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
         button.frame = CGRect(x: CGFloat(fullSize.width - 16 - 30), y: CGFloat(10), width: CGFloat(30), height: CGFloat(30))
         button.addTarget(self, action: #selector(self.sendComment), for: .touchUpInside)

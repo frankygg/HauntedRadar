@@ -14,24 +14,26 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     var forbidUser = [Forbid]()
     var isExpand = true
 
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var forbidUserTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigation()
+        setNavigationRightBurtton()
         setNib()
+        setUserNameAndEmail()
         loadForbidUserFromFireBase()
 
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setNavigationRightBurtton()
+        setUserNameAndEmail()
         loadForbidUserFromFireBase()
-
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ""
-    }
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let button = UIButton(type: .system)
         button.setTitle("已封鎖用戶", for: .normal)
@@ -66,11 +68,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         } else {
             forbidUserTableView.insertRows(at: indexPaths, with: .fade)
         }
-        //
     }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isExpand {
         return forbidUser.count
@@ -124,8 +127,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func setNavigation() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "exit"), style: .done, target: self, action: #selector(logout))
         navigationItem.rightBarButtonItem?.tintColor = .white
+    }
+    
+    func setNavigationRightBurtton() {
+        if Auth.auth().currentUser != nil {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "exit"), style: .done, target: self, action: #selector(logout))
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "sign-in"), style: .done, target: self, action: #selector(login))
+        }
     }
 
     func setNib() {
@@ -143,15 +153,20 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @objc func logout() {
         do {
             try Auth.auth().signOut()
+            setSignOutSetting()
             let userdefault = UserDefaults.standard
             userdefault.set(nil, forKey: "userName")
             userdefault.set(nil, forKey: "Forbidden")
-            navigationController?.popViewController(animated: true)
+            setNavigationRightBurtton()
         } catch let signOutError as NSError {
             print ("Error signing out: %@", signOutError)
         }
     }
 
+    @objc func login() {
+    self.performSegue(withIdentifier: "login", sender: self)
+    }
+    
     func loadForbidUserFromFireBase() {
         FirebaseManager.shared.loadForbidUsers(completion: { forbidUser in
 
@@ -169,5 +184,23 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         })
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func setUserNameAndEmail() {
+        guard let user = Auth.auth().currentUser else {
+           setSignOutSetting()
+            return
+        }
+        forbidUserTableView.isHidden = false
+        FirebaseManager.shared.getUserName(completion: {name in
+            self.userNameLabel.text = name
+            self.emailLabel.text = user.email
+        })
+    }
+    
+    func setSignOutSetting() {
+        userNameLabel.text = "請先登入再進行操作"
+        emailLabel.text = ""
+        forbidUserTableView.isHidden = true
     }
 }

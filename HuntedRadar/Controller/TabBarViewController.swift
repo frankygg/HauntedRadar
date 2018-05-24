@@ -24,7 +24,7 @@ enum TabBar {
         switch self {
         case .map: return #imageLiteral(resourceName: "define_location")
         case .article: return #imageLiteral(resourceName: "user_group_man_man")
-        case .profile: return #imageLiteral(resourceName: "user_male")
+        case .profile: return #imageLiteral(resourceName: "user")
         }
     }
 
@@ -32,7 +32,7 @@ enum TabBar {
         switch self {
         case .map: return #imageLiteral(resourceName: "define_location").withRenderingMode(.alwaysTemplate)
         case .article: return #imageLiteral(resourceName: "user_group_man_man").withRenderingMode(.alwaysTemplate)
-        case .profile: return #imageLiteral(resourceName: "user_male").withRenderingMode(.alwaysTemplate)
+        case .profile: return #imageLiteral(resourceName: "user").withRenderingMode(.alwaysTemplate)
         }
     }
 
@@ -70,7 +70,7 @@ class TabBarViewController: UITabBarController {
                 selectedImage: tab.selectedImage()
             )
 
-            item.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: -6, right: 0)
+            item.imageInsets = UIEdgeInsets(top: 3, left: 0, bottom: -3, right: 0)
 
             controller.tabBarItem = item
 

@@ -26,25 +26,43 @@
                                 </constraints>
                             </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ohY-vE-8eV">
-                                <rect key="frame" x="0.0" y="304" width="375" height="363"/>
+                                <rect key="frame" x="0.0" y="347.5" width="375" height="319.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <sections/>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rhS-ol-9j2">
+                                <rect key="frame" x="146.5" y="276" width="81.5" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BIg-i3-Rj8">
+                                <rect key="frame" x="166" y="307.5" width="42" height="20"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" red="0.44705882349999998" green="0.44705882349999998" blue="0.44705882349999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="ohY-vE-8eV" firstAttribute="trailing" secondItem="haU-2T-qwa" secondAttribute="trailing" id="AFm-V0-EhS"/>
+                            <constraint firstItem="BIg-i3-Rj8" firstAttribute="centerX" secondItem="tme-ZM-RvC" secondAttribute="centerX" id="FU9-K0-Igs"/>
+                            <constraint firstItem="rhS-ol-9j2" firstAttribute="top" secondItem="G3M-qG-iRN" secondAttribute="bottom" constant="20" id="HKm-Nz-U7c"/>
                             <constraint firstItem="G3M-qG-iRN" firstAttribute="centerX" secondItem="tme-ZM-RvC" secondAttribute="centerX" id="Hya-v2-Ahd"/>
                             <constraint firstItem="ohY-vE-8eV" firstAttribute="leading" secondItem="haU-2T-qwa" secondAttribute="leading" id="bOR-nJ-Aox"/>
-                            <constraint firstItem="ohY-vE-8eV" firstAttribute="top" secondItem="G3M-qG-iRN" secondAttribute="bottom" constant="48" id="hll-wb-EKI"/>
                             <constraint firstItem="G3M-qG-iRN" firstAttribute="top" secondItem="haU-2T-qwa" secondAttribute="top" constant="64" id="lwc-DT-Tuf"/>
+                            <constraint firstItem="ohY-vE-8eV" firstAttribute="top" secondItem="BIg-i3-Rj8" secondAttribute="bottom" constant="20" id="moB-h8-TzC"/>
+                            <constraint firstItem="BIg-i3-Rj8" firstAttribute="top" secondItem="rhS-ol-9j2" secondAttribute="bottom" constant="11" id="qnC-jW-4wp"/>
+                            <constraint firstItem="rhS-ol-9j2" firstAttribute="centerX" secondItem="tme-ZM-RvC" secondAttribute="centerX" id="tcZ-hw-v5E"/>
                             <constraint firstItem="haU-2T-qwa" firstAttribute="bottom" secondItem="ohY-vE-8eV" secondAttribute="bottom" id="zn4-Co-1uJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="haU-2T-qwa"/>
                     </view>
                     <navigationItem key="navigationItem" id="2Tz-qI-jbC"/>
                     <connections>
+                        <outlet property="emailLabel" destination="BIg-i3-Rj8" id="Smg-K4-9aZ"/>
                         <outlet property="forbidUserTableView" destination="ohY-vE-8eV" id="sWK-aG-283"/>
+                        <outlet property="userNameLabel" destination="rhS-ol-9j2" id="pTY-G2-uVV"/>
                         <segue destination="LFS-dw-6Cb" kind="presentation" identifier="login" id="vId-Sw-Qag"/>
                     </connections>
                 </viewController>
