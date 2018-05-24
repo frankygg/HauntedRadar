@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import Firebase
+import SVProgressHUD
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     //local var
@@ -56,7 +57,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func signInButtonTapped(_ sender: UIButton) {
-
+        SVProgressHUD.setDefaultMaskType(.gradient)
+        SVProgressHUD.setDefaultStyle(.dark)
+        SVProgressHUD.setDefaultAnimationType(.native)
+        SVProgressHUD.show(withStatus: "登入中")
         //some validation on email and password
         if let email = emailTextField.text, let password = passwordTextField.text {
 
@@ -65,8 +69,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 //Sign in the userwith Firebase
                 Auth.auth().signIn(withEmail: email, password: password, completion: loginCompletionCallback)
             } else {
-                if let confirm = confirmTextField.text, let username = userNameTextField.text {
+                if let confirm = confirmTextField.text, let username = userNameTextField.text, username.trimmingCharacters(in: .whitespaces) != "" {
                     if confirm != password {
+                        SVProgressHUD.dismiss()
                         alertAction(title: "註冊失敗", message: "確認密碼不一致")
                     } else {
                    let ref = Database.database().reference()
@@ -78,10 +83,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 Auth.auth().createUser(withEmail: email, password: password, completion: self?.registerCompletionCallback)
 
                             } else {
+                                SVProgressHUD.dismiss()
                                     self?.alertAction(title: "註冊失敗", message: "暱稱已被使用！")
                             }
                         })
                     }} else {
+                    SVProgressHUD.dismiss()
+
+                    alertAction(title: "註冊失敗", message: "有欄位空白")
 
                 }
             }
@@ -106,6 +115,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             setUserDefaultUserName()
 //            dismiss(animated: true, completion: nil)
         } else {
+            SVProgressHUD.dismiss()
+
             guard let error = error else {
                 return
             }
@@ -122,6 +133,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             setUserDefaultUserName()
 //            dismiss(animated: true, completion: nil)
         } else {
+            SVProgressHUD.dismiss()
+
             guard let error = error else {
                 return
             }
@@ -146,6 +159,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             userdefault.set(name, forKey: "userName")
         })
         FirebaseManager.shared.loadForbidUsers(completion: {_ in
+            SVProgressHUD.dismiss()
             self.dismiss(animated: true, completion: nil)
         })
     }

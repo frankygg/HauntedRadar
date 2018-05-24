@@ -62,6 +62,7 @@ PODS:
   - SDWebImage (4.3.3):
     - SDWebImage/Core (= 4.3.3)
   - SDWebImage/Core (4.3.3)
+  - SVProgressHUD (2.2.5)
   - SwiftLint (0.25.1)
   - SwipeCellKit (2.2.0)
 
@@ -75,6 +76,7 @@ DEPENDENCIES:
   - FMDB
   - IQKeyboardManagerSwift
   - SDWebImage
+  - SVProgressHUD
   - SwiftLint
   - SwipeCellKit
 
@@ -97,6 +99,7 @@ SPEC REPOS:
     - leveldb-library
     - nanopb
     - SDWebImage
+    - SVProgressHUD
     - SwiftLint
     - SwipeCellKit
 
@@ -118,9 +121,10 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftLint: ce933681be10c3266e82576dad676fa815a602e9
   SwipeCellKit: 8ae09401e1137566b187980d824310129233c959
 
-PODFILE CHECKSUM: da2ef7740e9007dad426f376fa640242873eb599
+PODFILE CHECKSUM: 186ffba1cb08866b99e4e21e00b9f1c28aba840f
 
 COCOAPODS: 1.5.0

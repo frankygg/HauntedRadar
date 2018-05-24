@@ -17,6 +17,7 @@ pod 'Firebase/Storage'
 pod 'SDWebImage'
 pod 'IQKeyboardManagerSwift'
 pod 'SwipeCellKit'
+pod 'SVProgressHUD'
 
 
 end
