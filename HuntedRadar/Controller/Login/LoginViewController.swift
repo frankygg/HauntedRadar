@@ -71,7 +71,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     } else {
                    let ref = Database.database().reference()
                     ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: "\(username)")
-                        .observe(.value, with: { [weak self] snapshot in
+                        .observeSingleEvent(of: .value, with: { [weak self] snapshot in
                             if snapshot.value is NSNull {
                                 print("not found)")
                                 //Register the user with Firebase
