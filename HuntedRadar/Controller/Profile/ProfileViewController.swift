@@ -13,6 +13,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     var forbidUser = [Forbid]()
     var isExpand = true
+    var image: UIImageView!
 
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -32,12 +33,24 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         setNavigationRightBurtton()
         setUserNameAndEmail()
         loadForbidUserFromFireBase()
+        isExpand = true
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let button = UIButton(type: .system)
         button.setTitle("已封鎖用戶名單", for: .normal)
-
+        
+        //button image
+         let imageName = "sort-up"
+            image = UIImageView(image: UIImage(named: imageName))
+            button.addSubview(image)
+            image.translatesAutoresizingMaskIntoConstraints = false
+            let horizontalConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: button, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 2)
+            let verticalConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: button, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: 60)
+            let widthConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20)
+            let heightConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20)
+            button.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
+        
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .lightGray
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
@@ -63,9 +76,12 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let isExpanded = isExpand
         isExpand = !isExpanded
         if isExpanded {
+                        image.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
 
             forbidUserTableView.deleteRows(at: indexPaths, with: .fade)
         } else {
+                        image.transform = CGAffineTransform(rotationAngle: 2 * CGFloat(Double.pi))
+
             forbidUserTableView.insertRows(at: indexPaths, with: .fade)
         }
     }

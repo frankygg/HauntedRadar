@@ -41,7 +41,7 @@
                 <constraints>
                     <constraint firstItem="yxb-m7-kDz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="23" id="M2x-Bd-quh"/>
                     <constraint firstAttribute="bottom" secondItem="yxb-m7-kDz" secondAttribute="bottom" priority="999" constant="22.5" id="PrO-aH-6Kf"/>
-                    <constraint firstItem="yxb-m7-kDz" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="kba-qz-piz"/>
+                    <constraint firstItem="yxb-m7-kDz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="94" id="c4j-TE-FFx"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -52,6 +52,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="user" width="64" height="64"/>
+        <image name="user" width="21" height="21"/>
     </resources>
 </document>
