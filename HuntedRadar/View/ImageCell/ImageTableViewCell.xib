@@ -20,8 +20,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="421.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-yD-SI0">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_3" translatesAutoresizingMaskIntoConstraints="NO" id="uvz-yD-SI0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="234.5"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="234.5" id="Xzw-rQ-8WE"/>
                             <constraint firstAttribute="width" secondItem="uvz-yD-SI0" secondAttribute="height" multiplier="160:117" id="shP-zW-KBP"/>
@@ -117,7 +118,8 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="picture_3" width="170" height="170"/>
         <image name="time" width="64" height="64"/>
-        <image name="user" width="64" height="64"/>
+        <image name="user" width="21" height="21"/>
     </resources>
 </document>

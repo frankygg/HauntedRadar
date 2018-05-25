@@ -12,6 +12,7 @@ import Firebase
 import FirebaseAuth
 import SDWebImage
 import SwipeCellKit
+import SVProgressHUD
 class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DismissView, SwipeTableViewCellDelegate {
 
     //local variables
@@ -64,7 +65,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         cell.delegate = self
         cell.userNameLabel.text = articles[indexPath.row].userName
-        cell.imageUrlView.sd_setImage(with: URL(string: articles[indexPath.row].imageUrl), placeholderImage: nil)
+        cell.imageUrlView.sd_setImage(with: URL(string: articles[indexPath.row].imageUrl), placeholderImage: UIImage(named: "picture_3"))
         cell.titleLabel.text = articles[indexPath.row].title
         //處理時間
         let date = Date(timeIntervalSince1970: TimeInterval(articles[indexPath.row].createdTime))
@@ -219,9 +220,14 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func loadArticleFromeFirebase() {
+        SVProgressHUD.setDefaultMaskType(.gradient)
+        SVProgressHUD.setDefaultStyle(.light)
+        SVProgressHUD.setDefaultAnimationType(.native)
+        SVProgressHUD.show(withStatus: "載入中")
         FirebaseManager.shared.loadArticle(completion: {articles in
             self.articles = articles
             self.myTableView.reloadData()
+            SVProgressHUD.dismiss()
         })
     }
 

@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let button = UIButton(type: .system)
-        button.setTitle("已封鎖用戶", for: .normal)
+        button.setTitle("已封鎖用戶名單", for: .normal)
 
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .lightGray

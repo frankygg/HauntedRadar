@@ -26,9 +26,9 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="CYJ-IM-foE">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_3" translatesAutoresizingMaskIntoConstraints="NO" id="CYJ-IM-foE">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="184"/>
-                        <color key="backgroundColor" red="1" green="1" blue="0.66333912037037035" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="CYJ-IM-foE" secondAttribute="height" multiplier="40:23" id="VBd-OK-Q40"/>
                         </constraints>
@@ -93,7 +93,8 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="picture_3" width="170" height="170"/>
         <image name="time" width="64" height="64"/>
-        <image name="user" width="64" height="64"/>
+        <image name="user" width="21" height="21"/>
     </resources>
 </document>

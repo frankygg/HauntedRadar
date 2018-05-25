@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import SDWebImage
+import SVProgressHUD
 class AddQuestionViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     var passedValue: Any?
     var articleObject: Article?
@@ -53,7 +54,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         titleTextField.text = passedValue.title
         reasonTextField.text = passedValue.reason
         addressTextField.text = passedValue.address
-        imageView.sd_setImage(with: URL(string: passedValue.imageUrl), placeholderImage: nil)
+        imageView.sd_setImage(with: URL(string: passedValue.imageUrl), placeholderImage: UIImage(named: "picture_3"))
         addQuestionButton.setTitle("編輯", for: .normal)
 
     }
@@ -124,12 +125,18 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         guard let articleObject = articleObject else {
             return
         }
+        SVProgressHUD.setDefaultMaskType(.gradient)
+        SVProgressHUD.setDefaultStyle(.light)
+        SVProgressHUD.setDefaultAnimationType(.native)
+        SVProgressHUD.show(withStatus: "上傳中")
         if articleObject.articleKey != "" {
             FirebaseManager.shared.editArticle(uploadimage: imageView.image, article: articleObject, handler: {
+                SVProgressHUD.dismiss()
                 self.navigationController?.popViewController(animated: true)
             })
         } else {
         FirebaseManager.shared.addArticleQuestion(uploadimage: imageView.image, uploadArticle: articleObject, handler: {
+            SVProgressHUD.dismiss()
             self.navigationController?.popViewController(animated: true)
         })
         }

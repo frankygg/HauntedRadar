@@ -128,7 +128,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 return UITableViewCell()
             }
 
-            cell.imageUrlView.sd_setImage(with: URL(string: article.imageUrl), placeholderImage: nil)
+            cell.imageUrlView.sd_setImage(with: URL(string: article.imageUrl), placeholderImage: UIImage(named: "picture_3"))
 
             cell.addressLabel.text = "地址： \(article.address)"
 
