@@ -90,6 +90,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.delegate = self
 
         cell.userNameLabel.text = forbidUser[indexPath.row].userName
+        
+        cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
+        //不可被點選
+        cell.selectionStyle = .none
 
         return cell
     }
@@ -147,6 +151,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         forbidUserTableView.delegate = self
 
         forbidUserTableView.dataSource = self
+        
+        forbidUserTableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
 
     }
 

@@ -19,26 +19,18 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     var articles = [Article]()
     var passArticle: Article!
     var editArticle: Article!
-    var ref: DatabaseReference?
 
     //IBOutlet variables
     @IBOutlet weak var myTableView: UITableView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //xib的名稱
-        let nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
-        //註冊，forCellReuseIdentifier是你的TableView裡面設定的Cell名稱
-        myTableView.register(nib, forCellReuseIdentifier: "ArticleTableViewCell")
-        myTableView.dataSource = self
-        myTableView.delegate = self
-        self.automaticallyAdjustsScrollViewInsets = false
-        ref = Database.database().reference()
-//        ref?.child("Articles").childByAutoId().setValue("test")
+        
+        setTableView()
 
         setNavigationItem()
 
-            loadArticleFromeFirebase()
+        loadArticleFromeFirebase()
 
     }
 
@@ -50,6 +42,17 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
 
+    }
+    
+    func setTableView() {
+        //xib的名稱
+        let nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
+        //註冊，forCellReuseIdentifier是你的TableView裡面設定的Cell名稱
+        myTableView.register(nib, forCellReuseIdentifier: "ArticleTableViewCell")
+        myTableView.dataSource = self
+        myTableView.delegate = self
+        myTableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
+        self.automaticallyAdjustsScrollViewInsets = false
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
@@ -223,6 +226,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         SVProgressHUD.setDefaultMaskType(.gradient)
         SVProgressHUD.setDefaultStyle(.light)
         SVProgressHUD.setDefaultAnimationType(.native)
+        SVProgressHUD.setBackgroundColor(UIColor.clear)
         SVProgressHUD.show(withStatus: "載入中")
         FirebaseManager.shared.loadArticle(completion: {articles in
             self.articles = articles

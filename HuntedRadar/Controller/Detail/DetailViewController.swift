@@ -37,6 +37,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadCommentFromFirebase()
+        detailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .middle, animated: true)
 
     }
     func loadCommentFromFirebase() {
@@ -72,6 +73,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         FirebaseManager.shared.addComment(comment: text, articleId: passedKey)
         self.view.endEditing(true)
         commetTextField.text = ""
+        detailTableView.reloadData()
+        detailTableView.scrollToRow(at: IndexPath(row: comment.count, section: 0), at: .middle, animated: true)
 
     }
     override func viewDidLayoutSubviews() {
@@ -105,6 +108,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         detailTableView.dataSource = self
         detailTableView.delegate = self
+        
+        detailTableView.allowsSelection = false
     }
 
     func setDetailData() {
@@ -146,6 +151,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.createdTimeLabel.text = timeOffset
 
             cell.userNameLabel.text = article.userName
+            
+            cell.separatorInset = .zero
 
             return cell
 
@@ -169,6 +176,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let timeOffset = now.offset(from: date)
 
             cell.createdTimeLabel.text = timeOffset
+            
+            cell.separatorInset = .zero
 
             return cell
     }
