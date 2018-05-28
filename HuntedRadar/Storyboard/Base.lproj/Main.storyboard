@@ -66,13 +66,13 @@
                             <constraint firstItem="sbV-Bt-bp7" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4t2-av-aMX"/>
                             <constraint firstItem="HVC-t3-0LI" firstAttribute="top" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="-69" id="DJH-BU-Nuz"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="QIW-Cx-Muu"/>
-                            <constraint firstItem="PfH-me-K1H" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" id="Y5a-Ur-Ebd"/>
                             <constraint firstItem="sbV-Bt-bp7" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="ZcL-zF-eml"/>
-                            <constraint firstItem="2v4-JK-ZKM" firstAttribute="height" secondItem="PfH-me-K1H" secondAttribute="height" multiplier="0.5" id="akv-U2-1zz"/>
+                            <constraint firstItem="PfH-me-K1H" firstAttribute="top" secondItem="sbV-Bt-bp7" secondAttribute="bottom" id="aE5-Ba-bmq"/>
                             <constraint firstItem="sbV-Bt-bp7" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="dka-Ik-8Fp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="PfH-me-K1H" secondAttribute="bottom" id="dqy-xw-vnJ"/>
-                            <constraint firstItem="PfH-me-K1H" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="2/3" id="fCd-di-JYa"/>
+                            <constraint firstAttribute="bottom" secondItem="PfH-me-K1H" secondAttribute="bottom" id="dqy-xw-vnJ"/>
+                            <constraint firstItem="PfH-me-K1H" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="ffJ-X8-px9"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" id="jJ6-K7-lJh"/>
+                            <constraint firstItem="sbV-Bt-bp7" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="1/3" id="l2u-9C-fd4"/>
                             <constraint firstItem="n4D-PT-4Yr" firstAttribute="top" secondItem="PfH-me-K1H" secondAttribute="bottom" constant="-72" id="nKM-K0-unJ"/>
                             <constraint firstItem="PfH-me-K1H" firstAttribute="top" secondItem="sbV-Bt-bp7" secondAttribute="bottom" id="xkn-vV-kYd">
                                 <variation key="heightClass=regular-widthClass=compact" constant="2"/>
@@ -82,7 +82,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="Y5a-Ur-Ebd"/>
+                                <exclude reference="ffJ-X8-px9"/>
                                 <exclude reference="xkn-vV-kYd"/>
                             </mask>
                         </variation>
@@ -90,10 +90,10 @@
                     <navigationItem key="navigationItem" id="4J5-6w-oZ4"/>
                     <connections>
                         <outlet property="controlPanelView" destination="sbV-Bt-bp7" id="3Im-RG-wZU"/>
+                        <outlet property="fullScreenMapTopConstraint" destination="ffJ-X8-px9" id="sXJ-SR-YrS"/>
                         <outlet property="fullscreenExitButton" destination="n4D-PT-4Yr" id="1Hf-nz-6ks"/>
                         <outlet property="mapView" destination="PfH-me-K1H" id="eZ2-Tp-bhJ"/>
-                        <outlet property="mapViewEqualHeightConstraint" destination="Y5a-Ur-Ebd" id="z8q-sh-O2M"/>
-                        <outlet property="mapViewHeightConstraint" destination="fCd-di-JYa" id="o51-RR-fjg"/>
+                        <outlet property="originalMapTopConstraint" destination="aE5-Ba-bmq" id="k2l-un-nPx"/>
                         <outlet property="searchButton" destination="HVC-t3-0LI" id="sBa-dZ-liS"/>
                     </connections>
                 </viewController>

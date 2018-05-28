@@ -18,6 +18,8 @@ pod 'SDWebImage'
 pod 'IQKeyboardManagerSwift'
 pod 'SwipeCellKit'
 pod 'SVProgressHUD'
+pod 'Fabric'
+pod 'Crashlytics'
 
 
 end

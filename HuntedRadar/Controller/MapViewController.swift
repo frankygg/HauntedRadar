@@ -11,6 +11,8 @@ import MapKit
 
 class MapViewController: UIViewController, SwitchViewDelegate {
 
+    @IBOutlet weak var originalMapTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var fullScreenMapTopConstraint: NSLayoutConstraint!
     private var mapChangedFromUserInteraction = false
 
     let dangerous = ["凶宅", "毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
@@ -35,9 +37,6 @@ class MapViewController: UIViewController, SwitchViewDelegate {
     var dangerousAddress = [DangerousAddress]()
     var dangerousCrimeDate: [String]?
 
-    @IBOutlet var mapViewEqualHeightConstraint: NSLayoutConstraint!
-
-    @IBOutlet var mapViewHeightConstraint: NSLayoutConstraint!
     var isFullScreen = false
     @IBOutlet weak var controlPanelView: UIView!
     var userLocation: CLLocation?
@@ -66,9 +65,9 @@ class MapViewController: UIViewController, SwitchViewDelegate {
     }
     @IBOutlet weak var searchButton: UIButton!
     @IBAction func visible(_ sender: UIButton) {
-        handleUnluckyHouse()
+//        handleUnluckyHouse()
         print("================dangerousAddress============== \(dangerousAddress.count)")
-        handleDangerousLocation()
+//        handleDangerousLocation()
     }
 
     func handleUnluckyHouse() {
@@ -155,7 +154,6 @@ class MapViewController: UIViewController, SwitchViewDelegate {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-
         //set searchbutton
         setSearchButton()
         setFullScfeenExitButton()
@@ -253,8 +251,9 @@ class MapViewController: UIViewController, SwitchViewDelegate {
                 fullscreenExitButton.isHidden = false
 
                 UIView.animate(withDuration: 0.5, animations: {
-                    self.mapViewHeightConstraint.isActive = false
-                    self.mapViewEqualHeightConstraint.isActive = true
+                    self.originalMapTopConstraint.isActive = false
+                    self.fullScreenMapTopConstraint.isActive = true
+                    
                     self.view.layoutIfNeeded()
                 })
                 isFullScreen = !isFullScreen
@@ -285,8 +284,8 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         if isFullScreen {
             sender.isHidden = true
             UIView.animate(withDuration: 0.5, animations: {
-                self.mapViewEqualHeightConstraint.isActive = false
-                self.mapViewHeightConstraint.isActive = true
+                self.fullScreenMapTopConstraint.isActive = false
+                self.originalMapTopConstraint.isActive = true
                 self.view.layoutIfNeeded()
             })
             isFullScreen = !isFullScreen

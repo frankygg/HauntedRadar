@@ -10,6 +10,8 @@ import UIKit
 import Firebase
 import IQKeyboardManagerSwift
 import FirebaseAuth
+import Fabric
+import Crashlytics
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
@@ -17,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        Fabric.with([Crashlytics.self])
         FirebaseApp.configure()
         setInitialFirebaseLogInStatus()
         UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent // 設定statusbar為白色
