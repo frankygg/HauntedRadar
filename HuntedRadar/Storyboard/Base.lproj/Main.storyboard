@@ -110,13 +110,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FIu-xK-y7u" customClass="BarChartView" customModule="Charts">
-                                <rect key="frame" x="0.0" y="64" width="414" height="359"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="622"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="aUW-sP-n3X" firstAttribute="bottom" secondItem="FIu-xK-y7u" secondAttribute="bottom" constant="313" id="5QU-Jh-EUH"/>
+                            <constraint firstItem="aUW-sP-n3X" firstAttribute="bottom" secondItem="FIu-xK-y7u" secondAttribute="bottom" constant="50" id="5QU-Jh-EUH"/>
                             <constraint firstItem="aUW-sP-n3X" firstAttribute="trailing" secondItem="FIu-xK-y7u" secondAttribute="trailing" id="GR6-8X-4px"/>
                             <constraint firstItem="FIu-xK-y7u" firstAttribute="top" secondItem="aUW-sP-n3X" secondAttribute="top" id="dOt-r0-pFo"/>
                             <constraint firstItem="FIu-xK-y7u" firstAttribute="leading" secondItem="aUW-sP-n3X" secondAttribute="leading" id="una-wK-hpa"/>
