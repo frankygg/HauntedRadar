@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>HauntedRadar需要訪問您的本機相冊用於儲存您拍攝的照片。</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleExecutable</key>
@@ -35,11 +37,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>Camera</string>
+	<string>HauntedRadar需要訪問您的相機才能拍照並用於編輯及新增發問時的圖片。</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>您的目前位置會顯示於地圖，並用於計算附近範圍是否曾發生凶宅或犯罪行為．</string>
+	<string>您的目前位置會顯示於地圖，並用於計算附近範圍是否曾發生凶宅或犯罪行為。</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Photo</string>
+	<string>HauntedRadar需要訪問您的本機相冊用於編輯及新增發問時所需的照片。</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

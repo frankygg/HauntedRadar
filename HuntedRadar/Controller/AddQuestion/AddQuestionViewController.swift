@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import SDWebImage
 import SVProgressHUD
+import Photos
 class AddQuestionViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     var passedValue: Any?
     var articleObject: Article?
@@ -77,15 +78,49 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
 //        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "exit"), style: .done, target: self, action: #selector(logout))
         navigationItem.rightBarButtonItem?.tintColor = .white
     }
+    
+    func alertAction(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true, completion: nil)
+    }
 
-    @objc func bottomAlert() {
-        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-        let photoAction = UIAlertAction(title: "相片", style: .default) { _ in
+    func checkPermission() {
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        switch photoAuthorizationStatus {
+        case .authorized:
             let picker = UIImagePickerController()
             picker.delegate = self
             picker.sourceType = .photoLibrary
             self.present(picker, animated: true, completion: nil)
+            print("Access is granted by user")
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization({
+                (newStatus) in
+                print("status is \(newStatus)")
+                if newStatus ==  PHAuthorizationStatus.authorized {
+                    /* do stuff here */
+                    let picker = UIImagePickerController()
+                    picker.delegate = self
+                    picker.sourceType = .photoLibrary
+                    self.present(picker, animated: true, completion: nil)
+                    print("success")
+                }
+            })
+            print("It is not determined until now")
+        case .restricted, .denied:
+            alertAction(title: "未開啟存取本機相冊權限", message: "請在手機設定中開啟本機相冊存取權限，相冊將用於編輯及新增發問時所需的照片。")
+            print("User do not have access to photo album.")
+       
+        }
+    }
+    
+    @objc func bottomAlert() {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+        let photoAction = UIAlertAction(title: "相片", style: .default) { _ in
+            self.checkPermission()
         }
         let cameraAction = UIAlertAction(title: "相機", style: .default) { _ in
             let picker = UIImagePickerController()
