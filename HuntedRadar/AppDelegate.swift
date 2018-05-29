@@ -41,8 +41,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
 //        }
 //        let navigationController = UIStoryboard.mapStoryboard().instantiateInitialViewController()!
         //隱藏tabbar上架
-        let navigationController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
-        self.window!.rootViewController = navigationController
+        var navigationController: UIViewController
+        if Auth.auth().currentUser == nil {
+            navigationController = UIStoryboard.loginStoryboard().instantiateInitialViewController()!
+            if let controller = UIStoryboard.loginStoryboard().instantiateInitialViewController() as? LoginViewController {
+               navigationController = controller
+                controller.isFromAppDelegate = true
+                self.window!.rootViewController = controller
+
+            }
+            
+        } else {
+            
+            navigationController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
+            self.window!.rootViewController = navigationController
+        }
 
         // logo mask
         navigationController.view.layer.mask = CALayer()

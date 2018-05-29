@@ -15,6 +15,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     //local var
     weak var delegate: DismissView?
     var isSignIn: Bool = true
+    var isFromAppDelegate: Bool = false
 
     //IBOutlet var
     @IBOutlet weak var visitButton: UIButton!
@@ -155,8 +156,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func visitAction(_ sender: Any) {
+        if self.isFromAppDelegate {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            
+            let tabBarController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
+            
+            appDelegate.window?.rootViewController = tabBarController
+        } else {
         dismiss(animated: true, completion: nil)
-
+        }
     }
     func alertAction(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
@@ -172,7 +182,17 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         })
         FirebaseManager.shared.loadForbidUsers(completion: {_ in
             SVProgressHUD.dismiss()
+            if self.isFromAppDelegate {
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                    return
+                }
+                
+                let tabBarController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
+                
+                appDelegate.window?.rootViewController = tabBarController
+            } else {
             self.dismiss(animated: true, completion: nil)
+            }
         })
     }
 

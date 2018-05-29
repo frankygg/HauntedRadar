@@ -156,13 +156,6 @@ class MapViewController: UIViewController, SwitchViewDelegate {
 
         super.viewDidLoad()
         
-        //訪客登入詢問
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            if Auth.auth().currentUser == nil {
-                self.performSegue(withIdentifier: "login", sender: self)
-            }
-        }
-        
         //set searchbutton
         setSearchButton()
         setFullScfeenExitButton()

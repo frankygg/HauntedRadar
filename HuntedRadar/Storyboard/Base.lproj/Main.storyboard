@@ -94,20 +94,11 @@
                         <outlet property="mapView" destination="PfH-me-K1H" id="eZ2-Tp-bhJ"/>
                         <outlet property="originalMapTopConstraint" destination="aE5-Ba-bmq" id="k2l-un-nPx"/>
                         <outlet property="searchButton" destination="HVC-t3-0LI" id="sBa-dZ-liS"/>
-                        <segue destination="km7-Fe-VS9" kind="presentation" identifier="login" id="XuD-Th-XBs"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1042.5" y="95.070422535211264"/>
-        </scene>
-        <!--Login-->
-        <scene sceneID="9Kc-Jl-ik4">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Login" id="km7-Fe-VS9" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h1U-8s-8Go" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1085" y="688"/>
         </scene>
         <!--Bar Chart View Controller-->
         <scene sceneID="Nwl-I9-iEZ">
