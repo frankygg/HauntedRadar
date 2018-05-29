@@ -39,9 +39,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
 //        guard var  navigationController = mainStoryboard.instantiateViewController(withIdentifier: "navigationController") as? UIViewController else {
 //            return true
 //        }
-        let navigationController = UIStoryboard.mapStoryboard().instantiateInitialViewController()!
+//        let navigationController = UIStoryboard.mapStoryboard().instantiateInitialViewController()!
         //隱藏tabbar上架
-//        let navigationController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
+        let navigationController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
         self.window!.rootViewController = navigationController
 
         // logo mask

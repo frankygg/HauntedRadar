@@ -17,6 +17,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     var isSignIn: Bool = true
 
     //IBOutlet var
+    @IBOutlet weak var visitButton: UIButton!
     @IBOutlet weak var dismissButton: UIButton!
     @IBOutlet weak var confirmPasswordStackView: UIStackView!
     @IBOutlet weak var userNameStackView: UIStackView!
@@ -26,26 +27,26 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var confirmTextField: UITextField!
     @IBOutlet weak var signinLabel: UILabel!
-    @IBOutlet weak var signinSelector: UISegmentedControl!
     override func viewDidLoad() {
         super.viewDidLoad()
         userNameStackView.isHidden = true
         confirmPasswordStackView.isHidden = true
         dismissButton.setImage(dismissButton.imageView?.image?.withRenderingMode(.alwaysTemplate), for: .normal)
-        dismissButton.tintColor = UIColor.white
-        setSignInButton()
-        setTextFieldDelegate()
+        setSignInAndVisitButton()
+        setTextFieldDelegateAndStyle()
     }
 
-    @IBAction func signInSelectorChanged(_ sender: UISegmentedControl) {
+    @IBAction func signInSelectorChanged(_ sender: UIButton) {
         isSignIn = !isSignIn
         if isSignIn {
-            signinLabel.text = "登入"
+            sender.setTitle("註冊", for: .normal)
+            signinLabel.text = "沒有帳號嗎？"
             signInButton.setTitle("登入", for: .normal)
             userNameStackView.isHidden = true
             confirmPasswordStackView.isHidden = true
         } else {
-            signinLabel.text = "註冊"
+            sender.setTitle("登入", for: .normal)
+            signinLabel.text = "已有帳號嗎？"
             signInButton.setTitle("註冊", for: .normal)
             userNameStackView.isHidden = false
             confirmPasswordStackView.isHidden = false
@@ -101,11 +102,18 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         passwordTextField.resignFirstResponder()
     }
 
-    func setTextFieldDelegate() {
+    func setTextFieldDelegateAndStyle() {
         passwordTextField.delegate = self
      emailTextField.delegate = self
         userNameTextField.delegate = self
         confirmTextField.delegate = self
+//        //custom emailTextField
+//        var bottomBorder = CALayer()
+//        bottomBorder.frame = CGRect(x: 0, y: 0, width: self.emailTextField.frame.size.width , height: self.emailTextField.frame.size.height - 1)
+//       
+//        bottomBorder.backgroundColor = UIColor.white.cgColor
+//        self.emailTextField.layer.addSublayer(bottomBorder)
+//        self.emailTextField.layer.borderColor = UIColor.red.cgColor
     }
 
     func loginCompletionCallback(user: User?, error: Error?) {
@@ -146,6 +154,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         dismiss(animated: true, completion: nil)
     }
 
+    @IBAction func visitAction(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+
+    }
     func alertAction(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -164,11 +176,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         })
     }
 
-    func setSignInButton() {
+    func setSignInAndVisitButton() {
         signInButton.layer.cornerRadius = signInButton.layer.frame.height / 2
-        signInButton.layer.backgroundColor = UIColor.white.cgColor
         signInButton.clipsToBounds = true
-        signInButton.setTitleColor(UIColor.black, for: .normal)
+        
+        visitButton.layer.cornerRadius = signInButton.layer.frame.height / 2
+        visitButton.clipsToBounds = true
+
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
