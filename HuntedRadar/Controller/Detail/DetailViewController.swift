@@ -177,7 +177,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
             cell.createdTimeLabel.text = timeOffset
             
-            cell.separatorInset = .zero
+            //無下邊界
+            cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
+
 
             return cell
     }
