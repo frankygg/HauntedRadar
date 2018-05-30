@@ -20,7 +20,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ViS-6y-jXv">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_3" translatesAutoresizingMaskIntoConstraints="NO" id="7cT-LF-XbJ">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="picture_3" translatesAutoresizingMaskIntoConstraints="NO" id="7cT-LF-XbJ">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="298"/>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6We-8J-obL">
@@ -39,7 +39,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aU-uI-jnq">
-                                        <rect key="frame" x="67" y="436" width="241" height="30"/>
+                                        <rect key="frame" x="67" y="443" width="241" height="30"/>
                                         <color key="backgroundColor" red="1" green="0.23921568630000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="發問">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -75,7 +75,7 @@
                                     <constraint firstItem="4aU-uI-jnq" firstAttribute="leading" secondItem="AsP-Bn-0lW" secondAttribute="leading" id="nvO-EO-gTJ"/>
                                     <constraint firstItem="AsP-Bn-0lW" firstAttribute="leading" secondItem="ViS-6y-jXv" secondAttribute="leading" constant="67" id="obl-us-udu"/>
                                     <constraint firstItem="6We-8J-obL" firstAttribute="centerX" secondItem="ViS-6y-jXv" secondAttribute="centerX" id="opk-le-Dsk"/>
-                                    <constraint firstItem="4aU-uI-jnq" firstAttribute="top" secondItem="AsP-Bn-0lW" secondAttribute="bottom" constant="8" id="oxV-MM-2gR"/>
+                                    <constraint firstItem="4aU-uI-jnq" firstAttribute="top" secondItem="AsP-Bn-0lW" secondAttribute="bottom" constant="15" id="oxV-MM-2gR"/>
                                     <constraint firstItem="AsP-Bn-0lW" firstAttribute="trailing" secondItem="6We-8J-obL" secondAttribute="trailing" id="w13-vS-69Y"/>
                                     <constraint firstItem="7cT-LF-XbJ" firstAttribute="leading" secondItem="ViS-6y-jXv" secondAttribute="leading" id="zAN-dB-dPH"/>
                                 </constraints>

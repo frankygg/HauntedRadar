@@ -171,7 +171,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
 //            self.myTableView.deleteRows(at: [indexPath], with: .fade)
         })
 
-        action.backgroundColor = UIColor.blue
+        action.backgroundColor = UIColor(red: 255/255, green: 229/255, blue: 59/255, alpha: 1)
 
         action.image = UIImage(named: "edit")
 

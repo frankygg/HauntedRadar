@@ -139,7 +139,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.forbidUser.remove(at: indexPath.row)
             self.forbidUserTableView.deleteRows(at: [indexPath], with: .fade)
         })
-        action.backgroundColor = UIColor.green
+        action.backgroundColor = UIColor(red: 255/255, green: 229/255, blue: 59/255, alpha: 1)
 
         action.image = UIImage(named: "unlock")
 
