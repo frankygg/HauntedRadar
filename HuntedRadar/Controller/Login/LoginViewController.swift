@@ -197,10 +197,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     func setSignInAndVisitButton() {
-        signInButton.layer.cornerRadius = signInButton.layer.frame.height / 2
+        signInButton.layer.cornerRadius = 5
         signInButton.clipsToBounds = true
         
-        visitButton.layer.cornerRadius = signInButton.layer.frame.height / 2
+        visitButton.layer.cornerRadius = 5
         visitButton.clipsToBounds = true
 
     }

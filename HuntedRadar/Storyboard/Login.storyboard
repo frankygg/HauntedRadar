@@ -170,7 +170,7 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aan-rP-aCg">
-                                <rect key="frame" x="38" y="504" width="300" height="20"/>
+                                <rect key="frame" x="38" y="506.5" width="300" height="20"/>
                                 <color key="backgroundColor" red="1" green="0.23921568630000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="訪客登入">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -186,7 +186,7 @@
                             <constraint firstItem="BoY-fz-9n0" firstAttribute="centerX" secondItem="Dkm-KY-dox" secondAttribute="centerX" id="4nv-w6-QFv"/>
                             <constraint firstItem="aan-rP-aCg" firstAttribute="centerX" secondItem="Dkm-KY-dox" secondAttribute="centerX" id="B9o-Hw-atK"/>
                             <constraint firstItem="Hdh-8u-DL9" firstAttribute="centerX" secondItem="Dkm-KY-dox" secondAttribute="centerX" id="FmP-rQ-hWU"/>
-                            <constraint firstItem="aan-rP-aCg" firstAttribute="top" secondItem="L8K-ss-YuX" secondAttribute="bottom" constant="7.5" id="LbQ-og-COR"/>
+                            <constraint firstItem="aan-rP-aCg" firstAttribute="top" secondItem="L8K-ss-YuX" secondAttribute="bottom" constant="10" id="LbQ-og-COR"/>
                             <constraint firstItem="L8K-ss-YuX" firstAttribute="width" secondItem="Dkm-KY-dox" secondAttribute="width" multiplier="0.8" id="iQx-4C-9oU"/>
                             <constraint firstItem="Hdh-8u-DL9" firstAttribute="top" secondItem="vHe-IZ-P6f" secondAttribute="top" constant="10" id="ot2-GE-Mx3"/>
                             <constraint firstItem="gg9-gv-vxj" firstAttribute="top" secondItem="vHe-IZ-P6f" secondAttribute="top" constant="10" id="tIf-r6-49o"/>
