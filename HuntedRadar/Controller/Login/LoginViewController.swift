@@ -209,6 +209,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return false
     }
+//    @IBAction func privacyAction(_ sender: Any) {
+//        
+//        performSegue(withIdentifier: "privacy", sender: self)
+//    }
 }
 
 protocol DismissView: class {

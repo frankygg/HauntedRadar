@@ -179,6 +179,15 @@
                                     <action selector="visitAction:" destination="Mc6-Dp-fKd" eventType="touchUpInside" id="GwT-Q3-WWK"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYy-TJ-Iy0">
+                                <rect key="frame" x="149" y="627" width="77" height="30"/>
+                                <state key="normal" title="隱私權政策">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <segue destination="CY2-hj-PkD" kind="presentation" identifier="privacy" id="njv-1T-jAG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -187,6 +196,8 @@
                             <constraint firstItem="aan-rP-aCg" firstAttribute="centerX" secondItem="Dkm-KY-dox" secondAttribute="centerX" id="B9o-Hw-atK"/>
                             <constraint firstItem="Hdh-8u-DL9" firstAttribute="centerX" secondItem="Dkm-KY-dox" secondAttribute="centerX" id="FmP-rQ-hWU"/>
                             <constraint firstItem="aan-rP-aCg" firstAttribute="top" secondItem="L8K-ss-YuX" secondAttribute="bottom" constant="10" id="LbQ-og-COR"/>
+                            <constraint firstItem="MYy-TJ-Iy0" firstAttribute="centerX" secondItem="Dkm-KY-dox" secondAttribute="centerX" id="ODo-TN-B0E"/>
+                            <constraint firstItem="vHe-IZ-P6f" firstAttribute="bottom" secondItem="MYy-TJ-Iy0" secondAttribute="bottom" constant="10" id="QGJ-wr-Ju9"/>
                             <constraint firstItem="L8K-ss-YuX" firstAttribute="width" secondItem="Dkm-KY-dox" secondAttribute="width" multiplier="0.8" id="iQx-4C-9oU"/>
                             <constraint firstItem="Hdh-8u-DL9" firstAttribute="top" secondItem="vHe-IZ-P6f" secondAttribute="top" constant="10" id="ot2-GE-Mx3"/>
                             <constraint firstItem="gg9-gv-vxj" firstAttribute="top" secondItem="vHe-IZ-P6f" secondAttribute="top" constant="10" id="tIf-r6-49o"/>
@@ -212,6 +223,56 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sub-D0-iE1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="172" y="115.59220389805098"/>
+        </scene>
+        <!--Privacy View Controller-->
+        <scene sceneID="zgj-35-Xy2">
+            <objects>
+                <viewController id="CY2-hj-PkD" customClass="PrivacyViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BxX-n5-U6u">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UTH-Ow-Spm">
+                                <rect key="frame" x="0.0" y="81" width="375" height="532"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aj6-bB-ZEH">
+                                <rect key="frame" x="171.5" y="621" width="31" height="30"/>
+                                <state key="normal" title="了解">
+                                    <color key="titleColor" red="1" green="0.23921568630000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="understandAction:" destination="CY2-hj-PkD" eventType="touchUpInside" id="dd7-XM-ohO"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="隱私權政策" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yln-1U-Aoh">
+                                <rect key="frame" x="132" y="32" width="111.5" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yln-1U-Aoh" firstAttribute="top" secondItem="UUq-7x-LM3" secondAttribute="top" constant="12" id="H8t-YX-c09"/>
+                            <constraint firstItem="UUq-7x-LM3" firstAttribute="bottom" secondItem="UTH-Ow-Spm" secondAttribute="bottom" constant="54" id="HCZ-lr-6xQ"/>
+                            <constraint firstItem="UTH-Ow-Spm" firstAttribute="leading" secondItem="UUq-7x-LM3" secondAttribute="leading" id="L0a-Tf-Ace"/>
+                            <constraint firstItem="UTH-Ow-Spm" firstAttribute="top" secondItem="UUq-7x-LM3" secondAttribute="top" constant="61" id="RCZ-Pm-UoM"/>
+                            <constraint firstItem="UUq-7x-LM3" firstAttribute="bottom" secondItem="aj6-bB-ZEH" secondAttribute="bottom" constant="16" id="WQN-v7-mLC"/>
+                            <constraint firstItem="UUq-7x-LM3" firstAttribute="trailing" secondItem="UTH-Ow-Spm" secondAttribute="trailing" id="h37-23-bJH"/>
+                            <constraint firstItem="yln-1U-Aoh" firstAttribute="centerX" secondItem="BxX-n5-U6u" secondAttribute="centerX" id="hxu-Av-hvF"/>
+                            <constraint firstItem="UTH-Ow-Spm" firstAttribute="top" secondItem="yln-1U-Aoh" secondAttribute="bottom" constant="22" id="jeK-vv-dio"/>
+                            <constraint firstItem="aj6-bB-ZEH" firstAttribute="centerX" secondItem="BxX-n5-U6u" secondAttribute="centerX" id="vZ8-3J-ctT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="UUq-7x-LM3"/>
+                    </view>
+                    <connections>
+                        <outlet property="privacyTableView" destination="UTH-Ow-Spm" id="bGo-z4-JdN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bA4-D5-rbz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1052" y="148.87556221889056"/>
         </scene>
     </scenes>
     <resources>
