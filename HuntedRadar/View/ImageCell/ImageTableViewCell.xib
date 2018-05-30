@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -40,7 +41,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1CQ-UP-INq">
-                        <rect key="frame" x="48" y="249.5" width="70.5" height="18"/>
+                        <rect key="frame" x="43" y="249.5" width="70.5" height="18"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -93,7 +94,7 @@
                     <constraint firstItem="Kpx-eK-8yd" firstAttribute="top" secondItem="noj-eK-Lmg" secondAttribute="top" id="fna-8J-de4"/>
                     <constraint firstItem="noj-eK-Lmg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="fxr-54-STR"/>
                     <constraint firstAttribute="trailing" secondItem="3ua-cf-jOW" secondAttribute="trailing" constant="15" id="kez-w1-nyv"/>
-                    <constraint firstItem="1CQ-UP-INq" firstAttribute="leading" secondItem="noj-eK-Lmg" secondAttribute="trailing" constant="15" id="nn2-VQ-Ta3"/>
+                    <constraint firstItem="1CQ-UP-INq" firstAttribute="leading" secondItem="noj-eK-Lmg" secondAttribute="trailing" constant="10" id="nn2-VQ-Ta3"/>
                     <constraint firstItem="uvz-yD-SI0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="tCz-et-IPJ"/>
                     <constraint firstAttribute="bottom" secondItem="hmg-tt-XAG" secondAttribute="bottom" priority="999" constant="31" id="tJs-d7-ouR"/>
                     <constraint firstItem="noj-eK-Lmg" firstAttribute="top" secondItem="uvz-yD-SI0" secondAttribute="bottom" constant="15" id="uMp-Eg-LOj"/>
