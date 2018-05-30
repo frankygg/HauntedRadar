@@ -42,7 +42,9 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
     }
 
     func setButtonUI() {
-        addQuestionButton.layer.cornerRadius = addQuestionButton.frame.height / 2
+        addQuestionButton.layer.cornerRadius = 5
+        addQuestionButton.layer.borderWidth = 1
+        addQuestionButton.layer.borderColor = UIColor.lightGray.cgColor
         addQuestionButton.clipsToBounds = true
     }
     func setTextFieldPlaceholder() {

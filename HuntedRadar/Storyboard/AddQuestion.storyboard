@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -26,7 +25,6 @@
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6We-8J-obL">
                                         <rect key="frame" x="67" y="308" width="241" height="30"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="0.66274509803921566" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="kKe-2K-Wow"/>
                                         </constraints>
@@ -36,32 +34,29 @@
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AsP-Bn-0lW">
                                         <rect key="frame" x="67" y="398" width="241" height="30"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="0.66333912039999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4aU-uI-jnq">
-                                        <rect key="frame" x="167.5" y="436" width="40" height="20"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="0.66274509803921566" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="KZk-g0-Jsl"/>
-                                            <constraint firstAttribute="width" constant="40" id="WsF-xd-Xmu"/>
-                                        </constraints>
-                                        <state key="normal" title="發問"/>
+                                        <rect key="frame" x="67" y="436" width="241" height="30"/>
+                                        <color key="backgroundColor" red="1" green="0.23921568630000001" blue="0.23137254900000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <state key="normal" title="發問">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
                                         <connections>
                                             <action selector="addQuestionAction:" destination="OB6-IV-am9" eventType="touchUpInside" id="PpB-8u-i2I"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yP8-Iy-GqV">
                                         <rect key="frame" x="67" y="353" width="241" height="30"/>
-                                        <color key="backgroundColor" red="1" green="1" blue="0.66333912039999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="4aU-uI-jnq" firstAttribute="trailing" secondItem="AsP-Bn-0lW" secondAttribute="trailing" id="0XE-sC-nrX"/>
                                     <constraint firstAttribute="bottom" secondItem="4aU-uI-jnq" secondAttribute="bottom" constant="62" id="4XO-Qt-8d4"/>
                                     <constraint firstItem="4aU-uI-jnq" firstAttribute="centerX" secondItem="ViS-6y-jXv" secondAttribute="centerX" id="4qG-Wn-igg"/>
                                     <constraint firstItem="AsP-Bn-0lW" firstAttribute="top" secondItem="yP8-Iy-GqV" secondAttribute="bottom" constant="15" id="8WU-J1-pGW"/>
@@ -70,12 +65,14 @@
                                     <constraint firstItem="7cT-LF-XbJ" firstAttribute="top" secondItem="ViS-6y-jXv" secondAttribute="top" id="RHc-C8-SRr"/>
                                     <constraint firstItem="yP8-Iy-GqV" firstAttribute="top" secondItem="6We-8J-obL" secondAttribute="bottom" constant="15" id="SOe-Eo-DzW"/>
                                     <constraint firstItem="6We-8J-obL" firstAttribute="top" secondItem="7cT-LF-XbJ" secondAttribute="bottom" constant="10" id="UjX-wN-9YJ"/>
+                                    <constraint firstItem="4aU-uI-jnq" firstAttribute="width" secondItem="AsP-Bn-0lW" secondAttribute="width" id="XK4-9E-OYY"/>
                                     <constraint firstItem="AsP-Bn-0lW" firstAttribute="trailing" secondItem="yP8-Iy-GqV" secondAttribute="trailing" id="Yfp-X7-KdS"/>
                                     <constraint firstAttribute="trailing" secondItem="AsP-Bn-0lW" secondAttribute="trailing" constant="67" id="fFv-Fg-FJf"/>
                                     <constraint firstItem="AsP-Bn-0lW" firstAttribute="leading" secondItem="6We-8J-obL" secondAttribute="leading" id="jmi-WS-JrB"/>
                                     <constraint firstItem="6We-8J-obL" firstAttribute="leading" secondItem="ViS-6y-jXv" secondAttribute="leading" constant="67" id="lqF-M8-d8h"/>
                                     <constraint firstItem="6We-8J-obL" firstAttribute="centerY" secondItem="ViS-6y-jXv" secondAttribute="centerY" id="mMp-Lo-hmv"/>
                                     <constraint firstItem="7cT-LF-XbJ" firstAttribute="centerX" secondItem="6We-8J-obL" secondAttribute="centerX" id="mXD-Ki-uqP"/>
+                                    <constraint firstItem="4aU-uI-jnq" firstAttribute="leading" secondItem="AsP-Bn-0lW" secondAttribute="leading" id="nvO-EO-gTJ"/>
                                     <constraint firstItem="AsP-Bn-0lW" firstAttribute="leading" secondItem="ViS-6y-jXv" secondAttribute="leading" constant="67" id="obl-us-udu"/>
                                     <constraint firstItem="6We-8J-obL" firstAttribute="centerX" secondItem="ViS-6y-jXv" secondAttribute="centerX" id="opk-le-Dsk"/>
                                     <constraint firstItem="4aU-uI-jnq" firstAttribute="top" secondItem="AsP-Bn-0lW" secondAttribute="bottom" constant="8" id="oxV-MM-2gR"/>
