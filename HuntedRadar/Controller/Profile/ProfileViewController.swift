@@ -200,11 +200,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func alertAction(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+        let okAction = UIAlertAction(title: "確定", style: .default, handler: { _ in
             self.performSegue(withIdentifier: "login", sender: self)
 
         })
+        let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
         alertController.addAction(okAction)
+        alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
     }
     

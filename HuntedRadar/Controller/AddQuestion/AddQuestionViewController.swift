@@ -83,7 +83,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
     
     func alertAction(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        let okAction = UIAlertAction(title: "確定", style: .default, handler: nil)
         alertController.addAction(okAction)
         self.present(alertController, animated: true, completion: nil)
     }
@@ -147,12 +147,12 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
 
     @objc func image(_ image: UIImage, didFinishSavingWithError error: Error?, contextInfo: UnsafeRawPointer) {
         if let error = error {
-            let alertController = UIAlertController(title: "Save error", message: error.localizedDescription, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
+            let alertController = UIAlertController(title: "儲存發生錯誤", message: error.localizedDescription, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "確定", style: .default))
             present(alertController, animated: true)
         } else {
             let alertController = UIAlertController(title: "存擋", message: "資料已成功上傳", preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
+            alertController.addAction(UIAlertAction(title: "確定", style: .default))
             present(alertController, animated: true)
         }
     }

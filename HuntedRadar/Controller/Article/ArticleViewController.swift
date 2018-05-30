@@ -114,14 +114,20 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             //users can delete their message
             let action = SwipeAction(style: .default, title: "刪除", handler: { (_, indexpath) in
                 guard  Auth.auth().currentUser != nil else {
-                    self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
+                    self.customAlertAction(title: "您尚未登入", message: "請先登入再進行此操作") {[weak self] in
+                        self?.performSegue(withIdentifier: "loginWithOutAddQuestion", sender: self)
+
+                    }
                     return
                 }
-                //delete realtime database & storage image file
-                FirebaseManager.shared.deleteArticle(article: self.articles[indexpath.row])
-
-                self.articles.remove(at: indexPath.row)
-                self.myTableView.deleteRows(at: [indexPath], with: .fade)
+                self.customAlertAction(title: "", message: "您確定要刪除嗎？", completion: { [weak self] in
+                    //delete realtime database & storage image file
+                    FirebaseManager.shared.deleteArticle(article: (self?.articles[indexpath.row])!)
+                    
+                    self?.articles.remove(at: indexPath.row)
+                    self?.myTableView.deleteRows(at: [indexPath], with: .fade)
+                    
+                    })
             })
 
             action.backgroundColor = UIColor.red
@@ -136,7 +142,10 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             //users can forbid other accounts' activities
             let action = SwipeAction(style: .default, title: "封鎖用戶", handler: { (_, indexpath) in
                 guard  Auth.auth().currentUser != nil else {
-                    self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
+                    self.customAlertAction(title: "您尚未登入", message: "請先登入再進行此操作") {[weak self] in
+                        self?.performSegue(withIdentifier: "loginWithOutAddQuestion", sender: self)
+
+                    }
                     return
                 }
                 let articleUser = self.articles[indexpath.row].userName
@@ -159,7 +168,10 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     func editAction(at indexPath: IndexPath) -> SwipeAction {
         let action = SwipeAction(style: .default, title: "編輯", handler: { (_, indexpath) in
             guard  Auth.auth().currentUser != nil else {
-                self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
+                self.customAlertAction(title: "您尚未登入", message: "請先登入再進行此操作") { [weak self]
+in                    self?.performSegue(withIdentifier: "loginWithOutAddQuestion", sender: self)
+
+                }
                 return
             }
             self.editArticle = self.articles[indexpath.row]
@@ -178,13 +190,13 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         return action
     }
 
-    func alertAction(title: String, message: String) {
+    func customAlertAction(title: String, message: String, completion: @escaping () -> Void) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Ok", style: .default, handler: { _ in
-            self.performSegue(withIdentifier: "loginWithOutAddQuestion", sender: self)
-
+        let okAction = UIAlertAction(title: "確定", style: .default, handler: { _ in
+            completion()
         })
         alertController.addAction(okAction)
+        alertController.addAction(UIAlertAction(title: "取消", style: .default, handler: nil))
         self.present(alertController, animated: true, completion: nil)
     }
 
