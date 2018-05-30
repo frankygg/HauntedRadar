@@ -39,7 +39,6 @@
 		B712E03920AE7BF300FFBD87 /* SearchBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B712E03820AE7BF300FFBD87 /* SearchBarContainerView.swift */; };
 		B725FFB620A0377400BA6553 /* ExpandableLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725FFB520A0377400BA6553 /* ExpandableLocations.swift */; };
 		B72A46D420A1EEBD00E810E0 /* SafeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */; };
-		B741E3F420BD01F400CF4217 /* CustomTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B741E3F320BD01F400CF4217 /* CustomTextField.swift */; };
 		B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */; };
 		B79E4DB920A06E2900FE9911 /* LocationSearchTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */; };
 		B7BB5E3820B2967300F16CCD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB5E3720B2967300F16CCD /* DetailViewController.swift */; };
@@ -101,7 +100,6 @@
 		B712E03820AE7BF300FFBD87 /* SearchBarContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarContainerView.swift; sourceTree = "<group>"; };
 		B725FFB520A0377400BA6553 /* ExpandableLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLocations.swift; sourceTree = "<group>"; };
 		B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeLocation.swift; sourceTree = "<group>"; };
-		B741E3F320BD01F400CF4217 /* CustomTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextField.swift; sourceTree = "<group>"; };
 		B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuntedNavigationController.swift; sourceTree = "<group>"; };
 		B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationSearchTable.storyboard; sourceTree = "<group>"; };
 		B7BB5E3720B2967300F16CCD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -175,7 +173,6 @@
 			children = (
 				B708B3DD20A740C000687113 /* UIStoryBoardExtension.swift */,
 				B708702D20B32032008E0D57 /* DateExtension.swift */,
-				B741E3F320BD01F400CF4217 /* CustomTextField.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -642,7 +639,6 @@
 				B7C5AD58209962DE0054FD6B /* UnLuckyHouse.swift in Sources */,
 				B708B3DE20A740C000687113 /* UIStoryBoardExtension.swift in Sources */,
 				B705B9E420B5CCEA0068823D /* ProfileViewController.swift in Sources */,
-				B741E3F420BD01F400CF4217 /* CustomTextField.swift in Sources */,
 				B70C18DC209EE87600133859 /* LocationSearchTable.swift in Sources */,
 				B70452CC20A14B2500090318 /* SwitchCollectionViewCell.swift in Sources */,
 				B70BB4ED20B4664500612736 /* Forbid.swift in Sources */,
