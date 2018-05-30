@@ -18,6 +18,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var fullSize: CGSize!
     var comment = [Comment]()
     var article: Article!
+    var isScrollToBottomAfterComment = false
 
     //IBOutlet variable
 //    @IBOutlet weak var foriPhoneXConstraint: NSLayoutConstraint!
@@ -37,13 +38,20 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         loadCommentFromFirebase()
-        detailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .middle, animated: true)
+        detailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
 
     }
     func loadCommentFromFirebase() {
-        FirebaseManager.shared.loadComment(articleId: passedKey, completion: {comments in
-            self.comment = comments
-                self.detailTableView.reloadData()
+        FirebaseManager.shared.loadComment(articleId: passedKey, completion: {[weak self] comments in
+            self?.comment = comments
+                self?.detailTableView.reloadData()
+            guard let flag = self?.isScrollToBottomAfterComment else {
+                return
+            }
+            if flag {
+                self?.detailTableView.scrollToRow(at: IndexPath(row: (self?.comment.count)!, section: 0), at: .bottom, animated: true)
+                self?.isScrollToBottomAfterComment = false
+            }
         })
     }
 
@@ -73,8 +81,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         FirebaseManager.shared.addComment(comment: text, articleId: passedKey)
         self.view.endEditing(true)
         commetTextField.text = ""
-        detailTableView.reloadData()
-        detailTableView.scrollToRow(at: IndexPath(row: comment.count, section: 0), at: .middle, animated: true)
+        isScrollToBottomAfterComment = true
+        
 
     }
     override func viewDidLayoutSubviews() {
@@ -210,6 +218,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //                let customIndexPath = IndexPath(row: indexPath.row - 1, section: indexPath.section)
                 self.comment.remove(at: indexPath.row - 1)
                 self.detailTableView.deleteRows(at: [indexPath], with: .fade)
+                self.detailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
             })
 
             action.backgroundColor = UIColor.red
