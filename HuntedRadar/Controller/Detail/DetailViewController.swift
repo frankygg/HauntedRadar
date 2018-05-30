@@ -58,7 +58,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func setTextFieldButton() {
         let button = UIButton(type: .custom)
         button.setImage(UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate), for: .normal)
-        button.tintColor = UIColor.blue
+        button.tintColor = UIColor.lightGray
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
         button.frame = CGRect(x: CGFloat(fullSize.width - 16 - 30), y: CGFloat(10), width: CGFloat(30), height: CGFloat(30))
         button.addTarget(self, action: #selector(self.sendComment), for: .touchUpInside)
@@ -66,6 +66,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         commetTextField.rightViewMode = .always
         commetTextField.placeholder = "留言"
         commetTextField.delegate = self
+        let accountLeftView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
+        commetTextField.leftViewMode = .always
+        commetTextField.leftView = accountLeftView
 //        textField.rightView = btnColor
 //        textField.rightViewMode = .unlessEditing
     }
