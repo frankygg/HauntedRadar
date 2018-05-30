@@ -64,10 +64,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         SVProgressHUD.setDefaultAnimationType(.native)
         SVProgressHUD.show(withStatus: "登入中")
         //some validation on email and password
-        if let email = emailTextField.text, let password = passwordTextField.text {
+        if let email = emailTextField.text, let password = passwordTextField.text{
 
             //check if it's sign in or register
             if isSignIn {
+                guard email.trimmingCharacters(in: .whitespaces) != "" && password.trimmingCharacters(in: .whitespaces) != ""  else{
+                    SVProgressHUD.dismiss()
+                    alertAction(title: "登入失敗", message: "有欄位空白")
+                    return
+                }
                 //Sign in the userwith Firebase
                 Auth.auth().signIn(withEmail: email, password: password, completion: loginCompletionCallback)
             } else {
@@ -126,10 +131,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         } else {
             SVProgressHUD.dismiss()
 
-            guard let error = error else {
+            guard let error = error, let errorCode = AuthErrorCode(rawValue: error._code)
+            else {
                 return
             }
-            alertAction(title: "登入失敗", message: error.localizedDescription)
+            
+            alertAction(title: "登入失敗", message: errorCode.errorMessage)
         }
     }
 
@@ -144,10 +151,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         } else {
             SVProgressHUD.dismiss()
 
-            guard let error = error else {
+            guard let error = error ,let errorCode = AuthErrorCode(rawValue: error._code)
+                else {
                 return
             }
-            alertAction(title: "註冊失敗", message: error.localizedDescription)
+            print("\(error._code)  \(error.localizedDescription)")
+            alertAction(title: "註冊失敗", message: errorCode.errorMessage)
         }
     }
 

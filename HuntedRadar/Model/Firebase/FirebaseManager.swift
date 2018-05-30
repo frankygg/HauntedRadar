@@ -243,3 +243,27 @@ class FirebaseManager {
 
     }
 }
+
+extension AuthErrorCode {
+    var errorMessage: String {
+        switch self {
+        case .emailAlreadyInUse:
+            return "這個信箱已經被另一個帳號註冊！"
+        case .userNotFound:
+            return "無此帳號，請檢查並重新嘗試！"
+        case .userDisabled:
+            return "您的帳號已被封鎖，請聯繫管理員！"
+        case .invalidEmail, .invalidSender, .invalidRecipientEmail:
+            return "請輸入有效的信箱！"
+        case .networkError:
+            return "網路錯誤！請稍後嘗試！"
+        case .weakPassword:
+            return "您的密碼長度不足，密碼長度需大於六位數！"
+        case .wrongPassword:
+            return "您輸入的密碼錯誤！"
+        case .missingEmail: return "請您提供信箱地址！"
+        default:
+            return "發生不明錯誤！"
+        }
+    }
+}
