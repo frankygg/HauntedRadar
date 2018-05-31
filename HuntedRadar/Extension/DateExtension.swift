@@ -46,7 +46,7 @@ extension Date {
         if hours(from: date)   > 0 { return "\(hours(from: date)) hours"   }
         if minutes(from: date) > 0 { return "\(minutes(from: date)) min" }
         if seconds(from: date) > 0 { return "\(seconds(from: date)) sec" }
-        return ""
+        return "0 sec"
     }
 
 }
