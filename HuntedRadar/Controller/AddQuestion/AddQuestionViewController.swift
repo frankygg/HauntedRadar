@@ -26,7 +26,6 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         setButtonUI()
         setTextFieldPlaceholder()
         setNavigation()
-        setImageView()
         imageView.isUserInteractionEnabled = true
         let touch = UITapGestureRecognizer(target: self, action: #selector(bottomAlert))
         imageView.addGestureRecognizer(touch)
@@ -216,12 +215,6 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         }
     }
     
-    func setImageView() {
-        imageView.layer.borderColor = UIColor.lightGray.cgColor
-        imageView.layer.borderWidth = 1
-        imageView.layer.cornerRadius = 5
-        imageView.layer.masksToBounds = true
-    }
 }
 
 extension UITextField
