@@ -19,7 +19,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxb-m7-kDz">
-                        <rect key="frame" x="94" y="23" width="72" height="30"/>
+                        <rect key="frame" x="124" y="23" width="72" height="30"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="eYu-JR-4Hr">
                                 <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
@@ -40,7 +40,7 @@
                 <constraints>
                     <constraint firstItem="yxb-m7-kDz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="23" id="M2x-Bd-quh"/>
                     <constraint firstAttribute="bottom" secondItem="yxb-m7-kDz" secondAttribute="bottom" priority="999" constant="22.5" id="PrO-aH-6Kf"/>
-                    <constraint firstItem="yxb-m7-kDz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="94" id="c4j-TE-FFx"/>
+                    <constraint firstItem="yxb-m7-kDz" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="m4o-3t-HRF"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
