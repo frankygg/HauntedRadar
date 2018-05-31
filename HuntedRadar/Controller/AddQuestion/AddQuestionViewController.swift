@@ -11,11 +11,12 @@ import FirebaseAuth
 import SDWebImage
 import SVProgressHUD
 import Photos
-class AddQuestionViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class AddQuestionViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate, UITextViewDelegate {
     var passedValue: Any?
     var articleObject: Article?
+    @IBOutlet weak var reasonTextView: UITextView!
     @IBOutlet weak var addQuestionButton: UIButton!
-    @IBOutlet weak var reasonTextField: UITextField!
+//    @IBOutlet weak var reasonTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var imageView: UIImageView!
@@ -25,6 +26,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         setButtonUI()
         setTextFieldPlaceholder()
         setNavigation()
+        setImageView()
         imageView.isUserInteractionEnabled = true
         let touch = UITapGestureRecognizer(target: self, action: #selector(bottomAlert))
         imageView.addGestureRecognizer(touch)
@@ -36,9 +38,10 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
     }
 
     func setTextFieldDelegate() {
-        reasonTextField.delegate = self
+//        reasonTextField.delegate = self
         addressTextField.delegate = self
         titleTextField.delegate = self
+        reasonTextView.delegate = self
     }
 
     func setButtonUI() {
@@ -49,20 +52,35 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
     }
     func setTextFieldPlaceholder() {
         titleTextField.placeholder = "標題"
-        reasonTextField.placeholder = "內容"
+//        reasonTextField.placeholder = "內容"
         addressTextField.placeholder = "地址"
+        titleTextField.layer.borderColor = UIColor.red.cgColor
+        addressTextField.layer.borderColor = UIColor.red.cgColor
+
+        reasonTextView.text = "內容"
+        reasonTextView.textColor = UIColor(displayP3Red: 199 / 255, green: 199 / 255, blue: 205 / 255, alpha: 1)
+        reasonTextView.layer.cornerRadius = 5
+        reasonTextView.layer.masksToBounds = true
+        reasonTextView.layer.borderWidth = 1
+        reasonTextView.layer.borderColor = UIColor.lightGray.cgColor
         guard let passedValue = passedValue as? Article else {
         return
         }
         titleTextField.text = passedValue.title
-        reasonTextField.text = passedValue.reason
+//        reasonTextField.text = passedValue.reason
         addressTextField.text = passedValue.address
+        reasonTextView.text = passedValue.reason
+        reasonTextView.textColor = UIColor.black
         imageView.sd_setImage(with: URL(string: passedValue.imageUrl), placeholderImage: UIImage(named: "picture_3"))
         addQuestionButton.setTitle("編輯", for: .normal)
 
     }
     func setArticleObject() {
-        guard let title = titleTextField.text, let reason = reasonTextField.text, let address = addressTextField.text else {
+        guard let title = titleTextField.text, let reason = reasonTextView.text, let address = addressTextField.text else {
+            return
+        }
+        guard title.trimmingCharacters(in: .whitespaces) != "" &&  address.trimmingCharacters(in: .whitespaces) != "" && reason.trimmingCharacters(in: .whitespaces) != "" else {
+            alertAction(title: "輸入錯誤", message: "欄位不得為空白！")
             return
         }
         if let passedValue = passedValue as? Article {
@@ -182,5 +200,36 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == "內容"{
+            textView.text = ""
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if(textView.text.count < 1 || textView.text == ""){
+            textView.text = "內容"
+            textView.textColor = UIColor(displayP3Red: 175 / 255, green: 174 / 255, blue: 174 / 255, alpha: 1)
+        }
+    }
+    
+    func setImageView() {
+        imageView.layer.borderColor = UIColor.lightGray.cgColor
+        imageView.layer.borderWidth = 1
+        imageView.layer.cornerRadius = 5
+        imageView.layer.masksToBounds = true
+    }
+}
+
+extension UITextField
+{
+    open override func draw(_ rect: CGRect) {
+        self.layer.cornerRadius = 5.0
+        self.layer.borderWidth = 1.0
+        self.layer.borderColor = UIColor.lightGray.cgColor
+        self.layer.masksToBounds = true
     }
 }
