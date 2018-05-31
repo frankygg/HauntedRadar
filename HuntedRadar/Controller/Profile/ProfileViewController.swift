@@ -107,6 +107,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         cell.userNameLabel.text = forbidUser[indexPath.row].userName
         
+        if forbidUser[indexPath.row].forbidKey == "" {
+            cell.userImage.isHidden = true
+        } else {
+            cell.userImage.isHidden = false
+
+        }
+        
         cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
         //不可被點選
         cell.selectionStyle = .none
@@ -116,7 +123,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
 
-        guard orientation == .right else { return nil }
+        guard orientation == .right , forbidUser[indexPath.row].forbidKey != "" else { return nil }
 
         let action = recoverAction(at: indexPath)
 
@@ -190,10 +197,13 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     
     func loadForbidUserFromFireBase() {
-        FirebaseManager.shared.loadForbidUsers(completion: { forbidUser in
+        FirebaseManager.shared.loadForbidUsers(completion: { [weak self]  forbidUser in
 
-            self.forbidUser = forbidUser
-            self.forbidUserTableView.reloadData()
+            self?.forbidUser = forbidUser
+            if self?.forbidUser.count == 0 {
+                self?.forbidUser.append(Forbid(userName: "無封鎖資料!", forbidKey: ""))
+            }
+            self?.forbidUserTableView.reloadData()
 
         })
     }
