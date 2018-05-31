@@ -8,8 +8,10 @@
 
 import Foundation
 import Charts
-class BarChartViewController: UIViewController {
-    @objc func zoomback(_ sender: Any) {
+class BarChartViewController: UIViewController, ChartViewDelegate {
+    @objc func zoomback(_ sender: UIBarButtonItem) {
+        sender.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
+
         self.barChartView.zoomToCenter(scaleX: 0, scaleY: 0)
     }
 
@@ -25,10 +27,23 @@ class BarChartViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        print(passedValue!)
+        barChartView.delegate = self
         setupView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "full_screen_exit"), style: .done, target: self, action: #selector(zoomback))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
+
+//        navigationController?.navigationBar.tintColor = UIColor.white
+    }
+    
+    func chartScaled(_ chartView: ChartViewBase, scaleX: CGFloat, scaleY: CGFloat) {
+        print("scaled")
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-        navigationController?.navigationBar.tintColor = UIColor.white
+    }
+    func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
+        
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+
+        print("translated")
     }
 
     override func didReceiveMemoryWarning() {
@@ -56,7 +71,7 @@ class BarChartViewController: UIViewController {
         yaxis.spaceTop = 0.35
         yaxis.axisMinimum = 0
         yaxis.drawGridLinesEnabled = false
-        yaxis.labelTextColor = UIColor.blue
+        yaxis.labelTextColor = UIColor.gray
         yaxis.axisLineColor = UIColor.black
         yaxis.axisLineWidth = 1.5
 
@@ -70,7 +85,7 @@ class BarChartViewController: UIViewController {
 
         xaxis.drawGridLinesEnabled = false
         xaxis.labelPosition = .bottom
-        xaxis.labelTextColor = UIColor.blue
+        xaxis.labelTextColor = UIColor.gray
         xaxis.centerAxisLabelsEnabled = true
         xaxis.axisLineColor = UIColor.black
         xaxis.axisLineWidth = 1.5
