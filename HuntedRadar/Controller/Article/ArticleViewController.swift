@@ -68,7 +68,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         cell.delegate = self
         cell.userNameLabel.text = articles[indexPath.row].userName
-        cell.imageUrlView.sd_setImage(with: URL(string: articles[indexPath.row].imageUrl), placeholderImage: UIImage(named: "picture_3"))
+        cell.imageUrlView.sd_setImage(with: URL(string: articles[indexPath.row].imageUrl), placeholderImage: UIImage(named: "adjust_picture"))
         cell.titleLabel.text = articles[indexPath.row].title
         //處理時間
         let date = Date(timeIntervalSince1970: TimeInterval(articles[indexPath.row].createdTime))
