@@ -10,6 +10,7 @@ import UIKit
 import FirebaseAuth
 import SDWebImage
 import SwipeCellKit
+var imagePhotoUrls = [String]()
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate, UITextFieldDelegate {
 
     //local variable
@@ -27,6 +28,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var detailTableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationItem()
         fullSize = UIScreen.main.bounds.size
         setNib()
         setDetailData()
@@ -110,6 +112,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //            }
 //        }
 //    }
+    
+    func setNavigationItem() {
+        navigationItem.title = "深入瞭解"
+//        navigationController?.navigationBar.topItem?.title = "深入瞭解"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: 20)!]
+    }
     func setNib() {
         //xib的名稱
         let nib = UINib(nibName: String(describing: ImageTableViewCell.self), bundle: nil)
@@ -130,6 +138,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         self.article = article
+        imagePhotoUrls = article.imageUrl
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -146,7 +155,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 return UITableViewCell()
             }
 
-            cell.imageUrlView.sd_setImage(with: URL(string: article.imageUrl), placeholderImage: UIImage(named: "picture_3"))
+//            cell.imageUrlView.sd_setImage(with: URL(string: article.imageUrl[0]), placeholderImage: UIImage(named: "picture_3"))
 
             cell.addressLabel.text = "地址： \(article.address)"
 

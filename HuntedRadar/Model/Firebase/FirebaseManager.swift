@@ -20,34 +20,78 @@ class FirebaseManager {
         return storageRef.child("image")
     }
 
-    func addArticleQuestion(uploadimage: UIImage?, uploadArticle article: Article, handler: @escaping () -> Void = { return}) {
-        let filename = "\(NSUUID().uuidString)"
-        if let image = uploadimage, let imageData = UIImageJPEGRepresentation(image, 0.1), let uid = Auth.auth().currentUser?.uid {
-            let uploadImageRef = imageReference.child(filename)
-            let metadata = StorageMetadata()
-            metadata.contentType = "image/png"
+    func addArticleQuestion(uploadimage: [UIImage], uploadArticle article: Article, handler: @escaping () -> Void = { return}) {
+//        var textArray: [String] = []
+//        var fileNameArray: [String] = []
+        if  let uid = Auth.auth().currentUser?.uid {
             var userName = ""
             ref.child("users/\(uid)/username").observe(.value) { (snapshot) in
                 if let value = snapshot.value as? String {
-                   userName = value
+                    userName = value
                 }
             }
-            _ = uploadImageRef.putData(imageData, metadata: metadata, completion: {(_, error) in
-                if error == nil {
-                    uploadImageRef.downloadURL(completion: { (url, error) in
-                        if error == nil, let url = url {
-                            let text = url.absoluteString
-                            let reference = self.ref.child("article").childByAutoId()
-                                let articleKey = reference.key
-                            reference.setValue(["imageUrl": text, "userName": userName, "uid": uid, "reason": article.reason, "address": article.address, "title": article.title, "createdTime": article.createdTime, "articleKey": articleKey, "imageName": filename])
-                            handler()
-                            //更新
-//                            self.ref.child("article/\(uid)").updateChildValues(["image": text])
-                        }
-                    })
-                }
-            })
+            
+            uploadMultiPhoto(uploadimage: uploadimage) { fileNameArray, textArray in
+                let reference = self.ref.child("article").childByAutoId()
+                let articleKey = reference.key
+                reference.setValue(["imageUrl": textArray, "userName": userName, "uid": uid, "reason": article.reason, "address": article.address, "title": article.title, "createdTime": article.createdTime, "articleKey": articleKey, "imageName": fileNameArray])
+                handler()
+            }
         }
+    }
+    
+    func uploadMultiPhoto(uploadimage: [UIImage], completion: @escaping ([String], [String]) -> Void) {
+        var fileNameArray = [String]()
+        var textArray = [String]()
+        
+        
+        let dispatchGroup = DispatchGroup()
+        let semaphore = DispatchSemaphore(value: 1)
+        let queue = DispatchQueue.global(qos: .utility)
+        
+        queue.async {
+            
+        
+            for image in uploadimage {
+//                dispatchGroup.enter()
+                semaphore.wait()
+                let filename = "\(NSUUID().uuidString)"
+                fileNameArray.append(filename)
+                guard let imageData = UIImageJPEGRepresentation(image, 0.1) else {
+                    return
+                }
+                let uploadImageRef = self.imageReference.child(filename)
+                let metadata = StorageMetadata()
+                metadata.contentType = "image/png"
+                _ = uploadImageRef.putData(imageData, metadata: metadata, completion: {(_, error) in
+                    if error == nil {
+                        uploadImageRef.downloadURL(completion: { (url, error) in
+                            if error == nil, let url = url {
+                                let text = url.absoluteString
+                                textArray.append(text)
+                                semaphore.signal()
+//                                dispatchGroup.leave()
+                                //更新
+                                //                            self.ref.child("article/\(uid)").updateChildValues(["image": text])
+                            }
+                        })
+                    }
+                })
+            }
+//            dispatchGroup.notify(queue: .main) {
+//                completion(fileNameArray, textArray)
+//                print("Both functions complete 👍")
+//            }
+            semaphore.wait()
+            DispatchQueue.main.async {
+                
+                completion(fileNameArray, textArray)
+                print("Both functions complete 👍")
+            }
+            semaphore.signal()
+            
+    }
+        
     }
 
     func loadArticle(completion: @escaping([Article]) -> Void) {
@@ -63,7 +107,7 @@ class FirebaseManager {
                     guard let obj = obj as? NSDictionary else {
                         return
                     }
-                    let article = Article(uid: (obj.object(forKey: "uid") as? String)!, userName: (obj.object(forKey: "userName") as? String)!, imageUrl: (obj.object(forKey: "imageUrl") as? String)!, address: (obj.object(forKey: "address") as? String)!, reason: (obj.object(forKey: "reason") as? String)!, title: (obj.object(forKey: "title") as? String)!, createdTime: (obj.object(forKey: "createdTime") as? Int)!, articleKey: (obj.object(forKey: "articleKey") as? String)!, imageName: (obj.object(forKey: "imageName") as? String)!)
+                    let article = Article(uid: (obj.object(forKey: "uid") as? String)!, userName: (obj.object(forKey: "userName") as? String)!, imageUrl: (obj.object(forKey: "imageUrl") as? [String])!, address: (obj.object(forKey: "address") as? String)!, reason: (obj.object(forKey: "reason") as? String)!, title: (obj.object(forKey: "title") as? String)!, createdTime: (obj.object(forKey: "createdTime") as? Int)!, articleKey: (obj.object(forKey: "articleKey") as? String)!, imageName: (obj.object(forKey: "imageName") as? [String])!)
                     articles.append(article)
 //                    print("================")
 //                    print(obj)
@@ -84,7 +128,9 @@ class FirebaseManager {
 
     func deleteArticle(article: Article) {
         ref.child("article").child(article.articleKey).setValue(nil)
-        imageReference.child(article.imageName).delete(completion: { error in
+        
+        for imageName in article.imageName{
+        imageReference.child(imageName).delete(completion: { error in
             if let error = error {
                 print(error)
             } else {
@@ -92,25 +138,43 @@ class FirebaseManager {
             }
         })
     }
+    }
 
-    func editArticle(uploadimage: UIImage?, article: Article, handler: @escaping () -> Void ) {
-        let filename = article.imageName
-        if let image = uploadimage, let imageData = UIImageJPEGRepresentation(image, 0.1) {
-            let uploadImageRef = imageReference.child(filename)
-            let metadata = StorageMetadata()
-            metadata.contentType = "image/png"
-            _ = uploadImageRef.putData(imageData, metadata: metadata, completion: {(_, error) in
-                if error == nil {
-                    uploadImageRef.downloadURL(completion: { (url, error) in
-                        if error == nil, let url = url {
-                            let text = url.absoluteString
-                            self.ref.child("article").child(article.articleKey).updateChildValues(["imageUrl": text, "reason": article.reason, "address": article.address, "title": article.title, "createdTime": article.createdTime])
-                            handler()
-                        }
-                    })
+    func editArticle(uploadimage: [UIImage], article: Article, handler: @escaping () -> Void ) {
+
+        //清storage
+        for imageName in article.imageName{
+            imageReference.child(imageName).delete(completion: { error in
+                if let error = error {
+                    print(error)
+                } else {
+                    // File deleted successfully
                 }
             })
         }
+        
+        uploadMultiPhoto(uploadimage: uploadimage) { fileNameArray, textArray in
+            self.ref.child("article").child(article.articleKey).updateChildValues(["imageUrl": textArray, "reason": article.reason, "address": article.address, "title": article.title, "createdTime": article.createdTime, "imageName": fileNameArray])
+                                        handler()
+            
+        }
+//        let filename = article.imageName
+//        if let image = uploadimage, let imageData = UIImageJPEGRepresentation(image, 0.1) {
+//            let uploadImageRef = imageReference.child(filename)
+//            let metadata = StorageMetadata()
+//            metadata.contentType = "image/png"
+//            _ = uploadImageRef.putData(imageData, metadata: metadata, completion: {(_, error) in
+//                if error == nil {
+//                    uploadImageRef.downloadURL(completion: { (url, error) in
+//                        if error == nil, let url = url {
+//                            let text = url.absoluteString
+//                            self.ref.child("article").child(article.articleKey).updateChildValues(["imageUrl": text, "reason": article.reason, "address": article.address, "title": article.title, "createdTime": article.createdTime])
+//                            handler()
+//                        }
+//                    })
+//                }
+//            })
+//        }
 
     }
 

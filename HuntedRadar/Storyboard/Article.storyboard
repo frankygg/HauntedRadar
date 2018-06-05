@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,7 +31,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rSq-dz-kqf"/>
                     </view>
-                    <navigationItem key="navigationItem" id="xgl-Hv-ZJg"/>
+                    <navigationItem key="navigationItem" id="xgl-Hv-ZJg">
+                        <barButtonItem key="backBarButtonItem" title="    " id="wb9-0y-3uv"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="myTableView" destination="Dr2-SE-pNU" id="wI1-0p-6gX"/>
                         <segue destination="YVV-Or-TYo" kind="presentation" identifier="login" id="xlt-FI-sEi"/>

@@ -68,7 +68,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         }
         cell.delegate = self
         cell.userNameLabel.text = articles[indexPath.row].userName
-        cell.imageUrlView.sd_setImage(with: URL(string: articles[indexPath.row].imageUrl), placeholderImage: UIImage(named: "adjust_picture"))
+        cell.imageUrlView.sd_setImage(with: URL(string: articles[indexPath.row].imageUrl[0]), placeholderImage: UIImage(named: "adjust_picture"))
         cell.titleLabel.text = articles[indexPath.row].title
         //處理時間
         let date = Date(timeIntervalSince1970: TimeInterval(articles[indexPath.row].createdTime))
@@ -104,6 +104,8 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     func setNavigationItem() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "plus"), style: .done, target: self, action: #selector(addQuestion))
         navigationItem.rightBarButtonItem?.tintColor = .white
+        navigationController?.navigationBar.topItem?.title = "論壇"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: 20)!]
     }
 
     func multiAction(at indexPath: IndexPath) -> [SwipeAction] {

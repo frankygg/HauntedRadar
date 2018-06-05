@@ -155,6 +155,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func setNavigation() {
         navigationItem.rightBarButtonItem?.tintColor = .white
+        navigationController?.navigationBar.topItem?.title = "設定"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: 20)!]
     }
     
     func setNavigationRightBurtton() {
