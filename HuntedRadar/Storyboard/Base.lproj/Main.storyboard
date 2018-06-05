@@ -86,7 +86,9 @@
                             </mask>
                         </variation>
                     </view>
-                    <navigationItem key="navigationItem" id="4J5-6w-oZ4"/>
+                    <navigationItem key="navigationItem" id="4J5-6w-oZ4">
+                        <barButtonItem key="backBarButtonItem" title=" " id="SiL-eq-CxM"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="controlPanelView" destination="sbV-Bt-bp7" id="3Im-RG-wZU"/>
                         <outlet property="fullScreenMapTopConstraint" destination="ffJ-X8-px9" id="sXJ-SR-YrS"/>

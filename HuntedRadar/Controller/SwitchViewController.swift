@@ -42,7 +42,7 @@ extension SwitchViewController: UICollectionViewDelegateFlowLayout, UICollection
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         if self.view.frame.size.width > 320 {
-            return UIEdgeInsets(top: 10, left: 5, bottom: 10, right: 5)
+            return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
         } else {
             return UIEdgeInsets(top: 4, left: 0, bottom: 4, right: 0)
         }
