@@ -89,7 +89,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.view.endEditing(true)
         commetTextField.text = ""
         isScrollToBottomAfterComment = true
-        
 
     }
     override func viewDidLayoutSubviews() {
@@ -112,7 +111,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //            }
 //        }
 //    }
-    
+
     func setNavigationItem() {
         navigationItem.title = "深入瞭解"
 //        navigationController?.navigationBar.topItem?.title = "深入瞭解"
@@ -129,7 +128,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         detailTableView.dataSource = self
         detailTableView.delegate = self
-        
+
         detailTableView.allowsSelection = false
     }
 
@@ -173,7 +172,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             cell.createdTimeLabel.text = timeOffset
 
             cell.userNameLabel.text = article.userName
-            
+
             cell.separatorInset = .zero
 
             return cell
@@ -198,10 +197,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let timeOffset = now.offset(from: date)
 
             cell.createdTimeLabel.text = timeOffset
-            
-            //無下邊界
-            cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
 
+            //無下邊界
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
 
             return cell
     }
@@ -290,7 +288,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             completion()
         })
         let cancelAction = UIAlertAction(title: "取消", style: .default, handler: { _ in
-            
+
         })
         alertController.addAction(okAction)
         alertController.addAction(cancelAction)

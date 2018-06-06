@@ -9,7 +9,7 @@
 import UIKit
 
 class PrivacyViewCell: UITableViewCell {
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -20,5 +20,5 @@ class PrivacyViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
+
 }

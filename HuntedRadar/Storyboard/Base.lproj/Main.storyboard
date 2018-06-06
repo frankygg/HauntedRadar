@@ -43,7 +43,6 @@
                                 <rect key="frame" x="20" y="667" width="21" height="22"/>
                                 <state key="normal" image="search"/>
                                 <connections>
-                                    <action selector="visible:" destination="BYZ-38-t0r" eventType="touchUpInside" id="exZ-FN-PPk"/>
                                     <segue destination="Pea-l5-jpJ" kind="show" identifier="deliverCrime" id="hX5-Cf-zoE"/>
                                 </connections>
                             </button>

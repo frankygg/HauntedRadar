@@ -10,38 +10,51 @@ import UIKit
 import MapKit
 import FirebaseAuth
 
-class MapViewController: UIViewController, SwitchViewDelegate {
+class MapViewController: UIViewController {
 
+    //IBOutlet var
     @IBOutlet weak var originalMapTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var fullScreenMapTopConstraint: NSLayoutConstraint!
-    private var mapChangedFromUserInteraction = false
+    @IBOutlet weak var fullscreenExitButton: UIButton!
+    @IBOutlet weak var controlPanelView: UIView!
+    @IBOutlet weak var mapView: MKMapView!
 
-    let dangerous = ["凶宅", "毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
-
-    var boolArray = ["凶宅": false, "毒品": false, "強制性交": false, "強盜": false, "搶奪": false, "住宅竊盜": false, "汽車竊盜": false, "機車竊盜": false]
-
-    func deliverSwitchState(_ sender: SwitchCollectionViewCell, _ rowAt: Int) {
-        if let state = boolArray[dangerous[rowAt]] {
-        boolArray[dangerous[rowAt]] = !state
+    //IBOutlet Action
+    @IBAction func exitFullscreen(_ sender: UIButton) {
+        if isFullScreen {
+            sender.isHidden = true
+            UIView.animate(withDuration: 0.5, animations: {
+                self.fullScreenMapTopConstraint.isActive = false
+                self.originalMapTopConstraint.isActive = true
+                self.view.layoutIfNeeded()
+            })
+            isFullScreen = !isFullScreen
+            controlPanelView.isHidden = isFullScreen
         }
-        handleUnluckyHouse()
-        handleDangerousLocation()
     }
 
+    //local var
+    var tapGesture = UITapGestureRecognizer()
+    let unLuckyHouseIdentifier = "unluckyhouse"
+    let dangerouseLocationIdentifier = "dangerouse"
+    let safeLocationIdentifier = "safe"
+    var unluckyhouseList = [UnLuckyHouse]()
+    let locationManager = CLLocationManager()
+    var dlManager = DLManager()
+    private var mapChangedFromUserInteraction = false
+    let dangerous = ["凶宅", "毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
+    var boolArray = ["凶宅": false, "毒品": false, "強制性交": false, "強盜": false, "搶奪": false, "住宅竊盜": false, "汽車竊盜": false, "機車竊盜": false]
     var resultSearchController: UISearchController?
     var hasUnluckyhouse = false
-
-    @IBOutlet weak var fullscreenExitButton: UIButton!
     var dangerousLocation = [DangerousLocation]()
     var addressWithMultiAnnotation = [String: [DangerousLocation]]()
-
     var dangerousAddress = [DangerousAddress]()
     var dangerousCrimeDate: [String]?
-
     var isFullScreen = false
-    @IBOutlet weak var controlPanelView: UIView!
     var userLocation: CLLocation?
     var originalLocation: CLLocationCoordinate2D?
+
     @objc func centerBackOnLocation(_ sender: UIBarButtonItem) {
         sender.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
         mapView.removeAnnotations(mapView.annotations)
@@ -63,12 +76,6 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         }
         handleUnluckyHouse()
         handleDangerousLocation()
-    }
-    @IBOutlet weak var searchButton: UIButton!
-    @IBAction func visible(_ sender: UIButton) {
-//        handleUnluckyHouse()
-        print("================dangerousAddress============== \(dangerousAddress.count)")
-//        handleDangerousLocation()
     }
 
     func handleUnluckyHouse() {
@@ -97,7 +104,7 @@ class MapViewController: UIViewController, SwitchViewDelegate {
     func handleDangerousLocation() {
         dangerousCrimeDate = [String]()
         if let userLocation = userLocation, dangerousAddress.count > 0 {
-            getAddressFromLatLon(pdblLatitude: userLocation.coordinate.latitude, withLongitude: userLocation.coordinate.longitude) { useraddress in
+            AddressProvider.shared.getAddressFromLatLon(pdblLatitude: userLocation.coordinate.latitude, withLongitude: userLocation.coordinate.longitude) { useraddress in
                 DispatchQueue.main.async {
                     var hasAnnotation = false
                     for item in self.dangerousAddress where item.address == useraddress {
@@ -140,46 +147,27 @@ class MapViewController: UIViewController, SwitchViewDelegate {
             }
         }
     }
-    var tapGesture = UITapGestureRecognizer()
-    @IBOutlet weak var mapView: MKMapView!
-    let unLuckyHouseIdentifier = "unluckyhouse"
-    let dangerouseLocationIdentifier = "dangerouse"
-    let safeLocationIdentifier = "safe"
-
-    var unluckyhouseList = [UnLuckyHouse]()
-
-    let locationManager = CLLocationManager()
-
-    var dlManager = DLManager()
 
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        
         //set searchbutton
         setSearchButton()
         setFullScfeenExitButton()
-
         //set search bar
         setSearchBar()
-
         setNavigationItem()
-
         locationManager.delegate = self
         //kCLLocationAccuracyHundredMeters
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
-
         mapView.delegate = self
-
         unluckyhouseList = Dao.shared.queryData()
-
         // TAP Gesture
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(mapviewTapped))
         mapView.addGestureRecognizer(tapGesture)
         mapView.isUserInteractionEnabled = true
-
         //json api dangerous location
         DispatchQueue.main.async {
 
@@ -195,8 +183,6 @@ class MapViewController: UIViewController, SwitchViewDelegate {
             }
         })
               }
-
-       
     }
 
     func setSearchButton() {
@@ -247,22 +233,20 @@ class MapViewController: UIViewController, SwitchViewDelegate {
     @objc func mapviewTapped(_ sender: UITapGestureRecognizer) {
 
         let tapPoint = sender.location(in: self.mapView)
-
         let hitAnnotationView: UIView? = mapView.hitTest(tapPoint, with: nil)
         if let annotationView = hitAnnotationView {
             if !annotationView.isKind(of: MKAnnotationView.self) && !isFullScreen {
                 fullscreenExitButton.isHidden = false
-
                 UIView.animate(withDuration: 0.5, animations: {
                     self.originalMapTopConstraint.isActive = false
                     self.fullScreenMapTopConstraint.isActive = true
-                    
                     self.view.layoutIfNeeded()
                 })
                 isFullScreen = !isFullScreen
                 controlPanelView.isHidden = isFullScreen            }
         }
     }
+
     //Container segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "qq" {
@@ -283,19 +267,6 @@ class MapViewController: UIViewController, SwitchViewDelegate {
         super.didReceiveMemoryWarning()
     }
 
-    @IBAction func exitFullscreen(_ sender: UIButton) {
-        if isFullScreen {
-            sender.isHidden = true
-            UIView.animate(withDuration: 0.5, animations: {
-                self.fullScreenMapTopConstraint.isActive = false
-                self.originalMapTopConstraint.isActive = true
-                self.view.layoutIfNeeded()
-            })
-            isFullScreen = !isFullScreen
-            controlPanelView.isHidden = isFullScreen
-        }
-    }
-
     func convertAddressToLocationAtCotro(_ address: String, callback: @escaping (CLLocationCoordinate2D) -> Void) {
         var coordinate: CLLocationCoordinate2D? = nil
         let geoCoder = CLGeocoder()
@@ -308,49 +279,6 @@ class MapViewController: UIViewController, SwitchViewDelegate {
                 print(error?.localizedDescription ?? "ERROR")
             }
         }
-    }
-
-    func getAddressFromLatLon(pdblLatitude: Double, withLongitude pdblLongitude: Double, callback: @escaping (String) -> Void) {
-        var center: CLLocationCoordinate2D = CLLocationCoordinate2D()
-        let lat: Double = pdblLatitude
-        //21.228124
-        let lon: Double = pdblLongitude
-        //72.833770
-        let ceo: CLGeocoder = CLGeocoder()
-        center.latitude = lat
-        center.longitude = lon
-
-        let loc: CLLocation = CLLocation(latitude: center.latitude, longitude: center.longitude)
-
-        ceo.reverseGeocodeLocation(loc, completionHandler: {(placemarks, error) in
-                if error != nil {
-                    print("reverse geodcode fail: \(error!.localizedDescription)")
-                }
-            guard let placeMark = placemarks else {
-                return
-            }
-
-                if placeMark.count > 0 {
-                    let placemark = placeMark[0]
-//                    print(pm.country) print(pm.locality)print(pm.subLocality)print(pm.thoroughfare)print(pm.postalCode)
-//                    print(pm.subThoroughfare)
-                    var addressString: String = ""
-                    if let subAdministrativeArea = placemark.subAdministrativeArea {
-                        if subAdministrativeArea == "桃園縣" {
-                            addressString += "桃園市"                        } else {
-                    addressString += subAdministrativeArea
-                        }
-                    }
-                    if let locality = placemark.locality, addressString.range(of: locality[..<locality.index(locality.startIndex, offsetBy: 2)]) == nil {
-                        addressString += locality
-                    }
-                        if let sublocality = placemark.subLocality, addressString != sublocality {
-        addressString += sublocality
-    }
-                    print(addressString)
-                    callback(addressString)
-                }
-        })
     }
 
     func centerLocation(_ coordinate: CLLocationCoordinate2D, with offset: CLLocationDegrees) {
@@ -391,6 +319,7 @@ extension MapViewController: CLLocationManagerDelegate {
 }
 
 extension MapViewController: MKMapViewDelegate {
+
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             //return nil so map view draws "blue dot" for standard user location
@@ -472,17 +401,15 @@ extension MapViewController: MKMapViewDelegate {
         if mapChangedFromUserInteraction {
             // user changed map region
             navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-
         }
     }
-
 }
 
 extension MapViewController: HandleMapSearch {
+
     func dropPinZoomIn(placemark: MKPlacemark) {
         // clear existing pins
         mapView.removeAnnotations(mapView.annotations)
-
         let annotation = MKPointAnnotation()
         annotation.coordinate = placemark.coordinate
         userLocation = CLLocation(latitude: annotation.coordinate.latitude, longitude: annotation.coordinate.longitude)
@@ -496,6 +423,16 @@ extension MapViewController: HandleMapSearch {
         handleUnluckyHouse()
         handleDangerousLocation()
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+    }
+}
 
+extension MapViewController: SwitchViewDelegate {
+
+    func deliverSwitchState(_ sender: SwitchCollectionViewCell, _ rowAt: Int) {
+        if let state = boolArray[dangerous[rowAt]] {
+            boolArray[dangerous[rowAt]] = !state
+        }
+        handleUnluckyHouse()
+        handleDangerousLocation()
     }
 }

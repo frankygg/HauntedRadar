@@ -36,7 +36,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         setTextFieldPlaceholderAndImageHolder()
         setNavigation()
 //        setScrollView(numberOfPhotos: 3)
-        
+
 //        imageView.isUserInteractionEnabled = true
 //        let touch = UITapGestureRecognizer(target: self, action: #selector(bottomAlert))
 //        imageView.addGestureRecognizer(touch)
@@ -79,19 +79,17 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         let image = UIImageView()
         image.contentMode = UIViewContentMode.scaleAspectFill
         image.layer.masksToBounds = true
-        
+
         //            image.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "picture_placeholder02"))
         image.image = UIImage(named: "adjust_picture")
-        
+
         image.frame = CGRect(x: 0, y: 0, width: self.fullSize.width, height: self.myScrollView.frame.height)
         image.center = CGPoint(x: self.fullSize.width * (0.5 + CGFloat(self.icount)), y: self.myScrollView.frame.height / 2 )
         self.myScrollView.addSubview(image)
         image.isUserInteractionEnabled = true
         let touch = UITapGestureRecognizer(target: self, action: #selector(self.buttonAction(_:)))
         image.addGestureRecognizer(touch)
-        
-        
-        
+
         guard let passedValue = passedValue as? Article else {
         return
         }
@@ -107,7 +105,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
             self.setScrollView(numberOfPhotos: passedValue.imageUrl.count)
         }
         for imageSubView in self.myScrollView.subviews {
-            
+
             imageSubView.removeFromSuperview()
         }
         for asset in passedValue.imageUrl {
@@ -115,7 +113,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
             image.tag = self.icount
             image.contentMode = UIViewContentMode.scaleAspectFill
             image.layer.masksToBounds = true
-            
+
             //            image.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "picture_placeholder02"))
             image.sd_setImage(with: URL(string: asset), placeholderImage: UIImage(named: "adjust_picture"))
             guard let appendImage = image.image else {
@@ -129,9 +127,9 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
             let touch = UITapGestureRecognizer(target: self, action: #selector(self.bottomAlert))
             image.addGestureRecognizer(touch)
             icount += 1
-            
+
         }
-        
+
         addQuestionButton.setTitle("編輯", for: .normal)
 
     }
@@ -168,7 +166,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         }
         navigationItem.title = "編輯"
     }
-    
+
     func alertAction(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "確定", style: .default, handler: nil)
@@ -204,13 +202,13 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         case .restricted, .denied:
             alertAction(title: "未開啟存取本機相冊權限", message: "請在手機設定中開啟本機相冊存取權限，相冊將用於編輯及新增發問時所需的照片。")
             print("User do not have access to photo album.")
-       
+
         }
     }
-    
+
     @objc func bottomAlert(recognizer: UITapGestureRecognizer) {
             myTag = recognizer.view!.tag
-        
+
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         let photoAction = UIAlertAction(title: "相片", style: .default) { _ in
@@ -222,7 +220,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
             picker.sourceType = .camera
             self.present(picker, animated: true, completion: nil)
         }
-        
+
         alertController.addAction(cancelAction)
         alertController.addAction(photoAction)
         alertController.addAction(cameraAction)
@@ -235,7 +233,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
             UIImageWriteToSavedPhotosAlbum(image!, self, #selector(image(_:didFinishSavingWithError:contextInfo:)), nil)
         }
         for subview in myScrollView.subviews {
-            if  let subview = subview as? UIImageView, subview.tag == myTag , let image = image {
+            if  let subview = subview as? UIImageView, subview.tag == myTag, let image = image {
             subview.image = image
                 imageArray[myTag] = image
             }
@@ -281,7 +279,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         }
         guard  Auth.auth().currentUser != nil else {
             self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
-            
+
             return
         }
         SVProgressHUD.setDefaultMaskType(.gradient)
@@ -305,27 +303,27 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
         textField.resignFirstResponder()
         return false
     }
-    
+
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == "內容"{
             textView.text = ""
             textView.textColor = UIColor.black
         }
     }
-    
+
     func textViewDidEndEditing(_ textView: UITextView) {
-        if(textView.text.count < 1 || textView.text == ""){
+        if(textView.text.count < 1 || textView.text == "") {
             textView.text = "內容"
             textView.textColor = UIColor(displayP3Red: 175 / 255, green: 174 / 255, blue: 174 / 255, alpha: 1)
         }
     }
-    
+
     func setScrollView(numberOfPhotos: Int) {
-        
+
         // 實際視圖範圍
         myScrollView.contentSize = CGSize(
             width: fullSize.width * CGFloat(numberOfPhotos), height: fullSize.height / 5)
-        
+
 //        //設置尺寸 也就是可見視圖範圍
 //        myScrollView.frame = CGRect(
 //            x: 0, y: 0,
@@ -344,43 +342,43 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
 //
 //        // 以一頁為單位滑動
 //        myScrollView.isPagingEnabled = true
-        
+
     }
-    
+
     func setDefaultScrollView() {
         //設置尺寸 也就是可見視圖範圍
         myScrollView.frame = CGRect(
             x: 0, y: 0,
             width: fullSize.width, height: myScrollView.frame.height)
-        
+
         // 是否顯示滑動條
         myScrollView.showsHorizontalScrollIndicator = false
         myScrollView.showsVerticalScrollIndicator = false
-        
+
         // 滑動超過範圍時是否使用彈回效果
         myScrollView.alwaysBounceVertical = false
         myScrollView.alwaysBounceHorizontal = true
-        
+
         // 設置委任對象
         myScrollView.delegate = self
-        
+
         // 以一頁為單位滑動
         myScrollView.isPagingEnabled = true
     }
-    
+
     // 點擊點點換頁
     @objc func pageChanged(sender: UIPageControl) {
         // 依照目前圓點在的頁數算出位置
         var frame = self.myScrollView.frame
         frame.origin.x = frame.size.width * CGFloat(sender.currentPage)
         frame.origin.y = 0
-        
+
         // 再將 UIScrollView 滑動到該點
-        myScrollView.scrollRectToVisible(frame, animated:true)
+        myScrollView.scrollRectToVisible(frame, animated: true)
     }
-    
+
     func multiPhoto() {
-        
+
         let alert = UIAlertController(style: .actionSheet)
         alert.addPhotoLibraryPicker(flow: .vertical, paging: false,
                                     selection: .multiple(action: { assets in
@@ -391,18 +389,17 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
 
                                         //remove subview
             for imageSubView in self.myScrollView.subviews {
-        
+
                 imageSubView.removeFromSuperview()
                                         }
                                         self.imageArray = []
                                         for asset in assets {
-                                           
-                                            
+
                                             let image = UIImageView()
                                             image.tag = self.icount
                                             image.contentMode = UIViewContentMode.scaleAspectFill
                                             image.layer.masksToBounds = true
-                                            
+
                                             //            image.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "picture_placeholder02"))
                                             image.image = self.getAssetThumbnail(asset: asset)
                                             self.imageArray.append(self.getAssetThumbnail(asset: asset))
@@ -413,32 +410,30 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
                                                     let touch = UITapGestureRecognizer(target: self, action: #selector(self.bottomAlert))
                                                     image.addGestureRecognizer(touch)
                                             self.icount += 1
-                                            
-                                        }
-            
 
-                                        
+                                        }
+
                                         Log(assets) }))
         alert.addAction(title: "取消", style: .cancel)
         alert.show()
-        
+
     }
-    
+
     func getAssetThumbnail(asset: PHAsset) -> UIImage {
         let manager = PHImageManager.default()
         let option = PHImageRequestOptions()
         var thumbnail = UIImage()
         option.isSynchronous = true
-        manager.requestImage(for: asset, targetSize: CGSize(width: fullSize.width, height: myScrollView.frame.height), contentMode: .aspectFill, options: option, resultHandler: {(result, info)->Void in
+        manager.requestImage(for: asset, targetSize: CGSize(width: fullSize.width, height: myScrollView.frame.height), contentMode: .aspectFill, options: option, resultHandler: {(result, _) -> Void in
             thumbnail = result!
         })
         return thumbnail
     }
-    
+
     @IBAction func buttonAction(_ sender: Any) {
         multiPhoto()
     }
-    
+
     //UIScrollViewDelegate方法，每次滚动结束后调用
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         // 左右滑動到新頁時 更新 UIPageControl 顯示的頁數
@@ -447,8 +442,7 @@ class AddQuestionViewController: UIViewController, UIImagePickerControllerDelega
     }
 }
 
-extension UITextField
-{
+extension UITextField {
     open override func draw(_ rect: CGRect) {
         self.layer.cornerRadius = 5.0
         self.layer.borderWidth = 1.0
@@ -456,5 +450,3 @@ extension UITextField
         self.layer.masksToBounds = true
     }
 }
-
-

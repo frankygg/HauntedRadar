@@ -25,7 +25,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         setTableView()
 
         setNavigationItem()
@@ -43,7 +43,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         super.didReceiveMemoryWarning()
 
     }
-    
+
     func setTableView() {
         //xib的名稱
         let nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)
@@ -51,7 +51,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         myTableView.register(nib, forCellReuseIdentifier: "ArticleTableViewCell")
         myTableView.dataSource = self
         myTableView.delegate = self
-        myTableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
+        myTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
         self.automaticallyAdjustsScrollViewInsets = false
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -125,10 +125,10 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
                 self.customAlertAction(title: "", message: "您確定要刪除嗎？", completion: { [weak self] in
                     //delete realtime database & storage image file
                     FirebaseManager.shared.deleteArticle(article: (self?.articles[indexpath.row])!)
-                    
+
                     self?.articles.remove(at: indexPath.row)
                     self?.myTableView.deleteRows(at: [indexPath], with: .fade)
-                    
+
                     })
             })
 

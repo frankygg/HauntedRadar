@@ -34,13 +34,13 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
 
 //        navigationController?.navigationBar.tintColor = UIColor.white
     }
-    
+
     func chartScaled(_ chartView: ChartViewBase, scaleX: CGFloat, scaleY: CGFloat) {
         print("scaled")
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
     }
     func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
-        
+
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
 
         print("translated")

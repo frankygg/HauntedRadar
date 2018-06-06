@@ -30,7 +30,7 @@ class FirebaseManager {
                     userName = value
                 }
             }
-            
+
             uploadMultiPhoto(uploadimage: uploadimage) { fileNameArray, textArray in
                 let reference = self.ref.child("article").childByAutoId()
                 let articleKey = reference.key
@@ -39,19 +39,17 @@ class FirebaseManager {
             }
         }
     }
-    
+
     func uploadMultiPhoto(uploadimage: [UIImage], completion: @escaping ([String], [String]) -> Void) {
         var fileNameArray = [String]()
         var textArray = [String]()
-        
-        
+
         let dispatchGroup = DispatchGroup()
         let semaphore = DispatchSemaphore(value: 1)
         let queue = DispatchQueue.global(qos: .utility)
-        
+
         queue.async {
-            
-        
+
             for image in uploadimage {
 //                dispatchGroup.enter()
                 semaphore.wait()
@@ -84,14 +82,14 @@ class FirebaseManager {
 //            }
             semaphore.wait()
             DispatchQueue.main.async {
-                
+
                 completion(fileNameArray, textArray)
                 print("Both functions complete 👍")
             }
             semaphore.signal()
-            
+
     }
-        
+
     }
 
     func loadArticle(completion: @escaping([Article]) -> Void) {
@@ -128,8 +126,8 @@ class FirebaseManager {
 
     func deleteArticle(article: Article) {
         ref.child("article").child(article.articleKey).setValue(nil)
-        
-        for imageName in article.imageName{
+
+        for imageName in article.imageName {
         imageReference.child(imageName).delete(completion: { error in
             if let error = error {
                 print(error)
@@ -143,7 +141,7 @@ class FirebaseManager {
     func editArticle(uploadimage: [UIImage], article: Article, handler: @escaping () -> Void ) {
 
         //清storage
-        for imageName in article.imageName{
+        for imageName in article.imageName {
             imageReference.child(imageName).delete(completion: { error in
                 if let error = error {
                     print(error)
@@ -152,11 +150,11 @@ class FirebaseManager {
                 }
             })
         }
-        
+
         uploadMultiPhoto(uploadimage: uploadimage) { fileNameArray, textArray in
             self.ref.child("article").child(article.articleKey).updateChildValues(["imageUrl": textArray, "reason": article.reason, "address": article.address, "title": article.title, "createdTime": article.createdTime, "imageName": fileNameArray])
                                         handler()
-            
+
         }
 //        let filename = article.imageName
 //        if let image = uploadimage, let imageData = UIImageJPEGRepresentation(image, 0.1) {

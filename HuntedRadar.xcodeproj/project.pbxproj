@@ -109,6 +109,7 @@
 		B7CCD74D20A9847100CE722E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CCD74C20A9847100CE722E /* LoginViewController.swift */; };
 		B7CCD74F20A996EA00CE722E /* AddQuestion.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7CCD74E20A996EA00CE722E /* AddQuestion.storyboard */; };
 		B7CCD75220A9971800CE722E /* AddQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CCD75120A9971800CE722E /* AddQuestionViewController.swift */; };
+		B7E2254D20C78335007C843A /* AddressProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E2254C20C78335007C843A /* AddressProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -217,6 +218,7 @@
 		B7CCD74C20A9847100CE722E /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		B7CCD74E20A996EA00CE722E /* AddQuestion.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddQuestion.storyboard; sourceTree = "<group>"; };
 		B7CCD75120A9971800CE722E /* AddQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionViewController.swift; sourceTree = "<group>"; };
+		B7E2254C20C78335007C843A /* AddressProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressProvider.swift; sourceTree = "<group>"; };
 		D09A49790DB186CF5543EBF1 /* Pods-HuntedRadar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuntedRadar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HuntedRadar/Pods-HuntedRadar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -649,6 +651,7 @@
 		B7C5AD542099628E0054FD6B /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				B7E2254B20C78313007C843A /* AddressProvider */,
 				B70BB4EB20B4663400612736 /* Forbid */,
 				B7BB5E4320B2C8A800F16CCD /* Comment */,
 				B70CDB2720AD7DAD00935AFD /* Article */,
@@ -726,6 +729,14 @@
 				B7CCD75120A9971800CE722E /* AddQuestionViewController.swift */,
 			);
 			path = AddQuestion;
+			sourceTree = "<group>";
+		};
+		B7E2254B20C78313007C843A /* AddressProvider */ = {
+			isa = PBXGroup;
+			children = (
+				B7E2254C20C78335007C843A /* AddressProvider.swift */,
+			);
+			path = AddressProvider;
 			sourceTree = "<group>";
 		};
 		F57B06C7654F8759E1F85A9F /* Frameworks */ = {
@@ -935,6 +946,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B7CCD74D20A9847100CE722E /* LoginViewController.swift in Sources */,
+				B7E2254D20C78335007C843A /* AddressProvider.swift in Sources */,
 				B708702E20B32032008E0D57 /* DateExtension.swift in Sources */,
 				B70E4A6920B6937200A100AF /* ForbidTableViewCell.swift in Sources */,
 				B7CB48E720A94C430042194C /* ArticleTableViewCell.swift in Sources */,

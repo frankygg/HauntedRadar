@@ -64,11 +64,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         SVProgressHUD.setDefaultAnimationType(.native)
         SVProgressHUD.show(withStatus: "登入中")
         //some validation on email and password
-        if let email = emailTextField.text, let password = passwordTextField.text{
+        if let email = emailTextField.text, let password = passwordTextField.text {
 
             //check if it's sign in or register
             if isSignIn {
-                guard email.trimmingCharacters(in: .whitespaces) != "" && password.trimmingCharacters(in: .whitespaces) != ""  else{
+                guard email.trimmingCharacters(in: .whitespaces) != "" && password.trimmingCharacters(in: .whitespaces) != ""  else {
                     SVProgressHUD.dismiss()
                     alertAction(title: "登入失敗", message: "有欄位空白")
                     return
@@ -135,7 +135,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             else {
                 return
             }
-            
+
             alertAction(title: "登入失敗", message: errorCode.errorMessage)
         }
     }
@@ -151,7 +151,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         } else {
             SVProgressHUD.dismiss()
 
-            guard let error = error ,let errorCode = AuthErrorCode(rawValue: error._code)
+            guard let error = error, let errorCode = AuthErrorCode(rawValue: error._code)
                 else {
                 return
             }
@@ -169,9 +169,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 return
             }
-            
+
             let tabBarController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
-            
+
             appDelegate.window?.rootViewController = tabBarController
         } else {
         dismiss(animated: true, completion: nil)
@@ -195,9 +195,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                     return
                 }
-                
+
                 let tabBarController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
-                
+
                 appDelegate.window?.rootViewController = tabBarController
             } else {
             self.dismiss(animated: true, completion: nil)
@@ -208,7 +208,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func setSignInAndVisitButton() {
         signInButton.layer.cornerRadius = 5
         signInButton.clipsToBounds = true
-        
+
         visitButton.layer.cornerRadius = 5
         visitButton.clipsToBounds = true
 

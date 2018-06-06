@@ -50,9 +50,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
                 self.window!.rootViewController = controller
 
             }
-            
+
         } else {
-            
+
             navigationController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
             self.window!.rootViewController = navigationController
         }

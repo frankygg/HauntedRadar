@@ -27,7 +27,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         loadForbidUserFromFireBase()
 
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setNavigationRightBurtton()
@@ -39,7 +39,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let button = UIButton(type: .system)
         button.setTitle("已封鎖用戶名單", for: .normal)
-        
+
         //button image
          let imageName = "sort-up"
             image = UIImageView(image: UIImage(named: imageName))
@@ -50,7 +50,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             let widthConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20)
             let heightConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20)
             button.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
-        
+
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .lightGray
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
@@ -85,11 +85,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             forbidUserTableView.insertRows(at: indexPaths, with: .fade)
         }
     }
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isExpand {
         return forbidUser.count
@@ -106,15 +106,15 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.delegate = self
 
         cell.userNameLabel.text = forbidUser[indexPath.row].userName
-        
+
         if forbidUser[indexPath.row].forbidKey == "" {
             cell.userImage.isHidden = true
         } else {
             cell.userImage.isHidden = false
 
         }
-        
-        cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
+
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
         //不可被點選
         cell.selectionStyle = .none
 
@@ -123,7 +123,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
 
-        guard orientation == .right , forbidUser[indexPath.row].forbidKey != "" else { return nil }
+        guard orientation == .right, forbidUser[indexPath.row].forbidKey != "" else { return nil }
 
         let action = recoverAction(at: indexPath)
 
@@ -158,7 +158,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         navigationController?.navigationBar.topItem?.title = "設定"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: 20)!]
     }
-    
+
     func setNavigationRightBurtton() {
         if Auth.auth().currentUser != nil {
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "exit"), style: .done, target: self, action: #selector(logout))
@@ -176,8 +176,8 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         forbidUserTableView.delegate = self
 
         forbidUserTableView.dataSource = self
-        
-        forbidUserTableView.separatorInset = UIEdgeInsetsMake(0, 0, 0, UIScreen.main.bounds.width)
+
+        forbidUserTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
 
     }
 
@@ -197,7 +197,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     @objc func login() {
     self.performSegue(withIdentifier: "login", sender: self)
     }
-    
+
     func loadForbidUserFromFireBase() {
         FirebaseManager.shared.loadForbidUsers(completion: { [weak self]  forbidUser in
 
@@ -221,7 +221,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         alertController.addAction(cancelAction)
         self.present(alertController, animated: true, completion: nil)
     }
-    
+
     func setUserNameAndEmail() {
         guard let user = Auth.auth().currentUser else {
            setSignOutSetting()
@@ -233,7 +233,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             self.emailLabel.text = user.email
         })
     }
-    
+
     func setSignOutSetting() {
         userNameLabel.text = "請先登入再進行操作"
         emailLabel.text = ""
