@@ -8,37 +8,38 @@
 
 import Foundation
 import Charts
+
 class BarChartViewController: UIViewController, ChartViewDelegate {
-    @objc func zoomback(_ sender: UIBarButtonItem) {
-        sender.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
-
-        self.barChartView.zoomToCenter(scaleX: 0, scaleY: 0)
-    }
-
-    var passedValue: [String]?
- let dangerous = ["毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
-    let countM = ["10701", "10702", "10703"]
-    var colors = [UIColor.yellow, UIColor.red, UIColor.orange]
+    
+    //IBOutlet var
     @IBOutlet var barChartView: BarChartView!
-//    var xaxisValue: [String] = ["毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
+
+    //local var
+    var passedValue: [String]?
+    var colors = [UIColor.yellow, UIColor.red, UIColor.orange]
     var xaxisValue: [String] = [String]()
 
     // MARK: - View Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
-//        print(passedValue!)
         barChartView.delegate = self
         setupView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "full_screen_exit"), style: .done, target: self, action: #selector(zoomback))
         navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
 
-//        navigationController?.navigationBar.tintColor = UIColor.white
+    }
+    
+    @objc func zoomback(_ sender: UIBarButtonItem) {
+        sender.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
+        
+        self.barChartView.zoomToCenter(scaleX: 0, scaleY: 0)
     }
 
     func chartScaled(_ chartView: ChartViewBase, scaleX: CGFloat, scaleY: CGFloat) {
         print("scaled")
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
     }
+    
     func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
 
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
@@ -105,7 +106,7 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
             return
         }
         var numberOfCrimeArray = [Double]()
-        for item in dangerous {
+        for item in MapViewConstants.dangerousWithUnluckyHouse {
         for value in passedValue {
             if value.range(of: item) != nil {
                 xaxisValue.append(item)
@@ -115,14 +116,14 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
         }
         }
         var data = [BarChartDataSet]()
-        for jtem in 0..<countM.count {
+        for jtem in 0..<MapViewConstants.countMonth.count {
             var numbers = numberOfCrimeArray
 
             var dataEntries: [BarChartDataEntry] = []
             for crime in 0..<xaxisValue.count {
 
                 for value in passedValue {
-                    if (value.range(of: xaxisValue[crime])) != nil && (value.range(of: countM[jtem]) != nil) {
+                    if (value.range(of: xaxisValue[crime])) != nil && (value.range(of: MapViewConstants.countMonth[jtem]) != nil) {
                         numbers[crime] += 1
                     }
                 }
@@ -133,7 +134,7 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
                 dataEntries.append(dataEntry)
 
             }
-            let chartDataSet = BarChartDataSet(values: dataEntries, label: countM[jtem])
+            let chartDataSet = BarChartDataSet(values: dataEntries, label: MapViewConstants.countMonth[jtem])
             chartDataSet.colors = [colors[jtem]]
 
 //            chartDataSet.drawValuesEnabled = false

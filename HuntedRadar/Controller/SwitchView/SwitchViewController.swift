@@ -8,12 +8,13 @@
 
 import UIKit
 
-class SwitchViewController: UIViewController, TapSwitchCellDelegate {
+class SwitchViewController: UIViewController {
 
-    weak var delegate: SwitchViewDelegate?
-    let dangerous = ["凶宅", "毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
-    let dangerousimage: [String: String] = ["凶宅": "ghost", "毒品": "needle", "強制性交": "sexual_abuse", "強盜": "rob", "搶奪": "steal", "住宅竊盜": "homesteal", "汽車竊盜": "carsteal", "機車竊盜": "motorcycle_steal"]
+    //IBOutlet var
     @IBOutlet weak var collectionview: UICollectionView!
+    
+    //local var
+    weak var delegate: SwitchViewDelegate?
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionview.delegate = self
@@ -25,7 +26,8 @@ class SwitchViewController: UIViewController, TapSwitchCellDelegate {
         super.didReceiveMemoryWarning()
     }
 }
-extension SwitchViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource {
+
+extension SwitchViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate, UICollectionViewDataSource, TapSwitchCellDelegate {
     // 滑動方向為「垂直」的話即「上下」的間距(預設為重直)
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 5
@@ -65,8 +67,8 @@ extension SwitchViewController: UICollectionViewDelegateFlowLayout, UICollection
             return UICollectionViewCell()
         }
         cell.delegate = self
-            cell.dangerousImage.image = UIImage(named: dangerousimage[dangerous[indexPath.row]]!)
-            cell.dangerousLabel.text = dangerous[indexPath.row]
+            cell.dangerousImage.image = UIImage(named: MapViewConstants.dangerousimage[MapViewConstants.dangerous[indexPath.row]]!)
+            cell.dangerousLabel.text = MapViewConstants.dangerous[indexPath.row]
 
         return cell
     }
