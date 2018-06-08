@@ -1,31 +1,36 @@
 //
-//  MapViewController.swift
+//  ViewController.swift
 //  HuntedRadar
 //
-//  Created by BoTingDing on 2018/6/8.
+//  Created by BoTingDing on 2018/5/2.
 //  Copyright © 2018年 BoTingDing. All rights reserved.
 //
 
 import UIKit
-import Firebase
 import MapKit
+import FirebaseAuth
 
-class MapViewController: UIViewController {
-
-    //local var
-    weak var delegate: MapViewDelegate?
+class RadarViewController: UIViewController {
 
     //IBOutlet var
+    @IBOutlet weak var originalMapTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var fullScreenMapTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var fullscreenExitButton: UIButton!
+    @IBOutlet weak var controlPanelView: UIView!
     @IBOutlet weak var mapView: MKMapView!
 
     //IBOutlet Action
     @IBAction func exitFullscreen(_ sender: UIButton) {
         if isFullScreen {
             sender.isHidden = true
+            UIView.animate(withDuration: 0.5, animations: {
+                self.fullScreenMapTopConstraint.isActive = false
+                self.originalMapTopConstraint.isActive = true
+                self.view.layoutIfNeeded()
+            })
             isFullScreen = !isFullScreen
-            delegate?.exitFullScreen(self, isHidden: isFullScreen)
+            controlPanelView.isHidden = isFullScreen
         }
     }
 
@@ -35,6 +40,7 @@ class MapViewController: UIViewController {
     let locationManager = CLLocationManager()
     var dlManager = DLManager()
     private var mapChangedFromUserInteraction = false
+    var resultSearchController: UISearchController?
     var hasUnluckyhouse = false
     var dangerousLocation = [DangerousLocation]()
     var addressWithMultiAnnotation = [String: [DangerousLocation]]()
@@ -44,7 +50,8 @@ class MapViewController: UIViewController {
     var userLocation: CLLocation?
     var originalLocation: CLLocationCoordinate2D?
 
-    func centerBackOnLocation() {
+    @objc func centerBackOnLocation(_ sender: UIBarButtonItem) {
+        sender.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
         mapView.removeAnnotations(mapView.annotations)
 
         if CLLocationManager.locationServicesEnabled() {
@@ -86,7 +93,7 @@ class MapViewController: UIViewController {
                     }
                 }
             }
-        }
+    }
     }
 
     func handleDangerousLocation() {
@@ -142,14 +149,15 @@ class MapViewController: UIViewController {
         //set searchbutton
         setSearchButton()
         setFullScfeenExitButton()
-
+        //set search bar
+        setSearchBar()
+        setNavigationItem()
         locationManager.delegate = self
         //kCLLocationAccuracyHundredMeters
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         locationManager.requestWhenInUseAuthorization()
         locationManager.requestLocation()
         mapView.delegate = self
-        mapView.showsUserLocation = true
         unluckyhouseList = Dao.shared.queryData()
         // TAP Gesture
         tapGesture = UITapGestureRecognizer(target: self, action: #selector(mapviewTapped))
@@ -158,18 +166,18 @@ class MapViewController: UIViewController {
         //json api dangerous location
         DispatchQueue.main.async {
 
-            self.dlManager.requestDLinJson(completion: { [weak self] locations in
+        self.dlManager.requestDLinJson(completion: { [weak self] locations in
 
-                for (key, values) in locations {
-                    var title = [String]()
-                    for crime in values {
-                        title.append(String(crime[crime.index(crime.startIndex, offsetBy: 5)...]))
-                    }
-                    let addressObj = DangerousAddress(address: key, title: title, crimeWithDate: values)
-                    self?.dangerousAddress.append(addressObj)
+            for (key, values) in locations {
+                var title = [String]()
+                for crime in values {
+                    title.append(String(crime[crime.index(crime.startIndex, offsetBy: 5)...]))
                 }
-            })
-        }
+                let addressObj = DangerousAddress(address: key, title: title, crimeWithDate: values)
+                self?.dangerousAddress.append(addressObj)
+            }
+        })
+              }
     }
 
     func setSearchButton() {
@@ -187,24 +195,61 @@ class MapViewController: UIViewController {
 
     }
 
+    func setSearchBar() {
+        let storyBoard = UIStoryboard(name: "LocationSearchTable", bundle: nil)
+        let locationSearchTable = storyBoard.instantiateViewController(withIdentifier: "LocationSearchTable") as? LocationSearchUITableViewController
+        resultSearchController = UISearchController(searchResultsController: locationSearchTable)
+        resultSearchController?.searchResultsUpdater = locationSearchTable
+        resultSearchController?.setUpCustomButton()
+        let searchBar = resultSearchController!.searchBar
+        if #available(iOS 11.0, *) {
+            let searchBarContainer = SearchBarContainerView(customSearchBar: searchBar)
+            searchBarContainer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
+            navigationItem.titleView = searchBarContainer
+        } else {
+
+            navigationItem.titleView = searchBar
+        }
+        locationSearchTable?.mapView = mapView
+        locationSearchTable?.delegate = self
+        resultSearchController?.hidesNavigationBarDuringPresentation = false
+        resultSearchController?.dimsBackgroundDuringPresentation = true
+        definesPresentationContext = true
+    }
+
+    func setNavigationItem() {
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "center_back"), style: .done, target: self, action: #selector(centerBackOnLocation(_:)))
+        navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
+
+    }
+
     @objc func mapviewTapped(_ sender: UITapGestureRecognizer) {
+
         let tapPoint = sender.location(in: self.mapView)
         let hitAnnotationView: UIView? = mapView.hitTest(tapPoint, with: nil)
         if let annotationView = hitAnnotationView {
             if !annotationView.isKind(of: MKAnnotationView.self) && !isFullScreen {
                 fullscreenExitButton.isHidden = false
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.originalMapTopConstraint.isActive = false
+                    self.fullScreenMapTopConstraint.isActive = true
+                    self.view.layoutIfNeeded()
+                })
                 isFullScreen = !isFullScreen
-                delegate?.didFullScreen(self, isHidden: isFullScreen)
-            }
+                controlPanelView.isHidden = isFullScreen            }
         }
     }
 
     //Container segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-         if segue.identifier == "deliverCrime" {
-            // initialize new view controller and cast it as your view controller
-            let viewController = segue.destination as? BarChartViewController
-            // new view controller should have property that will store passed value
+        if segue.identifier == "qq" {
+            if let nextVC = segue.destination as? SwitchViewController {
+                nextVC.delegate = self
+            }
+        } else if segue.identifier == "deliverCrime" {
+                // initialize new view controller and cast it as your view controller
+                let viewController = segue.destination as? BarChartViewController
+                // your new view controller should have property that will store passed value
             viewController?.passedValue = dangerousCrimeDate
         }
     }
@@ -228,7 +273,7 @@ class MapViewController: UIViewController {
     }
 }
 
-extension MapViewController: CLLocationManagerDelegate {
+extension RadarViewController: CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print("error:: \(error.localizedDescription)")
@@ -250,7 +295,7 @@ extension MapViewController: CLLocationManagerDelegate {
     }
 }
 
-extension MapViewController: MKMapViewDelegate {
+extension RadarViewController: MKMapViewDelegate {
 
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
@@ -259,21 +304,21 @@ extension MapViewController: MKMapViewDelegate {
         }
         var view: MKAnnotationView
         if let annotation = annotation as? UnLuckyHouse {
-            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: MapViewConstants.unLuckyHouseIdentifier) {
-                dequeuedView.annotation = annotation
-                view = dequeuedView
-            } else {
-                view = UnLuckyHouseMKAnnotationView(annotation: annotation, reuseIdentifier: MapViewConstants.unLuckyHouseIdentifier)
-            }
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: MapViewConstants.unLuckyHouseIdentifier) {
+            dequeuedView.annotation = annotation
+            view = dequeuedView
+        } else {
+            view = UnLuckyHouseMKAnnotationView(annotation: annotation, reuseIdentifier: MapViewConstants.unLuckyHouseIdentifier)
+        }
             return view
 
         } else if let annotation = annotation as? DangerousLocation {
-            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: MapViewConstants.dangerouseLocationIdentifier) {
-                dequeuedView.annotation = annotation
-                view = dequeuedView
-            } else {
-                view = DangerousLocationAnnotationView(annotation: annotation, reuseIdentifier: MapViewConstants.dangerouseLocationIdentifier)
-            }
+                if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: MapViewConstants.dangerouseLocationIdentifier) {
+                    dequeuedView.annotation = annotation
+                    view = dequeuedView
+                } else {
+                    view = DangerousLocationAnnotationView(annotation: annotation, reuseIdentifier: MapViewConstants.dangerouseLocationIdentifier)
+                }
             return view
         } else if let annotation = annotation as? SafeLocation {
             if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: MapViewConstants.safeLocationIdentifier) {
@@ -311,19 +356,19 @@ extension MapViewController: MKMapViewDelegate {
         mapChangedFromUserInteraction = mapViewRegionDidChangeFromUserInteraction()
         if mapChangedFromUserInteraction {
             // user changed map region
-            delegate?.mapChangedFromUserInteraction(self)
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         }
     }
 
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         if mapChangedFromUserInteraction {
             // user changed map region
-            delegate?.mapChangedFromUserInteraction(self)
+            navigationItem.rightBarButtonItem?.tintColor = UIColor.white
         }
     }
 }
 
-extension MapViewController: HandleMapSearch {
+extension RadarViewController: HandleMapSearch {
 
     func dropPinZoomIn(placemark: MKPlacemark) {
         // clear existing pins
@@ -340,14 +385,16 @@ extension MapViewController: HandleMapSearch {
         centerLocation(placemark.coordinate, with: 0)
         handleUnluckyHouse()
         handleDangerousLocation()
-        delegate?.mapChangedFromUserInteraction(self)
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
     }
 }
 
-protocol MapViewDelegate: class {
-    func didFullScreen(_ sender: MapViewController, isHidden: Bool)
-
-    func exitFullScreen(_ sender: MapViewController, isHidden: Bool)
-
-    func mapChangedFromUserInteraction(_ sender: MapViewController)
+extension RadarViewController: SwitchViewDelegate {
+    func deliverSwitchState(_ sender: SwitchCollectionViewCell, _ rowAt: Int) {
+        if let state = MapViewConstants.boolArray[MapViewConstants.dangerous[rowAt]] {
+            MapViewConstants.boolArray[MapViewConstants.dangerous[rowAt]] = !state
+        }
+        handleUnluckyHouse()
+        handleDangerousLocation()
+    }
 }

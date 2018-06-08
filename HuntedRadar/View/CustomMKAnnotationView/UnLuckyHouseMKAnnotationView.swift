@@ -15,12 +15,12 @@ class UnLuckyHouseMKAnnotationView: MKAnnotationView {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     func setup() {
         self.canShowCallout = true
         self.calloutOffset = CGPoint(x: -5, y: 5)

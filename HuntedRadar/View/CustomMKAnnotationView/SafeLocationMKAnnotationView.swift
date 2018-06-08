@@ -10,9 +10,9 @@ import UIKit
 import MapKit
 
 class SafeLocationMKAnnotationView: MKAnnotationView {
-    
+
     private var annotationTitle: String?
-    
+
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         guard let annotation = annotation as? SafeLocation else {
@@ -21,12 +21,12 @@ class SafeLocationMKAnnotationView: MKAnnotationView {
         annotationTitle = annotation.title
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     func setup() {
         self.canShowCallout = true
         self.calloutOffset = CGPoint(x: -5, y: 5)
@@ -36,6 +36,5 @@ class SafeLocationMKAnnotationView: MKAnnotationView {
             self.image = UIImage(named: "safe")
         }
     }
-    
-    
+
 }

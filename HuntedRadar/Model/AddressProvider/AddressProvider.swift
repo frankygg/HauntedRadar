@@ -55,7 +55,7 @@ class AddressProvider {
             }
         })
     }
-    
+
     func getLocationFromAddress(_ address: String, callback: @escaping (CLLocationCoordinate2D) -> Void) {
         var coordinate: CLLocationCoordinate2D? = nil
         let geoCoder = CLGeocoder()

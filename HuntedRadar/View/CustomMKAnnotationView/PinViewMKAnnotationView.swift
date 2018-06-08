@@ -10,20 +10,20 @@ import UIKit
 import MapKit
 
 class PinViewMKAnnotationView: MKAnnotationView {
-    
+
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
         setup()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
     }
-    
+
     func setup() {
         self.canShowCallout = true
         self.image = UIImage(named: "scanner")
     }
-   
+
 }

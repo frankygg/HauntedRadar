@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="YDz-DT-3gU">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H26-qv-Tcy">
     <device id="retina5_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Map View Controller-->
+        <!--Radar View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="MapViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RadarViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -101,6 +101,60 @@
             </objects>
             <point key="canvasLocation" x="1042.5" y="95.070422535211264"/>
         </scene>
+        <!--Temp Radar View Controller-->
+        <scene sceneID="xUR-Y0-bJs">
+            <objects>
+                <viewController id="CgG-7y-PdG" customClass="TempRadarViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="l2g-s1-ogN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MXI-s2-VgG">
+                                <rect key="frame" x="0.0" y="64" width="414" height="245"/>
+                                <connections>
+                                    <segue destination="B2R-36-DpY" kind="embed" identifier="switchView" id="kTd-8c-qSf"/>
+                                </connections>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyp-i6-dUX">
+                                <rect key="frame" x="0.0" y="309" width="414" height="427"/>
+                                <connections>
+                                    <segue destination="xMh-0J-hcs" kind="embed" identifier="mapView" id="c33-Hv-W6n"/>
+                                </connections>
+                            </containerView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MXI-s2-VgG" firstAttribute="height" secondItem="l2g-s1-ogN" secondAttribute="height" multiplier="1/3" id="5hd-ky-7ZN"/>
+                            <constraint firstItem="gyp-i6-dUX" firstAttribute="top" secondItem="MXI-s2-VgG" secondAttribute="bottom" id="Xkf-3P-CgB"/>
+                            <constraint firstItem="Ka2-jI-V5I" firstAttribute="bottom" secondItem="gyp-i6-dUX" secondAttribute="bottom" id="avm-HC-eWm"/>
+                            <constraint firstItem="MXI-s2-VgG" firstAttribute="width" secondItem="l2g-s1-ogN" secondAttribute="width" id="cDD-JI-mwf"/>
+                            <constraint firstItem="MXI-s2-VgG" firstAttribute="centerX" secondItem="l2g-s1-ogN" secondAttribute="centerX" id="eq4-gb-N7k"/>
+                            <constraint firstItem="gyp-i6-dUX" firstAttribute="width" secondItem="l2g-s1-ogN" secondAttribute="width" id="gZ1-KH-TK5"/>
+                            <constraint firstItem="gyp-i6-dUX" firstAttribute="centerX" secondItem="l2g-s1-ogN" secondAttribute="centerX" id="iaQ-xy-MTA"/>
+                            <constraint firstItem="gyp-i6-dUX" firstAttribute="top" secondItem="Ka2-jI-V5I" secondAttribute="top" id="m0b-DH-p6o"/>
+                            <constraint firstItem="MXI-s2-VgG" firstAttribute="top" secondItem="Ka2-jI-V5I" secondAttribute="top" id="xVC-vr-1eF"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Ka2-jI-V5I"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="m0b-DH-p6o"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <navigationItem key="navigationItem" id="dxq-F4-W24">
+                        <barButtonItem key="backBarButtonItem" title=" " id="BHL-gO-y8O"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="controlPanelView" destination="MXI-s2-VgG" id="cxP-hV-Zwc"/>
+                        <outlet property="fullScreenMapTopConstraint" destination="m0b-DH-p6o" id="Ehw-5y-lnz"/>
+                        <outlet property="mapPanelView" destination="gyp-i6-dUX" id="QD6-j5-R1d"/>
+                        <outlet property="originalMapTopConstraint" destination="Xkf-3P-CgB" id="1Sn-yo-P5A"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u7h-tb-hfI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1797.1014492753625" y="1004.3478260869566"/>
+        </scene>
         <!--Bar Chart View Controller-->
         <scene sceneID="Nwl-I9-iEZ">
             <objects>
@@ -129,7 +183,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3vu-45-Udj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2000.8" y="440.32983508245883"/>
+            <point key="canvasLocation" x="2803" y="246"/>
         </scene>
         <!--Hunted Navigation Controller-->
         <scene sceneID="IbD-wN-eA0">
@@ -194,6 +248,156 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qF8-Ur-gU5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2057.971014492754" y="-224.59239130434784"/>
+        </scene>
+        <!--Hunted Navigation Controller-->
+        <scene sceneID="mQG-Nw-GxC">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="H26-qv-Tcy" customClass="HuntedNavigationController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JpB-Zd-ODM">
+                        <rect key="frame" x="0.0" y="20" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="CgG-7y-PdG" kind="relationship" relationship="rootViewController" id="bD0-Nl-wga"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="b3t-Z3-4jd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="889.85507246376824" y="1004.3478260869566"/>
+        </scene>
+        <!--Switch View Controller-->
+        <scene sceneID="n5H-be-LTy">
+            <objects>
+                <viewController id="B2R-36-DpY" customClass="SwitchViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dAy-ku-AGd">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="245"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Uws-Xf-5FJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="245.33333333333334"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JXB-eL-AfF">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U2W-KK-Ykz">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Uws-Xf-5FJ" secondAttribute="bottom" id="NcL-9j-3DE"/>
+                            <constraint firstItem="Uws-Xf-5FJ" firstAttribute="leading" secondItem="dAy-ku-AGd" secondAttribute="leading" id="awr-AT-6PT"/>
+                            <constraint firstItem="Uws-Xf-5FJ" firstAttribute="top" secondItem="dAy-ku-AGd" secondAttribute="top" id="bhv-xN-XVi"/>
+                            <constraint firstAttribute="trailing" secondItem="Uws-Xf-5FJ" secondAttribute="trailing" id="sUA-WQ-FzL"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mAE-2X-5dH"/>
+                    </view>
+                    <connections>
+                        <outlet property="collectionview" destination="Uws-Xf-5FJ" id="BzF-91-P6J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pei-xW-XbU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2884" y="837"/>
+        </scene>
+        <!--Map View Controller-->
+        <scene sceneID="7NL-BE-Ajg">
+            <objects>
+                <viewController id="xMh-0J-hcs" customClass="MapViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="OWU-jU-8xT">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="427"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="0n4-EZ-eyJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="427"/>
+                            </mapView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V1z-Fz-AEa">
+                                <rect key="frame" x="361" y="381" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="BFz-fX-xZb"/>
+                                    <constraint firstAttribute="height" constant="25" id="WqP-UT-rdS"/>
+                                </constraints>
+                                <state key="normal" image="full_screen_exit"/>
+                                <connections>
+                                    <action selector="exitFullscreen:" destination="xMh-0J-hcs" eventType="touchUpInside" id="a8V-bw-coW"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O3Z-ux-Qgr">
+                                <rect key="frame" x="29" y="380" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="19R-bP-Wrx"/>
+                                    <constraint firstAttribute="width" constant="25" id="z5I-5W-Jd2"/>
+                                </constraints>
+                                <state key="normal" image="search"/>
+                                <connections>
+                                    <segue destination="jI1-88-shq" kind="show" identifier="deliverCrime" id="rnm-5T-HJm"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="0n4-EZ-eyJ" secondAttribute="bottom" id="4Um-s8-gAL"/>
+                            <constraint firstItem="V1z-Fz-AEa" firstAttribute="leading" secondItem="0n4-EZ-eyJ" secondAttribute="trailing" constant="-53" id="BrL-Oc-nyH"/>
+                            <constraint firstItem="0n4-EZ-eyJ" firstAttribute="top" secondItem="OWU-jU-8xT" secondAttribute="top" id="L1N-ew-O1e"/>
+                            <constraint firstItem="0n4-EZ-eyJ" firstAttribute="leading" secondItem="OWU-jU-8xT" secondAttribute="leading" id="Q4b-TI-4d8"/>
+                            <constraint firstItem="0n4-EZ-eyJ" firstAttribute="leading" secondItem="O3Z-ux-Qgr" secondAttribute="trailing" constant="-54" id="apb-6F-AJ0"/>
+                            <constraint firstItem="V1z-Fz-AEa" firstAttribute="top" secondItem="0n4-EZ-eyJ" secondAttribute="bottom" constant="-46" id="hxd-ih-0wS"/>
+                            <constraint firstItem="O3Z-ux-Qgr" firstAttribute="top" secondItem="0n4-EZ-eyJ" secondAttribute="bottom" constant="-47" id="lxa-lB-mqn"/>
+                            <constraint firstAttribute="trailing" secondItem="0n4-EZ-eyJ" secondAttribute="trailing" id="tnE-1S-oMt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="fullscreenExitButton" destination="V1z-Fz-AEa" id="hxi-pk-fhi"/>
+                        <outlet property="mapView" destination="0n4-EZ-eyJ" id="9cR-0k-8Aj"/>
+                        <outlet property="searchButton" destination="O3Z-ux-Qgr" id="vBM-Hb-UxI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ewC-eG-ChA" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3015.9420289855075" y="1243.6141304347827"/>
+        </scene>
+        <!--Bar Chart View Controller-->
+        <scene sceneID="h06-5Y-Mib">
+            <objects>
+                <viewController id="jI1-88-shq" customClass="BarChartViewController" customModule="HuntedRadar" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XeM-Zb-h9M">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="427"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MuL-hY-TYs" customClass="BarChartView" customModule="Charts">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="377"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="MuL-hY-TYs" firstAttribute="top" secondItem="bg7-rb-jWf" secondAttribute="top" id="8hH-vP-DFO"/>
+                            <constraint firstItem="bg7-rb-jWf" firstAttribute="trailing" secondItem="MuL-hY-TYs" secondAttribute="trailing" id="eie-91-XNH"/>
+                            <constraint firstItem="MuL-hY-TYs" firstAttribute="leading" secondItem="bg7-rb-jWf" secondAttribute="leading" id="sjG-dM-bpm"/>
+                            <constraint firstItem="bg7-rb-jWf" firstAttribute="bottom" secondItem="MuL-hY-TYs" secondAttribute="bottom" constant="50" id="wAk-Qm-VQ1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="bg7-rb-jWf"/>
+                    </view>
+                    <connections>
+                        <outlet property="barChartView" destination="MuL-hY-TYs" id="sOc-S8-jB0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e08-Z8-qJf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4122" y="1433"/>
         </scene>
     </scenes>
     <resources>

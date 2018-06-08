@@ -12,7 +12,7 @@
 		B70452CC20A14B2500090318 /* SwitchCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70452CA20A14B2500090318 /* SwitchCollectionViewCell.swift */; };
 		B70452CD20A14B2500090318 /* SwitchCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70452CB20A14B2500090318 /* SwitchCollectionViewCell.xib */; };
 		B705B9E420B5CCEA0068823D /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B705B9E320B5CCEA0068823D /* ProfileViewController.swift */; };
-		B708702E20B32032008E0D57 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B708702D20B32032008E0D57 /* Date+Extension.swift */; };
+		B708702E20B32032008E0D57 /* CustomDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B708702D20B32032008E0D57 /* CustomDate+Extension.swift */; };
 		B708B3DA20A73EBB00687113 /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B708B3D920A73EBB00687113 /* TabBarViewController.swift */; };
 		B708B3DE20A740C000687113 /* UIStoryBoard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B708B3DD20A740C000687113 /* UIStoryBoard+Extension.swift */; };
 		B708B3E020A747CB00687113 /* Article.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B708B3DF20A747CB00687113 /* Article.storyboard */; };
@@ -73,7 +73,6 @@
 		B70D0F9320C8FA40007824F9 /* SafeLocationMKAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70D0F9220C8FA40007824F9 /* SafeLocationMKAnnotationView.swift */; };
 		B70D0F9520C8FD62007824F9 /* PinViewMKAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70D0F9420C8FD62007824F9 /* PinViewMKAnnotationView.swift */; };
 		B70D0FA420C902B1007824F9 /* MapViewConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70D0FA320C902B1007824F9 /* MapViewConstants.swift */; };
-		B70D0FA820C919AB007824F9 /* CustomResultSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70D0FA720C919AB007824F9 /* CustomResultSearchController.swift */; };
 		B70E4A6920B6937200A100AF /* ForbidTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E4A6720B6937200A100AF /* ForbidTableViewCell.swift */; };
 		B70E4A6A20B6937200A100AF /* ForbidTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B70E4A6820B6937200A100AF /* ForbidTableViewCell.xib */; };
 		B70E98D5209C43B500112661 /* DangerousLocationDetailMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70E98D4209C43B500112661 /* DangerousLocationDetailMapView.swift */; };
@@ -98,7 +97,7 @@
 		B7BB5E4220B2A66200F16CCD /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BB5E4020B2A66200F16CCD /* ImageTableViewCell.xib */; };
 		B7BB5E4520B2C8BB00F16CCD /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB5E4420B2C8BB00F16CCD /* Comment.swift */; };
 		B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4020995B030054FD6B /* AppDelegate.swift */; };
-		B7C5AD4320995B030054FD6B /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4220995B030054FD6B /* MapViewController.swift */; };
+		B7C5AD4320995B030054FD6B /* RadarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4220995B030054FD6B /* RadarViewController.swift */; };
 		B7C5AD4620995B030054FD6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C5AD4420995B030054FD6B /* Main.storyboard */; };
 		B7C5AD4820995B040054FD6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7C5AD4720995B040054FD6B /* Assets.xcassets */; };
 		B7C5AD4B20995B040054FD6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C5AD4920995B040054FD6B /* LaunchScreen.storyboard */; };
@@ -116,6 +115,8 @@
 		B7CCD75220A9971800CE722E /* AddQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7CCD75120A9971800CE722E /* AddQuestionViewController.swift */; };
 		B7E2254D20C78335007C843A /* AddressProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7E2254C20C78335007C843A /* AddressProvider.swift */; };
 		B7FAD73D20CA272D000AC3E0 /* UISearchController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FAD73C20CA272D000AC3E0 /* UISearchController+Extension.swift */; };
+		B7FAD74020CA2FB3000AC3E0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FAD73F20CA2FB3000AC3E0 /* MapViewController.swift */; };
+		B7FAD74320CA54D3000AC3E0 /* TempRadarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FAD74220CA54D3000AC3E0 /* TempRadarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,7 +126,7 @@
 		B70452CA20A14B2500090318 /* SwitchCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchCollectionViewCell.swift; sourceTree = "<group>"; };
 		B70452CB20A14B2500090318 /* SwitchCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SwitchCollectionViewCell.xib; sourceTree = "<group>"; };
 		B705B9E320B5CCEA0068823D /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		B708702D20B32032008E0D57 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		B708702D20B32032008E0D57 /* CustomDate+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomDate+Extension.swift"; sourceTree = "<group>"; };
 		B708B3D920A73EBB00687113 /* TabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		B708B3DD20A740C000687113 /* UIStoryBoard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryBoard+Extension.swift"; sourceTree = "<group>"; };
 		B708B3DF20A747CB00687113 /* Article.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Article.storyboard; sourceTree = "<group>"; };
@@ -186,7 +187,6 @@
 		B70D0F9220C8FA40007824F9 /* SafeLocationMKAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeLocationMKAnnotationView.swift; sourceTree = "<group>"; };
 		B70D0F9420C8FD62007824F9 /* PinViewMKAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinViewMKAnnotationView.swift; sourceTree = "<group>"; };
 		B70D0FA320C902B1007824F9 /* MapViewConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewConstants.swift; sourceTree = "<group>"; };
-		B70D0FA720C919AB007824F9 /* CustomResultSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomResultSearchController.swift; sourceTree = "<group>"; };
 		B70E4A6720B6937200A100AF /* ForbidTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForbidTableViewCell.swift; sourceTree = "<group>"; };
 		B70E4A6820B6937200A100AF /* ForbidTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForbidTableViewCell.xib; sourceTree = "<group>"; };
 		B70E98D4209C43B500112661 /* DangerousLocationDetailMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DangerousLocationDetailMapView.swift; sourceTree = "<group>"; };
@@ -212,7 +212,7 @@
 		B7BB5E4420B2C8BB00F16CCD /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B7C5AD3D20995B030054FD6B /* HuntedRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HuntedRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C5AD4020995B030054FD6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B7C5AD4220995B030054FD6B /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B7C5AD4220995B030054FD6B /* RadarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarViewController.swift; sourceTree = "<group>"; };
 		B7C5AD4520995B030054FD6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B7C5AD4720995B040054FD6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7C5AD4A20995B040054FD6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -231,6 +231,8 @@
 		B7CCD75120A9971800CE722E /* AddQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuestionViewController.swift; sourceTree = "<group>"; };
 		B7E2254C20C78335007C843A /* AddressProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressProvider.swift; sourceTree = "<group>"; };
 		B7FAD73C20CA272D000AC3E0 /* UISearchController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISearchController+Extension.swift"; sourceTree = "<group>"; };
+		B7FAD73F20CA2FB3000AC3E0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		B7FAD74220CA54D3000AC3E0 /* TempRadarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempRadarViewController.swift; sourceTree = "<group>"; };
 		D09A49790DB186CF5543EBF1 /* Pods-HuntedRadar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuntedRadar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HuntedRadar/Pods-HuntedRadar.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -276,7 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				B708B3DD20A740C000687113 /* UIStoryBoard+Extension.swift */,
-				B708702D20B32032008E0D57 /* Date+Extension.swift */,
+				B708702D20B32032008E0D57 /* CustomDate+Extension.swift */,
 				B7FAD73C20CA272D000AC3E0 /* UISearchController+Extension.swift */,
 			);
 			path = Extension;
@@ -561,12 +563,12 @@
 			path = SwitchView;
 			sourceTree = "<group>";
 		};
-		B70D0F9920C8FFC7007824F9 /* MapView */ = {
+		B70D0F9920C8FFC7007824F9 /* RadarView */ = {
 			isa = PBXGroup;
 			children = (
-				B7C5AD4220995B030054FD6B /* MapViewController.swift */,
+				B7C5AD4220995B030054FD6B /* RadarViewController.swift */,
 			);
-			path = MapView;
+			path = RadarView;
 			sourceTree = "<group>";
 		};
 		B70D0F9A20C8FFDB007824F9 /* LocationSearchTable */ = {
@@ -642,14 +644,6 @@
 				B70D0FA320C902B1007824F9 /* MapViewConstants.swift */,
 			);
 			path = MapViewConstants;
-			sourceTree = "<group>";
-		};
-		B70D0FA520C91965007824F9 /* CustomResultSearch */ = {
-			isa = PBXGroup;
-			children = (
-				B70D0FA720C919AB007824F9 /* CustomResultSearchController.swift */,
-			);
-			path = CustomResultSearch;
 			sourceTree = "<group>";
 		};
 		B70E4A6620B6934B00A100AF /* ForbidCell */ = {
@@ -804,9 +798,10 @@
 		B7C5AD5A20996A960054FD6B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B70D0FA520C91965007824F9 /* CustomResultSearch */,
+				B7FAD74120CA54BA000AC3E0 /* TempRadar */,
+				B7FAD73E20CA2F95000AC3E0 /* MapView */,
 				B70D0F9A20C8FFDB007824F9 /* LocationSearchTable */,
-				B70D0F9920C8FFC7007824F9 /* MapView */,
+				B70D0F9920C8FFC7007824F9 /* RadarView */,
 				B70D0F9820C8FFB9007824F9 /* SwitchView */,
 				B70D0F9720C8FFA8007824F9 /* BarChart */,
 				B70D0F9620C8FF98007824F9 /* TabBar */,
@@ -875,6 +870,22 @@
 				B7E2254C20C78335007C843A /* AddressProvider.swift */,
 			);
 			path = AddressProvider;
+			sourceTree = "<group>";
+		};
+		B7FAD73E20CA2F95000AC3E0 /* MapView */ = {
+			isa = PBXGroup;
+			children = (
+				B7FAD73F20CA2FB3000AC3E0 /* MapViewController.swift */,
+			);
+			path = MapView;
+			sourceTree = "<group>";
+		};
+		B7FAD74120CA54BA000AC3E0 /* TempRadar */ = {
+			isa = PBXGroup;
+			children = (
+				B7FAD74220CA54D3000AC3E0 /* TempRadarViewController.swift */,
+			);
+			path = TempRadar;
 			sourceTree = "<group>";
 		};
 		F57B06C7654F8759E1F85A9F /* Frameworks */ = {
@@ -1085,7 +1096,7 @@
 			files = (
 				B7CCD74D20A9847100CE722E /* LoginViewController.swift in Sources */,
 				B7E2254D20C78335007C843A /* AddressProvider.swift in Sources */,
-				B708702E20B32032008E0D57 /* Date+Extension.swift in Sources */,
+				B708702E20B32032008E0D57 /* CustomDate+Extension.swift in Sources */,
 				B70E4A6920B6937200A100AF /* ForbidTableViewCell.swift in Sources */,
 				B7CB48E720A94C430042194C /* ArticleTableViewCell.swift in Sources */,
 				B70BBABB20C4EFD1000A39D6 /* Button.swift in Sources */,
@@ -1109,19 +1120,19 @@
 				B7C5AD5D209990860054FD6B /* DangerousLocation.swift in Sources */,
 				B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */,
 				B712E03920AE7BF300FFBD87 /* SearchBarContainerView.swift in Sources */,
-				B7C5AD4320995B030054FD6B /* MapViewController.swift in Sources */,
+				B7C5AD4320995B030054FD6B /* RadarViewController.swift in Sources */,
 				B70BBAA820C4EFD1000A39D6 /* Location.swift in Sources */,
 				B7BB5E4520B2C8BB00F16CCD /* Comment.swift in Sources */,
 				B70BBAB020C4EFD1000A39D6 /* DatePickerViewController.swift in Sources */,
 				B71037E020BE41F300952A65 /* PrivacyViewController.swift in Sources */,
 				B70BBAB120C4EFD1000A39D6 /* ImagePickerViewController.swift in Sources */,
 				B70BBA8F20C4EFD0000A39D6 /* UIColor+Extensions.swift in Sources */,
-				B70D0FA820C919AB007824F9 /* CustomResultSearchController.swift in Sources */,
 				B70BBA9C20C4EFD0000A39D6 /* LocaleInfo.swift in Sources */,
 				B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */,
 				B70BBA8E20C4EFD0000A39D6 /* UITextView+Extensions.swift in Sources */,
 				B70BBA9F20C4EFD0000A39D6 /* CurrencyCell.swift in Sources */,
 				B70BBA8720C4EFD0000A39D6 /* Array+Extensions.swift in Sources */,
+				B7FAD74320CA54D3000AC3E0 /* TempRadarViewController.swift in Sources */,
 				B70E98D5209C43B500112661 /* DangerousLocationDetailMapView.swift in Sources */,
 				B70BBA8D20C4EFD0000A39D6 /* String+Extensions.swift in Sources */,
 				B70D0F9320C8FA40007824F9 /* SafeLocationMKAnnotationView.swift in Sources */,
@@ -1168,6 +1179,7 @@
 				B72A46D420A1EEBD00E810E0 /* SafeLocation.swift in Sources */,
 				B70BBAA420C4EFD1000A39D6 /* PhotoLibraryPickerViewController.swift in Sources */,
 				B70BBA9520C4EFD0000A39D6 /* Common+Extensions.swift in Sources */,
+				B7FAD74020CA2FB3000AC3E0 /* MapViewController.swift in Sources */,
 				B71060FA20A49C1500C4A93F /* BarChartViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
