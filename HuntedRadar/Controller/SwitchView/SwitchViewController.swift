@@ -12,7 +12,7 @@ class SwitchViewController: UIViewController {
 
     //IBOutlet var
     @IBOutlet weak var collectionview: UICollectionView!
-    
+
     //local var
     weak var delegate: SwitchViewDelegate?
     override func viewDidLoad() {

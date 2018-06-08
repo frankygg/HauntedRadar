@@ -10,7 +10,7 @@ import Foundation
 import Charts
 
 class BarChartViewController: UIViewController, ChartViewDelegate {
-    
+
     //IBOutlet var
     @IBOutlet var barChartView: BarChartView!
 
@@ -28,10 +28,10 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
         navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
 
     }
-    
+
     @objc func zoomback(_ sender: UIBarButtonItem) {
         sender.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
-        
+
         self.barChartView.zoomToCenter(scaleX: 0, scaleY: 0)
     }
 
@@ -39,7 +39,7 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
         print("scaled")
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
     }
-    
+
     func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
 
         navigationItem.rightBarButtonItem?.tintColor = UIColor.white
