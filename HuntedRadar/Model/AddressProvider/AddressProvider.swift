@@ -13,7 +13,7 @@ class AddressProvider {
 
     static let shared = AddressProvider()
 
-    func getAddressFromLatLon(pdblLatitude: Double, withLongitude pdblLongitude: Double, callback: @escaping (String) -> Void) {
+    func getAddressFromLocation(pdblLatitude: Double, withLongitude pdblLongitude: Double, callback: @escaping (String) -> Void) {
         var center: CLLocationCoordinate2D = CLLocationCoordinate2D()
         let lat: Double = pdblLatitude
         //21.228124
@@ -54,6 +54,20 @@ class AddressProvider {
                 callback(addressString)
             }
         })
+    }
+    
+    func getLocationFromAddress(_ address: String, callback: @escaping (CLLocationCoordinate2D) -> Void) {
+        var coordinate: CLLocationCoordinate2D? = nil
+        let geoCoder = CLGeocoder()
+        geoCoder.geocodeAddressString(address) { (placemarks, error) in
+            if let placemarks = placemarks {
+                let location = placemarks.first?.location
+                coordinate = location?.coordinate
+                callback(coordinate!)
+            } else {
+                print(error?.localizedDescription ?? "ERROR")
+            }
+        }
     }
 
 }

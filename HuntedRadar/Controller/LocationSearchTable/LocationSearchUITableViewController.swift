@@ -8,14 +8,14 @@
 
 import UIKit
 import MapKit
-class LocationSearchTable: UITableViewController {
+class LocationSearchUITableViewController: UITableViewController {
     var matchingItems: [MKMapItem] = []
     var mapView: MKMapView?
     weak var delegate: HandleMapSearch?
 
 }
 
-extension LocationSearchTable: UISearchResultsUpdating {
+extension LocationSearchUITableViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
 
         guard let mapView = mapView,
@@ -35,7 +35,7 @@ extension LocationSearchTable: UISearchResultsUpdating {
 
 }
 
-extension LocationSearchTable {
+extension LocationSearchUITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return matchingItems.count
     }

@@ -36,15 +36,10 @@ class MapViewController: UIViewController {
 
     //local var
     var tapGesture = UITapGestureRecognizer()
-    let unLuckyHouseIdentifier = "unluckyhouse"
-    let dangerouseLocationIdentifier = "dangerouse"
-    let safeLocationIdentifier = "safe"
     var unluckyhouseList = [UnLuckyHouse]()
     let locationManager = CLLocationManager()
     var dlManager = DLManager()
     private var mapChangedFromUserInteraction = false
-    let dangerous = ["凶宅", "毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
-    var boolArray = ["凶宅": false, "毒品": false, "強制性交": false, "強盜": false, "搶奪": false, "住宅竊盜": false, "汽車竊盜": false, "機車竊盜": false]
     var resultSearchController: UISearchController?
     var hasUnluckyhouse = false
     var dangerousLocation = [DangerousLocation]()
@@ -85,7 +80,7 @@ class MapViewController: UIViewController {
                 mapView.removeAnnotation(annotation)
             }
         }
-        if boolArray["凶宅"] == true {
+        if MapViewConstants.boolArray["凶宅"] == true {
             for unluckyhouse in unluckyhouseList {
 
                 let latitude = unluckyhouse.coordinate.latitude
@@ -104,18 +99,18 @@ class MapViewController: UIViewController {
     func handleDangerousLocation() {
         dangerousCrimeDate = [String]()
         if let userLocation = userLocation, dangerousAddress.count > 0 {
-            AddressProvider.shared.getAddressFromLatLon(pdblLatitude: userLocation.coordinate.latitude, withLongitude: userLocation.coordinate.longitude) { useraddress in
+            AddressProvider.shared.getAddressFromLocation(pdblLatitude: userLocation.coordinate.latitude, withLongitude: userLocation.coordinate.longitude) { useraddress in
                 DispatchQueue.main.async {
                     var hasAnnotation = false
                     for item in self.dangerousAddress where item.address == useraddress {
                         hasAnnotation = true
-                        self.convertAddressToLocationAtCotro(item.address, callback: { [weak self] coordinate in
+                        AddressProvider.shared.getLocationFromAddress(item.address, callback: { [weak self] coordinate in
                             var crimes = [String]()
                             var crimeDates = [String]()
-                            for value in item.title where self?.boolArray[value] == true {
+                            for value in item.title where MapViewConstants.boolArray[value] == true {
                                 crimes.append(value)
                             }
-                            for value in item.crimeWithDate where self?.boolArray[String(value[value.index(value.startIndex, offsetBy: 5)...])] == true {
+                            for value in item.crimeWithDate where MapViewConstants.boolArray[String(value[value.index(value.startIndex, offsetBy: 5)...])] == true {
                                 crimeDates.append(value)
                             }
 
@@ -202,13 +197,11 @@ class MapViewController: UIViewController {
 
     func setSearchBar() {
         let storyBoard = UIStoryboard(name: "LocationSearchTable", bundle: nil)
-        let locationSearchTable = storyBoard.instantiateViewController(withIdentifier: "LocationSearchTable") as? LocationSearchTable
+        let locationSearchTable = storyBoard.instantiateViewController(withIdentifier: "LocationSearchTable") as? LocationSearchUITableViewController
         resultSearchController = UISearchController(searchResultsController: locationSearchTable)
         resultSearchController?.searchResultsUpdater = locationSearchTable
+        resultSearchController?.setUpCustomButton()
         let searchBar = resultSearchController!.searchBar
-        searchBar.sizeToFit()
-        searchBar.setValue("取消", forKey: "_cancelButtonText")
-        searchBar.placeholder = "找尋你要的位置"
         if #available(iOS 11.0, *) {
             let searchBarContainer = SearchBarContainerView(customSearchBar: searchBar)
             searchBarContainer.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 44)
@@ -254,31 +247,15 @@ class MapViewController: UIViewController {
                 nextVC.delegate = self
             }
         } else if segue.identifier == "deliverCrime" {
-
                 // initialize new view controller and cast it as your view controller
                 let viewController = segue.destination as? BarChartViewController
                 // your new view controller should have property that will store passed value
             viewController?.passedValue = dangerousCrimeDate
-
         }
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-    }
-
-    func convertAddressToLocationAtCotro(_ address: String, callback: @escaping (CLLocationCoordinate2D) -> Void) {
-        var coordinate: CLLocationCoordinate2D? = nil
-        let geoCoder = CLGeocoder()
-        geoCoder.geocodeAddressString(address) { (placemarks, error) in
-            if let placemarks = placemarks {
-                let location = placemarks.first?.location
-                coordinate = location?.coordinate
-                callback(coordinate!)
-            } else {
-                print(error?.localizedDescription ?? "ERROR")
-            }
-        }
     }
 
     func centerLocation(_ coordinate: CLLocationCoordinate2D, with offset: CLLocationDegrees) {
@@ -327,52 +304,38 @@ extension MapViewController: MKMapViewDelegate {
         }
         var view: MKAnnotationView
         if let annotation = annotation as? UnLuckyHouse {
-        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: unLuckyHouseIdentifier) {
+        if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: MapViewConstants.unLuckyHouseIdentifier) {
             dequeuedView.annotation = annotation
             view = dequeuedView
         } else {
-            view = MKAnnotationView(annotation: annotation, reuseIdentifier: unLuckyHouseIdentifier)
-            view.canShowCallout = true
-            view.calloutOffset = CGPoint(x: -5, y: 5)
-            view.image = UIImage(named: "ghost")
+            view = UnLuckyHouseMKAnnotationView(annotation: annotation, reuseIdentifier: MapViewConstants.unLuckyHouseIdentifier)
         }
-            return view } else if let annotation = annotation as? DangerousLocation {
-
-                if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: dangerouseLocationIdentifier) {
+            return view
+            
+        } else if let annotation = annotation as? DangerousLocation {
+                if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: MapViewConstants.dangerouseLocationIdentifier) {
                     dequeuedView.annotation = annotation
                     view = dequeuedView
                 } else {
-                    view = DangerousLocationAnnotationView(annotation: annotation, reuseIdentifier: dangerouseLocationIdentifier)
+                    view = DangerousLocationAnnotationView(annotation: annotation, reuseIdentifier: MapViewConstants.dangerouseLocationIdentifier)
                 }
             return view
         } else if let annotation = annotation as? SafeLocation {
-
-            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: safeLocationIdentifier) {
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: MapViewConstants.safeLocationIdentifier) {
                 dequeuedView.annotation = annotation
                 view = dequeuedView
-                if annotation.title == "有凶宅！" {
-                    view.image = UIImage(named: "exclamation")
-                } else {
-                    view.image = UIImage(named: "safe")
-                }
             } else {
-                view = MKAnnotationView(annotation: annotation, reuseIdentifier: safeLocationIdentifier)
-                                    view.canShowCallout = true
-                                    view.calloutOffset = CGPoint(x: -5, y: 5)
-                if annotation.title == "有凶宅！" {
-                    view.image = UIImage(named: "exclamation")
-                } else {
-                    view.image = UIImage(named: "safe")
-                }
+                view = SafeLocationMKAnnotationView(annotation: annotation, reuseIdentifier: MapViewConstants.safeLocationIdentifier)
             }
             return view
         } else {
-            let reuseId = "pin"
-            var pinView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseId)
-            pinView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseId)
-            pinView?.canShowCallout = true
-            pinView?.image = UIImage(named: "scanner")
-            return pinView
+            if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: MapViewConstants.pinViewIdentifier) {
+                dequeuedView.annotation = annotation
+                view = dequeuedView
+            } else {
+                view = PinViewMKAnnotationView(annotation: annotation, reuseIdentifier: MapViewConstants.pinViewIdentifier)
+            }
+            return view
         }
     }
 
@@ -429,10 +392,11 @@ extension MapViewController: HandleMapSearch {
 extension MapViewController: SwitchViewDelegate {
 
     func deliverSwitchState(_ sender: SwitchCollectionViewCell, _ rowAt: Int) {
-        if let state = boolArray[dangerous[rowAt]] {
-            boolArray[dangerous[rowAt]] = !state
+        if let state = MapViewConstants.boolArray[MapViewConstants.dangerous[rowAt]] {
+            MapViewConstants.boolArray[MapViewConstants.dangerous[rowAt]] = !state
         }
         handleUnluckyHouse()
         handleDangerousLocation()
     }
 }
+
