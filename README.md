@@ -5,7 +5,7 @@
 附加論壇討論功能，用戶可新增及修改討論，並討論特定地區是否發生過凶宅或危險事件，也可在討論下方留言。<br />
 對於不當言論的用戶可以執行封鎖功能，將不再看到該用戶之發表及留言。<br />
 
-# Features
+# Features #
   * 雷達
     * 查詢凶宅
     * 查詢危險因子
@@ -18,6 +18,21 @@
   * 設定
     * 解除封鎖其他用戶
     * 登入帳號
+    
+# Libraries #
+  * FMDB
+  * SwiftLint
+  * Charts
+  * Firebase/Core
+  * Firebase/Database
+  * FirebaseUI/Auth
+  * Firebase/Storage
+  * SDWebImage
+  * IQKeyboardManagerSwift
+  * SwipeCellKit
+  * SVProgressHUD
+  * Fabric
+  * Crashlytics
 
 # ScreenShot #
 <img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/1.jpg" width="250"/><img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/2.jpg" width="250"/>
