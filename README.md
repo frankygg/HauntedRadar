@@ -1,6 +1,9 @@
 # HauntedRadar [<img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/DownloadAppStoreBadge.png" width = "160" height = "50" alt="Shalk" align=center />](https://itunes.apple.com/app/id1390350033)
-租房子的時候，是否擔心租到凶宅？ <br />
-簡單查詢一下，將讓您住得更安心！
+租房子的時候，是否擔心住到凶宅？ <br />
+簡單查詢一下，將讓您住得更安心！ <br />
+除了可查詢曾經發生凶宅的位置，同時可查詢定位附近的危險因子曾經發生頻率！<br />
+附加論壇討論功能，用戶可新增及修改討論，並討論特定地區是否發生過凶宅或危險事件，也可在討論下方留言。<br />
+對於不當言論的用戶可以執行封鎖功能，將不再看到該用戶之發表及留言。<br />
 
 # Features
   * 雷達
@@ -17,10 +20,10 @@
     * 登入帳號
 
 # ScreenShot #
-<img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/1.jpg" width="124.4" height="220.8"/><img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/2.jpg" width="124.4" height="220.8"/>
-<img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/3.jpg" width="124.4" height="220.8"/>
-<img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/4.jpg" width="124.4" height="220.8"/>
-<img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/5.png" width="124.4" height="220.8"/>
+<img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/1.jpg" width="250"/><img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/2.jpg" width="250"/>
+<img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/3.jpg" width="250"/>
+<img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/4.jpg" width="250"/>
+<img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/5.png" width="250"/>
 
 # Requirements #
 * iOS 11.0 +
@@ -34,7 +37,7 @@
     * 增加論壇討論功能，用戶可新增及修改討論，也可在討論下方留言
     
   * 1.2 - 2018/06/06
-    * 上傳照片最多新增三張
+    * 上傳照片可最多新增三張
 
 # Contact Me #
 Frank Ding  
