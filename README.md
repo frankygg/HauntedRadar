@@ -34,7 +34,7 @@
   * Fabric
   * Crashlytics
 
-# ScreenShot #
+# Screenshots #
 <img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/1.jpg" width="250"/><img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/2.jpg" width="250"/>
 <img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/3.jpg" width="250"/>
 <img src="https://github.com/frankygg/HauntedRadar/raw/master/Screenshot/4.jpg" width="250"/>
