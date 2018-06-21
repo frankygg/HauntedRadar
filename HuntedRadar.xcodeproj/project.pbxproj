@@ -18,6 +18,7 @@
 		B708B3E020A747CB00687113 /* Article.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B708B3DF20A747CB00687113 /* Article.storyboard */; };
 		B708B3E220A747DA00687113 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B708B3E120A747DA00687113 /* Profile.storyboard */; };
 		B708B3E420A74AC100687113 /* TabBar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B708B3E320A74AC100687113 /* TabBar.storyboard */; };
+		B709639F20D1F62800D29A12 /* HuntedRadarModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B709639E20D1F62800D29A12 /* HuntedRadarModelTests.swift */; };
 		B70BB4ED20B4664500612736 /* Forbid.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BB4EC20B4664500612736 /* Forbid.swift */; };
 		B70BBA8720C4EFD0000A39D6 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BBA3820C4EFD0000A39D6 /* Array+Extensions.swift */; };
 		B70BBA8820C4EFD0000A39D6 /* UISegmentedControl+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BBA3920C4EFD0000A39D6 /* UISegmentedControl+Extensions.swift */; };
@@ -117,9 +118,22 @@
 		B7FAD73D20CA272D000AC3E0 /* UISearchController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FAD73C20CA272D000AC3E0 /* UISearchController+Extension.swift */; };
 		B7FAD74020CA2FB3000AC3E0 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FAD73F20CA2FB3000AC3E0 /* MapViewController.swift */; };
 		B7FAD74320CA54D3000AC3E0 /* TempRadarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FAD74220CA54D3000AC3E0 /* TempRadarViewController.swift */; };
+		D0B0478FF62FB0D1B6428CE7 /* libPods-HuntedRadarModelTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ED81C8C6D2DA71D0CDE5A51 /* libPods-HuntedRadarModelTests.a */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		B70963A120D1F62800D29A12 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B7C5AD3520995B030054FD6B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B7C5AD3C20995B030054FD6B;
+			remoteInfo = HuntedRadar;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		1ED81C8C6D2DA71D0CDE5A51 /* libPods-HuntedRadarModelTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HuntedRadarModelTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		33A5E3CDB1FB2DDD8A3A92E4 /* Pods-HuntedRadarModelTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuntedRadarModelTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HuntedRadarModelTests/Pods-HuntedRadarModelTests.debug.xcconfig"; sourceTree = "<group>"; };
 		512348C5603785C2ABF26B3E /* Pods_HuntedRadar.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HuntedRadar.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9ADEF73EEB0D209624612685 /* Pods-HuntedRadar.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuntedRadar.release.xcconfig"; path = "Pods/Target Support Files/Pods-HuntedRadar/Pods-HuntedRadar.release.xcconfig"; sourceTree = "<group>"; };
 		B70452C720A1480700090318 /* SwitchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewController.swift; sourceTree = "<group>"; };
@@ -132,6 +146,9 @@
 		B708B3DF20A747CB00687113 /* Article.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Article.storyboard; sourceTree = "<group>"; };
 		B708B3E120A747DA00687113 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		B708B3E320A74AC100687113 /* TabBar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = TabBar.storyboard; sourceTree = "<group>"; };
+		B709639C20D1F62800D29A12 /* HuntedRadarModelTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HuntedRadarModelTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B709639E20D1F62800D29A12 /* HuntedRadarModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuntedRadarModelTests.swift; sourceTree = "<group>"; };
+		B70963A020D1F62800D29A12 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B70BB4EC20B4664500612736 /* Forbid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Forbid.swift; sourceTree = "<group>"; };
 		B70BBA3820C4EFD0000A39D6 /* Array+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		B70BBA3920C4EFD0000A39D6 /* UISegmentedControl+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Extensions.swift"; sourceTree = "<group>"; };
@@ -234,9 +251,18 @@
 		B7FAD73F20CA2FB3000AC3E0 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		B7FAD74220CA54D3000AC3E0 /* TempRadarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempRadarViewController.swift; sourceTree = "<group>"; };
 		D09A49790DB186CF5543EBF1 /* Pods-HuntedRadar.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuntedRadar.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HuntedRadar/Pods-HuntedRadar.debug.xcconfig"; sourceTree = "<group>"; };
+		E2C746E925967D9A3E96E822 /* Pods-HuntedRadarModelTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HuntedRadarModelTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-HuntedRadarModelTests/Pods-HuntedRadarModelTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		B709639920D1F62800D29A12 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D0B0478FF62FB0D1B6428CE7 /* libPods-HuntedRadarModelTests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B7C5AD3A20995B030054FD6B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -253,6 +279,8 @@
 			children = (
 				D09A49790DB186CF5543EBF1 /* Pods-HuntedRadar.debug.xcconfig */,
 				9ADEF73EEB0D209624612685 /* Pods-HuntedRadar.release.xcconfig */,
+				33A5E3CDB1FB2DDD8A3A92E4 /* Pods-HuntedRadarModelTests.debug.xcconfig */,
+				E2C746E925967D9A3E96E822 /* Pods-HuntedRadarModelTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -282,6 +310,15 @@
 				B7FAD73C20CA272D000AC3E0 /* UISearchController+Extension.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		B709639D20D1F62800D29A12 /* HuntedRadarModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				B709639E20D1F62800D29A12 /* HuntedRadarModelTests.swift */,
+				B70963A020D1F62800D29A12 /* Info.plist */,
+			);
+			path = HuntedRadarModelTests;
 			sourceTree = "<group>";
 		};
 		B70BB4EB20B4663400612736 /* Forbid */ = {
@@ -743,6 +780,7 @@
 			isa = PBXGroup;
 			children = (
 				B7C5AD3F20995B030054FD6B /* HuntedRadar */,
+				B709639D20D1F62800D29A12 /* HuntedRadarModelTests */,
 				B7C5AD3E20995B030054FD6B /* Products */,
 				3E8DBDEA20B6C72371770F57 /* Pods */,
 				F57B06C7654F8759E1F85A9F /* Frameworks */,
@@ -753,6 +791,7 @@
 			isa = PBXGroup;
 			children = (
 				B7C5AD3D20995B030054FD6B /* HuntedRadar.app */,
+				B709639C20D1F62800D29A12 /* HuntedRadarModelTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -892,6 +931,7 @@
 			isa = PBXGroup;
 			children = (
 				512348C5603785C2ABF26B3E /* Pods_HuntedRadar.framework */,
+				1ED81C8C6D2DA71D0CDE5A51 /* libPods-HuntedRadarModelTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -899,6 +939,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		B709639B20D1F62800D29A12 /* HuntedRadarModelTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B70963A520D1F62800D29A12 /* Build configuration list for PBXNativeTarget "HuntedRadarModelTests" */;
+			buildPhases = (
+				8613B5A1376CDE008B873F1E /* [CP] Check Pods Manifest.lock */,
+				B709639820D1F62800D29A12 /* Sources */,
+				B709639920D1F62800D29A12 /* Frameworks */,
+				B709639A20D1F62800D29A12 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B70963A220D1F62800D29A12 /* PBXTargetDependency */,
+			);
+			name = HuntedRadarModelTests;
+			productName = HuntedRadarModelTests;
+			productReference = B709639C20D1F62800D29A12 /* HuntedRadarModelTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		B7C5AD3C20995B030054FD6B /* HuntedRadar */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = B7C5AD4F20995B040054FD6B /* Build configuration list for PBXNativeTarget "HuntedRadar" */;
@@ -931,6 +990,10 @@
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = BoTingDing;
 				TargetAttributes = {
+					B709639B20D1F62800D29A12 = {
+						CreatedOnToolsVersion = 9.3;
+						TestTargetID = B7C5AD3C20995B030054FD6B;
+					};
 					B7C5AD3C20995B030054FD6B = {
 						CreatedOnToolsVersion = 9.3;
 					};
@@ -950,11 +1013,19 @@
 			projectRoot = "";
 			targets = (
 				B7C5AD3C20995B030054FD6B /* HuntedRadar */,
+				B709639B20D1F62800D29A12 /* HuntedRadarModelTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		B709639A20D1F62800D29A12 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B7C5AD3B20995B030054FD6B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1005,6 +1076,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		8613B5A1376CDE008B873F1E /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HuntedRadarModelTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8A3CF92E6A86B79D22A77752 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1016,13 +1105,13 @@
 				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-f0850809/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SwipeCellKit/SwipeCellKit.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb-framework/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1090,6 +1179,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		B709639820D1F62800D29A12 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B709639F20D1F62800D29A12 /* HuntedRadarModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B7C5AD3920995B030054FD6B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1186,6 +1283,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		B70963A220D1F62800D29A12 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B7C5AD3C20995B030054FD6B /* HuntedRadar */;
+			targetProxy = B70963A120D1F62800D29A12 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		B7C5AD4420995B030054FD6B /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -1206,6 +1311,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		B70963A320D1F62800D29A12 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33A5E3CDB1FB2DDD8A3A92E4 /* Pods-HuntedRadarModelTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6HH362Z9DX;
+				INFOPLIST_FILE = HuntedRadarModelTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.btding.HuntedRadarModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HuntedRadar.app/HuntedRadar";
+			};
+			name = Debug;
+		};
+		B70963A420D1F62800D29A12 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E2C746E925967D9A3E96E822 /* Pods-HuntedRadarModelTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6HH362Z9DX;
+				INFOPLIST_FILE = HuntedRadarModelTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.btding.HuntedRadarModelTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HuntedRadar.app/HuntedRadar";
+			};
+			name = Release;
+		};
 		B7C5AD4D20995B040054FD6B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1329,10 +1470,7 @@
 				DEVELOPMENT_TEAM = 6HH362Z9DX;
 				INFOPLIST_FILE = HuntedRadar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.btding.HuntedRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1349,10 +1487,7 @@
 				DEVELOPMENT_TEAM = 6HH362Z9DX;
 				INFOPLIST_FILE = HuntedRadar/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.btding.HuntedRadar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -1363,6 +1498,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		B70963A520D1F62800D29A12 /* Build configuration list for PBXNativeTarget "HuntedRadarModelTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B70963A320D1F62800D29A12 /* Debug */,
+				B70963A420D1F62800D29A12 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		B7C5AD3820995B030054FD6B /* Build configuration list for PBXProject "HuntedRadar" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

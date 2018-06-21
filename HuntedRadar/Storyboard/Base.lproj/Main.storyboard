@@ -358,6 +358,7 @@
                             <constraint firstItem="O3Z-ux-Qgr" firstAttribute="top" secondItem="0n4-EZ-eyJ" secondAttribute="bottom" constant="-47" id="lxa-lB-mqn"/>
                             <constraint firstAttribute="trailing" secondItem="0n4-EZ-eyJ" secondAttribute="trailing" id="tnE-1S-oMt"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="fqB-zz-PI5"/>
                     </view>
                     <connections>
                         <outlet property="fullscreenExitButton" destination="V1z-Fz-AEa" id="hxi-pk-fhi"/>
