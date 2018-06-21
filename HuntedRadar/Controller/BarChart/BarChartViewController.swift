@@ -10,6 +10,11 @@ import Foundation
 import Charts
 
 class BarChartViewController: UIViewController, ChartViewDelegate {
+    func didChangeBarChartView() {
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+
+    }
+    
 
     //IBOutlet var
     @IBOutlet var barChartView: BarChartView!
@@ -18,7 +23,7 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
     var passedValue: [String]?
     var colors = [UIColor.yellow, UIColor.red, UIColor.orange]
     var xaxisValue: [String] = [String]()
-
+    
     // MARK: - View Life Cycle -
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,25 +31,43 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
         setupView()
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "full_screen_exit"), style: .done, target: self, action: #selector(zoomback))
         navigationItem.rightBarButtonItem?.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
+        
+
 
     }
+    
 
     @objc func zoomback(_ sender: UIBarButtonItem) {
-        sender.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
+            sender.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
+            self.barChartView.zoomToCenter(scaleX: 0, scaleY: 0)
+            print("zooommmmmmmmmmm in")
+            }
+    
+    @objc func handleTap() {
+                navigationItem.rightBarButtonItem?.tintColor = UIColor.white
 
-        self.barChartView.zoomToCenter(scaleX: 0, scaleY: 0)
     }
 
     func chartScaled(_ chartView: ChartViewBase, scaleX: CGFloat, scaleY: CGFloat) {
-        print("scaled")
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+            print("scaled")
+
     }
 
     func chartTranslated(_ chartView: ChartViewBase, dX: CGFloat, dY: CGFloat) {
+            print("translated")
+    }
 
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        print("print the oooooooooooo")
+    }
 
-        print("translated")
+    func chartValueNothingSelected(_ chartView: ChartViewBase) {
+        print("print nothing selected")
+
+    }
+    func chartViewChanged(_ chartView: ChartViewBase) {
+                navigationItem.rightBarButtonItem?.tintColor = UIColor.white
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -193,3 +216,4 @@ class CustomLabelsXAxisValueFormatter: NSObject, IAxisValueFormatter {
         return ""
     }
 }
+
