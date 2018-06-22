@@ -11,7 +11,7 @@ import FirebaseAuth
 import SDWebImage
 import SwipeCellKit
 var imagePhotoUrls = [String]()
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate, UITextFieldDelegate {
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, SwipeTableViewCellDelegate {
 
     //local variable
     var passedValue: Any?
@@ -20,10 +20,9 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var comment = [Comment]()
     var article: Article!
     var isScrollToBottomAfterComment = false
+    let button = UIButton(type: .custom)
 
     //IBOutlet variable
-//    @IBOutlet weak var foriPhoneXConstraint: NSLayoutConstraint!
-//    @IBOutlet weak var normalConstaint: NSLayoutConstraint!
     @IBOutlet weak var commetTextField: UITextField!
     @IBOutlet weak var detailTableView: UITableView!
     override func viewDidLoad() {
@@ -58,12 +57,13 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func setTextFieldButton() {
-        let button = UIButton(type: .custom)
+        
         button.setImage(UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = UIColor.lightGray
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
         button.frame = CGRect(x: CGFloat(fullSize.width - 16 - 30), y: CGFloat(10), width: CGFloat(30), height: CGFloat(30))
         button.addTarget(self, action: #selector(self.sendComment), for: .touchUpInside)
+        button.isEnabled = false
         commetTextField.rightView = button
         commetTextField.rightViewMode = .always
         commetTextField.placeholder = "留言"
@@ -71,8 +71,15 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let accountLeftView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 10))
         commetTextField.leftViewMode = .always
         commetTextField.leftView = accountLeftView
-//        textField.rightView = btnColor
-//        textField.rightViewMode = .unlessEditing
+        commetTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+    }
+    
+    @objc func textFieldDidChange(_ sender: UITextField) {
+        if sender.text?.trimmingCharacters(in: .whitespaces) == "" {
+            button.isEnabled = false
+        } else {
+            button.isEnabled = true
+        }
     }
 
     @objc func sendComment() {
@@ -89,32 +96,12 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.view.endEditing(true)
         commetTextField.text = ""
         isScrollToBottomAfterComment = true
-
+        button.isEnabled = false
     }
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-//        setTableViewTopConstraint()
-    }
-//    func setTableViewTopConstraint() {
-//        if UIDevice().userInterfaceIdiom == .phone {
-//            switch UIScreen.main.nativeBounds.height {
-//            case 2436:
-//                normalConstaint.isActive = false
-//                foriPhoneXConstraint.isActive = true
-//                self.view.layoutIfNeeded()
-//                print("iPhone X")
-//            default:
-//                normalConstaint.isActive = true
-//                foriPhoneXConstraint.isActive = false
-//                self.view.layoutIfNeeded()
-//                print("unknown")
-//            }
-//        }
-//    }
+    
 
     func setNavigationItem() {
         navigationItem.title = "深入瞭解"
-//        navigationController?.navigationBar.topItem?.title = "深入瞭解"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white, NSAttributedStringKey.font: UIFont(name: "HelveticaNeue-Medium", size: 20)!]
     }
     func setNib() {
@@ -128,7 +115,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         detailTableView.dataSource = self
         detailTableView.delegate = self
-
         detailTableView.allowsSelection = false
     }
 
@@ -153,8 +139,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             guard let cell = self.detailTableView.dequeueReusableCell(withIdentifier: String(describing: ImageTableViewCell.self), for: indexPath) as? ImageTableViewCell else {
                 return UITableViewCell()
             }
-
-//            cell.imageUrlView.sd_setImage(with: URL(string: article.imageUrl[0]), placeholderImage: UIImage(named: "picture_3"))
 
             cell.addressLabel.text = "地址： \(article.address)"
 
@@ -299,4 +283,8 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         textField.resignFirstResponder()
         return false
     }
+}
+
+extension DetailViewController: UITextFieldDelegate {
+    
 }
