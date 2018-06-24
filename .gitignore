@@ -66,6 +66,7 @@ Carthage/Build
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+*.sqlite
 GoogleService-Info.plist
 
 fastlane/report.xml
