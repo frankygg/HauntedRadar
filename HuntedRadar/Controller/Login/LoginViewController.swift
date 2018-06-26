@@ -15,7 +15,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     //local var
     weak var delegate: DismissView?
     var isSignIn: Bool = true
-    var isFromAppDelegate: Bool = false
+    var isFromAppFlag: Bool = false
 
     //IBOutlet var
     @IBOutlet weak var visitButton: UIButton!
@@ -165,7 +165,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 
     @IBAction func visitAction(_ sender: Any) {
-        if self.isFromAppDelegate {
+        if self.isFromAppFlag {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 return
             }
@@ -191,7 +191,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         })
         FirebaseManager.shared.loadForbidUsers(completion: {_ in
             SVProgressHUD.dismiss()
-            if self.isFromAppDelegate {
+            if self.isFromAppFlag {
                 guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                     return
                 }

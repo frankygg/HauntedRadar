@@ -52,7 +52,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         myTableView.dataSource = self
         myTableView.delegate = self
         myTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
-        self.automaticallyAdjustsScrollViewInsets = false
+//        self.automaticallyAdjustsScrollViewInsets = false
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension

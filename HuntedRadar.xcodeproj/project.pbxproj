@@ -50,11 +50,7 @@
 		B70BBAA220C4EFD1000A39D6 /* OneTextFieldViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BBA5B20C4EFD0000A39D6 /* OneTextFieldViewController.swift */; };
 		B70BBAA320C4EFD1000A39D6 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BBA5E20C4EFD0000A39D6 /* Assets.swift */; };
 		B70BBAA420C4EFD1000A39D6 /* PhotoLibraryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BBA5F20C4EFD0000A39D6 /* PhotoLibraryPickerViewController.swift */; };
-		B70BBAA520C4EFD1000A39D6 /* LocationSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BBA6120C4EFD0000A39D6 /* LocationSearchResultsViewController.swift */; };
-		B70BBAA620C4EFD1000A39D6 /* LocationPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BBA6220C4EFD0000A39D6 /* LocationPickerViewController.swift */; };
-		B70BBAA720C4EFD1000A39D6 /* SearchHistoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BBA6420C4EFD0000A39D6 /* SearchHistoryManager.swift */; };
 		B70BBAA820C4EFD1000A39D6 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BBA6620C4EFD0000A39D6 /* Location.swift */; };
-		B70BBAA920C4EFD1000A39D6 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BBA6720C4EFD0000A39D6 /* Address.swift */; };
 		B70BBAAA20C4EFD1000A39D6 /* PickerViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BBA6920C4EFD0000A39D6 /* PickerViewViewController.swift */; };
 		B70BBAAF20C4EFD1000A39D6 /* ColorPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BBA7320C4EFD0000A39D6 /* ColorPickerViewController.swift */; };
 		B70BBAB020C4EFD1000A39D6 /* DatePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B70BBA7520C4EFD0000A39D6 /* DatePickerViewController.swift */; };
@@ -180,11 +176,7 @@
 		B70BBA5B20C4EFD0000A39D6 /* OneTextFieldViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneTextFieldViewController.swift; sourceTree = "<group>"; };
 		B70BBA5E20C4EFD0000A39D6 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		B70BBA5F20C4EFD0000A39D6 /* PhotoLibraryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoLibraryPickerViewController.swift; sourceTree = "<group>"; };
-		B70BBA6120C4EFD0000A39D6 /* LocationSearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSearchResultsViewController.swift; sourceTree = "<group>"; };
-		B70BBA6220C4EFD0000A39D6 /* LocationPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPickerViewController.swift; sourceTree = "<group>"; };
-		B70BBA6420C4EFD0000A39D6 /* SearchHistoryManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryManager.swift; sourceTree = "<group>"; };
 		B70BBA6620C4EFD0000A39D6 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
-		B70BBA6720C4EFD0000A39D6 /* Address.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
 		B70BBA6920C4EFD0000A39D6 /* PickerViewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewViewController.swift; sourceTree = "<group>"; };
 		B70BBA7320C4EFD0000A39D6 /* ColorPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorPickerViewController.swift; sourceTree = "<group>"; };
 		B70BBA7520C4EFD0000A39D6 /* DatePickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerViewController.swift; sourceTree = "<group>"; };
@@ -463,8 +455,6 @@
 		B70BBA6020C4EFD0000A39D6 /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				B70BBA6120C4EFD0000A39D6 /* LocationSearchResultsViewController.swift */,
-				B70BBA6220C4EFD0000A39D6 /* LocationPickerViewController.swift */,
 				B70BBA6320C4EFD0000A39D6 /* Managers */,
 				B70BBA6520C4EFD0000A39D6 /* Models */,
 			);
@@ -474,7 +464,6 @@
 		B70BBA6320C4EFD0000A39D6 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				B70BBA6420C4EFD0000A39D6 /* SearchHistoryManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -483,7 +472,6 @@
 			isa = PBXGroup;
 			children = (
 				B70BBA6620C4EFD0000A39D6 /* Location.swift */,
-				B70BBA6720C4EFD0000A39D6 /* Address.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1205,7 +1193,6 @@
 				B70D0FA420C902B1007824F9 /* MapViewConstants.swift in Sources */,
 				B70BBAA320C4EFD1000A39D6 /* Assets.swift in Sources */,
 				B708B3DE20A740C000687113 /* UIStoryBoard+Extension.swift in Sources */,
-				B70BBAA520C4EFD1000A39D6 /* LocationSearchResultsViewController.swift in Sources */,
 				B705B9E420B5CCEA0068823D /* ProfileViewController.swift in Sources */,
 				B70C18DC209EE87600133859 /* LocationSearchUITableViewController.swift in Sources */,
 				B70BBA9320C4EFD0000A39D6 /* UIAlertController+Extensions.swift in Sources */,
@@ -1241,7 +1228,6 @@
 				B7FAD73D20CA272D000AC3E0 /* UISearchController+Extension.swift in Sources */,
 				B70BBAA120C4EFD1000A39D6 /* TwoTextFieldsViewController.swift in Sources */,
 				B70BBA9820C4EFD0000A39D6 /* AttributedTextBlock.swift in Sources */,
-				B70BBAA920C4EFD1000A39D6 /* Address.swift in Sources */,
 				B70BBA8B20C4EFD0000A39D6 /* UIView+Extensions.swift in Sources */,
 				B70BBAAA20C4EFD1000A39D6 /* PickerViewViewController.swift in Sources */,
 				B70D0F9520C8FD62007824F9 /* PinViewMKAnnotationView.swift in Sources */,
@@ -1258,13 +1244,11 @@
 				B70BBA9D20C4EFD0000A39D6 /* LocalePickerViewController.swift in Sources */,
 				B70E98DA209C491F00112661 /* DangerousLocationTableViewCell.swift in Sources */,
 				B70BBAB720C4EFD1000A39D6 /* Label.swift in Sources */,
-				B70BBAA620C4EFD1000A39D6 /* LocationPickerViewController.swift in Sources */,
 				B70BBA8A20C4EFD0000A39D6 /* UIViewController+Extensions.swift in Sources */,
 				B70BBA9420C4EFD0000A39D6 /* Optional+Extensions.swift in Sources */,
 				B70BBAB220C4EFD1000A39D6 /* ItemWithImage.swift in Sources */,
 				B7CCD75220A9971800CE722E /* AddQuestionViewController.swift in Sources */,
 				B7CB48E220A94AA60042194C /* ArticleViewController.swift in Sources */,
-				B70BBAA720C4EFD1000A39D6 /* SearchHistoryManager.swift in Sources */,
 				B70E98DD209C522900112661 /* DangerousLocationAnnotationView.swift in Sources */,
 				B7BB5E4120B2A66200F16CCD /* ImageTableViewCell.swift in Sources */,
 				B70BBA9E20C4EFD0000A39D6 /* PhoneCodeCell.swift in Sources */,
@@ -1389,7 +1373,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

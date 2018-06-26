@@ -44,7 +44,6 @@ class FirebaseManager {
         var fileNameArray = [String]()
         var textArray = [String]()
 
-        let dispatchGroup = DispatchGroup()
         let semaphore = DispatchSemaphore(value: 1)
         let queue = DispatchQueue.global(qos: .utility)
 
@@ -68,18 +67,11 @@ class FirebaseManager {
                                 let text = url.absoluteString
                                 textArray.append(text)
                                 semaphore.signal()
-//                                dispatchGroup.leave()
-                                //更新
-                                //                            self.ref.child("article/\(uid)").updateChildValues(["image": text])
                             }
                         })
                     }
                 })
             }
-//            dispatchGroup.notify(queue: .main) {
-//                completion(fileNameArray, textArray)
-//                print("Both functions complete 👍")
-//            }
             semaphore.wait()
             DispatchQueue.main.async {
 
@@ -107,8 +99,6 @@ class FirebaseManager {
                     }
                     let article = Article(uid: (obj.object(forKey: "uid") as? String)!, userName: (obj.object(forKey: "userName") as? String)!, imageUrl: (obj.object(forKey: "imageUrl") as? [String])!, address: (obj.object(forKey: "address") as? String)!, reason: (obj.object(forKey: "reason") as? String)!, title: (obj.object(forKey: "title") as? String)!, createdTime: (obj.object(forKey: "createdTime") as? Int)!, articleKey: (obj.object(forKey: "articleKey") as? String)!, imageName: (obj.object(forKey: "imageName") as? [String])!)
                     articles.append(article)
-//                    print("================")
-//                    print(obj)
                 }
                 //確認是否有被封鎖用戶
                 let defaults = UserDefaults.standard
@@ -156,24 +146,6 @@ class FirebaseManager {
                                         handler()
 
         }
-//        let filename = article.imageName
-//        if let image = uploadimage, let imageData = UIImageJPEGRepresentation(image, 0.1) {
-//            let uploadImageRef = imageReference.child(filename)
-//            let metadata = StorageMetadata()
-//            metadata.contentType = "image/png"
-//            _ = uploadImageRef.putData(imageData, metadata: metadata, completion: {(_, error) in
-//                if error == nil {
-//                    uploadImageRef.downloadURL(completion: { (url, error) in
-//                        if error == nil, let url = url {
-//                            let text = url.absoluteString
-//                            self.ref.child("article").child(article.articleKey).updateChildValues(["imageUrl": text, "reason": article.reason, "address": article.address, "title": article.title, "createdTime": article.createdTime])
-//                            handler()
-//                        }
-//                    })
-//                }
-//            })
-//        }
-
     }
 
     func getUserName(completion: @escaping(String) -> Void) {
@@ -197,9 +169,7 @@ class FirebaseManager {
                 let anotherRef = self.ref.child("users/\(uid)/message").childByAutoId()
                 anotherRef.setValue(comment)
                 let key  = anotherRef.key
-
-//                self.ref.child("article").child(articleId).child("message").child(key).setValue([username: text])
-                self.ref.child("article").child(articleId).child("message").child(key).setValue(["userName": username, "comment": comment, "createdTime": Int(NSDate().timeIntervalSince1970), "commentKey": key])
+self.ref.child("article").child(articleId).child("message").child(key).setValue(["userName": username, "comment": comment, "createdTime": Int(NSDate().timeIntervalSince1970), "commentKey": key])
 
             }
         })
@@ -214,10 +184,6 @@ class FirebaseManager {
                 completion(comments)
                 return
             }
-//                for obj in values.allKeys {
-//                    print("##############")
-//                    print(obj)
-//                }
                 for obj in values.allValues {
                     guard let obj = obj as? NSDictionary else {
                         completion(comments)
@@ -226,8 +192,7 @@ class FirebaseManager {
                     let comment = Comment(userName: (obj.object(forKey: "userName") as? String)!, comment: (obj.object(forKey: "comment") as? String)!, createdTime: (obj.object(forKey: "createdTime") as? Int)!, commentKey: (obj.object(forKey: "commentKey") as? String)!)
 
                     comments.append(comment)
-//                    print("================")
-//                    print(obj)
+
                 }
                 //確認是否有被封鎖用戶
                 let defaults = UserDefaults.standard

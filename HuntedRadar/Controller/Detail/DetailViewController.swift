@@ -57,7 +57,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
 
     func setTextFieldButton() {
-        
+
         button.setImage(UIImage(named: "paper_plane")?.withRenderingMode(.alwaysTemplate), for: .normal)
         button.tintColor = UIColor.lightGray
         button.imageEdgeInsets = UIEdgeInsets(top: 0, left: -16, bottom: 0, right: 0)
@@ -73,7 +73,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         commetTextField.leftView = accountLeftView
         commetTextField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
-    
+
     @objc func textFieldDidChange(_ sender: UITextField) {
         if sender.text?.trimmingCharacters(in: .whitespaces) == "" {
             button.isEnabled = false
@@ -98,7 +98,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         isScrollToBottomAfterComment = true
         button.isEnabled = false
     }
-    
 
     func setNavigationItem() {
         navigationItem.title = "深入瞭解"
@@ -286,5 +285,5 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 }
 
 extension DetailViewController: UITextFieldDelegate {
-    
+
 }

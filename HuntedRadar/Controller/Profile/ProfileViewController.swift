@@ -67,7 +67,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     @objc func handleExpandClose(_ sender: UIButton) {
-        let section = sender.tag
         var indexPaths = [IndexPath]()
         for row in 0..<forbidUser.count {
             let indexPath = IndexPath(row: row, section: 0)

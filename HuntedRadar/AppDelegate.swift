@@ -14,7 +14,7 @@ import Fabric
 import Crashlytics
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
@@ -22,37 +22,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
         Fabric.with([Crashlytics.self])
         FirebaseApp.configure()
         setInitialFirebaseLogInStatus()
-        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent // 設定statusbar為白色
+        // 設定statusbar為白色
+        UIApplication.shared.statusBarStyle = UIStatusBarStyle.lightContent
 
         IQKeyboardManager.shared.enable = true
 
         IQKeyboardManager.shared.enableAutoToolbar = false
 
         IQKeyboardManager.shared.shouldResignOnTouchOutside = true
-        // Override point for customization after application launch.
+
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window!.backgroundColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
         self.window!.makeKeyAndVisible()
 
-        // rootViewController from StoryBoard
-//        let mainStoryboard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//        guard var  navigationController = mainStoryboard.instantiateViewController(withIdentifier: "navigationController") as? UIViewController else {
-//            return true
-//        }
-//        let navigationController = UIStoryboard.mapStoryboard().instantiateInitialViewController()!
         //隱藏tabbar上架
         var navigationController: UIViewController
         if Auth.auth().currentUser == nil {
             navigationController = UIStoryboard.loginStoryboard().instantiateInitialViewController()!
             if let controller = UIStoryboard.loginStoryboard().instantiateInitialViewController() as? LoginViewController {
                navigationController = controller
-                controller.isFromAppDelegate = true
+                controller.isFromAppFlag = true
                 self.window!.rootViewController = controller
-
             }
-
         } else {
-
             navigationController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
             self.window!.rootViewController = navigationController
         }
@@ -70,49 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
         navigationController.view.addSubview(maskBgView)
         navigationController.view.bringSubview(toFront: maskBgView)
 
-        // logo mask animation
-        let transformAnimation = CAKeyframeAnimation(keyPath: "bounds")
-        transformAnimation.delegate = self
-        transformAnimation.duration = 1
-        transformAnimation.beginTime = CACurrentMediaTime() + 1 //add delay of 1 second
-        let initalBounds = NSValue(cgRect: (navigationController.view.layer.mask?.bounds)!)
-        let secondBounds = NSValue(cgRect: CGRect(x: 0, y: 0, width: 50, height: 50))
-        let finalBounds = NSValue(cgRect: CGRect(x: 0, y: 0, width: 5000, height: 5000))
-        transformAnimation.values = [initalBounds, secondBounds, finalBounds]
-        transformAnimation.keyTimes = [0, 0.5, 1]
-        transformAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut), CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)]
-        transformAnimation.isRemovedOnCompletion = false
-        transformAnimation.fillMode = kCAFillModeForwards
-        navigationController.view.layer.mask?.add(transformAnimation, forKey: "maskAnimation")
-
-        // logo mask background view animation
-        UIView.animate(withDuration: 0.1,
-                                   delay: 1.35,
-                                   options: UIViewAnimationOptions.curveEaseIn,
-                                   animations: {
-                                    maskBgView.alpha = 0.0
-        },
-                                   completion: { _ in
-                                    maskBgView.removeFromSuperview()
-        })
-
-        // root view animation
-        UIView.animate(withDuration: 0.25,
-                                   delay: 1.3,
-                                   options: UIViewAnimationOptions.transitionCurlUp,
-                                   animations: {
-                                    self.window!.rootViewController!.view.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
-        },
-                                   completion: { _ in
-                                    UIView.animate(withDuration: 0.3,
-                                                               delay: 0.0,
-                                                               options: UIViewAnimationOptions.curveEaseInOut,
-                                                               animations: {
-                                                                self.window!.rootViewController!.view.transform = CGAffineTransform.identity
-                                    },
-                                                               completion: nil
-                                    )
-        })
+        handleAnimation(maskBgView, navigationController)
 
         return true
     }
@@ -137,10 +87,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate.
         //See also applicationDidEnterBackground:.
-    }
-   func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
-        self.window!.rootViewController!.view.layer.mask = nil
-
     }
 
     func setInitialFirebaseLogInStatus() {
@@ -167,4 +113,56 @@ class AppDelegate: UIResponder, UIApplicationDelegate, CAAnimationDelegate {
         }
     }
 
+    func handleAnimation(_ maskBgView: UIView, _ navigationController: UIViewController) {
+        // logo mask animation
+        let transformAnimation = CAKeyframeAnimation(keyPath: "bounds")
+        transformAnimation.delegate = self
+        transformAnimation.duration = 1
+        transformAnimation.beginTime = CACurrentMediaTime() + 1 //add delay of 1 second
+        let initalBounds = NSValue(cgRect: (navigationController.view.layer.mask?.bounds)!)
+        let secondBounds = NSValue(cgRect: CGRect(x: 0, y: 0, width: 50, height: 50))
+        let finalBounds = NSValue(cgRect: CGRect(x: 0, y: 0, width: 5000, height: 5000))
+        transformAnimation.values = [initalBounds, secondBounds, finalBounds]
+        transformAnimation.keyTimes = [0, 0.5, 1]
+        transformAnimation.timingFunctions = [CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut), CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)]
+        transformAnimation.isRemovedOnCompletion = false
+        transformAnimation.fillMode = kCAFillModeForwards
+        navigationController.view.layer.mask?.add(transformAnimation, forKey: "maskAnimation")
+        // logo mask background view animation
+        UIView.animate(withDuration: 0.1,
+                       delay: 1.35,
+                       options: UIViewAnimationOptions.curveEaseIn,
+                       animations: {
+                        maskBgView.alpha = 0.0
+        },
+                       completion: { _ in
+                        maskBgView.removeFromSuperview()
+        })
+
+        // root view animation
+        UIView.animate(withDuration: 0.25,
+                       delay: 1.3,
+                       options: UIViewAnimationOptions.transitionCurlUp,
+                       animations: {
+                        self.window!.rootViewController!.view.transform = CGAffineTransform(scaleX: 1.05, y: 1.05)
+        },
+                       completion: { _ in
+                        UIView.animate(withDuration: 0.3,
+                                       delay: 0.0,
+                                       options: UIViewAnimationOptions.curveEaseInOut,
+                                       animations: {
+                                        self.window!.rootViewController!.view.transform = CGAffineTransform.identity
+                        },
+                                       completion: nil
+                        )
+        })
+    }
+
+}
+
+extension AppDelegate: CAAnimationDelegate {
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        self.window!.rootViewController!.view.layer.mask = nil
+
+    }
 }
