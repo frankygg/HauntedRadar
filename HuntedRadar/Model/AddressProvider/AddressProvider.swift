@@ -28,6 +28,7 @@ class AddressProvider {
         ceo.reverseGeocodeLocation(loc, completionHandler: {(placemarks, error) in
             if error != nil {
                 print("reverse geodcode fail: \(error!.localizedDescription)")
+                callback("")
             }
             guard let placeMark = placemarks else {
                 return

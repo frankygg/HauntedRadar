@@ -51,7 +51,9 @@ class MapViewController: UIViewController {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined, .restricted, .denied:
                 print("No access")
+                userLocation = nil
                 alertAction(title: "未開啟定位權限", message: "請在手機設定中開啟定位權限以取得您的位置，您的目前位置會顯示於地圖，並用於計算附近範圍是否曾發生凶宅或犯罪行為。")
+                return
             case .authorizedAlways, .authorizedWhenInUse:
                 print("Access")
             }
@@ -91,8 +93,17 @@ class MapViewController: UIViewController {
 
     func handleDangerousLocation() {
         dangerousCrimeDate = [String]()
-        if let userLocation = userLocation, dangerousAddress.count > 0 {
+        guard let userLocation = userLocation else {
+            alertAction(title: "未開啟定位權限", message: "請在手機設定中開啟定位權限以取得您的位置，您的目前位置會顯示於地圖，並用於計算附近範圍是否曾發生凶宅或犯罪行為。")
+            return
+        }
+        if dangerousAddress.count > 0 {
             AddressProvider.shared.getAddressFromLocation(pdblLatitude: userLocation.coordinate.latitude, withLongitude: userLocation.coordinate.longitude) { useraddress in
+                if useraddress == "" {
+                    self.alertAction(title: "系統過載", message: "系統過載請稍待片刻謝謝！")
+                    return
+                }
+                
                 DispatchQueue.main.async {
                     var hasAnnotation = false
                     for item in self.dangerousAddress where item.address == useraddress {
