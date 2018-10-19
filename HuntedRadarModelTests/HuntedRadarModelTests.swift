@@ -11,7 +11,7 @@ import XCTest
 
 class HuntedRadarModelTests: XCTestCase {
 
-    var dbManager: DLManager!
+    var dbManager: DLManagerProtocol!
 
     override func setUp() {
         super.setUp()

@@ -33,7 +33,6 @@ class MapViewController: UIViewController {
     var tapGesture = UITapGestureRecognizer()
     var unluckyhouseList = [UnLuckyHouse]()
     let locationManager = CLLocationManager()
-    var dlManager = DLManager()
     private var mapChangedFromUserInteraction = false
     var hasUnluckyhouse = false
     var dangerousLocation = [DangerousLocation]()
@@ -168,8 +167,8 @@ class MapViewController: UIViewController {
         mapView.isUserInteractionEnabled = true
         //json api dangerous location
         DispatchQueue.main.async {
-
-            self.dlManager.requestDLinJson(completion: { [weak self] locations in
+            let dlManager: DLManagerProtocol = DLManager()
+            dlManager.requestDLinJson(completion: { [weak self] locations in
 
                 for (key, values) in locations {
                     var title = [String]()

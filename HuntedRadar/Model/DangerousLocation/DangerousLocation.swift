@@ -44,7 +44,7 @@ class DangerousAddress {
     }
 }
 
-struct DLManager {
+struct DLManager: DLManagerProtocol {
     func requestDLinJson(completion: @escaping ([String: [String]]) -> Void) {
         let url = Bundle.main.url(forResource: "crimes10701_10703", withExtension: "json")
         let data = try? Data(contentsOf: url!)
