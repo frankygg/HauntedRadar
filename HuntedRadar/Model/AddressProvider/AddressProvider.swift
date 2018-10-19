@@ -36,8 +36,6 @@ class AddressProvider {
 
             if placeMark.count > 0 {
                 let placemark = placeMark[0]
-                //                    print(pm.country) print(pm.locality)print(pm.subLocality)print(pm.thoroughfare)print(pm.postalCode)
-                //                    print(pm.subThoroughfare)
                 var addressString: String = ""
                 if let subAdministrativeArea = placemark.subAdministrativeArea {
                     if subAdministrativeArea == "桃園縣" {

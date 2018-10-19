@@ -21,8 +21,6 @@ class FirebaseManager {
     }
 
     func addArticleQuestion(uploadimage: [UIImage], uploadArticle article: Article, handler: @escaping () -> Void = { return}) {
-//        var textArray: [String] = []
-//        var fileNameArray: [String] = []
         if  let uid = Auth.auth().currentUser?.uid {
             var userName = ""
             ref.child("users/\(uid)/username").observe(.value) { (snapshot) in

@@ -42,43 +42,9 @@ class DangerousAddress {
         self.title = title
         self.crimeWithDate = crimeWithDate
     }
-
 }
 
 struct DLManager {
-
-    func requestArticles(completion: @escaping ([String: [String]]) -> Void) {
-
-            //alamofire
-            Alamofire.request("https://od.moi.gov.tw/api/v1/rest/datastore/A01010000C-000499-073").responseJSON { response in
-                do {
-                    guard let data = response.data else {return}
-                    if let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions()) as? [String: Any] {
-
-                        if let jsonData = json["result"] as? [String: Any], let records = jsonData["records"] as? [NSDictionary] {
-                            DispatchQueue.global().async {
-                                var dangerousAddressWithTitles = [String: [String]]()
-                        for obj in records {
-                            if let address = obj.object(forKey: "oc_p1") as? String, let title = obj.object(forKey: "type") as? String {
-
-                                let oneaddress = title.trimmingCharacters(in: .whitespaces)
-                                let annotationAtAddress = dangerousAddressWithTitles[address] ?? [String]()
-                                dangerousAddressWithTitles[address] = annotationAtAddress + [oneaddress]
-                            }
-                        }
-                                completion(dangerousAddressWithTitles)
-                            }
-                    }
-                        if (json["error"] as? String) != nil {
-                    }
-                }
-                } catch let error {
-                    print(error.localizedDescription )
-
-                }
-            }
-        }
-
     func requestDLinJson(completion: @escaping ([String: [String]]) -> Void) {
         let url = Bundle.main.url(forResource: "crimes10701_10703", withExtension: "json")
         let data = try? Data(contentsOf: url!)
@@ -95,7 +61,6 @@ struct DLManager {
                 var dangerousAddressWithTitles = [String: [String]]()
                 for obj in records {
                     if let address = obj.object(forKey: "oc_p1") as? String, let title = obj.object(forKey: "type") as? String, var crimeDate =  obj.object(forKey: "oc_dt") as? String, crimeDate.count > 4 {
-//addressString.range(of: locality[..<locality.index(locality.startIndex, offsetBy: 2)])
                         crimeDate = String(crimeDate[..<crimeDate.index(crimeDate.startIndex, offsetBy: 5)])
                         let oneaddress = crimeDate + title.trimmingCharacters(in: .whitespaces)
                         let annotationAtAddress = dangerousAddressWithTitles[address] ?? [String]()

@@ -94,7 +94,6 @@
 		B7BB5E4220B2A66200F16CCD /* ImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B7BB5E4020B2A66200F16CCD /* ImageTableViewCell.xib */; };
 		B7BB5E4520B2C8BB00F16CCD /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB5E4420B2C8BB00F16CCD /* Comment.swift */; };
 		B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4020995B030054FD6B /* AppDelegate.swift */; };
-		B7C5AD4320995B030054FD6B /* RadarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7C5AD4220995B030054FD6B /* RadarViewController.swift */; };
 		B7C5AD4620995B030054FD6B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C5AD4420995B030054FD6B /* Main.storyboard */; };
 		B7C5AD4820995B040054FD6B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B7C5AD4720995B040054FD6B /* Assets.xcassets */; };
 		B7C5AD4B20995B040054FD6B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B7C5AD4920995B040054FD6B /* LaunchScreen.storyboard */; };
@@ -221,7 +220,6 @@
 		B7BB5E4420B2C8BB00F16CCD /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		B7C5AD3D20995B030054FD6B /* HuntedRadar.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HuntedRadar.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7C5AD4020995B030054FD6B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B7C5AD4220995B030054FD6B /* RadarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadarViewController.swift; sourceTree = "<group>"; };
 		B7C5AD4520995B030054FD6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B7C5AD4720995B040054FD6B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B7C5AD4A20995B040054FD6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -588,14 +586,6 @@
 			path = SwitchView;
 			sourceTree = "<group>";
 		};
-		B70D0F9920C8FFC7007824F9 /* RadarView */ = {
-			isa = PBXGroup;
-			children = (
-				B7C5AD4220995B030054FD6B /* RadarViewController.swift */,
-			);
-			path = RadarView;
-			sourceTree = "<group>";
-		};
 		B70D0F9A20C8FFDB007824F9 /* LocationSearchTable */ = {
 			isa = PBXGroup;
 			children = (
@@ -828,7 +818,6 @@
 				B7FAD74120CA54BA000AC3E0 /* TempRadar */,
 				B7FAD73E20CA2F95000AC3E0 /* MapView */,
 				B70D0F9A20C8FFDB007824F9 /* LocationSearchTable */,
-				B70D0F9920C8FFC7007824F9 /* RadarView */,
 				B70D0F9820C8FFB9007824F9 /* SwitchView */,
 				B70D0F9720C8FFA8007824F9 /* BarChart */,
 				B70D0F9620C8FF98007824F9 /* TabBar */,
@@ -1204,7 +1193,6 @@
 				B7C5AD5D209990860054FD6B /* DangerousLocation.swift in Sources */,
 				B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */,
 				B712E03920AE7BF300FFBD87 /* SearchBarContainerView.swift in Sources */,
-				B7C5AD4320995B030054FD6B /* RadarViewController.swift in Sources */,
 				B70BBAA820C4EFD1000A39D6 /* Location.swift in Sources */,
 				B7BB5E4520B2C8BB00F16CCD /* Comment.swift in Sources */,
 				B70BBAB020C4EFD1000A39D6 /* DatePickerViewController.swift in Sources */,
