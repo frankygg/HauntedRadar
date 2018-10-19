@@ -7,6 +7,7 @@
 //
 
 import Foundation
+
 protocol DLManagerProtocol {
     func requestDLinJson(completion: @escaping ([String: [String]]) -> Void)
 }

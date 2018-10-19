@@ -26,6 +26,5 @@ class UnLuckyHouse: NSObject, MKAnnotation {
         self.coordinate = coordinate
         self.title = title
         self.subtitle = subtitle
-        super.init()
     }
 }
