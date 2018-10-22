@@ -51,7 +51,7 @@ class MapViewController: UIViewController {
             case .notDetermined, .restricted, .denied:
                 print("No access")
                 userLocation = nil
-                alertAction(title: "未開啟定位權限", message: "請在手機設定中開啟定位權限以取得您的位置，您的目前位置會顯示於地圖，並用於計算附近範圍是否曾發生凶宅或犯罪行為。")
+                popUpAlert(title: "未開啟定位權限", message: "請在手機設定中開啟定位權限以取得您的位置，您的目前位置會顯示於地圖，並用於計算附近範圍是否曾發生凶宅或犯罪行為。", shouldHaveCancelButton: false, confirmCompletion: nil)
                 return
             case .authorizedAlways, .authorizedWhenInUse:
                 print("Access")
@@ -93,13 +93,13 @@ class MapViewController: UIViewController {
     func handleDangerousLocation() {
         dangerousCrimeDate = [String]()
         guard let userLocation = userLocation else {
-            alertAction(title: "定位設定處理中", message: "如未開啟定位權限，請在手機設定中開啟定位權限以取得您的位置。")
+            popUpAlert(title: "定位設定處理中", message: "如未開啟定位權限，請在手機設定中開啟定位權限以取得您的位置。", shouldHaveCancelButton: false, confirmCompletion: nil)
             return
         }
         if dangerousAddress.count > 0 {
             AddressProvider.shared.getAddressFromLocation(pdblLatitude: userLocation.coordinate.latitude, withLongitude: userLocation.coordinate.longitude) { useraddress in
                 if useraddress == "" {
-                    self.alertAction(title: "系統過載", message: "系統過載請稍待片刻謝謝！")
+                    self.popUpAlert(title: "系統過載", message: "系統過載請稍待片刻謝謝！", shouldHaveCancelButton: false, confirmCompletion: nil)
                     return
                 }
 
@@ -139,7 +139,7 @@ class MapViewController: UIViewController {
                         let location = SafeLocation(title: "無資料", subtitle: useraddress, coordinate: userLocation.coordinate)
                         self.mapView.addAnnotation(location)
                         self.mapView.selectAnnotation(location, animated: true)
-                        self.alertAction(title: "找無資料", message: "請切換至繁體中文語系並僅限搜尋台灣地區！")
+                        self.popUpAlert(title: "找無資料", message: "請切換至繁體中文語系並僅限搜尋台灣地區！", shouldHaveCancelButton: false, confirmCompletion: nil)
                     }
                 }
             }
@@ -228,13 +228,6 @@ class MapViewController: UIViewController {
         let xylocation = CLLocationCoordinate2D(latitude: coordinate.latitude + offset, longitude: coordinate.longitude)
         let region = MKCoordinateRegionMake(xylocation, span)
         mapView.setRegion(region, animated: true)
-    }
-
-    func alertAction(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "確定", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
     }
 }
 

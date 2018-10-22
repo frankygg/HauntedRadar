@@ -84,7 +84,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
     @objc func sendComment() {
         guard  Auth.auth().currentUser != nil else {
-            alertAction(title: "您尚未登入", message: "請先登入再進行此操作") {[weak self] in
+            popUpAlert(title: "您尚未登入", message: "請先登入再進行此操作", shouldHaveCancelButton: true) {[weak self] in
                 self?.performSegue(withIdentifier: "login", sender: self)
             }
             return
@@ -205,20 +205,20 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             //users can delete their message
             let action = SwipeAction(style: .default, title: "刪除", handler: { (_, indexpath) in
                 guard  Auth.auth().currentUser != nil else {
-                    self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作") { [weak self] in
+                    self.popUpAlert(title: "您尚未登入", message: "請先登入再進行此操作", shouldHaveCancelButton: true) { [weak self] in
                         self?.performSegue(withIdentifier: "login", sender: self)
 
                     }
                     return
                 }
-                self.alertAction(title: "", message: "您確定要刪除嗎？", completion: { [weak self] in
+                self.popUpAlert(title: "", message: "您確定要刪除嗎？", shouldHaveCancelButton: true){ [weak self] in
                     let commentKey = self?.comment[indexpath.row - 1].commentKey
                     FirebaseManager.shared.deleteComment(articleKey: (self?.passedKey)!, commentKey: commentKey!)
                     //
                     self?.comment.remove(at: indexPath.row - 1)
                     self?.detailTableView.deleteRows(at: [indexPath], with: .fade)
                     self?.detailTableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: true)
-                })
+                }
             })
 
             action.backgroundColor = UIColor.red
@@ -231,7 +231,7 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
             //users can forbid other accounts' activities
             let action = SwipeAction(style: .default, title: "封鎖用戶", handler: { (_, indexpath) in
                 guard  Auth.auth().currentUser != nil else {
-                    self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作") {[weak self] in
+                    self.popUpAlert(title: "您尚未登入", message: "請先登入再進行此操作", shouldHaveCancelButton: true) {[weak self] in
                         self?.performSegue(withIdentifier: "login", sender: self)
 
                     }
@@ -263,19 +263,6 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let action = multiAction(at: indexPath)
 
         return [action]
-    }
-
-    func alertAction(title: String, message: String, completion: @escaping () -> Void) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "確定", style: .default, handler: { _ in
-            completion()
-        })
-        let cancelAction = UIAlertAction(title: "取消", style: .default, handler: { _ in
-
-        })
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

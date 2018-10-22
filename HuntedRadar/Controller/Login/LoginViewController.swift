@@ -70,7 +70,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             if isSignIn {
                 guard email.trimmingCharacters(in: .whitespaces) != "" && password.trimmingCharacters(in: .whitespaces) != ""  else {
                     SVProgressHUD.dismiss()
-                    alertAction(title: "登入失敗", message: "有欄位空白")
+                    popUpAlert(title: "登入失敗", message: "有欄位空白", shouldHaveCancelButton: false, confirmCompletion: nil)
                     return
                 }
                 //Sign in the userwith Firebase
@@ -79,7 +79,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 if let confirm = confirmTextField.text, let username = userNameTextField.text, username.trimmingCharacters(in: .whitespaces) != "" {
                     if confirm != password {
                         SVProgressHUD.dismiss()
-                        alertAction(title: "註冊失敗", message: "確認密碼不一致")
+                        popUpAlert(title: "註冊失敗", message: "確認密碼不一致", shouldHaveCancelButton: false, confirmCompletion: nil)
                     } else {
                    let ref = Database.database().reference()
                     ref.child("users").queryOrdered(byChild: "username").queryEqual(toValue: "\(username)")
@@ -91,13 +91,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
                             } else {
                                 SVProgressHUD.dismiss()
-                                    self?.alertAction(title: "註冊失敗", message: "暱稱已被使用！")
+                                    self?.popUpAlert(title: "註冊失敗", message: "暱稱已被使用！", shouldHaveCancelButton: false, confirmCompletion: nil)
                             }
                         })
                     }} else {
                     SVProgressHUD.dismiss()
 
-                    alertAction(title: "註冊失敗", message: "有欄位空白")
+                    popUpAlert(title: "註冊失敗", message: "有欄位空白", shouldHaveCancelButton: false, confirmCompletion: nil)
 
                 }
             }
@@ -113,21 +113,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
      emailTextField.delegate = self
         userNameTextField.delegate = self
         confirmTextField.delegate = self
-//        //custom emailTextField
-//        var bottomBorder = CALayer()
-//        bottomBorder.frame = CGRect(x: 0, y: 0, width: self.emailTextField.frame.size.width , height: self.emailTextField.frame.size.height - 1)
-//       
-//        bottomBorder.backgroundColor = UIColor.white.cgColor
-//        self.emailTextField.layer.addSublayer(bottomBorder)
-//        self.emailTextField.layer.borderColor = UIColor.red.cgColor
     }
 
     func loginCompletionCallback(user: User?, error: Error?) {
         if error == nil {
-//            self.performSegue(withIdentifier: "loginToAddQuestion", sender: self)
             self.delegate?.dismissView(true)
             setUserDefaultUserName()
-//            dismiss(animated: true, completion: nil)
         } else {
             SVProgressHUD.dismiss()
 
@@ -136,7 +127,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 return
             }
 
-            alertAction(title: "登入失敗", message: errorCode.errorMessage)
+            popUpAlert(title: "登入失敗", message: errorCode.errorMessage, shouldHaveCancelButton: false, confirmCompletion: nil)
         }
     }
 
@@ -147,7 +138,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             ref.child("users").child(user!.uid).child("username").setValue(userNameTextField.text!)
             self.delegate?.dismissView(true)
             setUserDefaultUserName()
-//            dismiss(animated: true, completion: nil)
         } else {
             SVProgressHUD.dismiss()
 
@@ -156,7 +146,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                 return
             }
             print("\(error._code)  \(error.localizedDescription)")
-            alertAction(title: "註冊失敗", message: errorCode.errorMessage)
+            popUpAlert(title: "註冊失敗", message: errorCode.errorMessage, shouldHaveCancelButton: false, confirmCompletion: nil)
         }
     }
 
@@ -176,12 +166,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         } else {
         dismiss(animated: true, completion: nil)
         }
-    }
-    func alertAction(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "確定", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
     }
 
     func setUserDefaultUserName() {
@@ -218,10 +202,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return false
     }
-//    @IBAction func privacyAction(_ sender: Any) {
-//        
-//        performSegue(withIdentifier: "privacy", sender: self)
-//    }
 }
 
 protocol DismissView: class {

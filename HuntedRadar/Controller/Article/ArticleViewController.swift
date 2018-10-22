@@ -116,20 +116,19 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             //users can delete their message
             let action = SwipeAction(style: .default, title: "刪除", handler: { (_, indexpath) in
                 guard  Auth.auth().currentUser != nil else {
-                    self.customAlertAction(title: "您尚未登入", message: "請先登入再進行此操作") {[weak self] in
+                    self.popUpAlert(title: "您尚未登入", message: "請先登入再進行此操作", shouldHaveCancelButton: true) {[weak self] in
                         self?.performSegue(withIdentifier: "loginWithOutAddQuestion", sender: self)
 
                     }
                     return
                 }
-                self.customAlertAction(title: "", message: "您確定要刪除嗎？", completion: { [weak self] in
+                self.popUpAlert(title: "", message: "您確定要刪除嗎？", shouldHaveCancelButton: true) { [weak self] in
                     //delete realtime database & storage image file
                     FirebaseManager.shared.deleteArticle(article: (self?.articles[indexpath.row])!)
-
                     self?.articles.remove(at: indexPath.row)
                     self?.myTableView.deleteRows(at: [indexPath], with: .fade)
 
-                    })
+                    }
             })
 
             action.backgroundColor = UIColor.red
@@ -144,9 +143,8 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
             //users can forbid other accounts' activities
             let action = SwipeAction(style: .default, title: "封鎖用戶", handler: { (_, indexpath) in
                 guard  Auth.auth().currentUser != nil else {
-                    self.customAlertAction(title: "您尚未登入", message: "請先登入再進行此操作") {[weak self] in
+                    self.popUpAlert(title: "您尚未登入", message: "請先登入再進行此操作", shouldHaveCancelButton: true) {[weak self] in
                         self?.performSegue(withIdentifier: "loginWithOutAddQuestion", sender: self)
-
                     }
                     return
                 }
@@ -170,7 +168,7 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     func editAction(at indexPath: IndexPath) -> SwipeAction {
         let action = SwipeAction(style: .default, title: "編輯", handler: { (_, indexpath) in
             guard  Auth.auth().currentUser != nil else {
-                self.customAlertAction(title: "您尚未登入", message: "請先登入再進行此操作") { [weak self]
+                self.popUpAlert(title: "您尚未登入", message: "請先登入再進行此操作", shouldHaveCancelButton: true) { [weak self]
 in                    self?.performSegue(withIdentifier: "loginWithOutAddQuestion", sender: self)
 
                 }
@@ -178,11 +176,6 @@ in                    self?.performSegue(withIdentifier: "loginWithOutAddQuestio
             }
             self.editArticle = self.articles[indexpath.row]
             self.performSegue(withIdentifier: "editQuestion", sender: self)
-//            //delete realtime database & storage image file
-//            FirebaseManager.shared.deleteArticle(article: self.articles[indexpath.row])
-//
-//            self.articles.remove(at: indexPath.row)
-//            self.myTableView.deleteRows(at: [indexPath], with: .fade)
         })
 
         action.backgroundColor = UIColor(red: 255/255, green: 229/255, blue: 59/255, alpha: 1)
@@ -192,26 +185,14 @@ in                    self?.performSegue(withIdentifier: "loginWithOutAddQuestio
         return action
     }
 
-    func customAlertAction(title: String, message: String, completion: @escaping () -> Void) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "確定", style: .default, handler: { _ in
-            completion()
-        })
-        alertController.addAction(okAction)
-        alertController.addAction(UIAlertAction(title: "取消", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
-
     @objc func addQuestion(_ sender: UIButton) {
 
         let showLoginScreen = Auth.auth().currentUser == nil
         if showLoginScreen {
             performSegue(withIdentifier: "login", sender: self)
-//            let controller =
         } else {
             performSegue(withIdentifier: "addQuestion", sender: self)
         }
-
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

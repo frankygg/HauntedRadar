@@ -133,11 +133,11 @@ class AddQuestionViewController: UIViewController {
             return
         }
         guard title.trimmingCharacters(in: .whitespaces) != "" &&  address.trimmingCharacters(in: .whitespaces) != "" && reason.trimmingCharacters(in: .whitespaces) != "" else {
-            alertAction(title: "輸入錯誤", message: "欄位不得為空白！")
+            popUpAlert(title: "輸入錯誤", message: "欄位不得為空白！", shouldHaveCancelButton: false, confirmCompletion: nil)
             return
         }
         guard imageArray.count > 0 else {
-            alertAction(title: "輸入錯誤", message: "至少放入一張照片！")
+            popUpAlert(title: "輸入錯誤", message: "至少放入一張照片！", shouldHaveCancelButton: false, confirmCompletion: nil)
             return
         }
         if let passedValue = passedValue as? Article {
@@ -159,13 +159,6 @@ class AddQuestionViewController: UIViewController {
             return
         }
         navigationItem.title = "編輯"
-    }
-
-    func alertAction(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "確定", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true, completion: nil)
     }
 
     func checkPermission() {
@@ -191,7 +184,7 @@ class AddQuestionViewController: UIViewController {
             })
             print("It is not determined until now")
         case .restricted, .denied:
-            alertAction(title: "未開啟存取本機相冊權限", message: "請在手機設定中開啟本機相冊存取權限，相冊將用於編輯及新增發問時所需的照片。")
+            popUpAlert(title: "未開啟存取本機相冊權限", message: "請在手機設定中開啟本機相冊存取權限，相冊將用於編輯及新增發問時所需的照片。", shouldHaveCancelButton: false, confirmCompletion: nil)
             print("User do not have access to photo album.")
 
         }
@@ -232,7 +225,7 @@ class AddQuestionViewController: UIViewController {
             return
         }
         guard  Auth.auth().currentUser != nil else {
-            self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
+            popUpAlert(title: "您尚未登入", message: "請先登入再進行此操作", shouldHaveCancelButton: false,confirmCompletion: nil)
 
             return
         }

@@ -85,6 +85,7 @@
 		B712E03920AE7BF300FFBD87 /* SearchBarContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B712E03820AE7BF300FFBD87 /* SearchBarContainerView.swift */; };
 		B725FFB620A0377400BA6553 /* ExpandableLocations.swift in Sources */ = {isa = PBXBuildFile; fileRef = B725FFB520A0377400BA6553 /* ExpandableLocations.swift */; };
 		B7263715217D5FEC00C9E07C /* UnLuckyHouseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7263714217D5FEC00C9E07C /* UnLuckyHouseProtocol.swift */; };
+		B7263717217DAE7D00C9E07C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7263716217DAE7D00C9E07C /* UIViewController+Extension.swift */; };
 		B72A46D420A1EEBD00E810E0 /* SafeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */; };
 		B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */; };
 		B79E4DB920A06E2900FE9911 /* LocationSearchTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */; };
@@ -214,6 +215,7 @@
 		B712E03820AE7BF300FFBD87 /* SearchBarContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarContainerView.swift; sourceTree = "<group>"; };
 		B725FFB520A0377400BA6553 /* ExpandableLocations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableLocations.swift; sourceTree = "<group>"; };
 		B7263714217D5FEC00C9E07C /* UnLuckyHouseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnLuckyHouseProtocol.swift; sourceTree = "<group>"; };
+		B7263716217DAE7D00C9E07C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeLocation.swift; sourceTree = "<group>"; };
 		B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuntedNavigationController.swift; sourceTree = "<group>"; };
 		B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationSearchTable.storyboard; sourceTree = "<group>"; };
@@ -306,6 +308,7 @@
 				B708B3DD20A740C000687113 /* UIStoryBoard+Extension.swift */,
 				B708702D20B32032008E0D57 /* CustomDate+Extension.swift */,
 				B7FAD73C20CA272D000AC3E0 /* UISearchController+Extension.swift */,
+				B7263716217DAE7D00C9E07C /* UIViewController+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -1213,6 +1216,7 @@
 				B70BBAB120C4EFD1000A39D6 /* ImagePickerViewController.swift in Sources */,
 				B70BBA8F20C4EFD0000A39D6 /* UIColor+Extensions.swift in Sources */,
 				B70BBA9C20C4EFD0000A39D6 /* LocaleInfo.swift in Sources */,
+				B7263717217DAE7D00C9E07C /* UIViewController+Extension.swift in Sources */,
 				B7C5AD4120995B030054FD6B /* AppDelegate.swift in Sources */,
 				B70BBA8E20C4EFD0000A39D6 /* UITextView+Extensions.swift in Sources */,
 				B70BBA9F20C4EFD0000A39D6 /* CurrencyCell.swift in Sources */,

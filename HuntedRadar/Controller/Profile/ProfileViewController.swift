@@ -137,7 +137,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         //users can delete their message
         let action = SwipeAction(style: .destructive, title: "解除封鎖", handler: { (_, indexpath) in
             guard  Auth.auth().currentUser != nil else {
-                self.alertAction(title: "您尚未登入", message: "請先登入再進行此操作")
+                self.popUpAlert(title: "您尚未登入", message: "請先登入再進行此操作", shouldHaveCancelButton: true, confirmCompletion: {
+                    self.performSegue(withIdentifier: "login", sender: self)
+                })
                 return
             }
             FirebaseManager.shared.deleteForbidUser(forbidUser: self.forbidUser[indexpath.row])
@@ -207,18 +209,6 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             self?.forbidUserTableView.reloadData()
 
         })
-    }
-
-    func alertAction(title: String, message: String) {
-        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "確定", style: .default, handler: { _ in
-            self.performSegue(withIdentifier: "login", sender: self)
-
-        })
-        let cancelAction = UIAlertAction(title: "取消", style: .default, handler: nil)
-        alertController.addAction(okAction)
-        alertController.addAction(cancelAction)
-        self.present(alertController, animated: true, completion: nil)
     }
 
     func setUserNameAndEmail() {
