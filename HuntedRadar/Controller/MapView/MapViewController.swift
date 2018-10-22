@@ -31,7 +31,7 @@ class MapViewController: UIViewController {
 
     //local var
     var tapGesture = UITapGestureRecognizer()
-    var unluckyhouseList = [UnLuckyHouse]()
+    var unluckyhouseList = [UnLuckyHouseProtocol]()
     let locationManager = CLLocationManager()
     private var mapChangedFromUserInteraction = false
     var hasUnluckyhouse = false

@@ -39,7 +39,8 @@ class AddressProvider {
                 var addressString: String = ""
                 if let subAdministrativeArea = placemark.subAdministrativeArea {
                     if subAdministrativeArea == "桃園縣" {
-                        addressString += "桃園市"                        } else {
+                        addressString += "桃園市"
+                    } else {
                         addressString += subAdministrativeArea
                     }
                 }

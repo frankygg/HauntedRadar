@@ -10,7 +10,7 @@ import Foundation
 import MapKit
 import Contacts
 
-class UnLuckyHouse: NSObject, MKAnnotation {
+class UnLuckyHouse: NSObject, UnLuckyHouseProtocol {
 
     var coordinate: CLLocationCoordinate2D
     var houseId: Int
@@ -19,7 +19,7 @@ class UnLuckyHouse: NSObject, MKAnnotation {
     var title: String?
     var subtitle: String?
 
-    init(title: String, subtitle: String, houseId: Int, lat: Double, lng: Double, coordinate: CLLocationCoordinate2D) {
+    required init(title: String, subtitle: String, houseId: Int, lat: Double, lng: Double, coordinate: CLLocationCoordinate2D) {
         self.houseId = houseId
         self.lat = lat
         self.lng = lng
