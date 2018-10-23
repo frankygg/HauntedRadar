@@ -22,7 +22,6 @@ class SwitchCollectionViewCell: UICollectionViewCell {
 
     @objc func tappedMe(sender: UISwitch) {
         delegate?.tapSwitchCell(self)
-
     }
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
@@ -38,7 +37,6 @@ class SwitchCollectionViewCell: UICollectionViewCell {
         }
         return nil
     }
-
 }
 protocol TapSwitchCellDelegate: class {
     func tapSwitchCell(_ sender: SwitchCollectionViewCell)

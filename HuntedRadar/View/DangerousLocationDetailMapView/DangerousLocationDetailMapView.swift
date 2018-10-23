@@ -12,41 +12,39 @@ protocol DangerousLocationDetailMapViewDelegate: class {
 }
 
 class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDataSource {
-    //data
+    
+    // local variables
     var locations: [String]!
     var twoDimensionArray = [ExpandableLocations]()
     let dangerous = ["毒品", "強制性交", "強盜", "搶奪", "住宅竊盜", "汽車竊盜", "機車竊盜"]
     let dangerousimage: [String: String] = ["毒品": "needle", "強制性交": "sexual_abuse", "強盜": "rob", "搶奪": "steal", "住宅竊盜": "homesteal", "汽車竊盜": "carsteal", "機車竊盜": "motorcycle_steal"]
     weak var delegate: DangerousLocationDetailMapViewDelegate?
 
+    // IBOutlet variables
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backGroundButten: UIButton!
-
     @IBOutlet weak var detailTableView: UITableView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         //setup list
         detailTableView.register(UINib(nibName: "DangerousLocationTableViewCell", bundle: nil), forCellReuseIdentifier: "DangerousLocationTableViewCell")
         detailTableView.delegate = self
         detailTableView.dataSource = self
         // appearance
         backGroundButten.applyArrowDialogAppearanceWithOrientation(arrowOrientation: .down)
-
     }
 
     func configureWithLocation(location: DangerousLocation) {
         delegate?.detailsRequestedForDangerousLocation(locations: locations)
         self.locations = location.crimes
-
         for item in dangerous {
             var group = [String]()
             for location in locations where item == location.trimmingCharacters(in: .whitespaces) {
                 group.append(location)
             }
             if group.count > 0 {
-            twoDimensionArray.append(ExpandableLocations(isExpandable: true, locations: group))
+                twoDimensionArray.append(ExpandableLocations(isExpandable: true, locations: group))
             }
         }
         titleLabel.text = location.subtitle
@@ -58,11 +56,6 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        if twoDimensionArray[section].isExpandable {
-//        return twoDimensionArray[section].locations.count
-//        } else {
-//            return 0
-//        }
         return 0
     }
 
@@ -72,13 +65,11 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "DangerousLocationTableViewCell", for: indexPath) as? DangerousLocationTableViewCell {
-       let item = twoDimensionArray[indexPath.section].locations[indexPath.row]
+            let item = twoDimensionArray[indexPath.section].locations[indexPath.row]
             cell.configureWithItem(item: item)
-
-        return cell
-        } else {
-            return UITableViewCell()
+            return cell
         }
+        return UITableViewCell()
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -86,7 +77,7 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
         let numberOfDangerous = twoDimensionArray[section].locations.count
         button.setTitle("\(twoDimensionArray[section].locations[0]) X\(numberOfDangerous)", for: .normal)
         if let imageName = dangerousimage[twoDimensionArray[section].locations[0]] {
-        let image = UIImageView(image: UIImage(named: imageName))
+            let image = UIImageView(image: UIImage(named: imageName))
             button.addSubview(image)
             image.translatesAutoresizingMaskIntoConstraints = false
             let horizontalConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: button, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 10)
@@ -95,14 +86,11 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
             let heightConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20)
             button.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
         }
-
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .white
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-//        button.addTarget(self, action: #selector(handleExpandClose), for: .touchUpInside)
         button.tag = section
         button.layer.borderColor = UIColor.black.cgColor
-
         button.clipsToBounds = true
         button.layer.borderWidth = 4
         button.layer.cornerRadius = 2
@@ -120,12 +108,10 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
         let isExpanded = twoDimensionArray[section].isExpandable
         twoDimensionArray[section].isExpandable = !isExpanded
         if isExpanded {
-
             detailTableView.deleteRows(at: indexPaths, with: .fade)
         } else {
             detailTableView.insertRows(at: indexPaths, with: .fade)
         }
-//
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 34
@@ -133,8 +119,6 @@ class DangerousLocationDetailMapView: UIView, UITableViewDelegate, UITableViewDa
 
     // MARK: - Hit test. We need to override this to detect hits in our custom callout.
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        // Check if it hit our annotation detail view components.
-
         // list
         if let result = detailTableView.hitTest(convert(point, to: detailTableView), with: event) {
             return result

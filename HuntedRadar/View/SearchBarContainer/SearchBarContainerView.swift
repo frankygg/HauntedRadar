@@ -15,10 +15,6 @@ class SearchBarContainerView: UIView {
     init(customSearchBar: UISearchBar) {
         searchBar = customSearchBar
         super.init(frame: CGRect.zero)
-
-//        searchBar.barTintColor = UIColor.white
-//        searchBar.searchBarStyle = .minimal
-//        searchBar.returnKeyType = .done
         addSubview(searchBar)
     }
     override convenience init(frame: CGRect) {

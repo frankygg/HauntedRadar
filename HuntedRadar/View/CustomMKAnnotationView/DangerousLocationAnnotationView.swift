@@ -11,38 +11,33 @@ import MapKit
 
 class DangerousLocationAnnotationView: MKAnnotationView {
 
-    // data
     weak var customCalloutView: DangerousLocationDetailMapView?
     override var annotation: MKAnnotation? {
         willSet { customCalloutView?.removeFromSuperview() }
     }
 
-    // MARK: - life cycle
-
     override init(annotation: MKAnnotation?, reuseIdentifier: String?) {
         super.init(annotation: annotation, reuseIdentifier: reuseIdentifier)
-        self.canShowCallout = false // 1
+        self.canShowCallout = false
         self.image = UIImage(named: "evileye")
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        self.canShowCallout = false // 1
+        self.canShowCallout = false
         self.image = UIImage(named: "evileye")
     }
 
     // MARK: - callout showing and hiding
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        if selected { // 2
-            self.customCalloutView?.removeFromSuperview() // remove old custom callout (if any)
-
+        if selected {
+            // remove old custom callout (if any)
+            self.customCalloutView?.removeFromSuperview()
             if let newCustomCalloutView = loadDangerousDetailMapView() {
                 // fix location from top-left to its right place.
                 newCustomCalloutView.frame.origin.x -= newCustomCalloutView.frame.width / 2.0 - (self.frame.width / 2.0)
                 newCustomCalloutView.frame.origin.y -= newCustomCalloutView.frame.height
-
                 // set custom callout view
                 self.addSubview(newCustomCalloutView)
                 self.customCalloutView = newCustomCalloutView
@@ -54,22 +49,19 @@ class DangerousLocationAnnotationView: MKAnnotationView {
                     })
                 }
             }
-        } else { // 3
+        } else {
             if customCalloutView != nil {
-                if animated { // fade out animation, then remove it.
+                if animated {
+                    // fade out animation, then remove it.
                     UIView.animate(withDuration: 0.7, animations: {
                         self.customCalloutView!.alpha = 0.0
-                    }, completion: { (_) in
-//                        self.customCalloutView!.removeFromSuperview()
-                    })
+                    }, completion: nil)
                 } else { self.customCalloutView!.removeFromSuperview() } // just remove it.
             }
         }
     }
 
-    func loadDangerousDetailMapView() -> DangerousLocationDetailMapView? { // 4
-//        let view = UIView(frame: CGRect(x: 0, y: 0, width: 240, height: 280))
-//        return view
+    func loadDangerousDetailMapView() -> DangerousLocationDetailMapView? {
         if let views = Bundle.main.loadNibNamed("DangerousLocationDetailMapView", owner: self, options: nil) as? [DangerousLocationDetailMapView], views.count > 0 {
             let detailMapView = views.first!
             detailMapView.delegate = self as? DangerousLocationDetailMapViewDelegate
@@ -77,8 +69,6 @@ class DangerousLocationAnnotationView: MKAnnotationView {
                 let locations = dangerousAnnotation
                 detailMapView.configureWithLocation(location: locations)
             }
-//            detailMapView.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-
             return detailMapView
         }
         return nil
