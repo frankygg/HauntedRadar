@@ -39,11 +39,6 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         loadArticleFromeFirebase()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-
-    }
-
     func setTableView() {
         //xib的名稱
         let nib = UINib(nibName: "ArticleTableViewCell", bundle: nil)

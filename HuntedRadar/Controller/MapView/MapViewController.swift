@@ -14,12 +14,10 @@ class MapViewController: UIViewController {
 
     //local var
     weak var delegate: MapViewDelegate?
-
     //IBOutlet var
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var fullscreenExitButton: UIButton!
     @IBOutlet weak var mapView: MKMapView!
-
     //IBOutlet Action
     @IBAction func exitFullscreen(_ sender: UIButton) {
         if isFullScreen {
@@ -28,7 +26,6 @@ class MapViewController: UIViewController {
             delegate?.exitFullScreen(self, isHidden: isFullScreen)
         }
     }
-
     //local var
     var tapGesture = UITapGestureRecognizer()
     var unluckyhouseList = [UnLuckyHouseProtocol]()
@@ -45,7 +42,6 @@ class MapViewController: UIViewController {
 
     func centerBackOnLocation() {
         mapView.removeAnnotations(mapView.annotations)
-
         if CLLocationManager.locationServicesEnabled() {
             switch CLLocationManager.authorizationStatus() {
             case .notDetermined, .restricted, .denied:
@@ -76,7 +72,6 @@ class MapViewController: UIViewController {
         }
         if MapViewConstants.boolArray["凶宅"] == true {
             for unluckyhouse in unluckyhouseList {
-
                 let latitude = unluckyhouse.coordinate.latitude
                 let longitude = unluckyhouse.coordinate.longitude
                 let annotationLocation = CLLocation(latitude: latitude, longitude: longitude)
@@ -152,7 +147,6 @@ class MapViewController: UIViewController {
         //set searchbutton
         setSearchButton()
         setFullScfeenExitButton()
-
         locationManager.delegate = self
         //kCLLocationAccuracyHundredMeters
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
@@ -219,10 +213,6 @@ class MapViewController: UIViewController {
         }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     func centerLocation(_ coordinate: CLLocationCoordinate2D, with offset: CLLocationDegrees) {
         let span = MKCoordinateSpanMake(0.05, 0.05)
         let xylocation = CLLocationCoordinate2D(latitude: coordinate.latitude + offset, longitude: coordinate.longitude)
@@ -269,7 +259,6 @@ extension MapViewController: MKMapViewDelegate {
                 view = UnLuckyHouseMKAnnotationView(annotation: annotation, reuseIdentifier: MapViewConstants.unLuckyHouseIdentifier)
             }
             return view
-
         } else if let annotation = annotation as? DangerousLocation {
             if let dequeuedView = mapView.dequeueReusableAnnotationView(withIdentifier: MapViewConstants.dangerouseLocationIdentifier) {
                 dequeuedView.annotation = annotation
@@ -345,12 +334,4 @@ extension MapViewController: HandleMapSearch {
         handleDangerousLocation()
         delegate?.mapChangedFromUserInteraction(self)
     }
-}
-
-protocol MapViewDelegate: class {
-    func didFullScreen(_ sender: MapViewController, isHidden: Bool)
-
-    func exitFullScreen(_ sender: MapViewController, isHidden: Bool)
-
-    func mapChangedFromUserInteraction(_ sender: MapViewController)
 }

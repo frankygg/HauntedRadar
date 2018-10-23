@@ -52,10 +52,6 @@ class TabBarViewController: UITabBarController {
         setupTab()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     private func setupTab() {
         tabBar.tintColor = UIColor(red: 255/255, green: 61/255, blue: 59/255, alpha: 1)
 

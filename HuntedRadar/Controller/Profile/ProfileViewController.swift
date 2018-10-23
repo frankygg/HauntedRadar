@@ -42,28 +42,25 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
         //button image
          let imageName = "sort-up"
-            image = UIImageView(image: UIImage(named: imageName))
-            button.addSubview(image)
-            image.translatesAutoresizingMaskIntoConstraints = false
-            let horizontalConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: button, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 2)
+        image = UIImageView(image: UIImage(named: imageName))
+        button.addSubview(image)
+        image.translatesAutoresizingMaskIntoConstraints = false
+        let horizontalConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: button, attribute: NSLayoutAttribute.top, multiplier: 1, constant: 2)
         let verticalConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.leading, relatedBy: NSLayoutRelation.equal, toItem: button, attribute: NSLayoutAttribute.leading, multiplier: 1, constant: self.view.frame.width / 5)
-            let widthConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20)
-            let heightConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20)
-            button.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
-
+        let widthConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.width, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20)
+        let heightConstraint = NSLayoutConstraint(item: image, attribute: NSLayoutAttribute.height, relatedBy: NSLayoutRelation.equal, toItem: nil, attribute: NSLayoutAttribute.notAnAttribute, multiplier: 1, constant: 20)
+        button.addConstraints([horizontalConstraint, verticalConstraint, widthConstraint, heightConstraint])
         button.setTitleColor(.black, for: .normal)
         button.backgroundColor = .lightGray
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 20)
         button.addTarget(self, action: #selector(handleExpandClose), for: .touchUpInside)
         button.tag = section
         button.layer.borderColor = UIColor.black.cgColor
-
         button.clipsToBounds = true
         button.layer.borderWidth = 2
         button.layer.cornerRadius = 2
         button.layer.borderColor = UIColor.lightGray.cgColor
         return button
-
     }
 
     @objc func handleExpandClose(_ sender: UIButton) {
@@ -75,12 +72,10 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let isExpanded = isExpand
         isExpand = !isExpanded
         if isExpanded {
-                        image.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-
+            image.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
             forbidUserTableView.deleteRows(at: indexPaths, with: .fade)
         } else {
-                        image.transform = CGAffineTransform(rotationAngle: 2 * CGFloat(Double.pi))
-
+            image.transform = CGAffineTransform(rotationAngle: 2 * CGFloat(Double.pi))
             forbidUserTableView.insertRows(at: indexPaths, with: .fade)
         }
     }
@@ -91,41 +86,31 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isExpand {
-        return forbidUser.count
-        } else {
-            return 0
+            return forbidUser.count
         }
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = self.forbidUserTableView.dequeueReusableCell(withIdentifier: String(describing: ForbidTableViewCell.self), for: indexPath) as? ForbidTableViewCell else {
             return UITableViewCell()
         }
-
         cell.delegate = self
-
         cell.userNameLabel.text = forbidUser[indexPath.row].userName
-
         if forbidUser[indexPath.row].forbidKey == "" {
             cell.userImage.isHidden = true
         } else {
             cell.userImage.isHidden = false
-
         }
-
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
         //不可被點選
         cell.selectionStyle = .none
-
         return cell
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-
         guard orientation == .right, forbidUser[indexPath.row].forbidKey != "" else { return nil }
-
         let action = recoverAction(at: indexPath)
-
         return [action]
     }
 
@@ -143,14 +128,11 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
                 return
             }
             FirebaseManager.shared.deleteForbidUser(forbidUser: self.forbidUser[indexpath.row])
-
             self.forbidUser.remove(at: indexPath.row)
             self.forbidUserTableView.deleteRows(at: [indexPath], with: .fade)
         })
         action.backgroundColor = UIColor(red: 255/255, green: 229/255, blue: 59/255, alpha: 1)
-
         action.image = UIImage(named: "unlock")
-
         return action
     }
 
@@ -173,13 +155,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         let nib = UINib(nibName: String(describing: ForbidTableViewCell.self), bundle: nil)
         //註冊
         forbidUserTableView.register(nib, forCellReuseIdentifier: String(describing: ForbidTableViewCell.self))
-
         forbidUserTableView.delegate = self
-
         forbidUserTableView.dataSource = self
-
         forbidUserTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
-
     }
 
     @objc func logout() {
@@ -196,18 +174,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     @objc func login() {
-    self.performSegue(withIdentifier: "login", sender: self)
+        self.performSegue(withIdentifier: "login", sender: self)
     }
 
     func loadForbidUserFromFireBase() {
         FirebaseManager.shared.loadForbidUsers(completion: { [weak self]  forbidUser in
-
             self?.forbidUser = forbidUser
             if self?.forbidUser.count == 0 {
                 self?.forbidUser.append(Forbid(userName: "無封鎖資料!", forbidKey: ""))
             }
             self?.forbidUserTableView.reloadData()
-
         })
     }
 

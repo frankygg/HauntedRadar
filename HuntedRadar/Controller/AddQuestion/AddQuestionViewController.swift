@@ -35,10 +35,6 @@ class AddQuestionViewController: UIViewController {
         setNavigation()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     func setTextFieldDelegate() {
         addressTextField.delegate = self
         titleTextField.delegate = self

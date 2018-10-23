@@ -59,6 +59,8 @@
 		B7263715217D5FEC00C9E07C /* UnLuckyHouseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7263714217D5FEC00C9E07C /* UnLuckyHouseProtocol.swift */; };
 		B7263717217DAE7D00C9E07C /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7263716217DAE7D00C9E07C /* UIViewController+Extension.swift */; };
 		B72A46D420A1EEBD00E810E0 /* SafeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */; };
+		B72BBA49217EC865006CFFE5 /* SwitchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BBA48217EC865006CFFE5 /* SwitchViewDelegate.swift */; };
+		B72BBA4B217EC899006CFFE5 /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BBA4A217EC899006CFFE5 /* MapViewDelegate.swift */; };
 		B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */; };
 		B79E4DB920A06E2900FE9911 /* LocationSearchTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */; };
 		B7BB5E3820B2967300F16CCD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB5E3720B2967300F16CCD /* DetailViewController.swift */; };
@@ -161,6 +163,8 @@
 		B7263714217D5FEC00C9E07C /* UnLuckyHouseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnLuckyHouseProtocol.swift; sourceTree = "<group>"; };
 		B7263716217DAE7D00C9E07C /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeLocation.swift; sourceTree = "<group>"; };
+		B72BBA48217EC865006CFFE5 /* SwitchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewDelegate.swift; sourceTree = "<group>"; };
+		B72BBA4A217EC899006CFFE5 /* MapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
 		B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuntedNavigationController.swift; sourceTree = "<group>"; };
 		B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationSearchTable.storyboard; sourceTree = "<group>"; };
 		B7BB5E3720B2967300F16CCD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -389,6 +393,7 @@
 			isa = PBXGroup;
 			children = (
 				B70452C720A1480700090318 /* SwitchViewController.swift */,
+				B72BBA48217EC865006CFFE5 /* SwitchViewDelegate.swift */,
 			);
 			path = SwitchView;
 			sourceTree = "<group>";
@@ -703,6 +708,7 @@
 			isa = PBXGroup;
 			children = (
 				B7FAD73F20CA2FB3000AC3E0 /* MapViewController.swift */,
+				B72BBA4A217EC899006CFFE5 /* MapViewDelegate.swift */,
 			);
 			path = MapView;
 			sourceTree = "<group>";
@@ -992,6 +998,7 @@
 				B708B3DE20A740C000687113 /* UIStoryBoard+Extension.swift in Sources */,
 				B705B9E420B5CCEA0068823D /* ProfileViewController.swift in Sources */,
 				B70C18DC209EE87600133859 /* LocationSearchUITableViewController.swift in Sources */,
+				B72BBA4B217EC899006CFFE5 /* MapViewDelegate.swift in Sources */,
 				B70BBA9320C4EFD0000A39D6 /* UIAlertController+Extensions.swift in Sources */,
 				B70452CC20A14B2500090318 /* SwitchCollectionViewCell.swift in Sources */,
 				B70BB4ED20B4664500612736 /* Forbid.swift in Sources */,
@@ -1000,6 +1007,7 @@
 				B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */,
 				B712E03920AE7BF300FFBD87 /* SearchBarContainerView.swift in Sources */,
 				B7BB5E4520B2C8BB00F16CCD /* Comment.swift in Sources */,
+				B72BBA49217EC865006CFFE5 /* SwitchViewDelegate.swift in Sources */,
 				B71037E020BE41F300952A65 /* PrivacyViewController.swift in Sources */,
 				B70BBA8F20C4EFD0000A39D6 /* UIColor+Extensions.swift in Sources */,
 				B7263717217DAE7D00C9E07C /* UIViewController+Extension.swift in Sources */,

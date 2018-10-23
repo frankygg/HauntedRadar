@@ -22,10 +22,6 @@ class HuntedNavigationController: UINavigationController {
         arrangeNavigationItem()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     private func arrangeGradientLayer() {
 
         let layer = CAGradientLayer()

@@ -10,10 +10,6 @@ import Foundation
 import Charts
 
 class BarChartViewController: UIViewController, ChartViewDelegate {
-    func didChangeBarChartView() {
-        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-
-    }
 
     //IBOutlet var
     @IBOutlet var barChartView: BarChartView!
@@ -40,17 +36,15 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
             }
 
     @objc func handleTap() {
-                navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
     }
 
     func chartViewChanged(_ chartView: ChartViewBase) {
-                navigationItem.rightBarButtonItem?.tintColor = UIColor.white
-
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    
+    func didChangeBarChartView() {
+        navigationItem.rightBarButtonItem?.tintColor = UIColor.white
     }
 
     // MARK: - General Methods -
@@ -109,21 +103,19 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
         }
         var numberOfCrimeArray = [Double]()
         for item in MapViewConstants.dangerousWithUnluckyHouse {
-        for value in passedValue {
-            if value.range(of: item) != nil {
-                xaxisValue.append(item)
-                numberOfCrimeArray.append(0.0)
-                break
+            for value in passedValue {
+                if value.range(of: item) != nil {
+                    xaxisValue.append(item)
+                    numberOfCrimeArray.append(0.0)
+                    break
+                }
             }
-        }
         }
         var data = [BarChartDataSet]()
         for jtem in 0..<MapViewConstants.countMonth.count {
             var numbers = numberOfCrimeArray
-
             var dataEntries: [BarChartDataEntry] = []
             for crime in 0..<xaxisValue.count {
-
                 for value in passedValue {
                     if (value.range(of: xaxisValue[crime])) != nil && (value.range(of: MapViewConstants.countMonth[jtem]) != nil) {
                         numbers[crime] += 1
@@ -134,18 +126,13 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
             for item in 0..<numbers.count {
                 let dataEntry = BarChartDataEntry(x: Double(item), y: (numbers[item]))
                 dataEntries.append(dataEntry)
-
             }
             let chartDataSet = BarChartDataSet(values: dataEntries, label: MapViewConstants.countMonth[jtem])
             chartDataSet.colors = [colors[jtem]]
-
-//            chartDataSet.drawValuesEnabled = false
             data.append(chartDataSet)
-
         }
         let dataSets: [BarChartDataSet] = data
         let chartData = BarChartData(dataSets: dataSets)
-
         let groupSpace = 0.4
         let barSpace = 0.03
         let barWidth = 0.2
@@ -163,11 +150,9 @@ class BarChartViewController: UIViewController, ChartViewDelegate {
 
         barChartView.notifyDataSetChanged()
         barChartView.setVisibleXRangeMaximum(4)
-//        barChartView.animate(yAxisDuration: 1.0, easingOption: .linear)
         barChartView.animate(xAxisDuration: 2.0, yAxisDuration: 2.0)
         chartData.setValueTextColor(UIColor.black)
     }
-
 }
 
 class CustomLabelsXAxisValueFormatter: NSObject, IAxisValueFormatter {
