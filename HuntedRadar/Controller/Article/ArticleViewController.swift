@@ -13,7 +13,7 @@ import FirebaseAuth
 import SDWebImage
 import SwipeCellKit
 import SVProgressHUD
-class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DismissView, SwipeTableViewCellDelegate {
+class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, DismissLoginViewProtocol, SwipeTableViewCellDelegate {
 
     //local variables
     var articles = [Article]()
@@ -25,13 +25,9 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setTableView()
-
         setNavigationItem()
-
         loadArticleFromeFirebase()
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -47,8 +43,8 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
         myTableView.dataSource = self
         myTableView.delegate = self
         myTableView.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
-//        self.automaticallyAdjustsScrollViewInsets = false
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
@@ -80,19 +76,15 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         passArticle = articles[indexPath.row]
         performSegue(withIdentifier: "articleDetail", sender: self)
-
     }
 
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
         guard orientation == .right else { return nil }
-
         let action = multiAction(at: indexPath)
-
         return action
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-
         return true
     }
 
@@ -104,7 +96,6 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
 
     func multiAction(at indexPath: IndexPath) -> [SwipeAction] {
-
         let userdefault = UserDefaults.standard
         let userName = userdefault.string(forKey: "userName")
         if articles[indexPath.row].userName == userName {
@@ -113,7 +104,6 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
                 guard  Auth.auth().currentUser != nil else {
                     self.popUpAlert(title: "您尚未登入", message: "請先登入再進行此操作", shouldHaveCancelButton: true) {[weak self] in
                         self?.performSegue(withIdentifier: "loginWithOutAddQuestion", sender: self)
-
                     }
                     return
                 }
@@ -122,18 +112,12 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
                     FirebaseManager.shared.deleteArticle(article: (self?.articles[indexpath.row])!)
                     self?.articles.remove(at: indexPath.row)
                     self?.myTableView.deleteRows(at: [indexPath], with: .fade)
-
-                    }
+                }
             })
-
             action.backgroundColor = UIColor.red
-
             action.image = UIImage(named: "delete-button")
-
             let edit = editAction(at: indexPath)
-
             return [edit, action]
-
         } else {
             //users can forbid other accounts' activities
             let action = SwipeAction(style: .default, title: "封鎖用戶", handler: { (_, indexpath) in
@@ -149,13 +133,11 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
                     FirebaseManager.shared.loadArticle(completion: { article in
                         self.articles = article
                         self.myTableView.reloadData()
-                    })             }
+                    })
+                }
             })
-
             action.backgroundColor = UIColor.orange
-
             action.image = UIImage(named: "forbid")
-
             return [action]
         }
     }
@@ -163,25 +145,19 @@ class ArticleViewController: UIViewController, UITableViewDelegate, UITableViewD
     func editAction(at indexPath: IndexPath) -> SwipeAction {
         let action = SwipeAction(style: .default, title: "編輯", handler: { (_, indexpath) in
             guard  Auth.auth().currentUser != nil else {
-                self.popUpAlert(title: "您尚未登入", message: "請先登入再進行此操作", shouldHaveCancelButton: true) { [weak self]
-in                    self?.performSegue(withIdentifier: "loginWithOutAddQuestion", sender: self)
-
+                self.popUpAlert(title: "您尚未登入", message: "請先登入再進行此操作", shouldHaveCancelButton: true) { [weak self] in                    self?.performSegue(withIdentifier: "loginWithOutAddQuestion", sender: self)
                 }
                 return
             }
             self.editArticle = self.articles[indexpath.row]
             self.performSegue(withIdentifier: "editQuestion", sender: self)
         })
-
         action.backgroundColor = UIColor(red: 255/255, green: 229/255, blue: 59/255, alpha: 1)
-
         action.image = UIImage(named: "edit")
-
         return action
     }
 
     @objc func addQuestion(_ sender: UIButton) {
-
         let showLoginScreen = Auth.auth().currentUser == nil
         if showLoginScreen {
             performSegue(withIdentifier: "login", sender: self)
@@ -208,7 +184,6 @@ in                    self?.performSegue(withIdentifier: "loginWithOutAddQuestio
     func dismissView(_ bool: Bool) {
         if bool {
             performSegue(withIdentifier: "addQuestion", sender: self)
-
         }
     }
 
@@ -224,5 +199,4 @@ in                    self?.performSegue(withIdentifier: "loginWithOutAddQuestio
             SVProgressHUD.dismiss()
         })
     }
-
 }

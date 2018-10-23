@@ -61,6 +61,7 @@
 		B72A46D420A1EEBD00E810E0 /* SafeLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */; };
 		B72BBA49217EC865006CFFE5 /* SwitchViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BBA48217EC865006CFFE5 /* SwitchViewDelegate.swift */; };
 		B72BBA4B217EC899006CFFE5 /* MapViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BBA4A217EC899006CFFE5 /* MapViewDelegate.swift */; };
+		B72BBA4D217ED34B006CFFE5 /* DismissLoginViewProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = B72BBA4C217ED34B006CFFE5 /* DismissLoginViewProtocol.swift */; };
 		B7479F8D20A9305D00415978 /* HuntedNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */; };
 		B79E4DB920A06E2900FE9911 /* LocationSearchTable.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */; };
 		B7BB5E3820B2967300F16CCD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7BB5E3720B2967300F16CCD /* DetailViewController.swift */; };
@@ -165,6 +166,7 @@
 		B72A46D320A1EEBD00E810E0 /* SafeLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeLocation.swift; sourceTree = "<group>"; };
 		B72BBA48217EC865006CFFE5 /* SwitchViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwitchViewDelegate.swift; sourceTree = "<group>"; };
 		B72BBA4A217EC899006CFFE5 /* MapViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewDelegate.swift; sourceTree = "<group>"; };
+		B72BBA4C217ED34B006CFFE5 /* DismissLoginViewProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissLoginViewProtocol.swift; sourceTree = "<group>"; };
 		B7479F8C20A9305D00415978 /* HuntedNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HuntedNavigationController.swift; sourceTree = "<group>"; };
 		B79E4DB820A06E2900FE9911 /* LocationSearchTable.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocationSearchTable.storyboard; sourceTree = "<group>"; };
 		B7BB5E3720B2967300F16CCD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -684,6 +686,7 @@
 			isa = PBXGroup;
 			children = (
 				B7CCD74C20A9847100CE722E /* LoginViewController.swift */,
+				B72BBA4C217ED34B006CFFE5 /* DismissLoginViewProtocol.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -997,6 +1000,7 @@
 				B70BBAA320C4EFD1000A39D6 /* Assets.swift in Sources */,
 				B708B3DE20A740C000687113 /* UIStoryBoard+Extension.swift in Sources */,
 				B705B9E420B5CCEA0068823D /* ProfileViewController.swift in Sources */,
+				B72BBA4D217ED34B006CFFE5 /* DismissLoginViewProtocol.swift in Sources */,
 				B70C18DC209EE87600133859 /* LocationSearchUITableViewController.swift in Sources */,
 				B72BBA4B217EC899006CFFE5 /* MapViewDelegate.swift in Sources */,
 				B70BBA9320C4EFD0000A39D6 /* UIAlertController+Extensions.swift in Sources */,

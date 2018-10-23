@@ -12,20 +12,24 @@ import SDWebImage
 import SVProgressHUD
 import Photos
 class AddQuestionViewController: UIViewController {
+    
+    // local variables
     var passedValue: Any?
     var pageControl = UIPageControl()
     let fullSize = UIScreen.main.bounds.size
     var icount = 0
     var myTag = 0
     var imageArray = [UIImage]()
-
     var articleObject: Article?
+    
+    // IBOutlet variables
     @IBOutlet weak var bottomScrollView: UIScrollView!
     @IBOutlet weak var reasonTextView: UITextView!
     @IBOutlet weak var addQuestionButton: UIButton!
     @IBOutlet weak var myScrollView: UIScrollView!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var titleTextField: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDefaultScrollView()
@@ -68,7 +72,6 @@ class AddQuestionViewController: UIViewController {
             self.setScrollView(numberOfPhotos: passedValue.imageUrl.count)
         }
         for imageSubView in self.myScrollView.subviews {
-
             imageSubView.removeFromSuperview()
         }
         for asset in passedValue.imageUrl {
@@ -88,11 +91,8 @@ class AddQuestionViewController: UIViewController {
             let touch = UITapGestureRecognizer(target: self, action: #selector(self.bottomAlert))
             image.addGestureRecognizer(touch)
             icount += 1
-
         }
-
         addQuestionButton.setTitle("編輯", for: .normal)
-
     }
 
     func setDefaultProperty() {
@@ -100,7 +100,6 @@ class AddQuestionViewController: UIViewController {
         addressTextField.placeholder = "地址"
         titleTextField.layer.borderColor = UIColor.red.cgColor
         addressTextField.layer.borderColor = UIColor.red.cgColor
-
         reasonTextView.text = "內容"
         reasonTextView.textColor = UIColor(displayP3Red: 199 / 255, green: 199 / 255, blue: 205 / 255, alpha: 1)
         reasonTextView.layer.cornerRadius = 5
@@ -114,14 +113,12 @@ class AddQuestionViewController: UIViewController {
         image.contentMode = UIViewContentMode.scaleAspectFill
         image.layer.masksToBounds = true
         image.image = UIImage(named: "adjust_picture")
-
         image.frame = CGRect(x: 0, y: 0, width: self.fullSize.width, height: self.myScrollView.frame.height)
         image.center = CGPoint(x: self.fullSize.width * (0.5 + CGFloat(self.icount)), y: self.myScrollView.frame.height / 2 )
         self.myScrollView.addSubview(image)
         image.isUserInteractionEnabled = true
         let touch = UITapGestureRecognizer(target: self, action: #selector(self.buttonAction(_:)))
         image.addGestureRecognizer(touch)
-
     }
 
     func setArticleObject() {
@@ -143,7 +140,7 @@ class AddQuestionViewController: UIViewController {
             articleObject?.reason = reason
             articleObject?.createdTime = Int(NSDate().timeIntervalSince1970)
         } else {
-        articleObject = Article(uid: "", userName: "", imageUrl: [""], address: address, reason: reason, title: title, createdTime: Int(NSDate().timeIntervalSince1970), articleKey: "", imageName: [""])
+            articleObject = Article(uid: "", userName: "", imageUrl: [""], address: address, reason: reason, title: title, createdTime: Int(NSDate().timeIntervalSince1970), articleKey: "", imageName: [""])
         }
     }
 
@@ -187,8 +184,7 @@ class AddQuestionViewController: UIViewController {
     }
 
     @objc func bottomAlert(recognizer: UITapGestureRecognizer) {
-            myTag = recognizer.view!.tag
-
+        myTag = recognizer.view!.tag
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
         let photoAction = UIAlertAction(title: "相片", style: .default) { _ in
@@ -200,7 +196,6 @@ class AddQuestionViewController: UIViewController {
             picker.sourceType = .camera
             self.present(picker, animated: true, completion: nil)
         }
-
         alertController.addAction(cancelAction)
         alertController.addAction(photoAction)
         alertController.addAction(cameraAction)
@@ -222,7 +217,6 @@ class AddQuestionViewController: UIViewController {
         }
         guard  Auth.auth().currentUser != nil else {
             popUpAlert(title: "您尚未登入", message: "請先登入再進行此操作", shouldHaveCancelButton: false,confirmCompletion: nil)
-
             return
         }
         SVProgressHUD.setDefaultMaskType(.gradient)
@@ -235,10 +229,10 @@ class AddQuestionViewController: UIViewController {
                 self.navigationController?.popViewController(animated: true)
             })
         } else {
-        FirebaseManager.shared.addArticleQuestion(uploadimage: imageArray, uploadArticle: articleObject, handler: {
+            FirebaseManager.shared.addArticleQuestion(uploadimage: imageArray, uploadArticle: articleObject, handler: {
             SVProgressHUD.dismiss()
             self.navigationController?.popViewController(animated: true)
-        })
+            })
         }
     }
 
@@ -262,7 +256,6 @@ class AddQuestionViewController: UIViewController {
     }
 
     func setScrollView(numberOfPhotos: Int) {
-
         // 實際視圖範圍
         myScrollView.contentSize = CGSize(
             width: fullSize.width * CGFloat(numberOfPhotos), height: fullSize.height / 5)
@@ -348,7 +341,6 @@ class AddQuestionViewController: UIViewController {
     @IBAction func buttonAction(_ sender: Any) {
         multiPhoto()
     }
-
 }
 
 extension UITextField {
@@ -361,7 +353,6 @@ extension UITextField {
 }
 
 extension AddQuestionViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String: Any]) {
         let image = info[UIImagePickerControllerOriginalImage] as? UIImage
         if picker.sourceType == .camera {

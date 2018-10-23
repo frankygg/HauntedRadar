@@ -12,8 +12,9 @@ import Firebase
 import SVProgressHUD
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
+    
     //local var
-    weak var delegate: DismissView?
+    weak var delegate: DismissLoginViewProtocol?
     var isSignIn: Bool = true
     var isFromAppFlag: Bool = false
 
@@ -28,6 +29,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var confirmTextField: UITextField!
     @IBOutlet weak var signinLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userNameStackView.isHidden = true
@@ -61,7 +63,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         SVProgressHUD.show(withStatus: "登入中")
         //some validation on email and password
         if let email = emailTextField.text, let password = passwordTextField.text {
-
             //check if it's sign in or register
             if isSignIn {
                 guard email.trimmingCharacters(in: .whitespaces) != "" && password.trimmingCharacters(in: .whitespaces) != ""  else {
@@ -84,21 +85,20 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                                 print("not found)")
                                 //Register the user with Firebase
                                 Auth.auth().createUser(withEmail: email, password: password, completion: self?.registerCompletionCallback)
-
                             } else {
                                 SVProgressHUD.dismiss()
-                                    self?.popUpAlert(title: "註冊失敗", message: "暱稱已被使用！", shouldHaveCancelButton: false, confirmCompletion: nil)
+                                self?.popUpAlert(title: "註冊失敗", message: "暱稱已被使用！", shouldHaveCancelButton: false, confirmCompletion: nil)
                             }
                         })
-                    }} else {
+                    }
+                } else {
                     SVProgressHUD.dismiss()
-
                     popUpAlert(title: "註冊失敗", message: "有欄位空白", shouldHaveCancelButton: false, confirmCompletion: nil)
-
                 }
             }
         }
     }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         emailTextField.resignFirstResponder()
         passwordTextField.resignFirstResponder()
@@ -106,7 +106,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     func setTextFieldDelegateAndStyle() {
         passwordTextField.delegate = self
-     emailTextField.delegate = self
+        emailTextField.delegate = self
         userNameTextField.delegate = self
         confirmTextField.delegate = self
     }
@@ -117,12 +117,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             setUserDefaultUserName()
         } else {
             SVProgressHUD.dismiss()
-
-            guard let error = error, let errorCode = AuthErrorCode(rawValue: error._code)
-            else {
-                return
-            }
-
+            guard let error = error, let errorCode = AuthErrorCode(rawValue: error._code) else { return}
             popUpAlert(title: "登入失敗", message: errorCode.errorMessage, shouldHaveCancelButton: false, confirmCompletion: nil)
         }
     }
@@ -136,12 +131,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             setUserDefaultUserName()
         } else {
             SVProgressHUD.dismiss()
-
-            guard let error = error, let errorCode = AuthErrorCode(rawValue: error._code)
-                else {
-                return
-            }
-            print("\(error._code)  \(error.localizedDescription)")
+            guard let error = error, let errorCode = AuthErrorCode(rawValue: error._code) else { return}
             popUpAlert(title: "註冊失敗", message: errorCode.errorMessage, shouldHaveCancelButton: false, confirmCompletion: nil)
         }
     }
@@ -152,15 +142,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 
     @IBAction func visitAction(_ sender: Any) {
         if self.isFromAppFlag {
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                return
-            }
-
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return}
             let tabBarController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
-
             appDelegate.window?.rootViewController = tabBarController
         } else {
-        dismiss(animated: true, completion: nil)
+            dismiss(animated: true, completion: nil)
         }
     }
 
@@ -172,15 +158,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         FirebaseManager.shared.loadForbidUsers(completion: {_ in
             SVProgressHUD.dismiss()
             if self.isFromAppFlag {
-                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                    return
-                }
-
+                guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return}
                 let tabBarController = UIStoryboard.customTabBarStoryboard().instantiateInitialViewController()!
-
                 appDelegate.window?.rootViewController = tabBarController
             } else {
-            self.dismiss(animated: true, completion: nil)
+                self.dismiss(animated: true, completion: nil)
             }
         })
     }
@@ -188,18 +170,12 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func setSignInAndVisitButton() {
         signInButton.layer.cornerRadius = 5
         signInButton.clipsToBounds = true
-
         visitButton.layer.cornerRadius = 5
         visitButton.clipsToBounds = true
-
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return false
     }
-}
-
-protocol DismissView: class {
-    func dismissView(_ bool: Bool)
 }
